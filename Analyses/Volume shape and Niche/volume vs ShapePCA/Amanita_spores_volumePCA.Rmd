@@ -70,7 +70,6 @@ pca_spores <- Momocs::PCA(efourier_spores)
 ```
 # Volume (size) analysis
 
-
 ```{r}
 # Load the spore volume data
 volume_data <- read_csv("spreadsheets/Sporelengthwidthvolume.csv")

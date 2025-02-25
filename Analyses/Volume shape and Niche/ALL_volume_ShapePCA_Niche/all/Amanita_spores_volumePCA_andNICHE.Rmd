@@ -1,0 +1,704 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(dplyr)
+library(stringr)
+
+```
+
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+
+jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+
+# import them
+
+spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
+out_spores <- Momocs::Out(spores)
+out_spores <- Momocs::coo_center(out_spores)
+out_spores_scaled <- Momocs::coo_scale(out_spores)
+out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
+# Ensure all outlines have the same number of points (e.g., 100 points per outline)
+out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
+# Now apply Procrustes alignment
+out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
+# Visualize to confirm
+panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
+efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
+pca_spores <- Momocs::PCA(efourier_spores)
+
+```
+
+# Volume (size) analysis
+
+```{r}
+# Load the spore volume data
+volume_data <- read_csv("spreadsheets/Sporelengthwidthvolume.csv")
+
+# View the first few rows to confirm it's loaded correctly
+head(volume_data)
+
+```
+
+# clean pca data and prep for data merge
+```{r}
+# Extract PCA scores and add species names if available
+pca_scores_df_species <- as.data.frame(pca_spores$x)  # PCA scores
+pca_scores_df_species$species <- rownames(pca_scores_df_species) # Add species as a column if not already
+head(pca_scores_df_species)
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Species.csv", row.names = FALSE)
+
+```
+
+
+```{r}
+# Standardize species names in PCA dataset (e.g., Amanita_abrupta_Bas_1 -> A_abrupta)
+pca_scores_df_species <- pca_scores_df_species %>%
+  mutate(species = str_replace(species, "Amanita_", "A_"),     # Replace 'Amanita_' with 'A_'
+         species = str_extract(species, "^A_[a-z]+"))          # Keep only 'A_speciesname'
+
+# Check results
+unique(pca_scores_df_species$species)
+
+```
+```{r}
+# Aggregate PCA scores by species using summarise_at (alternative to across)
+pca_agg <- pca_scores_df_species %>%
+  group_by(species) %>%
+  summarise_at(vars(starts_with("PC")), mean, na.rm = TRUE)
+
+# Check the aggregated PCA scores
+head(pca_agg)
+
+```
+```{r}
+volume_data <- volume_data %>%
+  mutate(species = str_replace(species, "Amanita_", "A_"),    # In case full names are used
+         species = str_extract(species, "^A_[a-z]+"))         # Keep 'A_species' format
+
+# Check species names after standardization
+unique(volume_data$species)
+
+
+```
+# data merge 
+```{r}
+# Merge the PCA and volume datasets
+merged_data <- inner_join(pca_agg, volume_data, by = "species")
+
+# View the merged dataset
+head(merged_data)
+
+```
+
+# visualize merged data
+
+```{r}
+
+# Correlation test
+cor_test_result <- cor.test(merged_data$estimated_volume, merged_data$PC1)
+cor_coef <- round(cor_test_result$estimate, 3)   # Correlation coefficient
+p_value <- signif(cor_test_result$p.value, 3)    # p-value
+
+# Linear regression model
+lm_model <- lm(PC1 ~ estimated_volume, data = merged_data)
+lm_summary <- summary(lm_model)
+r_squared <- round(lm_summary$r.squared, 3)      # R-squared
+slope <- round(coef(lm_model)[2], 3)             # Slope
+intercept <- round(coef(lm_model)[1], 3)         # Intercept
+```
+
+
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Identify the point with the lowest spore volume (X-axis)
+lowest_volume_point <- merged_data %>%
+  filter(estimated_volume == min(estimated_volume))
+
+# Identify the point with the lowest PC1 score (Y-axis)
+lowest_PC1_point <- merged_data %>%
+  filter(PC1 == min(PC1))
+
+# Identify the top-right point (max volume and PC1)
+top_right_point <- merged_data %>%
+  filter(estimated_volume == max(estimated_volume) & PC1 == max(PC1))
+
+# Enhanced plot with separate min labels and top-right label
+ggplot(merged_data, aes(x = estimated_volume, y = PC1)) +
+  geom_point(color = "darkorange", size = 4, alpha = 0.7, shape = 16) +
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue", size = 1.5) +
+  
+  # Regression and correlation annotations
+  annotate(
+    "text", x = max(merged_data$estimated_volume) * 0.6,
+    y = max(merged_data$PC1) * 0.9,
+    label = paste0(
+      "Correlation (r): ", round(cor.test(merged_data$estimated_volume, merged_data$PC1)$estimate, 3), "\n",
+      "p-value: ", signif(cor.test(merged_data$estimated_volume, merged_data$PC1)$p.value, 3), "\n",
+      "R²: ", round(summary(lm(PC1 ~ estimated_volume, data = merged_data))$r.squared, 3)
+    ),
+    size = 4, hjust = 0, color = "black"
+  ) +
+
+  # Label the point with the lowest spore volume (X-axis)
+  geom_label(
+    data = lowest_volume_point, aes(label = species),
+    nudge_x = -0.05 * max(merged_data$estimated_volume),
+    nudge_y = 0.05 * max(merged_data$PC1),
+    color = "black", fill = "lightgreen", size = 3
+  ) +
+
+  # Label the point with the lowest PC1 score (Y-axis)
+  geom_label(
+    data = lowest_PC1_point, aes(label = species),
+    nudge_x = 0.05 * max(merged_data$estimated_volume),
+    nudge_y = -0.05 * max(merged_data$PC1),
+    color = "black", fill = "lightpink", size = 3
+  ) +
+
+  # Label the top-right point (max volume and PC1)
+  geom_label(
+    data = top_right_point, aes(label = species),
+    nudge_x = 0.05 * max(merged_data$estimated_volume),
+    nudge_y = 0.05 * max(merged_data$PC1),
+    color = "black", fill = "lightblue", size = 3
+  ) +
+
+  labs(
+    title = "PC1 (Spore Shape) vs. Spore Volume",
+    x = "Estimated Spore Volume (µm³)",
+    y = "PC1 Score (Shape Variation)"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+
+```
+
+```{r}
+ggsave("PC1_vs_SporeVolume_with_separate_min_points.png", width = 8, height = 8, dpi = 300)
+
+```
+
+```{r}
+
+# Load the niche data
+niche_data <- read.csv("spreadsheets/Spores_Amanita_ecological_niche.csv")
+
+# Standardize species names in the niche dataset
+niche_data <- niche_data %>%
+  mutate(species = str_replace(species, "Amanita_", "A_"),
+         species = str_extract(species, "^A_[a-z]+"))
+
+# Add readable niche labels
+niche_data <- niche_data %>%
+  mutate(Ecology_label = case_when(
+    Ecology == 1 ~ "Ectomycorrhizal (EM)",
+    Ecology == 2 ~ "Saprotrophic (SAP)",
+    TRUE ~ NA_character_
+  ))
+
+# Merge niche data with PCA + volume dataset
+merged_all <- merged_data %>%
+  left_join(niche_data %>% select(species, Ecology_label), by = "species") %>%
+  filter(!is.na(Ecology_label))
+
+# Define custom colors
+niche_colors <- c("Ectomycorrhizal (EM)" = "green", "Saprotrophic (SAP)" = "orange")
+
+# Create the combined plot
+combined_plot <- ggplot(merged_all, aes(x = PC1, y = estimated_volume, color = Ecology_label)) +
+  geom_point(size = 4, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.5, aes(color = Ecology_label)) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "PC1 (Spore Shape) vs. Spore Volume Colored by Ecological Niche",
+    x = "PC1 Score (Shape Variation)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the combined plot
+print(combined_plot)
+
+# Save the plot
+ggsave("PC1_vs_SporeVolume_Colored_by_Niche.png", plot = combined_plot, width = 8, height = 8, dpi = 300)
+
+
+
+
+
+
+```
+
+```{r}
+
+merged_all %>%
+  group_by(Ecology_label) %>%
+  summarise(
+    correlation = round(cor(PC1, estimated_volume, method = "pearson"), 3),
+    p_value = signif(cor.test(PC1, estimated_volume)$p.value, 3)
+  )
+
+```
+
+
+
+```{r}
+
+# Calculate correlation and p-values per ecological niche manually
+correlation_stats <- merged_all %>%
+  group_split(Ecology_label) %>%
+  lapply(function(df) {
+    data.frame(
+      Ecology_label = unique(df$Ecology_label),
+      correlation = round(cor(df$PC1, df$estimated_volume, method = "pearson"), 3),
+      p_value = signif(cor.test(df$PC1, df$estimated_volume)$p.value, 3)
+    )
+  }) %>%
+  bind_rows() %>%
+  mutate(
+    x_pos = max(merged_all$PC1) * 0.6,
+    y_pos = seq(from = max(merged_all$estimated_volume) * 0.95,
+                by = -max(merged_all$estimated_volume) * 0.1,
+                length.out = n())
+  )
+
+# Create the combined plot with p-value annotations
+combined_plot_with_p <- ggplot(merged_all, aes(x = PC1, y = estimated_volume, color = Ecology_label)) +
+  geom_point(size = 4, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.5, aes(color = Ecology_label)) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "PC1 (Spore Shape) vs. Spore Volume Colored by Ecological Niche",
+    x = "PC1 Score (Shape Variation)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche"
+  ) +
+  # Correct annotation for correlation and p-values
+  geom_text(
+    data = correlation_stats,
+    aes(
+      x = x_pos,
+      y = y_pos,
+      label = paste0(Ecology_label, "\n", "r = ", correlation, ", p = ", p_value)
+    ),
+    size = 5, hjust = 0, inherit.aes = FALSE, color = "black"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the plot
+print(combined_plot_with_p)
+
+# Save the updated plot with p-values
+ggsave("PC1_vs_SporeVolume_Colored_by_Niche_with_pvalues.png",
+       plot = combined_plot_with_p, width = 13, height = 13, dpi = 300)
+
+
+```
+
+```{r}
+
+library(ggrepel)
+
+# Extract top 5 for each extreme of both axes (with ecological niche)
+top_largest_volume <- merged_all %>%
+  arrange(desc(estimated_volume)) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Largest Spore Volume")
+
+top_smallest_volume <- merged_all %>%
+  arrange(estimated_volume) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Smallest Spore Volume")
+
+top_elongate_spores <- merged_all %>%
+  arrange(desc(PC1)) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Most Elongate Spores (High PC1)")
+
+top_globose_spores <- merged_all %>%
+  arrange(PC1) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Most Globose Spores (Low PC1)")
+
+# Combine all and remove duplicates by species
+top_extremes_combined <- bind_rows(
+  top_largest_volume,
+  top_smallest_volume,
+  top_elongate_spores,
+  top_globose_spores
+) %>%
+  distinct(species, .keep_all = TRUE)  # Remove duplicates
+
+# View the final list of extremes
+top_extremes_combined %>%
+  select(species, estimated_volume, PC1, Ecology_label, category)
+
+# Define niche colors
+niche_colors <- c("Ectomycorrhizal (EM)" = "green", "Saprotrophic (SAP)" = "orange")
+
+# Plot highlighting the extremes with ecological niche colors
+extremes_plot <- ggplot(merged_all, aes(x = PC1, y = estimated_volume, color = Ecology_label)) +
+  geom_point(alpha = 0.4, size = 3, shape = 16) +  # Background points
+  geom_point(data = top_extremes_combined, aes(color = Ecology_label, shape = category), size = 6) +
+  geom_label_repel(
+    data = top_extremes_combined,
+    aes(label = species),
+    size = 5, box.padding = 0.5, point.padding = 0.5, max.overlaps = Inf,
+    segment.color = "grey50", force = 2
+  ) +
+  scale_color_manual(values = niche_colors) +
+  scale_shape_manual(values = c(15, 16, 17, 18)) +  # Different shapes per category
+  labs(
+    title = "Top 5 Extremes of Spore Shape and Volume (with Ecological Niche)",
+    x = "PC1 Score (Shape Variation: Globose to Elongate)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche",
+    shape = "Category"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the plot
+print(extremes_plot)
+
+# Save the plot
+ggsave("Top_5_Spore_Extremes_PC1_Volume_Niche.png",
+       plot = extremes_plot, width = 12, height = 12, dpi = 300)
+
+
+
+
+
+```
+
+```{r}
+
+# Make final graph
+
+library(ggrepel)
+
+# Identify min and max points for each axis
+min_PC1_point <- merged_all %>%
+  filter(PC1 == min(PC1))
+
+max_PC1_point <- merged_all %>%
+  filter(PC1 == max(PC1))
+
+min_volume_point <- merged_all %>%
+  filter(estimated_volume == min(estimated_volume))
+
+max_volume_point <- merged_all %>%
+  filter(estimated_volume == max(estimated_volume))
+
+# Calculate correlation and p-values per ecological niche
+correlation_stats <- merged_all %>%
+  group_split(Ecology_label) %>%
+  lapply(function(df) {
+    data.frame(
+      Ecology_label = unique(df$Ecology_label),
+      correlation = round(cor(df$PC1, df$estimated_volume, method = "pearson"), 3),
+      p_value = signif(cor.test(df$PC1, df$estimated_volume)$p.value, 3)
+    )
+  }) %>%
+  bind_rows() %>%
+  mutate(
+    x_pos = max(merged_all$PC1) * 0.6,
+    y_pos = seq(from = max(merged_all$estimated_volume) * 0.95,
+                by = -max(merged_all$estimated_volume) * 0.1,
+                length.out = n())
+  )
+
+# Create the updated plot with p-value annotations and labeled min/max points
+updated_plot <- ggplot(merged_all, aes(x = PC1, y = estimated_volume, color = Ecology_label)) +
+  geom_point(size = 4, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.5) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "PC1 (Spore Shape) vs. Spore Volume (Min/Max Points Labeled)",
+    x = "PC1 Score (Shape Variation: Globose to Elongate)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche"
+  ) +
+  # Add species labels for min and max points on each axis
+  geom_label_repel(data = min_PC1_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightblue") +
+  geom_label_repel(data = max_PC1_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightgreen") +
+  geom_label_repel(data = min_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightpink") +
+  geom_label_repel(data = max_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightyellow") +
+  # Correlation and p-value annotations
+  geom_text(
+    data = correlation_stats,
+    aes(
+      x = x_pos,
+      y = y_pos,
+      label = paste0(Ecology_label, "\n", "r = ", correlation, ", p = ", p_value)
+    ),
+    size = 5, hjust = 0, inherit.aes = FALSE, color = "black"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the updated plot
+print(updated_plot)
+
+# Save the updated plot
+ggsave("PC1_vs_SporeVolume_MinMax_Labeled.png",
+       plot = updated_plot, width = 13, height = 13, dpi = 300)
+
+
+
+
+```
+
+
+
+```{r}
+
+library(ggrepel)
+
+# Identify min and max points for PC2 and volume
+min_PC2_point <- merged_all %>%
+  filter(PC2 == min(PC2))
+
+max_PC2_point <- merged_all %>%
+  filter(PC2 == max(PC2))
+
+min_volume_point <- merged_all %>%
+  filter(estimated_volume == min(estimated_volume))
+
+max_volume_point <- merged_all %>%
+  filter(estimated_volume == max(estimated_volume))
+
+# Calculate correlation and p-values per ecological niche for PC2
+correlation_stats_PC2 <- merged_all %>%
+  group_split(Ecology_label) %>%
+  lapply(function(df) {
+    data.frame(
+      Ecology_label = unique(df$Ecology_label),
+      correlation = round(cor(df$PC2, df$estimated_volume, method = "pearson"), 3),
+      p_value = signif(cor.test(df$PC2, df$estimated_volume)$p.value, 3)
+    )
+  }) %>%
+  bind_rows() %>%
+  mutate(
+    x_pos = max(merged_all$PC2) * 0.6,
+    y_pos = seq(from = max(merged_all$estimated_volume) * 0.95,
+                by = -max(merged_all$estimated_volume) * 0.1,
+                length.out = n())
+  )
+
+# Create the PC2 plot with p-value annotations and labeled min/max points
+PC2_plot <- ggplot(merged_all, aes(x = PC2, y = estimated_volume, color = Ecology_label)) +
+  geom_point(size = 4, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.5) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "PC2 (Spore Shape) vs. Spore Volume Colored by Ecological Niche",
+    x = "PC2 Score (Secondary Shape Variation)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche"
+  ) +
+  # Add species labels for min and max points on each axis
+  geom_label_repel(data = min_PC2_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightblue") +
+  geom_label_repel(data = max_PC2_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightgreen") +
+  geom_label_repel(data = min_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightpink") +
+  geom_label_repel(data = max_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightyellow") +
+  # Correlation and p-value annotations
+  geom_text(
+    data = correlation_stats_PC2,
+    aes(
+      x = x_pos,
+      y = y_pos,
+      label = paste0(Ecology_label, "\n", "r = ", correlation, ", p = ", p_value)
+    ),
+    size = 5, hjust = 0, inherit.aes = FALSE, color = "black"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the PC2 plot
+print(PC2_plot)
+
+# Save the PC2 plot
+ggsave("PC2_vs_SporeVolume_MinMax_Labeled.png",
+       plot = PC2_plot, width = 13, height = 13, dpi = 300)
+
+
+
+```
+
+
+```{r}
+
+
+library(ggrepel)
+
+# Identify min and max points for PC3 and volume
+min_PC3_point <- merged_all %>%
+  filter(PC3 == min(PC3))
+
+max_PC3_point <- merged_all %>%
+  filter(PC3 == max(PC3))
+
+min_volume_point <- merged_all %>%
+  filter(estimated_volume == min(estimated_volume))
+
+max_volume_point <- merged_all %>%
+  filter(estimated_volume == max(estimated_volume))
+
+# Calculate correlation and p-values per ecological niche for PC3
+correlation_stats_PC3 <- merged_all %>%
+  group_split(Ecology_label) %>%
+  lapply(function(df) {
+    data.frame(
+      Ecology_label = unique(df$Ecology_label),
+      correlation = round(cor(df$PC3, df$estimated_volume, method = "pearson"), 3),
+      p_value = signif(cor.test(df$PC3, df$estimated_volume)$p.value, 3)
+    )
+  }) %>%
+  bind_rows() %>%
+  mutate(
+    x_pos = max(merged_all$PC3) * 0.6,
+    y_pos = seq(from = max(merged_all$estimated_volume) * 0.95,
+                by = -max(merged_all$estimated_volume) * 0.1,
+                length.out = n())
+  )
+
+# Create the PC3 plot with p-value annotations and labeled min/max points
+PC3_plot <- ggplot(merged_all, aes(x = PC3, y = estimated_volume, color = Ecology_label)) +
+  geom_point(size = 4, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.5) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "PC3 (Spore Shape) vs. Spore Volume Colored by Ecological Niche",
+    x = "PC3 Score (Tertiary Shape Variation)",
+    y = "Estimated Spore Volume (µm³)",
+    color = "Ecological Niche"
+  ) +
+  # Add species labels for min and max points on each axis
+  geom_label_repel(data = min_PC3_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightblue") +
+  geom_label_repel(data = max_PC3_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightgreen") +
+  geom_label_repel(data = min_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightpink") +
+  geom_label_repel(data = max_volume_point, aes(label = species),
+                   size = 5, color = "black", fill = "lightyellow") +
+  # Correlation and p-value annotations
+  geom_text(
+    data = correlation_stats_PC3,
+    aes(
+      x = x_pos,
+      y = y_pos,
+      label = paste0(Ecology_label, "\n", "r = ", correlation, ", p = ", p_value)
+    ),
+    size = 5, hjust = 0, inherit.aes = FALSE, color = "black"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the PC3 plot
+print(PC3_plot)
+
+# Save the PC3 plot
+ggsave("PC3_vs_SporeVolume_MinMax_Labeled.png",
+       plot = PC3_plot, width = 13, height = 13, dpi = 300)
+
+
+```
