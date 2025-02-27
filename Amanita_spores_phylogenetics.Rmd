@@ -1,0 +1,621 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou)
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+
+# Load necessary libraries for phylogeny graphing 
+library(ggtree)
+library(ape)
+
+
+```
+
+# import tree 
+```{r, label="import trees",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Ectomycorrhizal
+# Decomposer
+# Inopinata
+
+tree <- read.nexus("../OLD_trees/Dennytree_timed_with_nucLSU.tre") %>% ladderize(right=F)
+tips <- tree$tip.label %>% data.frame %>% setNames("tip")
+
+# Import spreadsheet with new tips and updat them
+
+new_tips <- read.csv("spreadsheets/tip_update.csv")
+
+tree$tip.label <- as.character(new_tips[[2]][match(tree$tip.label, new_tips[[1]])])
+
+# Color tree
+compTree_colored <- tree
+compTree_colored <-paintSubTree(compTree_colored,node=109,state="1",stem=F)
+compTree_colored <-paintSubTree(compTree_colored,node=115,state="2",stem=T)
+compTree_colored <-paintSubTree(compTree_colored,node=124,state="3",stem=T)
+compTree_colored <-paintSubTree(compTree_colored,node=127,state="4",stem=T)
+
+# Name corresponding colors 
+
+cols<-c("black","deepskyblue","purple","orange"); names(cols)<-1:4
+
+# 
+
+```
+
+# display tree 
+
+```{r}
+
+# Load the tree and tip data
+tree <- read.nexus("../OLD_trees/Dennytree_timed_with_nucLSU.tre") %>% ladderize(right=F)
+new_tips <- read.csv("spreadsheets/tip_update.csv")
+tree$tip.label <- as.character(new_tips[[2]][match(tree$tip.label, new_tips[[1]])])
+
+# Color the subtrees (states: 1, 2, 3, 4)
+compTree_colored <- tree
+compTree_colored <- paintSubTree(compTree_colored, node=109, state="Outgroup", stem=F)
+compTree_colored <- paintSubTree(compTree_colored, node=115, state="Decomposer", stem=T)
+compTree_colored <- paintSubTree(compTree_colored, node=124, state="Inopinata", stem=T)
+compTree_colored <- paintSubTree(compTree_colored, node=127, state="Ectomycorrhizal", stem=T)
+
+# Extract tree data for plotting
+p <- ggtree(compTree_colored, layout="circular")
+tree_data <- p$data
+
+# 🔄 Manually annotate state per node using node ancestry
+tree_data <- tree_data %>%
+  mutate(state = case_when(
+    node >= 109 & node < 115 ~ "Outgroup",
+    node >= 115 & node < 124 ~ "Decomposer",
+    node >= 124 & node < 127 ~ "Inopinata",
+    node >= 127              ~ "Ectomycorrhizal"))
+
+# Define colors that match the corrected state values
+cols <- c("Outgroup" = "black",
+          "Decomposer" = "green",
+          "Inopinata" = "purple",
+          "Ectomycorrhizal" = "orange")  
+
+# 🌿 Final nicely formatted tree with colored branches
+p %+% tree_data + 
+  geom_tree(aes(color=state), size=1) + 
+  geom_tiplab(size=2.5, offset=0.02, aes(angle=angle)) +
+  scale_color_manual(name="Niche Group", values=cols, na.translate=FALSE) +
+  theme(legend.position = "right",
+        legend.title = element_text(face="bold"),
+        legend.text = element_text(size=10),
+        plot.title = element_text(hjust=0.5, face="bold", size=16),
+        panel.background = element_blank(),
+        panel.grid = element_blank()) +
+  ggtitle("Phylogenetic Tree of *Amanita*: Spore Shape vs. Niche") +
+  theme_transparent()  # Clean background
+
+
+```
+
+# import spore shapes
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+
+jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+
+# import them
+
+spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
+out_spores <- Momocs::Out(spores)
+out_spores <- Momocs::coo_center(out_spores)
+out_spores_scaled <- Momocs::coo_scale(out_spores)
+out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
+# Ensure all outlines have the same number of points (e.g., 100 points per outline)
+out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
+# Now apply Procrustes alignment
+out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
+# Visualize to confirm
+panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
+efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 21, norm = TRUE)
+pca_spores <- Momocs::PCA(efourier_spores)
+
+```
+
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+
+jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+
+# import them
+
+spores <- import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
+
+# create an Out object
+
+spores <- Out(spores)
+
+# get names of the files to extract the species name
+
+image_names <- data.frame(names(spores))
+colnames(image_names) <- "image_name"
+
+# now extract the epithet to calculate a mean shape for the outlines of each species
+
+species <- colsplit(image_names$image_name,"_",names=c("genus","epithet","author"))
+species$genus <- gsub("Amanita","A",species$genus)
+species$species <- paste0(species$genus,"_",species$epithet) %>% as.factor
+
+# Import groups by clade
+
+groups <- read.csv("spreadsheets/Amanita_spore_groups.csv")
+
+# join species with outlines and groups
+
+groups <- left_join(species, groups, "species")
+
+#groups$in_tree <- as.character(groups$in_tree)
+#groups$in_tree[is.na(groups$in_tree)] <- "no"
+#groups$clade <- as.character(groups$clade)
+#groups$clade[is.na(groups$clade)] <- "not_in_tree"
+groups[] <- lapply(groups[], factor)
+
+# assign groups
+
+spores$fac <- groups
+```
+
+```{r, label="elliptic Fourier analysis", echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.align='center'}
+# Check how many harmonics are needed to achieve say 99% variation
+
+#calibrate_harmonicpower_efourier(spores)
+
+# elliptic Fourier analysis
+
+efou_spores <- efourier(spores, norm=T, nb.h=21) 
+
+# PCA
+
+pca_efou_spores <- PCA(efou_spores)
+```
+
+## Fig. 2
+
+```{r, label="Shape variation in each PC graph ", fig.height=4, fig.width=7, fig.align='center',echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+PCcontrib(pca_efou_spores, nax=c(1:3), sd.r = c(-2, -1, 0, 1, 2))
+```
+
+\pagebreak
+
+## Fig. 3
+
+```{r, label="Mean shape morphospace", fig.height=3.25, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+# Calculate the mean shape for each species
+
+spore_means <- MSHAPES(efou_spores, 'species') 
+spore_means <- PCA(spore_means$Coe)
+#spore_mean_groups <- spore_means$fac %>% data.frame() %>% setNames("species")
+#spore_mean_groups <-  join(spore_mean_groups, groups, match="first")
+#spore_means$fac <- spore_mean_groups
+
+# Plot the morphospaces with the species means
+
+
+plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,
+         zoom=1, center_origin = F,eigen=F,legend=F,
+    palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
+    layer_box(border="black",lwd=2) %>%
+    layer_points(cex=0.01) %>%
+    layer_axesvar %>%
+    layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
+    layer_chull(lty=0) %>%
+    layer_chullfilled(alpha = 0.8) 
+
+legend(-0.24,0.04,legend=c("Decomposer", "Inopinata","Ectomycorrhizal","outgroup"),inset=0,pch=16, col=c("deepskyblue","purple","orange","black"),adj=0,  cex=0.5, pt.cex=0.65, bty="n",y.intersp = 0.35)
+
+#legend(-0.24,0.04,legend=c("A"),inset=0,adj=0,cex=1, pt.cex=0.75, bty="n",y.intersp = 0.45)
+
+plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,axes=c(1,3),
+         zoom=1, center_origin = F,eigen=F,legend=F,
+    palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
+    layer_points(cex=0.01) %>%
+    layer_box(border="black",lwd=2) %>%
+    layer_axesvar %>%
+    layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
+    layer_chull(lty=0) %>%
+    layer_chullfilled(alpha = 0.8) 
+
+#legend(-0.24,0.04,legend=c("B"),inset=0,adj=0,cex=1, pt.cex=0.75, bty="n",y.intersp = 0.45)
+```
+
+
+```{r, label="Mean shape morphospace named", fig.height=3.25, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+
+plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=F,chull=F,
+         zoom=0.8, center_origin = F,eigen=F,labelpoints=F,legend=F,
+    palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
+  layer_points(cex=0.07) %>% 
+    layer_box(border="black",lwd=2) %>%
+    layer_axesvar %>%
+    layer_morphospace_PCA(rotate=-1.5,size=0.25, nr = 8, nc = 4) %>% 
+    layer_chull(lty=0) %>%
+    layer_chullfilled(alpha = 0.8) %>% 
+layer_labelpoints(cex=0.25)
+
+legend(-0.24,0.04,legend=c("Decomposer", "Inopinata","Ectomycorrhizal","outgroup"),inset=0,pch=16, col=c("deepskyblue","purple","orange","black"),adj=0,  cex=0.5, pt.cex=0.65, bty="n",y.intersp = 0.35)
+
+#legend(-0.24,0.04,legend=c("A"),inset=0,adj=0,cex=1, pt.cex=0.75, bty="n",y.intersp = 0.45)
+
+plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=F,chull=F,axes=c(1,3),
+         zoom=0.8, center_origin = F,eigen=F,labelpoints=F,legend=F,
+    palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
+  layer_points(cex=0.01) %>% 
+    layer_box(border="black",lwd=2) %>%
+    layer_axesvar %>%
+    layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
+    layer_chull(lty=0) %>%
+    layer_chullfilled(alpha = 0.8) %>% 
+layer_labelpoints(cex=0.25)
+
+#legend(-0.24,0.04,legend=c("B"),inset=0,adj=0,cex=1, pt.cex=0.75, bty="n",y.intersp = 0.45)
+```
+
+```{r, label="update tree tips", fig.height=10, fig.width=10, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+# save PCs
+pcs_spores <- as_df(spore_means)
+pcs_spores <- pcs_spores[c(4,10:12,5:9)]
+rownames(pcs_spores) <- pcs_spores$species
+
+#write.csv(pcs_spores,"spreadsheets/pc_Scores_Amanita.csv", row.names=F)
+
+# Match tree and data
+compData <- treedata(tree, pcs_spores)
+compTree <- compData$phy
+compData <- compData$data %>% data.frame()
+compData[,2:4] <- sapply(compData[,2:4], as.character) %>% as.numeric
+```
+
+\pagebreak
+
+```{r, label="phylANOVA",fig.height=6, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+# Drop outgroup for phylanova
+amanita_only_tree <- extract.clade(compTree, node=88) 
+
+compData_phylANOVA <- treedata(amanita_only_tree, pcs_spores)
+compTree_phylANOVA <- compData_phylANOVA$phy
+compData_phylANOVA <- compData_phylANOVA$data %>% data.frame()
+compData_phylANOVA[,2:4] <- sapply(compData_phylANOVA[,2:4], as.character) %>% as.numeric
+compData_phylANOVA <- join(compData_phylANOVA,groups,match="first")
+
+compData_phylANOVA_clade<-compData_phylANOVA$clade
+names(compData_phylANOVA_clade)<-row.names(compData_phylANOVA)
+compData_phylANOVA_PC1<-compData_phylANOVA$PC1
+names(compData_phylANOVA_PC1)<-row.names(compData_phylANOVA)
+
+phylANOVA(compTree_phylANOVA, compData_phylANOVA_clade, compData_phylANOVA_PC1, nsim=1000, posthoc=F, p.adj="holm")
+```
+
+\pagebreak  
+
+## Fig. 4
+
+```{r, label="Ornstein-Uhlenbeck",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+spore_length_width<-read.csv("spreadsheets/Sporelengthwidth.csv")
+PC1OUdata<-compData%>%filter(species%in%spore_length_width$species)
+PC1OUtree<-drop.tip(compTree,compTree$tip.label[!compTree$tip.label%in%spore_length_width$species])
+
+row.names(PC1OUdata)<-PC1OUdata$species
+PC1OUdata<-as.matrix(PC1OUdata[,c(2:4)])[,1]
+
+l1ouPC1tree<-adjust_data(PC1OUtree,PC1OUdata)
+set.seed(101)
+estimate_shift_PC1<-estimate_shift_configuration(l1ouPC1tree$tree, l1ouPC1tree$Y, criterion="pBIC")
+
+
+
+##update tip labels
+estimate_shift_PC1$tree$tip.label<-as.character(new_tips[[3]][match(estimate_shift_PC1$tree$tip.label, new_tips[[2]])])
+row.names(estimate_shift_PC1$Y)<-as.character(new_tips[[3]][match(row.names(estimate_shift_PC1$Y), new_tips[[2]])])
+
+plot(estimate_shift_PC1, cex=0.5) #, edge.label=e.l, edge.ann.cex=0.7, edge.label.ann=TRUE, label.offset=0.02, edge.width=e.w)
+
+```
+
+\pagebreak
+
+# Supplemenmtary Information
+
+## Fig. S1
+
+```{r, label="All species cophylogeny tree", fig.height=8, fig.width=6, fig.align='center', echo=FALSE, cache=FALSE,results=F, message=FALSE, warning=FALSE}
+Ben<-read.nexus("phylogenetics/Finaltrees/Bentree_timed_with_nucLSU.tre")
+Denny<-read.nexus("phylogenetics/Finaltrees/Dennytree_timed_with_nucLSU.tre")
+namematch<-read.csv("spreadsheets/tip_update.csv")
+
+Ben$tip.label<-as.character(namematch[[3]][match(Ben$tip.label, namematch[[1]])])
+Denny$tip.label<-as.character(namematch[[3]][match(Denny$tip.label, namematch[[1]])])
+
+obj<-cophylo(Denny,Ben,rotate=TRUE)
+obj$trees[[1]]<-rotateNodes(obj$trees[[1]],116)
+obj$trees[[2]]<-rotateNodes(obj$trees[[2]],115)
+obj$trees[[1]]<-rotateNodes(obj$trees[[1]],109)
+obj$trees[[2]]<-rotateNodes(obj$trees[[2]],109)
+
+obj$trees[[1]]<-rotateNodes(obj$trees[[1]],159)
+obj$trees[[2]]<-rotateNodes(obj$trees[[2]],157)
+#plot(obj$trees[[1]])
+#nodelabels(bg = "yellow", adj = 0, cex=.5, width=.006, height=.006)
+left<-rep("black",nrow(obj$trees[[1]]$edge))
+nodes<-getDescendants(obj$trees[[1]],115)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "deepskyblue"
+nodes<-getDescendants(obj$trees[[1]],124)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "purple"
+nodes<-getDescendants(obj$trees[[1]],127)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "orange"
+
+#plot(obj$trees[[2]])
+#nodelabels(bg = "yellow", adj = 0, cex=.5, width=.006, height=.006)
+
+right<-rep("black",nrow(obj$trees[[2]]$edge))
+nodes<-getDescendants(obj$trees[[2]],115)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "deepskyblue"
+nodes<-getDescendants(obj$trees[[2]],122)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "purple"
+nodes<-getDescendants(obj$trees[[2]],127)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "orange"
+edge.col<-list(left=left,right=right)
+
+plot(obj,fsize=0.5,edge.col=edge.col,tip.lty=0,tip.len=0,pts=FALSE,link.type="curved")
+legend("topleft",legend=c("Decomposer", "Inopinata","Ectomycorrhizal"),inset=0,pch=15, col=c("deepskyblue","purple","orange"),adj=0,  cex=0.7, pt.cex=1.25, bty="n",y.intersp = 1, title="Clade")
+```
+
+## Fig. S2 
+
+```{r,label="panel of spores", fig.height=7, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+panel(spores,border=1)
+```
+
+\pagebreak
+
+```{r, label="phylANOVA Ben tree",fig.height=6, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
+# Drop outgroup for phylanova
+
+tree2 <- read.nexus("trees/Bentree_timed_with_nucLSU.tre")
+new_tips <- read.csv("spreadsheets/tip_update.csv")
+tree2$tip.label <- as.character(new_tips[[2]][match(tree2$tip.label, new_tips[[1]])])
+
+# Match tree and data
+
+compData2 <- treedata(tree2, pcs_spores)
+compTree2 <- compData2$phy
+compData2 <- compData2$data %>% data.frame()
+compData2[,2:4] <- sapply(compData2[,2:4], as.character) %>% as.numeric
+compTree2 <- compTree2 %>% ladderize(right=F) 
+
+amanita_only_tree <- extract.clade(compTree2, node=88) 
+
+compData_phylANOVA <- treedata(amanita_only_tree, pcs_spores)
+compTree_phylANOVA <- compData_phylANOVA$phy
+compData_phylANOVA <- compData_phylANOVA$data %>% data.frame()
+compData_phylANOVA[,2:4] <- sapply(compData_phylANOVA[,2:4], as.character) %>% as.numeric
+compData_phylANOVA <- join(compData_phylANOVA,groups,match="first")
+
+# Now make A. codinae, A. singeri, A. pruitii and A. inopinata group 1 since the tree is different
+compData_phylANOVA$clade <- gsub("clade_2","clade_1",compData_phylANOVA$clade)
+
+
+compData_phylANOVA_clade<-compData_phylANOVA$clade
+names(compData_phylANOVA_clade)<-row.names(compData_phylANOVA)
+compData_phylANOVA_PC1<-compData_phylANOVA$PC1
+names(compData_phylANOVA_PC1)<-row.names(compData_phylANOVA)
+
+phylANOVA(compTree_phylANOVA, compData_phylANOVA_clade, compData_phylANOVA_PC1, nsim=1000, posthoc=F, p.adj="holm")
+```
+
+\pagebreak
+
+## Fig. S3
+
+```{r, label="PC1-Q regression",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+row.names(spore_length_width)<-spore_length_width$species
+spore_length_width$Q<-spore_length_width$ave_length__m/spore_length_width$ave_width__m
+spore_length_width$cuberootVolume<-((4/3)*pi*spore_length_width$ave_length__m*spore_length_width$ave_width__m^2)^(1/3)
+spore_length_width$logcuberootVolume<-log(spore_length_width$cuberootVolume)
+
+compData_length_width <- treedata(compTree, data=spore_length_width)
+compTree_length_width<-compData_length_width$phy
+compData_length_width <- compData_length_width$data %>% data.frame()
+compData_length_width[,c(3:7)] <- sapply(compData_length_width[,c(3:7)], as.character) %>% as.numeric
+
+compDataPC1<-treedata(compTree_length_width,data=pcs_spores)
+compDataPC1 <- compDataPC1$data %>% data.frame()
+compDataPC1[,c(2:4)] <- sapply(compDataPC1[,c(2:4)], as.character) %>% as.numeric
+
+Q_PC1_comp<-data.frame(Q=compData_length_width[sort(row.names(compData_length_width)),colnames(compData_length_width)=="Q"], 
+                       PC1=compDataPC1[sort(row.names(compDataPC1)),colnames(compDataPC1)=="PC1"])
+
+cor.test(Q_PC1_comp$Q,Q_PC1_comp$PC1)
+
+ggscatter(Q_PC1_comp, x = "Q", y = "PC1", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Q", ylab = "PC1")
+
+```
+\pagebreak
+
+## Fig. S4
+
+```{r, label="Ornstein-Uhlenbeck on Ben's tree",fig.height=6, results="hide",eval=T,fig.width=8, fig.align='center', echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+PC1OUdata_2<-compData2%>%filter(species%in%spore_length_width$species)
+row.names(PC1OUdata_2)<-PC1OUdata_2$species
+PC1OUtree_2<-drop.tip(compTree2,compTree$tip.label[!compTree$tip.label%in%spore_length_width$species])
+
+PC1OUdata_2<-as.matrix(PC1OUdata_2[,c(2:4)])[,1]
+
+l1ouPC1tree_2<-adjust_data(PC1OUtree_2,PC1OUdata_2)
+set.seed(101)
+estimate_shift_PC1_2<-estimate_shift_configuration(l1ouPC1tree_2$tree, l1ouPC1tree_2$Y, criterion="pBIC")
+
+##update tip labels
+estimate_shift_PC1_2$tree$tip.label<-as.character(new_tips[[3]][match(estimate_shift_PC1_2$tree$tip.label, new_tips[[2]])])
+row.names(estimate_shift_PC1_2$Y)<-as.character(new_tips[[3]][match(row.names(estimate_shift_PC1_2$Y), new_tips[[2]])])
+
+plot(estimate_shift_PC1_2,cex=0.5)
+```
+\pagebreak
+
+
+```{r, label="phylogenetic ANOVA volume",fig.height=6,,fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+# phylogenetic ANOVA with tree1
+
+compData_phylANOVA_volume <- treedata(amanita_only_tree, compData_length_width)
+compTree_phylANOVA_volume <- compData_phylANOVA_volume$phy
+compData_phylANOVA_volume <- compData_phylANOVA_volume$data %>% data.frame()
+compData_phylANOVA_volume$logcuberootVolume <- sapply(compData_phylANOVA_volume$logcuberootVolume, as.character) %>% as.numeric
+compData_phylANOVA_volume <- join(compData_phylANOVA_volume,groups,match="first")
+
+
+compData_phylANOVA_volume_clade<-compData_phylANOVA_volume$clade
+names(compData_phylANOVA_volume_clade)<-row.names(compData_phylANOVA_volume)
+compData_phylANOVA_volume_logcuberootVolume<-compData_phylANOVA_volume$logcuberootVolume
+names(compData_phylANOVA_volume_logcuberootVolume)<-row.names(compData_phylANOVA_volume)
+
+phylANOVA(compTree_phylANOVA_volume, compData_phylANOVA_volume_clade, compData_phylANOVA_volume_logcuberootVolume, nsim=1000, posthoc=F, p.adj="holm")
+
+# phylogenetic ANOVA with tree2
+
+# Drop outgroup for phylanova
+amanita_only_tree2 <- extract.clade(compTree2, node=88)
+
+compData_phylANOVA_volume <- treedata(amanita_only_tree2, compData_length_width)
+compTree_phylANOVA_volume <- compData_phylANOVA_volume$phy
+compData_phylANOVA_volume <- compData_phylANOVA_volume$data %>% data.frame()
+compData_phylANOVA_volume$logcuberootVolume <- sapply(compData_phylANOVA_volume$logcuberootVolume, as.character) %>% as.numeric
+compData_phylANOVA_volume <- join(compData_phylANOVA_volume,groups,match="first")
+
+# Now make A. codinae, A. singeri, A. pruitii and A. inopinata group 1 since the tree is different
+compData_phylANOVA_volume$clade <- gsub("clade_2","clade_1",compData_phylANOVA_volume$clade)
+
+compData_phylANOVA_volume_clade<-compData_phylANOVA_volume$clade
+names(compData_phylANOVA_volume_clade)<-row.names(compData_phylANOVA_volume)
+compData_phylANOVA_volume_logcuberootVolume<-compData_phylANOVA_volume$logcuberootVolume
+names(compData_phylANOVA_volume_logcuberootVolume)<-row.names(compData_phylANOVA_volume)
+
+phylANOVA(compTree_phylANOVA_volume, compData_phylANOVA_volume_clade, compData_phylANOVA_volume_logcuberootVolume, nsim=1000, posthoc=F, p.adj="holm")
+
+```
+
+
+```{r, label="Ornstein-Uhlenbeck on volume calculation",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+Volume<-as.matrix(compData_length_width[,c(5:7)])[,3]
+
+l1ouVolumetree<-adjust_data(compTree_length_width,Volume)
+set.seed(101)
+estimate_shift_Volume<-estimate_shift_configuration(l1ouVolumetree$tree, l1ouVolumetree$Y, criterion="pBIC")
+```
+
+```{r, label="Ornstein-Uhlenbeck on volume bootstrap",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=F, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+result<-l1ou_bootstrap_support(estimate_shift_Volume,nItrs=100)
+saveRDS(result, "results/result_log_cuberoot_volume_bootstrap_analysis.rds")
+```
+
+## Fig. S5
+
+```{r, label="Ornstein-Uhlenbeck on volume",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+result_Volume<-readRDS("results/result_log_cuberoot_volume_bootstrap_analysis.rds")
+nEdges_Volume <- Nedge(l1ouVolumetree$tree)
+e.w_Volume <- rep(1,nEdges_Volume) 
+e.w_Volume[estimate_shift_Volume$shift.configuration] <- 3
+e.l_Volume <- round(result_Volume$detection.rate*100, digits=1)
+e.l_Volume <- ifelse(e.l_Volume>20, paste0(e.l_Volume,"%"), NA)
+
+##update tip labels
+estimate_shift_Volume$tree$tip.label<-as.character(new_tips[[3]][match(estimate_shift_Volume$tree$tip.label, new_tips[[2]])])
+row.names(estimate_shift_Volume$Y)<-as.character(new_tips[[3]][match(row.names(estimate_shift_Volume$Y), new_tips[[2]])])
+
+plot(estimate_shift_Volume, edge.label=e.l_Volume, edge.ann.cex=0.7, edge.label.ann=TRUE, cex=0.5, label.offset=0.02, edge.width=e.w_Volume)
+
+```
+
+```{r, label="Ornstein-Uhlenbeck on Ben's tree volume calculation",fig.height=6, results="hide",eval=T,fig.width=7, fig.align='center', echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+
+compData_length_width2 <- treedata(compTree2, data=spore_length_width)
+compTree_length_width2<-compData_length_width2$phy
+compData_length_width2 <- compData_length_width2$data %>% data.frame()
+compData_length_width2[,c(3:7)] <- sapply(compData_length_width2[,c(3:7)], as.character) %>% as.numeric
+
+Volume_2<-as.matrix(compData_length_width2[,c(5:7)])[,3]
+
+l1ouVolumetree2<-adjust_data(compTree_length_width2,Volume_2)
+set.seed(102)
+estimate_shift_Volume_2<-estimate_shift_configuration(l1ouVolumetree2$tree, l1ouVolumetree2$Y, criterion="pBIC")
+
+```
+
+```{r, label="Ornstein-Uhlenbeck on Ben's tree volume bootstrap",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=F, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+
+result<-l1ou_bootstrap_support(estimate_shift_Volume_2,nItrs=100)
+saveRDS(result, "results/result_log_cuberoot_volume_bootstrap_analysis2.rds")
+
+```
+\pagebreak
+
+## Fig. S6
+
+```{r, label="Ornstein-Uhlenbeck on Ben's tree volume",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+
+result_Volume2<-readRDS("results/result_log_cuberoot_volume_bootstrap_analysis2.rds")
+nEdges_Volume2 <- Nedge(l1ouVolumetree2$tree)
+e.w_Volume2 <- rep(1,nEdges_Volume2) 
+e.w_Volume2[estimate_shift_Volume_2$shift.configuration] <- 3
+e.l_Volume2 <- round(result_Volume2$detection.rate*100, digits=1)
+e.l_Volume2 <- ifelse(e.l_Volume2>20, paste0(e.l_Volume2,"%"), NA)
+
+
+##update tip labels
+estimate_shift_Volume_2$tree$tip.label<-as.character(new_tips[[3]][match(estimate_shift_Volume_2$tree$tip.label, new_tips[[2]])])
+row.names(estimate_shift_Volume_2$Y)<-as.character(new_tips[[3]][match(row.names(estimate_shift_Volume_2$Y), new_tips[[2]])])
+
+plot(estimate_shift_Volume_2, edge.label=e.l_Volume2, edge.ann.cex=0.7, edge.label.ann=TRUE, cex=0.5, label.offset=0.02, edge.width=e.w_Volume2)
+```
+\pagebreak
+
+
+
+
