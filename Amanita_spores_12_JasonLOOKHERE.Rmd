@@ -28,35 +28,97 @@ h1,h2,h3,h4,h5,h6{
  
 ```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
-library(l1ou)
+library(l1ou) # this needs to be downloaded from github
 library(reshape2)
 library(ggplot2)
 library(geiger)
 library(dplyr)
 library(phytools)
 library(plyr)
+#library(coin)
 library(Momocs)
 library(ggpubr)
-
-# Load necessary libraries for phylogeny graphing 
-library(ggtree)
-library(ape)
-
-
 ```
 
-# import tree 
+# Main Figures
+
+## Fig. 1
+# skip for now
+```{r, label="Cophylogeny tree", fig.height=5, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE,results=F, message=FALSE, warning=FALSE}
+
+sixspecies<-c("Volv_volv","A_thiersii","A_brunnesc","A_polypyra","A_muscgues","A_inopinat")
+sixspeciesABR<-c("VV","AT","AB","AP","AM","AI")
+namematch<-read.csv("spreadsheets/tip_update.csv")
+
+Denny<-read.nexus("phylogenetics/Finaltrees/Dennytree_timed_with_nucLSU.tre")
+Ben<-read.nexus("phylogenetics/Finaltrees/Bentree_timed_with_nucLSU.tre")
+
+Ben<-drop.tip(Ben,tip=Ben$tip.label[!Ben$tip.label%in%sixspecies])
+Denny<-drop.tip(Denny,tip=Denny$tip.label[!Denny$tip.label%in%sixspecies])
+
+
+Ben$tip.label<-as.character(namematch[[3]][match(Ben$tip.label, namematch[[1]])])
+Denny$tip.label<-as.character(namematch[[3]][match(Denny$tip.label, namematch[[1]])])
+
+
+obj<-cophylo(Denny,Ben,rotate=TRUE)
+
+#plot(obj$trees[[1]])
+#nodelabels(bg = "yellow", adj = 0, cex=.5, width=.006, height=.006)
+
+#plot(obj$trees[[2]])
+#nodelabels(bg = "yellow", adj = 0, cex=.5, width=.006, height=.006)
+
+obj$trees[[1]]<-rotateNodes(obj$trees[[1]],7)
+obj$trees[[2]]<-rotateNodes(obj$trees[[2]],7)
+obj$trees[[1]]$edge.length<-NULL
+obj$trees[[2]]$edge.length<-NULL
+
+
+left<-rep("black",nrow(obj$trees[[1]]$edge))
+nodes<-getDescendants(obj$trees[[1]],2)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "deepskyblue"
+nodes<-getDescendants(obj$trees[[1]],3)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "purple"
+nodes<-getDescendants(obj$trees[[1]],10)
+left[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[1]]$edge[,2])]<-
+  "orange"
+
+right<-rep("black",nrow(obj$trees[[2]]$edge))
+nodes<-getDescendants(obj$trees[[2]],2)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "deepskyblue"
+nodes<-getDescendants(obj$trees[[2]],3)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "purple"
+nodes<-getDescendants(obj$trees[[2]],10)
+right[sapply(nodes,function(x,y) which(y==x),y=obj$trees[[2]]$edge[,2])]<-
+  "orange"
+edge.col<-list(left=left,right=right)
+
+
+
+plot(obj,edge.col=edge.col,tip.lty=0,tip.len=0,pts=FALSE,link.type="curved",lwd=3,fsize=0.8)
+edgelabels.cophylo(c("","","","54/0.542\n[0.00,0.09]","","100/0.888\n[0.52,0.52]","","100/0.878\n[0.46,0.41]","",""),which="left",frame="none",cex=0.6)
+legend("topleft",legend=c("Decomposer", "Inopinata","Ectomycorrhizal"),inset=0,pch=15, col=c("deepskyblue","purple","orange"),adj=0,  cex=0.7, pt.cex=1.25, bty="n",y.intersp = 1, title="Clade")
+```
+
+
+# import phylo trees 
 ```{r, label="import trees",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Ectomycorrhizal
 # Decomposer
 # Inopinata
 
 tree <- read.nexus("../OLD_trees/Dennytree_timed_with_nucLSU.tre") %>% ladderize(right=F)
-tips <- tree$tip.label %>% data.frame %>% setNames("tip")
 
-# Import spreadsheet with new tips and updat them
+tips <- tree$tip.label %>% data.frame %>% setNames("tip") # JASON piping the names of each species into a dataframe - name of column as tip
 
-new_tips <- read.csv("spreadsheets/tip_update.csv")
+# Import spreadsheet with new tips and update them
+
+new_tips <- read.csv("spreadsheets/tip_update.csv") # JASON wanted to update names of the species somehow- maybe something got moved or had its name changed - basically the spores need to match the tips of the tree- but we have two different trees, one from ben one from pringle lab
 
 tree$tip.label <- as.character(new_tips[[2]][match(tree$tip.label, new_tips[[1]])])
 
@@ -75,82 +137,6 @@ cols<-c("black","deepskyblue","purple","orange"); names(cols)<-1:4
 
 ```
 
-# display tree 
-
-```{r}
-
-# Load the tree and tip data
-tree <- read.nexus("../OLD_trees/Dennytree_timed_with_nucLSU.tre") %>% ladderize(right=F)
-new_tips <- read.csv("spreadsheets/tip_update.csv")
-tree$tip.label <- as.character(new_tips[[2]][match(tree$tip.label, new_tips[[1]])])
-
-# Color the subtrees (states: 1, 2, 3, 4)
-compTree_colored <- tree
-compTree_colored <- paintSubTree(compTree_colored, node=109, state="Outgroup", stem=F)
-compTree_colored <- paintSubTree(compTree_colored, node=115, state="Decomposer", stem=T)
-compTree_colored <- paintSubTree(compTree_colored, node=124, state="Inopinata", stem=T)
-compTree_colored <- paintSubTree(compTree_colored, node=127, state="Ectomycorrhizal", stem=T)
-
-# Extract tree data for plotting
-p <- ggtree(compTree_colored, layout="circular")
-tree_data <- p$data
-
-# 🔄 Manually annotate state per node using node ancestry
-tree_data <- tree_data %>%
-  mutate(state = case_when(
-    node >= 109 & node < 115 ~ "Outgroup",
-    node >= 115 & node < 124 ~ "Decomposer",
-    node >= 124 & node < 127 ~ "Inopinata",
-    node >= 127              ~ "Ectomycorrhizal"))
-
-# Define colors that match the corrected state values
-cols <- c("Outgroup" = "black",
-          "Decomposer" = "green",
-          "Inopinata" = "purple",
-          "Ectomycorrhizal" = "orange")  
-
-# 🌿 Final nicely formatted tree with colored branches
-p %+% tree_data + 
-  geom_tree(aes(color=state), size=1) + 
-  geom_tiplab(size=2.5, offset=0.02, aes(angle=angle)) +
-  scale_color_manual(name="Niche Group", values=cols, na.translate=FALSE) +
-  theme(legend.position = "right",
-        legend.title = element_text(face="bold"),
-        legend.text = element_text(size=10),
-        plot.title = element_text(hjust=0.5, face="bold", size=16),
-        panel.background = element_blank(),
-        panel.grid = element_blank()) +
-  ggtitle("Phylogenetic Tree of *Amanita*: Spore Shape vs. Niche") +
-  theme_transparent()  # Clean background
-
-
-```
-
-# import spore shapes
-# Morphometic analysis
-```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
-# Import outlines: First list jpeg files to import
-
-jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
-
-# import them
-
-spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
-out_spores <- Momocs::Out(spores)
-out_spores <- Momocs::coo_center(out_spores)
-out_spores_scaled <- Momocs::coo_scale(out_spores)
-out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
-# Ensure all outlines have the same number of points (e.g., 100 points per outline)
-out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
-# Now apply Procrustes alignment
-out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
-# Visualize to confirm
-panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
-efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 21, norm = TRUE)
-pca_spores <- Momocs::PCA(efourier_spores)
-
-```
-
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Import outlines: First list jpeg files to import
 
@@ -162,11 +148,43 @@ spores <- import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
 
 # create an Out object
 
-spores <- Out(spores)
+#spores <- Out(spores)
+
+# JASON ADDED - More additions to alter and improve pca
+
+out_spores <- Momocs::Out(spores)
+stack(out_spores)
+```
+
+```{r}
+out_spores_centered <- Momocs::coo_center(out_spores)
+stack(out_spores_centered)
+```
+
+```{r}
+out_spores_align <- Momocs::coo_align(out_spores_centered)
+stack(out_spores_align)
+```
+
+```{r}
+out_spores_scaled <- Momocs::coo_scale(out_spores_align)
+stack(out_spores_scaled)
+```
+
+```{r}
+out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
+stack(out_spores_smoothed)
+```
+
+```{r}
+efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 21, norm = TRUE)
+```
+
+```{r}
 
 # get names of the files to extract the species name
 
-image_names <- data.frame(names(spores))
+image_names <- data.frame(names(efourier_spores))
 colnames(image_names) <- "image_name"
 
 # now extract the epithet to calculate a mean shape for the outlines of each species
@@ -191,49 +209,78 @@ groups[] <- lapply(groups[], factor)
 
 # assign groups
 
-spores$fac <- groups
+efourier_spores$fac <- groups
 ```
 
-```{r, label="elliptic Fourier analysis", echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.align='center'}
-# Check how many harmonics are needed to achieve say 99% variation
+# do the pca - once for mean spores by species once for all spores 
 
-#calibrate_harmonicpower_efourier(spores)
+```{r}
+efourier_spores_means <- MSHAPES(efourier_spores, 'species') # JASON this takes the mean shape of each species of spores
+pca_spore_means <- PCA(efourier_spores_means$Coe) # JASON coe is elliptic forier coefficients
 
-# elliptic Fourier analysis
-
-efou_spores <- efourier(spores, norm=T, nb.h=21) 
-
-# PCA
-
-pca_efou_spores <- PCA(efou_spores)
 ```
+
+```{r}
+pca_spores <- Momocs::PCA(efourier_spores)
+plot(pca_spores, main = "PCA of Amanita Spore Shapes (Fourier Analysis)")
+
+```
+
+# if eigen vectors are arbitrarily flipped, flip them back
+
+
+```{r}
+
+# Check if the principal components' correlations are negative and flip them accordingly
+if (cor(pca_spores$rotation[,1], pca_spore_means$rotation[,1]) < 0) {
+  pca_spore_means$rotation[,1] <- -pca_spore_means$rotation[,1]
+  pca_spore_means$x[,1] <- -pca_spore_means$x[,1]  # Flip scores too
+}
+
+if (cor(pca_spores$rotation[,2], pca_spore_means$rotation[,2]) < 0) {
+  pca_spore_means$rotation[,2] <- -pca_spore_means$rotation[,2]
+  pca_spore_means$x[,2] <- -pca_spore_means$x[,2]  # Flip scores too
+}
+
+cor(pca_spores$rotation[,1], pca_spore_means$rotation[,1]) # Compare PC1
+
+plot(pca_spore_means, main = "PCA of Mean Amanita Spore Shapes (Aligned Fourier Analysis)")
+
+```
+
 
 ## Fig. 2
 
 ```{r, label="Shape variation in each PC graph ", fig.height=4, fig.width=7, fig.align='center',echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
-PCcontrib(pca_efou_spores, nax=c(1:3), sd.r = c(-2, -1, 0, 1, 2))
+png("PCA_Shape_Variation.png", width = 7, height = 4, units = "in", res = 300)
+
+PCcontrib(pca_spores, nax=c(1:3), sd.r = c(-2, -1, 0, 1, 2)) #shows what each pca is explaining the c(xxxxx) is setting the std deviations
+# Save as PNG (change the filename and format as needed)
+dev.off()
 ```
 
 \pagebreak
 
 ## Fig. 3
 
+```{r}
+
+```
+
 ```{r, label="Mean shape morphospace", fig.height=3.25, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
 # Calculate the mean shape for each species
 
-spore_means <- MSHAPES(efou_spores, 'species') 
-spore_means <- PCA(spore_means$Coe)
 #spore_mean_groups <- spore_means$fac %>% data.frame() %>% setNames("species")
 #spore_mean_groups <-  join(spore_mean_groups, groups, match="first")
 #spore_means$fac <- spore_mean_groups
 
 # Plot the morphospaces with the species means
+# JASON CHANGES - ERROR Error in rect(w[1], w[3], w[2], w[4], border = border, ...) : plot.new has not been called yet
 
-
-plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,
+plot_PCA(pca_spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,
          zoom=1, center_origin = F,eigen=F,legend=F,
     palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
-    layer_box(border="black",lwd=2) %>%
+    #layer_box(border="black",lwd=2) %>%
     layer_points(cex=0.01) %>%
     layer_axesvar %>%
     layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
@@ -244,11 +291,11 @@ legend(-0.24,0.04,legend=c("Decomposer", "Inopinata","Ectomycorrhizal","outgroup
 
 #legend(-0.24,0.04,legend=c("A"),inset=0,adj=0,cex=1, pt.cex=0.75, bty="n",y.intersp = 0.45)
 
-plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,axes=c(1,3),
+plot_PCA(pca_spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,axes=c(1,3),
          zoom=1, center_origin = F,eigen=F,legend=F,
     palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
     layer_points(cex=0.01) %>%
-    layer_box(border="black",lwd=2) %>%
+    #layer_box(border="black",lwd=2) %>%
     layer_axesvar %>%
     layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
     layer_chull(lty=0) %>%
@@ -264,7 +311,7 @@ plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=F,chull=F,
          zoom=0.8, center_origin = F,eigen=F,labelpoints=F,legend=F,
     palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
   layer_points(cex=0.07) %>% 
-    layer_box(border="black",lwd=2) %>%
+    #layer_box(border="black",lwd=2) %>%
     layer_axesvar %>%
     layer_morphospace_PCA(rotate=-1.5,size=0.25, nr = 8, nc = 4) %>% 
     layer_chull(lty=0) %>%
@@ -279,7 +326,7 @@ plot_PCA(spore_means, ~clade_guessed, morphospace=F, points=F,chull=F,axes=c(1,3
          zoom=0.8, center_origin = F,eigen=F,labelpoints=F,legend=F,
     palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
   layer_points(cex=0.01) %>% 
-    layer_box(border="black",lwd=2) %>%
+    #layer_box(border="black",lwd=2) %>%
     layer_axesvar %>%
     layer_morphospace_PCA(rotate=-1.5,size=0.75, nr = 8, nc = 4) %>% 
     layer_chull(lty=0) %>%
@@ -310,11 +357,11 @@ compData[,2:4] <- sapply(compData[,2:4], as.character) %>% as.numeric
 # Drop outgroup for phylanova
 amanita_only_tree <- extract.clade(compTree, node=88) 
 
-compData_phylANOVA <- treedata(amanita_only_tree, pcs_spores)
+compData_phylANOVA <- treedata(amanita_only_tree, pcs_spores) #JASON matches the tree with the spore data
 compTree_phylANOVA <- compData_phylANOVA$phy
 compData_phylANOVA <- compData_phylANOVA$data %>% data.frame()
 compData_phylANOVA[,2:4] <- sapply(compData_phylANOVA[,2:4], as.character) %>% as.numeric
-compData_phylANOVA <- join(compData_phylANOVA,groups,match="first")
+compData_phylANOVA <- join(compData_phylANOVA,groups,match="first") 
 
 compData_phylANOVA_clade<-compData_phylANOVA$clade
 names(compData_phylANOVA_clade)<-row.names(compData_phylANOVA)
@@ -357,8 +404,8 @@ plot(estimate_shift_PC1, cex=0.5) #, edge.label=e.l, edge.ann.cex=0.7, edge.labe
 ## Fig. S1
 
 ```{r, label="All species cophylogeny tree", fig.height=8, fig.width=6, fig.align='center', echo=FALSE, cache=FALSE,results=F, message=FALSE, warning=FALSE}
-Ben<-read.nexus("phylogenetics/Finaltrees/Bentree_timed_with_nucLSU.tre")
-Denny<-read.nexus("phylogenetics/Finaltrees/Dennytree_timed_with_nucLSU.tre")
+Ben<-read.nexus("../OLD_phylogenetics/Finaltrees/Bentree_timed_with_nucLSU.tre")
+Denny<-read.nexus("../OLD_phylogenetics/Finaltrees/Dennytree_timed_with_nucLSU.tre")
 namematch<-read.csv("spreadsheets/tip_update.csv")
 
 Ben$tip.label<-as.character(namematch[[3]][match(Ben$tip.label, namematch[[1]])])
@@ -415,7 +462,7 @@ panel(spores,border=1)
 ```{r, label="phylANOVA Ben tree",fig.height=6, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
 # Drop outgroup for phylanova
 
-tree2 <- read.nexus("trees/Bentree_timed_with_nucLSU.tre")
+tree2 <- read.nexus("../OLD_trees/Bentree_timed_with_nucLSU.tre")
 new_tips <- read.csv("spreadsheets/tip_update.csv")
 tree2$tip.label <- as.character(new_tips[[2]][match(tree2$tip.label, new_tips[[1]])])
 
@@ -544,7 +591,7 @@ phylANOVA(compTree_phylANOVA_volume, compData_phylANOVA_volume_clade, compData_p
 
 ```{r, label="Ornstein-Uhlenbeck on volume calculation",fig.height=6, results="hide",fig.width=8, fig.align='center',eval=T, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
 Volume<-as.matrix(compData_length_width[,c(5:7)])[,3]
-
+# JASON Here you could get values of precipitation and add it as part of the figure- must be named the same as the tips of the trees. 
 l1ouVolumetree<-adjust_data(compTree_length_width,Volume)
 set.seed(101)
 estimate_shift_Volume<-estimate_shift_configuration(l1ouVolumetree$tree, l1ouVolumetree$Y, criterion="pBIC")
