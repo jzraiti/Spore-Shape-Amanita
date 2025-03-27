@@ -270,13 +270,15 @@ dev.off()
 ```{r, label="Mean shape morphospace", fig.height=3.25, fig.width=7, fig.align='center', echo=FALSE, cache=FALSE, message=FALSE, warning=FALSE}
 # Calculate the mean shape for each species
 
-#spore_mean_groups <- spore_means$fac %>% data.frame() %>% setNames("species")
-#spore_mean_groups <-  join(spore_mean_groups, groups, match="first")
-#spore_means$fac <- spore_mean_groups
+spore_mean_groups <- pca_spore_means$fac %>% data.frame() %>% setNames("species")
+spore_mean_groups <-  join(spore_mean_groups, groups, match="first")
+pca_spore_means$fac <- spore_mean_groups
 
 # Plot the morphospaces with the species means
 # JASON CHANGES - ERROR Error in rect(w[1], w[3], w[2], w[4], border = border, ...) : plot.new has not been called yet
+```
 
+```{r}
 plot_PCA(pca_spore_means, ~clade_guessed, morphospace=F, points=T,chull=F,
          zoom=1, center_origin = F,eigen=F,legend=F,
     palette=colorRampPalette(c("deepskyblue","purple","orange","black"))) %>%
