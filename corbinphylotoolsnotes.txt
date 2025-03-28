@@ -1,0 +1,70 @@
+MAKE SURE YOU HAVE AN OUTGROUP IN YOUR DATA (something that has the same relationship to everything else in the data)
+
+----
+
+Activate your conda edirect-env
+
+$ conda activate edirect-env
+
+test with efetch -h
+
+run script
+
+./fetch_genbank_fasta.sh Phylogeny.csv
+
+
+---------
+
+docker pull multimuscaria/phylotools:5.0 
+
+docker run -it --rm -v $(pwd):$(pwd) -w $(pwd) multimuscaria/phylotools:5.0 /bin/bash
+
+for i in $(ls); do  mafft --auto ${i} > al_${i}; done
+
+# to check for possible misgrabbed stuff 
+open in aliview - look manually for messed up sequences that dont match
+remove the parts of the alignment that look like theyre due to different primer usage
+
+# next use iqtree2 in docker
+for i in $(ls); do  iqtree2 -s ${i} --alrt 1000; done
+
+# next open the tree in figtree
+# gotta open it manually in zsh
+
+java -jar /Applications/FigTree_v1.4.4.app/Contents/Resources/Java/FigTree.jar
+
+look at the trees (with outliers)
+is there long branch attraction?
+
+----
+
+Go into beauti in the beast2 app folder
+open starbeast3 - look in file>templates you may need to download the package
+
+make sure all spaces in your fasta files are replaced with underscores
+file>import alignment>select all reviewed fasta files
+
+in partitions tab (command click)
+link all the mitochondrial dna
+link all the nucleaic dna
+
+Adjust gene ploidy
+
+MCMC - set to 20 million iterations
+Set model to HYK
+
+save settings in xml file
+
+species names should be set in taxon - use guess to help
+----
+# start up beast2 
+
+load in xml
+
+up the threads as high as you dare 
+
+put output into tree annotator
+
+----
+
+take tree annotator output put back into figtree (using java a)
