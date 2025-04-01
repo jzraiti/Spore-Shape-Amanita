@@ -25,6 +25,11 @@ for i in $(ls); do  mafft --auto ${i} > al_${i}; done
 open in aliview - look manually for messed up sequences that dont match
 remove the parts of the alignment that look like theyre due to different primer usage
 
+Control f replace all spaces AND COLONS in alignments with underscores!!!
+
+# you can use trimal to auto trim the alignments in a reproducible way
+for i in $(ls); do trimal -automated1 -in ${i} -out trim_${i}; done
+
 # next use iqtree2 in docker
 for i in $(ls); do  iqtree2 -s ${i} --alrt 1000; done
 
