@@ -53,10 +53,10 @@ in partitions tab (command click)
 link all the mitochondrial dna
 link all the nucleaic dna
 
-Adjust gene ploidy
+Adjust gene ploidy - 0.5 for mitochondrial
 
 MCMC - set to 20 million iterations
-Set model to HYK
+Set model to HYK - for neucleotides 
 
 save settings in xml file
 
