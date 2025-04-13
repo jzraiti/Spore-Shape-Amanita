@@ -1,0 +1,38 @@
+species,avg_temp_day,min_temp_day,max_temp_day,Precipitation_day,Snowfall_day,avg_temp_monthly,min_temp_monthly,max_temp_monthly,Precipitation_monthly,Snowfall_monthly,Notes
+Amanita_chlorinosma,80.5,72,89,0.02,,78.5,70.8,91.6,0.14,,
+Amanita_alpinicola,69,54,84,0,0,65.1,49.7,80.5,0.56,0,One of monthly data points is missing
+Amanita_cinereoconia,74,64,84,0,,77.6,66.2,89,1.12,,
+Amanita_ravenelii,71.5,60,83,0,0,78.5,67.8,89.6,1.5,0,
+Amanita_populiphila,70,55,85,0,,64,51.1,76.9,1.6,,
+Amanita_thiersii,81.5,70,93,0,0,79.4,65.8,93.1,2.22,,
+Amanita_roanokensis,74.5,70,79,0,,79.7,69.1,74.4,2.34,,
+Amanita_atkinsoniana,59,48,70,0,0,65.1,51.9,78.1,2.54,0,Used weather data from Amnherst as no data from closer location but only ~25 min away; Also same day and collection site as Amanita_cinereopannosa
+Amanita_cinereopannosa,59,48,70,0,0,65.1,51.9,78.1,2.54,0,Used weather data from Amnherst as no data from closer location but only ~25 min away
+Amanita_onusta,59,48,70,0,0,65.1,51.9,78.1,2.54,0,Used weather data from Amnherst as no data from closer location but only ~25 min away; Also same day and collection site as Amanita_cinereopannosa Amanita_atkinsoniana
+Amanita_vernicoccora,65.5,54,77,0,missing,59.3,46.4,71.8,2.67,missing,Had to use Auburn Ca weather data which is ~ 40 min away; some data points missing as well for monthly
+Amanita_crassifolia,73,60,78,0,,69.8,60.4,79.2,2.7,,Source states Reliable observation times are not avalible prior to 1982; Also I used monthly averages from the chart including day month year
+Amanita_daucipes,69,56,85,0,0,69.8,58.1,81.6,3.67,0,
+Amanita_abrupta,65.5,53,78,0.11,missing,63,52.8,73.3,3.86,missing,
+Amanita_rhopalopus,79.5,70,89,0.03,0,81.2,70.8,91.6,4.35,0,
+Amanita_pelioma,76,65,87,0,missing,66.9,67.1,76.6,4.5,missing,Some of the data points were missing for the monthly. 
+Amanita_cokeri,68,58,78,1.18,Missing,69,59.2,78.8,4.58,Missing,
+Amanita_microlepis,69,60,78,missing ,missing,69,59.2,78.8,4.58,missing,"Some days missing from. monthly data, and some precipitation data missing"
+Amanita_polypyramis,69,60,78,0.92,0,57.5,45.9,69,4.63,0,Used weather data for crossville ~ 20 min away from ozone.
+Amanita_novinupta,60,51,69,0,0,55.6,47.9,63.3,5.06,0,Had to use portland weather data but is only ~ 16 min from beaverton
+Amanita_westii,78,66,90,0,,79.2,69.8,88.6,5.11,,
+Amanita_hesleri,70.5,63,78,0,,73.5,62.2,84.8,5.19,,
+Amanita_praelongispora,73,60,86,0,,77,65.4,88.7,5.332,,
+Amanita_salmonea,80,70,90,0,0,80.5,70,91.1,5.9,0,
+Amanita_silvifuga,81,74,88,0.45,0,80.5,70,91.1,5.9,0,
+Amanita_californica,45.5,29,62,0,missing,51.4,38.3,64.6,6.18,missing,Had to use weather data from Ojai ~ 40min away
+Amanita_silvicola,46,36,55,0.48,,42.8,39.4,51.7,6.46,,"No data in joyce but data in Forks ~ 1 hr away, so used that, however, for monthly averages many data points missing!!"
+Amanita_inodora,77,71,83,0.4,,77.5,69.8,85.3,6.82,,
+Amanita_nitida,67,51,83,0,,73.4,61.5,85.4,9,,(Some days for monthly averages were missing!)
+Amanita_praegraveolens,61.5,49,74,0.2,missing,68.7,57.4,79.9,9.19,missing,
+Amanita_parva,74,69,79,0.58,,78.3,68.3,88.4,9.63,,
+Amanita_subsolitaria,76,69,83,0.12,,78.3,68.3,88.4,9.63,,
+Amanita_mutabilis,79.5,69,90,0,missing,78.3,68.3,88.4,9.63,missing ,Used the gainseville plot since had a date provided with data avalible
+Amanita_alliacea,81.5,67,96,0,,78.3,68.3,88.4,9.63,,
+Amanita_rhoadsii,83.5,79,88,0,,80.7,72.5,88.9,11.656,,
+Amanita_smithiana,49,45,53,0.06,0,54.1,47.6,60.5,15.71,0,Had to use weather data from estacada Or but only ~ 45 min away from MT hood.
+Amanita_augusta,51.5,41,62,0,0,51.3,45.5,57.2,4.57,0,had to use data from kentfield whic is ~ 40 min away from Point Reyes
