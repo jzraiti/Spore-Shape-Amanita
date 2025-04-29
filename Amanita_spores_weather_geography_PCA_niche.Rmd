@@ -27,10 +27,7 @@ h1,h2,h3,h4,h5,h6{
  
  
 ```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-
-
 library(tidyverse)
-
 library(knitr)
 library(l1ou) # this needs to be downloaded from github
 library(reshape2)
@@ -77,6 +74,104 @@ efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
 pca_spores <- Momocs::PCA(efourier_spores)
 
 ```
+# clean pca data and prep for data merge - including merging all samples within species
+```{r}
+# Extract PCA scores and add species names if available
+pca_scores_df_species <- as.data.frame(pca_spores$x)  # PCA scores
+pca_scores_df_species$species <- rownames(pca_scores_df_species) # Add species as a column if not already
+head(pca_scores_df_species)
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Species.csv", row.names = FALSE)
+
+```
+
+```{r}
+# Standardize species names in PCA dataset (e.g., Amanita_abrupta_Bas_1 -> Amanita_abrupta)
+pca_scores_df_species <- pca_scores_df_species %>%
+  mutate(species_clean = str_extract(species, "^[A-Za-z]+_[a-z]+"))  # Extract genus_species
+
+# Check results
+unique(pca_scores_df_species$species_clean)
+
+#write to csv
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Species_clean.csv", row.names = FALSE)
+
+```
+```{r}
+# Remove the "species" column
+pca_scores_df_species <- pca_scores_df_species %>%
+  select(-species)
+
+```
+
+```{r}
+# Add a column with the number of samples per group
+pca_scores_df_species <- pca_scores_df_species %>%
+  group_by(species_clean) %>%
+  add_count(name = "num_samples") %>%  # Add a column named "num_samples" with the count of rows per group
+  ungroup()  # Remove grouping after adding the count
+
+# Check the updated dataframe
+head(pca_scores_df_species)
+
+```
+
+```{r}
+
+# Merge all entries under the same species_clean name and calculate the required statistics
+pca_scores_df_species <- pca_scores_df_species %>%
+  group_by(species_clean) %>%
+  mutate(
+    PC1_mean = mean(PC1, na.rm = TRUE),
+    PC1_min = min(PC1, na.rm = TRUE),
+    PC1_max = max(PC1, na.rm = TRUE),
+    PC1_sd = sd(PC1, na.rm = TRUE),
+    
+    PC2_mean = mean(PC2, na.rm = TRUE),
+    PC2_min = min(PC2, na.rm = TRUE),
+    PC2_max = max(PC2, na.rm = TRUE),
+    PC2_sd = sd(PC2, na.rm = TRUE),
+    
+    PC3_mean = mean(PC3, na.rm = TRUE),
+    PC3_min = min(PC3, na.rm = TRUE),
+    PC3_max = max(PC3, na.rm = TRUE),
+    PC3_sd = sd(PC3, na.rm = TRUE),
+    
+    PC4_mean = mean(PC4, na.rm = TRUE),
+    PC4_min = min(PC4, na.rm = TRUE),
+    PC4_max = max(PC4, na.rm = TRUE),
+    PC4_sd = sd(PC4, na.rm = TRUE),
+    
+    PC5_mean = mean(PC5, na.rm = TRUE),
+    PC5_min = min(PC5, na.rm = TRUE),
+    PC5_max = max(PC5, na.rm = TRUE),
+    PC5_sd = sd(PC5, na.rm = TRUE)
+  ) %>%
+  ungroup()  # Remove grouping after summarisation
+
+# Check the updated dataframe
+head(pca_scores_df_species)
+```
+
+```{r}
+# Remove columns named "PC#" (e.g., PC1, PC2, etc.)
+pca_scores_df_species <- pca_scores_df_species %>%
+  select(-matches("^PC\\d+$"))  # Remove columns matching the pattern "PC#"
+
+# Remove duplicate rows
+pca_scores_df_species <- pca_scores_df_species %>%
+  distinct()
+
+# Check the updated dataframe
+head(pca_scores_df_species)
+
+```
+
+```{r}
+# Save the aggregated PCA scores to a CSV file
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Aggregated_with_Count.csv", row.names = FALSE)
+
+```
+
 
 
 # ADD THE NICHE TO PCA CHARTS 
@@ -113,13 +208,9 @@ write.csv(pca_merged, file = "PCA_Spore_Scores_with_Ecology.csv", row.names = FA
 ```
 
 
-
-
-
-
 ```{r}
 # import weather and geography data
-weather_geography_data <- read.csv("Spore_weather_data_april11.csv", stringsAsFactors = FALSE)
+weather_geography_data <- read.csv("Spore_weather_data_april28.csv", stringsAsFactors = FALSE)
 
 ```
 
@@ -143,14 +234,23 @@ write.csv(merged_pca_niche_weather_geography, file = "merged_pca_niche_weather_g
 
 # Weather and PC1 and Shape analysis -----------------------------------
 
+# TODO check why p value is different between scatter plots and correlation matrix
+
+```{r}
+
+# Load the merged dataset
+merged_pca_niche_weather_geography <- read.csv("merged_pca_niche_weather_geography.csv", stringsAsFactors = FALSE)
+
+```
 
 ```{r}
 
 # Select only numeric variables for correlation analysis
-numeric_vars <- merged_pca_niche_weather_geography[, c("avg_temp_day", "min_temp_day", "max_temp_day", "Precipitation_day", "avg_temp_monthly", "min_temp_monthly", "max_temp_monthly", "Precipitation_monthly", "PC1")]
+numeric_vars <- merged_pca_niche_weather_geography[, c( "avg_temp_monthly", "Precipitation_monthly", "PC1_mean", "PC1_min","PC1_max","PC2_mean", "PC2_min","PC2_max")]
 
-# Convert Precipitation_day to numeric
-numeric_vars$Precipitation_day <- as.numeric(numeric_vars$Precipitation_day)
+# Check for non number values in numeric_vars and handle them
+numeric_vars <- numeric_vars %>%
+  mutate(across(everything(), ~ as.numeric(.)))
 
 # Remove rows with NA values in numeric_vars
 numeric_vars <- numeric_vars[complete.cases(numeric_vars), ]
@@ -160,8 +260,6 @@ any(is.na(numeric_vars))  # Should return FALSE
 ```
 
 ```{r}
-
-
 
 # Compute correlation matrix with significance (p-values)
 cor_results <- rcorr(as.matrix(numeric_vars), type = "pearson")  # Use "spearman" if needed
@@ -212,13 +310,13 @@ Correlation_heatmap <- ggplot(cor_melted, aes(x=Var1, y=Var2, fill=value)) +
 
   # Improve axis readability
   theme(
-    axis.text.x = element_text(angle=45, hjust=1, size=14, face="bold"),  
-    axis.text.y = element_text(size=14, face="bold"),  
-    plot.title = element_text(size=16, face="bold"),  
-    plot.subtitle = element_text(size=12, face="italic"),  # Subtitle explaining asterisks
-    plot.caption = element_text(size=12, face="italic"),  # Caption for p-value significance
-    legend.text = element_text(size=12),  
-    legend.title = element_text(size=14, face="bold"),
+    axis.text.x = element_text(angle=45, hjust=1, size=20, face="bold"),  
+    axis.text.y = element_text(size=20, face="bold"),  
+    plot.title = element_text(size=20, face="bold"),  
+    plot.subtitle = element_text(size=20, face="italic"),  # Subtitle explaining asterisks
+    plot.caption = element_text(size=20, face="italic"),  # Caption for p-value significance
+    legend.text = element_text(size=20),  
+    legend.title = element_text(size=20, face="bold"),
     
     # Ensure panel background is completely white
     panel.background = element_rect(fill="white", color=NA),
@@ -231,7 +329,7 @@ Correlation_heatmap <- ggplot(cor_melted, aes(x=Var1, y=Var2, fill=value)) +
 
 # Save the plot
 ggsave("Correlation_heatmap.png",
-       plot = Correlation_heatmap, width = 12, height = 12, dpi = 300)
+       plot = Correlation_heatmap, width = 20, height = 20, dpi = 300)
 
 ```
 
@@ -240,7 +338,7 @@ ggsave("Correlation_heatmap.png",
 ```{r}
 
 # Compute Pearson correlation and get the p-value
-cor_test <- rcorr(as.matrix(merged_pca_niche_weather_geography[, c("Precipitation_monthly", "PC1")]), type = "pearson")
+cor_test <- rcorr(as.matrix(merged_pca_niche_weather_geography[, c("Precipitation_monthly", "PC1_mean")]), type = "pearson")
 p_value_pc1_precip <- cor_test$P[1,2]  # Extract p-value
 
 # Convert p-value to formatted string for display
@@ -248,26 +346,10 @@ p_label <- paste("p =", format.pval(p_value_pc1_precip, digits = 3, scientific =
 
 ```
 
-# -- left of here 
-
 ```{r}
-# Filter the dataset to include only "ectomycorrhizal" and "lepidella"
-filtered_data <- merged_pca_niche_weather_geography %>%
-  filter(Ecology %in% c( "lepidella", "ectomycorrhizal"))
-
-# Compute Pearson correlation and get the p-value for the filtered data
-cor_test_filtered <- rcorr(as.matrix(filtered_data[, c("Precipitation_monthly", "PC1")]), type = "pearson")
-p_value_filtered <- cor_test_filtered$P[1, 2]  # Extract p-value
-
-# Convert p-value to formatted string for display
-p_label_filtered <- paste("p =", format.pval(p_value_filtered, digits = 3, scientific = TRUE))
-
-# Print the p-value
-print(p_label_filtered)
-
-# Scatter plot: Precipitation vs PC1 with points colored by Ecology
-scatter_plot <- ggplot(filtered_data, 
-                       aes(x = Precipitation_monthly, y = PC1, color = Ecology)) +
+# Scatter plot: Precipitation vs PC1_mean with points colored by Ecology
+scatter_plot <- ggplot(merged_pca_niche_weather_geography, 
+                       aes(x = Precipitation_monthly, y = PC1_mean, color = Ecology)) +
   
   # Make dot sizes more dramatic
   geom_point(alpha = 0.7, size = 3) +
@@ -276,52 +358,55 @@ scatter_plot <- ggplot(filtered_data,
   geom_smooth(method = "lm", color = "red", se = TRUE, linetype = "dashed", fill = "grey70") +
 
   # Add p-value annotation on the plot
-  annotate("text", x = max(filtered_data$Precipitation_monthly) - 1, 
-           y = max(filtered_data$PC1), 
-           label = p_label_filtered, size = 6, fontface = "bold", color = "red") +
+  annotate("text", 
+           x = max(merged_pca_niche_weather_geography$Precipitation_monthly) * 0.9,  # Adjust x to 90% of max
+           y = max(merged_pca_niche_weather_geography$PC1_mean) * 0.9,  # Adjust y to 90% of max
+           label = p_label, size = 10, fontface = "bold", color = "red") +
 
   # Titles and labels
   labs(
     title = "Precipitation Monthly vs PC1",
-    x = "Precipitation (mm)",
-    y = "PC1 Score",
+    x = "Precipitation (in)",
+    y = "PC1 Mean Score",
     color = "Ecology"  # Legend title for color
   ) +
 
   # Customize colors for Ecology categories
   scale_color_manual(values = c("ectomycorrhizal" = "green", "lepidella" = "orange")) +
-  
+
   # Theme adjustments for readability
-  theme_classic(base_size = 14) +
+  theme_classic(base_size = 24) +
   theme(
-    plot.title = element_text(size = 18, face = "bold"),
-    plot.subtitle = element_text(size = 14, face = "italic"),
-    axis.text = element_text(size = 12, face = "bold"),
-    axis.title = element_text(size = 14, face = "bold"),
+    plot.title = element_text(size = 28, face = "bold"),
+    plot.subtitle = element_text(size = 24, face = "italic"),
+    axis.text = element_text(size = 24, face = "bold"),
+    axis.title = element_text(size = 24, face = "bold"),
     legend.position = "right",  # Place legend on the right
     panel.background = element_rect(fill = "white", color = "black"),
     plot.background = element_rect(fill = "white", color = NA)
-  ) +
+  )
+  
+```
 
-  # Make the plot square
-  coord_fixed()
+```{r}
 
-# Save the plot
-ggsave("Precipitation_vs_PC1_colored_by_Ecology_square.png", plot = scatter_plot, width = 10, height = 10, dpi = 300)
+# Save the plot with adjusted dimensions
+ggsave("Precipitation_vs_PC1_colored_by_Ecology_fixed.png", 
+       plot = scatter_plot, width = 12, height = 8, dpi = 400)
 
 # Print plot
 print(scatter_plot)
-
 ```
 
 
+# lepidella vs ectomycorrhizal
 ```{r}
 # Filter the dataset to include only "lepidella"
-filtered_data <- merged_pca_niche_weather_geography %>%
+merged_pca_niche_weather_geography_lepidella <- merged_pca_niche_weather_geography %>%
   filter(Ecology %in% c( "lepidella"))
 
 # Compute Pearson correlation and get the p-value for the filtered data
-cor_test_filtered <- rcorr(as.matrix(filtered_data[, c("Precipitation_monthly", "PC1")]), type = "pearson")
+cor_test_filtered <- rcorr(as.matrix(merged_pca_niche_weather_geography_lepidella[, c("Precipitation_monthly", "PC1_mean")]), type = "pearson")
 p_value_filtered <- cor_test_filtered$P[1, 2]  # Extract p-value
 
 # Convert p-value to formatted string for display
@@ -330,9 +415,13 @@ p_label_filtered <- paste("p =", format.pval(p_value_filtered, digits = 3, scien
 # Print the p-value
 print(p_label_filtered)
 
+```
+
+```{r}
+
 # Scatter plot: Precipitation vs PC1 with points colored by Ecology
-scatter_plot <- ggplot(filtered_data, 
-                       aes(x = Precipitation_monthly, y = PC1, color = Ecology)) +
+scatter_plot <- ggplot(merged_pca_niche_weather_geography_lepidella, 
+                       aes(x = Precipitation_monthly, y = PC1_mean, color = Ecology)) +
   
   # Make dot sizes more dramatic
   geom_point(alpha = 0.7, size = 3) +
@@ -341,14 +430,14 @@ scatter_plot <- ggplot(filtered_data,
   geom_smooth(method = "lm", color = "red", se = TRUE, linetype = "dashed", fill = "grey70") +
 
   # Add p-value annotation on the plot
-  annotate("text", x = max(filtered_data$Precipitation_monthly) - 1, 
-           y = max(filtered_data$PC1), 
+  annotate("text", x = max(merged_pca_niche_weather_geography_lepidella$Precipitation_monthly) - 1, 
+           y = max(merged_pca_niche_weather_geography_lepidella$PC1_mean), 
            label = p_label_filtered, size = 6, fontface = "bold", color = "red") +
 
   # Titles and labels
   labs(
     title = "Precipitation Monthly vs PC1",
-    x = "Precipitation (mm)",
+    x = "Precipitation (in)",
     y = "PC1 Score",
     color = "Ecology"  # Legend title for color
   ) +
@@ -380,11 +469,11 @@ print(scatter_plot)
 
 ```{r}
 # Filter the dataset to include only "ectomycorrhizal" 
-filtered_data <- merged_pca_niche_weather_geography %>%
+merged_pca_niche_weather_geography_em <- merged_pca_niche_weather_geography %>%
   filter(Ecology %in% c( "ectomycorrhizal"))
 
 # Compute Pearson correlation and get the p-value for the filtered data
-cor_test_filtered <- rcorr(as.matrix(filtered_data[, c("Precipitation_monthly", "PC1")]), type = "pearson")
+cor_test_filtered <- rcorr(as.matrix(merged_pca_niche_weather_geography_em[, c("Precipitation_monthly", "PC1_mean")]), type = "pearson")
 p_value_filtered <- cor_test_filtered$P[1, 2]  # Extract p-value
 
 # Convert p-value to formatted string for display
@@ -393,9 +482,13 @@ p_label_filtered <- paste("p =", format.pval(p_value_filtered, digits = 3, scien
 # Print the p-value
 print(p_label_filtered)
 
+```
+
+```{r}
+
 # Scatter plot: Precipitation vs PC1 with points colored by Ecology
-scatter_plot <- ggplot(filtered_data, 
-                       aes(x = Precipitation_monthly, y = PC1, color = Ecology)) +
+scatter_plot <- ggplot(merged_pca_niche_weather_geography_em, 
+                       aes(x = Precipitation_monthly, y = PC1_mean, color = Ecology)) +
   
   # Make dot sizes more dramatic
   geom_point(alpha = 0.7, size = 3) +
@@ -404,14 +497,14 @@ scatter_plot <- ggplot(filtered_data,
   geom_smooth(method = "lm", color = "red", se = TRUE, linetype = "dashed", fill = "grey70") +
 
   # Add p-value annotation on the plot
-  annotate("text", x = max(filtered_data$Precipitation_monthly) - 1, 
-           y = max(filtered_data$PC1), 
+  annotate("text", x = max(merged_pca_niche_weather_geography_em$Precipitation_monthly) - 1, 
+           y = max(merged_pca_niche_weather_geography_em$PC1_mean), 
            label = p_label_filtered, size = 6, fontface = "bold", color = "red") +
 
   # Titles and labels
   labs(
     title = "Precipitation Monthly vs PC1",
-    x = "Precipitation (mm)",
+    x = "Precipitation (in)",
     y = "PC1 Score",
     color = "Ecology"  # Legend title for color
   ) +
@@ -432,7 +525,7 @@ scatter_plot <- ggplot(filtered_data,
   )
 
 # Save the plot
-ggsave("Precipitation_vs_PC1_colored_by_Ecology.png", plot = scatter_plot, width = 10, height = 8, dpi = 300)
+ggsave("Precipitation_vs_PC1_colored_by_Ecology_EM.png", plot = scatter_plot, width = 10, height = 8, dpi = 300)
 
 # Print plot
 print(scatter_plot)
