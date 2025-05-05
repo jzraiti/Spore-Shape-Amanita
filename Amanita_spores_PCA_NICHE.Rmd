@@ -1,0 +1,351 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(stringr)
+library(tidyverse)
+```
+
+# Main Figures
+
+## Fig. 1
+```{r}
+# Import outlines: First list jpeg files to import
+jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+
+# import them
+spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
+
+# do momocs analysis
+out_spores <- Momocs::Out(spores)
+out_spores <- Momocs::coo_center(out_spores)
+out_spores <- Momocs::coo_align(out_spores)
+out_spores_scaled <- Momocs::coo_scale(out_spores)
+out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
+efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 21, norm = TRUE)
+pca_spores <- Momocs::PCA(efourier_spores)
+plot(pca_spores, main = "PCA of Amanita Spore Shapes (Fourier Analysis)")
+
+
+
+```
+
+```{r}
+
+pca_scores <- pca_spores$x  # This gives you the principal component scores
+
+library(ggplot2)
+
+# For the first few PCs
+for (i in 1:3) {
+  p <- ggplot(data.frame(PC = pca_scores[, i]), aes(x = PC)) +
+    geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", color = "black") +
+    geom_density(color = "red", size = 1) +
+    ggtitle(paste("Distribution of PC", i)) +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5))
+
+  # Save the plot
+  ggsave(filename = paste0("PC", i, "_distribution.png"), plot = p, width = 6, height = 4, dpi = 300)
+}
+
+```
+
+
+# clean pca data and prep for data merge
+```{r}
+# Extract PCA scores and add species names if available
+pca_scores_df_species <- as.data.frame(pca_spores$x)  # PCA scores
+pca_scores_df_species$species <- rownames(pca_scores_df_species) # Add species as a column if not already
+head(pca_scores_df_species)
+
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Species_original.csv", row.names = FALSE)
+
+```
+
+
+```{r}
+# Standardize species names and store them in a new column 'species_clean'
+pca_scores_df_species <- pca_scores_df_species %>%
+  mutate(
+    # Dynamically extract genus initial and species epithet, ignoring extra fields
+    species_clean = str_replace(species, "^([A-Za-z]+)_([a-z]+).*", "\\1_\\2"),
+  )
+
+# Check the updated dataframe
+head(pca_scores_df_species)
+# Check results
+unique(pca_scores_df_species$species_clean)
+write.csv(pca_scores_df_species, file = "PCA_Spore_Scores_Species.csv", row.names = FALSE)
+
+```
+
+# calculate variance
+
+```{r}
+# Calculate the proportion of variance explained
+variance_explained <- (pca_spores$sdev^2) / sum(pca_spores$sdev^2) * 100
+
+# Create a data frame for plotting
+variance_df <- data.frame(
+  PC = factor(paste0("PC", 1:length(variance_explained)), levels = paste0("PC", 1:length(variance_explained))),
+  Variance = variance_explained
+)
+```
+
+
+# ADD THE NICHE TO PCA CHARTS 
+
+```{r}
+# Load the niche data (corrected path based on new upload)
+niche_data <- read.csv("spreadsheets/species_and_feeding_type.csv")
+
+# Check results
+unique(niche_data$species)
+```
+
+```{r}
+
+# Clean the species names in the niche data
+pca_scores_df_species$species_clean <- str_trim(pca_scores_df_species$species_clean)
+niche_data$species <- str_trim(niche_data$species)
+
+pca_scores_df_species$species_clean <- tolower(pca_scores_df_species$species_clean)
+niche_data$species <- tolower(niche_data$species)
+
+# Add a new 'Ecology' column with "other" if no match is found
+pca_merged <- pca_scores_df_species %>%
+  mutate(Ecology = ifelse(is.na(niche_data$Ecology[match(species_clean, niche_data$species)]),
+                          "other",
+                          niche_data$Ecology[match(species_clean, niche_data$species)]))
+
+# Check the merged dataframe
+head(pca_merged)
+
+# Optionally save the merged dataframe
+write.csv(pca_merged, file = "PCA_Spore_Scores_with_Ecology.csv", row.names = FALSE)
+
+```
+
+```{r}
+# Check the merged dataframe
+head(pca_merged)
+
+write.csv(pca_merged, file = "PCA_Spore_Scores_Species_and_niche.csv", row.names = FALSE)
+```
+
+
+# Run analysis with merged data
+
+```{r}
+
+pca_data_filtered <- pca_merged %>%
+  filter(!is.na(Ecology) & Ecology != "") %>%
+  mutate(
+    Ecology = as.character(Ecology),
+    Ecology = str_trim(Ecology),
+    Ecology_clean = tolower(Ecology),  # Normalize to lowercase
+    Ecology = case_when(
+      Ecology_clean %in% c("1", "em", "ectomycorrhizal") ~ "Ectomycorrhizal (EM)",
+      Ecology_clean %in% c("2", "sap", "saprotrophic", "lepidella") ~ "Saprotrophic (SAP)",
+      Ecology_clean %in% c("3", "inopinata") ~ "Inopinata",
+      Ecology_clean %in% c("4", "outgroup") ~ "Outgroup",
+      TRUE ~ NA_character_
+    ),
+    Ecology = factor(Ecology, levels = c("Ectomycorrhizal (EM)", "Saprotrophic (SAP)", "Inopinata", "Outgroup")),
+    data_point_id = row_number()
+  ) %>%
+  filter(!is.na(Ecology)) %>% 
+  select(-Ecology_clean)  # Clean up temporary column
+
+```
+
+```{r}
+
+
+# Define colors for the ecological niches
+niche_colors <- c("Ectomycorrhizal (EM)" = "green", 
+                  "Saprotrophic (SAP)" = "orange",
+                  "Inopinata" = "blue",
+                  "Outgroup" = "purple")
+
+# Create the stacked histogram
+ggplot(pca_data_filtered, aes(x = PC1, fill = Ecology)) +
+  geom_histogram(bins = 30, position = "stack", color = "black", alpha = 0.8) +
+  scale_fill_manual(values = niche_colors) +
+  labs(
+    title = "Distribution of PC1 Scores Colored by Ecological Niche",
+    x = "PC1 Score (Binned)",
+    y = "Number of Data Points",
+    fill = "Ecological Niche"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+  ggsave("PC1_niche_bar_chart.png", width = 8, height = 8, dpi = 300)
+
+```
+
+# Box and whisker plot and analysis
+
+```{r}
+
+# Box and whisker plot
+ggplot(pca_data_filtered, aes(x = Ecology, y = PC1, fill = Ecology)) +
+  geom_boxplot(alpha = 0.7, outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Ectomycorrhizal (EM)" = "green", "Saprotrophic (SAP)" = "orange", "Inopinata" = "blue","Outgroup" = "purple")) +
+  labs(
+    title = "Boxplot of PC1 Scores by Ecological Niche",
+    x = "Ecological Niche",
+    y = "PC1 Score"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+  ggsave("PC1_niche_box_whisker.png", width = 8, height = 8, dpi = 300)
+
+
+```
+
+# significance testing
+
+```{r}
+# t-test for PC1 scores between the two ecological niches
+t_test_result <- t.test(PC1 ~ Ecology, data = pca_data_filtered)
+print(t_test_result)
+
+# Wilcoxon test if data does not meet t-test assumptions
+wilcox_result <- wilcox.test(PC1 ~ Ecology, data = pca_data_filtered)
+print(wilcox_result)
+
+# Shapiro-Wilk test for normality
+shapiro_test_EM <- shapiro.test(pca_data_filtered$PC1[pca_data_filtered$Ecology == "Ectomycorrhizal (EM)"])
+shapiro_test_SAP <- shapiro.test(pca_data_filtered$PC1[pca_data_filtered$Ecology == "Saprotrophic (SAP)"])
+
+print(shapiro_test_EM)
+print(shapiro_test_SAP)
+
+```
+
+
+```{r}
+
+
+# Install if necessary: install.packages("ggpubr")
+library(ggpubr)
+
+# Filter to just EM and SAP (in case other labels slipped in)
+pca_em_sap_data <- pca_data_filtered %>%
+  filter(Ecology %in% c("Ectomycorrhizal (EM)", "Saprotrophic (SAP)"))
+
+
+ggboxplot(pca_em_sap_data, x = "Ecology", y = "PC1",
+          color = "Ecology", palette = c("green", "orange","blue","purple"),
+          add = "jitter") +
+  stat_compare_means(method = "t.test", label.y = max(pca_data_filtered$PC1) + 0.1) + # Shows p-value
+  labs(
+    title = "Boxplot of PC1 Scores by Ecological Niche with p-value",
+    x = "Ecological Niche",
+    y = "PC1 Score"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+  ggsave("PC1_niche_box_whisker_with_p_value.png", width = 8, height = 8, dpi = 300)
+
+
+```
+
+```{r}
+
+ggboxplot(pca_em_sap_data, x = "Ecology", y = "PC2",
+          color = "Ecology", palette = c("green", "orange"),
+          add = "jitter") +
+  stat_compare_means(method = "t.test", label.y = max(pca_data_filtered$PC2) + 0.1) + # Shows p-value
+  labs(
+    title = "Boxplot of PC2 Scores by Ecological Niche with p-value",
+    x = "Ecological Niche",
+    y = "PC2 Score"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+  ggsave("PC2_niche_box_whisker_with_p_value.png", width = 8, height = 8, dpi = 300)
+
+
+```
+
+
+```{r}
+
+ggboxplot(pca_em_sap_data, x = "Ecology", y = "PC3",
+          color = "Ecology", palette = c("green", "orange"),
+          add = "jitter") +
+  stat_compare_means(method = "t.test", label.y = max(pca_data_filtered$PC3) + 0.1) + # Shows p-value
+  labs(
+    title = "Boxplot of PC3 Scores by Ecological Niche with p-value",
+    x = "Ecological Niche",
+    y = "PC3 Score"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    aspect.ratio = 1
+  )
+  ggsave("PC3_niche_box_whisker_with_p_value.png", width = 8, height = 8, dpi = 300)
+
+
+```
