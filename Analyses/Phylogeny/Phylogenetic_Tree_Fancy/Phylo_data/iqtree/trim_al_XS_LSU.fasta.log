@@ -1,0 +1,433 @@
+IQ-TREE multicore version 2.4.0 for Linux ARM 64-bit built Apr 23 2025
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    e58c2982b851 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s trim_al_XS_LSU.fasta --alrt 1000
+Seed:    835823 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu May 15 19:14:35 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file trim_al_XS_LSU.fasta ... Fasta format detected
+Reading fasta file: done in 0.00657738 secs using 86.36% CPU
+Alignment most likely contains DNA/RNA sequences
+Alignment has 150 sequences with 1287 columns, 905 distinct patterns
+599 parsimony-informative, 216 singleton sites, 472 constant sites
+WARNING: Some sequence names are changed as follows:
+HQ539686.1_Amanita_sp._'crassiconus'_voucher_RET_348-5_large_subunit_ribosomal_RNA_gene -> HQ539686.1_Amanita_sp.__crassiconus__voucher_RET_348-5_large_subunit_ribosomal_RNA_gene
+OQ755002.1_Amanita_aff._praelongispora_IS-2023_voucher_Mushroom_Observer_#290020_large_subunit_ribosomal_RNA_gene -> OQ755002.1_Amanita_aff._praelongispora_IS-2023_voucher_Mushroom_Observer__290020_large_subunit_ribosomal_RNA_gene
+OQ755006.1_Amanita_rhopalopus_voucher_Mushroom_Observer_#417518_large_subunit_ribosomal_RNA_gene -> OQ755006.1_Amanita_rhopalopus_voucher_Mushroom_Observer__417518_large_subunit_ribosomal_RNA_gene
+OQ755009.1_Amanita_subsolitaria_voucher_Mushroom_Observer_#423529_large_subunit_ribosomal_RNA_gene -> OQ755009.1_Amanita_subsolitaria_voucher_Mushroom_Observer__423529_large_subunit_ribosomal_RNA_gene
+HQ539751.1_Amanita_sp._'tephrea'_voucher_RET_378-9_large_subunit_ribosomal_RNA_gene -> HQ539751.1_Amanita_sp.__tephrea__voucher_RET_378-9_large_subunit_ribosomal_RNA_gene
+
+                                                                                                                   Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.00029625 secs using 80.68% CPU
+   1  PP375222.1_Amanita_griseofulva_f._albida_voucher_DB-2021-07-31-2_large_subunit_ribosomal_RNA_gene                   23.00%    passed     99.03%
+   2  JF710812.1_Amanita_cf._calopus_Kew_30017_25S_large_subunit_ribosomal_RNA_gene                                       45.53%    passed     97.14%
+   3  JF710816.1_Amanita_cf._infusca_Kew_29011_25S_large_subunit_ribosomal_RNA_gene                                       38.77%    passed     97.01%
+   4  AM117686.1_Amanita_cf._lanosa_C49gn_partial_rnl_gene_for_large_subunit_ribosomal_RNA                                74.28%    failed      0.40%
+   5  HQ539712.1_Amanita_muscaria_subsp._flavivolvata_voucher_BW_Veiss_01_large_subunit_ribosomal_RNA_gene                 0.16%    passed     97.00%
+   6  MK105505.1_Amanita_aff._odorata_voucher_KM_70_28S_large_subunit_ribosomal_RNA_gene                                  18.88%    passed     51.88%
+   7  MH486441.1_Amanita_cf._xanthogala_voucher_HKAS84707_28S_ribosomal_RNA_gene                                          32.79%    passed     91.63%
+   8  HQ539660.1_Amanita_abrupta_voucher_BW_HP_101_large_subunit_ribosomal_RNA_gene                                        0.39%    passed     99.71%
+   9  HQ539666.1_Amanita_afrospinosa_voucher_RET_347-1_large_subunit_ribosomal_RNA_gene                                   29.14%    passed     91.75%
+  10  ON139026.1_Amanita_altipes_voucher_MHHNU_32286_large_subunit_ribosomal_RNA_gene                                     31.70%    passed     91.60%
+  11  HQ539668.1_Amanita_amanitoides_voucher_RET_344-9_large_subunit_ribosomal_RNA_gene                                   28.83%    passed     85.21%
+  12  MT446267.1_Amanita_cf._annulatovaginata_voucher_KM_71_large_subunit_ribosomal_RNA_gene                              18.88%    passed     33.57%
+  13  KU714554.1_Amanita_aporema_voucher_FRIM_62681_25S_large_subunit_ribosomal_RNA_gene                                  31.47%    passed     85.48%
+  14  HQ539669.1_Amanita_armillariiformis_voucher_RET_266-8_large_subunit_ribosomal_RNA_gene                               0.23%    passed     69.18%
+  15  HQ539670.1_Amanita_atkinsoniana_voucher_RET_301-1_large_subunit_ribosomal_RNA_gene                                   0.23%    passed     98.65%
+  16  MH486376.1_Amanita_augusta_voucher_HKAS101419_28S_ribosomal_RNA_gene                                                32.56%    passed     79.50%
+  17  OM980705.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_large_subunit_ribosomal_RNA_gene                        31.31%    passed     84.73%
+  18  OR506130.1_Amanita_brunneolocularis_voucher_ART201972_large_subunit_ribosomal_RNA_gene                              29.99%    passed     96.53%
+  19  HQ539674.1_Amanita_brunnescens_voucher_BW_HP12_large_subunit_ribosomal_RNA_gene                                      0.39%    passed     99.63%
+  20  LC726244.1_Amanita_caesareoides_AC-22_genes_for_25S_rRNA                                                            42.35%    failed      0.02%
+  21  MN911353.1_Amanita_carneiphylla_voucher_AD282179_large_subunit_ribosomal_RNA_gene                                   31.55%    passed     92.19%
+  22  KU877539.1_Amanita_castanea_voucher_MFLU_15-01424_28S_ribosomal_RNA_gene                                            32.09%    passed     56.77%
+  23  PP375268.1_Amanita_ceciliae_voucher_DB-2018-07-08-5_large_subunit_ribosomal_RNA_gene                                 0.39%    passed     42.60%
+  24  LC723450.1_Amanita_chatamagotake_EN-66_genes_for_25S_rRNA                                                           36.99%    failed      0.01%
+  25  HQ539676.1_Amanita_chlorinosma_voucher_RET_328-6_large_subunit_ribosomal_RNA_gene                                   47.63%    passed     63.19%
+  26  HQ539677.1_Amanita_cinereoconia_voucher_BW_PSF_large_subunit_ribosomal_RNA_gene                                      0.23%    passed     95.65%
+  27  HQ539678.1_Amanita_cinereopannosa_voucher_RET_319-8_large_subunit_ribosomal_RNA_gene                                 0.31%    passed     99.79%
+  28  NG_058570.1_Amanita_cinereovelata_HKAS_81647_28S_rRNA_gene                                                          55.87%    passed     86.31%
+  29  MH486455.1_Amanita_cingulata_voucher_HKAS75600_28S_ribosomal_RNA_gene                                               36.05%    passed     76.76%
+  30  LC831347.1_Amanita_citrina_var._citrina_TNS_F-83247_gene_for_28S_rRNA                                               30.69%    passed     76.25%
+  31  HQ539680.1_Amanita_clelandii_voucher_PSC_2524_large_subunit_ribosomal_RNA_gene                                       9.09%    passed     97.63%
+  32  FJ236807.1_Amanita_coacta_voucher_SP393680_large_subunit_ribosomal_RNA_gene                                         38.46%    passed     73.22%
+  33  HQ539681.1_Amanita_codinae_voucher_RET_275-8_large_subunit_ribosomal_RNA_gene                                       28.67%    passed     98.08%
+  34  HQ539682.1_Amanita_cokeri_voucher_BW_STF_090506-19_large_subunit_ribosomal_RNA_gene                                  0.16%    passed     62.01%
+  35  PQ197666.1_Amanita_concentrica_voucher_Dai_25606_large_subunit_ribosomal_RNA_gene                                    0.23%    passed     98.49%
+  36  HQ539683.1_Amanita_conicobulbosa_voucher_PSC_1368_large_subunit_ribosomal_RNA_gene                                   0.39%    passed     71.00%
+  37  HQ539686.1_Amanita_sp.__crassiconus__voucher_RET_348-5_large_subunit_ribosomal_RNA_gene                             16.01%    passed     72.45%
+  38  ON392665.1_Amanita_crebresulcata_voucher_INPA_No._265556                                                            31.62%    passed      6.94%
+  39  HQ539688.1_Amanita_daucipes_voucher_RET_386-8_large_subunit_ribosomal_RNA_gene                                       0.62%    passed     75.42%
+  40  KY977710.1_Amanita_djarilmari_voucher_PERTH08776083_large_subunit_ribosomal_RNA_gene                                36.83%    passed     95.14%
+  41  MT862272.1_Amanita_aff._drummondii_isolate_JAC13423_large_subunit_ribosomal_RNA_gene                                32.48%    passed     56.20%
+  42  HQ539689.1_Amanita_effusa_voucher_PSC_2007_large_subunit_ribosomal_RNA_gene                                          3.65%    passed     98.09%
+  43  HQ539690.1_Amanita_egregia_voucher_NYBG_66253_large_subunit_ribosomal_RNA_gene                                       1.24%    passed     91.50%
+  44  MT446294.1_Amanita_cf._elegans_voucher_KM_114_large_subunit_ribosomal_RNA_gene                                      18.34%    passed     87.99%
+  45  HQ539672.1_Amanita_eriophora_voucher_RET_350-4_large_subunit_ribosomal_RNA_gene                                      0.08%    passed     79.03%
+  46  KY977709.1_Amanita_eucalypti_voucher_PERTH8809763_large_subunit_ribosomal_RNA_gene                                  36.83%    passed     93.24%
+  47  HQ539691.1_Amanita_excelsa_voucher_Ge_816_large_subunit_ribosomal_RNA_gene                                           0.47%    passed     94.32%
+  48  HQ539692.1_Amanita_farinacea_voucher_PSC_2529_large_subunit_ribosomal_RNA_gene                                       0.31%    passed     99.12%
+  49  MN918099.1_Amanita_fibrillopes_clone_PERTH08793573_large_subunit_ribosomal_RNA_gene                                 32.79%    passed     97.66%
+  50  JF710814.1_Amanita_flammeola_strain_Kew_29738_25S_large_subunit_ribosomal_RNA_gene                                  40.33%    passed     53.20%
+  51  HQ539693.1_Amanita_flavoconia_voucher_BW_PH22_large_subunit_ribosomal_RNA_gene                                       0.39%    passed     93.44%
+  52  HQ539696.1_Amanita_frostiana_voucher_BW_PH37_large_subunit_ribosomal_RNA_gene                                        0.08%    passed     99.58%
+  53  PP375201.1_Amanita_fulva_voucher_JMH2019003_large_subunit_ribosomal_RNA_gene                                        34.65%    passed     89.34%
+  54  NG_073607.1_Amanita_gardneri_PERTH_08776121_28S_rRNA_gene                                                           36.75%    passed     95.49%
+  55  HQ539699.1_Amanita_gracilior_voucher_RET_342-2_large_subunit_ribosomal_RNA_gene                                      0.16%    passed     72.97%
+  56  HQ539700.1_Amanita_grallipes_voucher_RET_379-5_large_subunit_ribosomal_RNA_gene                                     28.44%    passed     96.85%
+  57  OQ780680.1_Amanita_griseofarinosa_voucher_SDBR-STO20-09_large_subunit_ribosomal_RNA_gene                            33.10%    passed     61.19%
+  58  PQ197668.1_Amanita_griseofolia_voucher_Dai_25124_large_subunit_ribosomal_RNA_gene                                   35.74%    passed     78.09%
+  59  KT779067.1_Amanita_griseoturcosa_strain_SFC20140822-29_28S_ribosomal_RNA_gene                                       53.77%    passed     47.12%
+  60  MH486581.1_Amanita_griseoverrucosa_voucher_HKAS57357_28S_ribosomal_RNA_gene                                         32.09%    passed     80.80%
+  61  NG_057019.1_Amanita_heishidingensis_HKAS_76122_28S_rRNA_gene                                                        36.44%    passed     76.39%
+  62  HQ539701.1_Amanita_hesleri_voucher_RET_155-1_large_subunit_ribosomal_RNA_gene                                        7.93%    passed     97.12%
+  63  MW837551.1_Amanita_ibotengutake_strain_jqjeg123_large_subunit_ribosomal_RNA_gene                                    32.56%    passed     84.28%
+  64  MH486592.1_Amanita_imazekii_voucher_HKAS92011_28S_ribosomal_RNA_gene                                                33.10%    passed     95.24%
+  65  HQ539702.1_Amanita_inopinata_voucher_BW_GK2005-1_large_subunit_ribosomal_RNA_gene                                    0.47%    passed     94.63%
+  66  HQ539703.1_Amanita_jacksonii_voucher_BW_PH17_large_subunit_ribosomal_RNA_gene                                        1.48%    passed     83.28%
+  67  KJ922990.1_Amanita_japonica_voucher_TMI26147_28S_large_subunit_ribosomal_RNA_gene                                   54.39%    passed     56.52%
+  68  PQ779906.1_Amanita_javanica_voucher_MF-R0032-3_large_subunit_ribosomal_RNA_gene                                     38.85%    passed     92.74%
+  69  OP363811.1_Amanita_kitamagotake_voucher_B22052919_large_subunit_ribosomal_RNA_gene                                  59.29%    passed     62.33%
+  70  NG_057062.1_Amanita_lippiae_RET_418-2_28S_rRNA_gene                                                                  0.16%    passed     91.75%
+  71  JF710794.1_Amanita_liquii_strain_HKAS_54568_25S_large_subunit_ribosomal_RNA_gene                                    31.08%    passed     64.28%
+  72  HQ539704.1_Amanita_longipes_voucher_RET_360-1_large_subunit_ribosomal_RNA_gene                                       0.85%    passed     55.88%
+  73  OP082425.1_Amanita_loosei_isolate_Specimen_M8_large_subunit_ribosomal_RNA_gene                                      29.91%    passed     87.86%
+  74  ON152684.1_Amanita_macrocarpa_voucher_B21051513_large_subunit_ribosomal_RNA_gene                                    39.08%    passed     57.07%
+  75  ON843338.1_Amanita_madagascariensis_voucher_JEIC0515_large_subunit_ribosomal_RNA_gene                               31.47%    passed     97.05%
+  76  JF710804.1_Amanita_mafingensis_strain_H_7002974_25S_large_subunit_ribosomal_RNA_gene                                37.06%    passed     70.78%
+  77  NG_056996.1_Amanita_malayensis_FRIM_4891_28S_rRNA_gene                                                              30.07%    passed     98.97%
+  78  PV243893.1_Amanita_manicata_voucher_HTBM0602_large_subunit_ribosomal_RNA_gene                                       31.70%    passed     96.65%
+  79  HQ539709.1_Amanita_marmorata_voucher_AP_RoweAM2005_large_subunit_ribosomal_RNA_gene                                  4.51%    passed     95.28%
+  80  PQ528039.1_Amanita_masasiensis_voucher_JEIC0787_large_subunit_ribosomal_RNA_gene                                    31.47%    passed     98.06%
+  81  NG_153855.1_Amanita_millsii_HO_581533_28S_rRNA_gene                                                                 36.75%    passed     94.19%
+  82  HQ539710.1_Amanita_multisquamosa_voucher_BW_RP14_large_subunit_ribosomal_RNA_gene                                    0.23%    passed     96.23%
+  83  HQ539711.1_Amanita_murinoflammeum_voucher_NYBG_66697_large_subunit_ribosomal_RNA_gene                                1.32%    passed     82.37%
+  84  PV121860.1_Amanita_muscaria_isolate_XC23-191_large_subunit_ribosomal_RNA_gene                                       18.26%    passed     99.04%
+  85  HQ539714.1_Amanita_mutabilis_voucher_RET_314-6_large_subunit_ribosomal_RNA_gene                                      0.16%    passed     64.92%
+  86  HQ539715.1_Amanita_nauseosa_voucher_DPL_6117_large_subunit_ribosomal_RNA_gene                                        0.31%    passed     79.83%
+  87  HQ539716.1_Amanita_novinupta_voucher_RET_093-10_large_subunit_ribosomal_RNA_gene                                     0.54%    passed     95.49%
+  88  HQ539717.1_Amanita_ochrophylla_voucher_PSC_1127_large_subunit_ribosomal_RNA_gene                                     0.39%    passed     79.80%
+  89  HQ539718.1_Amanita_onusta_voucher_RET_297-3_large_subunit_ribosomal_RNA_gene                                         0.78%    passed     97.77%
+  90  MH486707.1_Amanita_orientifulva_voucher_HKAS97971_28S_ribosomal_RNA_gene                                            32.09%    passed     70.81%
+  91  ON139038.1_Amanita_parvipantherina_voucher_MHHNU_32350_large_subunit_ribosomal_RNA_gene                             29.68%    passed     94.09%
+  92  HQ539720.1_Amanita_peckiana_voucher_RET_320-3_large_subunit_ribosomal_RNA_gene                                      28.90%    passed     89.00%
+  93  HQ539721.1_Amanita_pelioma_voucher_RET_312-4_large_subunit_ribosomal_RNA_gene                                        0.39%    passed     95.01%
+  94  PP102665.1_Amanita_phalloides_voucher_F393_large_subunit_ribosomal_RNA_gene                                         55.01%    passed     85.86%
+  95  AY325864.1_Amanita_pleropus_28S_ribosomal_RNA_gene                                                                  61.62%    passed     24.28%
+  96  OR297689.1_Amanita_polypyramis_voucher_RET_774-3_large_subunit_ribosomal_RNA_gene                                    1.24%    passed     98.67%
+  97  HQ539724.1_Amanita_populiphila_voucher_RET_266-9_large_subunit_ribosomal_RNA_gene                                   24.16%    passed     85.08%
+  98  OQ755002.1_Amanita_aff._praelongispora_IS-2023_voucher_Mushroom_Observer__290020_large_subunit_ribosomal_RNA_gene   62.32%    passed     35.28%
+  99  HQ539727.1_Amanita_prairiicola_voucher_RET_266-1_large_subunit_ribosomal_RNA_gene                                    0.39%    passed     72.47%
+ 100  MH486766.1_Amanita_princeps_voucher_HKAS60269_28S_ribosomal_RNA_gene                                                33.10%    passed     95.86%
+ 101  HQ539728.1_Amanita_proxima_voucher_RET_290-10_large_subunit_ribosomal_RNA_gene                                       0.31%    passed     98.82%
+ 102  HQ539730.1_Amanita_pudica_voucher_RET_344-40_large_subunit_ribosomal_RNA_gene                                        0.16%    passed     94.20%
+ 103  HQ539732.1_Amanita_pyramidiferina_voucher_PSC_2441_large_subunit_ribosomal_RNA_gene                                  0.70%    passed     90.22%
+ 104  OP235473.1_Amanita_quenda_voucher_PERTH09472754_large_subunit_ribosomal_RNA_gene                                    31.70%    passed     70.99%
+ 105  MH486796.1_Amanita_ravenelii_voucher_RET_459-10_28S_ribosomal_RNA_gene                                              36.52%    passed     81.71%
+ 106  MH620229.1_Amanita_rhoadsii_voucher_FLAS-F-60618_large_subunit_ribosomal_RNA_gene                                   66.82%    passed     61.15%
+ 107  OQ755006.1_Amanita_rhopalopus_voucher_Mushroom_Observer__417518_large_subunit_ribosomal_RNA_gene                     0.39%    passed     94.68%
+ 108  MH486806.1_Amanita_rimosa_voucher_HKAS101393_28S_ribosomal_RNA_gene                                                 32.17%    passed     91.56%
+ 109  MH620252.1_Amanita_roanokensis_voucher_FLAS-F-60892_large_subunit_ribosomal_RNA_gene                                33.95%    failed      4.10%
+ 110  PP102608.1_Amanita_rubescens_voucher_TU127339_large_subunit_ribosomal_RNA_gene                                      55.40%    passed     90.16%
+ 111  OQ187809.1_Amanita_rubromarginata_voucher_SDBR-CMUSTO-2019-466_large_subunit_ribosomal_RNA_gene                     34.58%    passed     99.80%
+ 112  OP363815.1_Amanita_rufobrunnescens_voucher_B22060216_large_subunit_ribosomal_RNA_gene                               39.01%    passed     28.16%
+ 113  MN647047.1_Amanita_sepiacea_isolate_Li150915-72_large_subunit_ribosomal_RNA_gene                                    32.71%    passed     79.10%
+ 114  HQ539737.1_Amanita_silvicola_voucher_RET_382-4_large_subunit_ribosomal_RNA_gene                                     28.44%    passed     91.78%
+ 115  JF710798.1_Amanita_similis_strain_TFM-M-P934_25S_large_subunit_ribosomal_RNA_gene                                   32.09%    passed     99.32%
+ 116  ON139047.1_Amanita_sinensis_voucher_MHHNU_8585_large_subunit_ribosomal_RNA_gene                                     29.84%    passed     94.13%
+ 117  HQ539738.1_Amanita_singeri_voucher_LIP_88.056_large_subunit_ribosomal_RNA_gene                                      28.59%    passed     97.91%
+ 118  ON392638.1_Amanita_aff._sinicoflava_voucher_TRTC156851_large_subunit_ribosomal_RNA_gene                             31.39%    passed     50.05%
+ 119  HQ539740.1_Amanita_smithiana_voucher_RET_382-6_large_subunit_ribosomal_RNA_gene                                     28.52%    passed     97.23%
+ 120  HQ539741.1_Amanita_solitaria_voucher_RET_298-1_large_subunit_ribosomal_RNA_gene                                     28.59%    passed     89.01%
+ 121  HQ539743.1_Amanita_spissa_voucher_NYBG_47779_large_subunit_ribosomal_RNA_gene                                        0.47%    passed     90.69%
+ 122  MK277513.1_Amanita_austrostraminea_strain_G1434_large_subunit_ribosomal_RNA_gene                                     1.86%    passed     88.04%
+ 123  ON843374.1_Amanita_strobilaceovolvata_voucher_JEIC0437_2_large_subunit_ribosomal_RNA_gene                           46.31%    passed     80.81%
+ 124  HQ539744.1_Amanita_strobiliformis_voucher_AP_10407-1_large_subunit_ribosomal_RNA_gene                                0.23%    passed     57.37%
+ 125  HQ539745.1_Amanita_subalbida_voucher_PSC_2509_large_subunit_ribosomal_RNA_gene                                       0.39%    passed     98.11%
+ 126  OR042403.1_Amanita_subglobosa_voucher_HMAS_253798_large_subunit_ribosomal_RNA_gene                                  30.38%    passed     88.78%
+ 127  NG_058571.1_Amanita_subpallidorosea_HKAS_85403_28S_rRNA_gene                                                        33.72%    passed     93.07%
+ 128  OQ755009.1_Amanita_subsolitaria_voucher_Mushroom_Observer__423529_large_subunit_ribosomal_RNA_gene                   0.31%    passed     91.84%
+ 129  HQ539751.1_Amanita_sp.__tephrea__voucher_RET_378-9_large_subunit_ribosomal_RNA_gene                                 15.38%    passed     93.62%
+ 130  HQ539752.1_Amanita_thiersii_voucher_DPL_7272_large_subunit_ribosomal_RNA_gene                                        0.31%    passed     56.17%
+ 131  MH486932.1_Amanita_timida_voucher_HKAS89001_28S_ribosomal_RNA_gene                                                  37.45%    passed     70.16%
+ 132  HQ539753.1_Amanita_umbrinella_voucher_PSC_1813_large_subunit_ribosomal_RNA_gene                                      0.85%    passed     58.12%
+ 133  PQ197677.1_Amanita_vaginata_voucher_Dai_24867_large_subunit_ribosomal_RNA_gene                                       0.62%    passed     76.37%
+ 134  HQ539755.1_Amanita_verna_voucher_RET_280-3_large_subunit_ribosomal_RNA_gene                                          0.39%    passed     98.80%
+ 135  MK277590.1_Amanita_vernicoccora_strain_B2226_large_subunit_ribosomal_RNA_gene                                        4.82%    passed     68.61%
+ 136  ON152698.1_Amanita_vestita_voucher_B21081627_large_subunit_ribosomal_RNA_gene                                       39.08%    passed     73.45%
+ 137  MK277591.1_Amanita_cf._virginiana_strain_B2233_large_subunit_ribosomal_RNA_gene                                      0.23%    passed     75.32%
+ 138  PP375281.1_Amanita_virosa_voucher_FP-2020-09-06_large_subunit_ribosomal_RNA_gene                                     0.31%    passed     91.31%
+ 139  HQ539757.1_Amanita_vittadinii_voucher_RET_277-1_large_subunit_ribosomal_RNA_gene                                    28.59%    passed     95.47%
+ 140  HQ539665.1_Amanita_aff._volvata_BW_STF_090506-8_large_subunit_ribosomal_RNA_gene                                     0.23%    passed     27.63%
+ 141  MN918098.1_Amanita_wadulawitu_clone_PERTH09144390_large_subunit_ribosomal_RNA_gene                                  32.71%    passed     70.08%
+ 142  HQ539758.1_Amanita_wellsii_voucher_RET_001-5_large_subunit_ribosomal_RNA_gene                                        0.00%    passed     74.01%
+ 143  HQ539759.1_Amanita_westii_voucher_BW_SH26_large_subunit_ribosomal_RNA_gene                                           0.47%    passed     82.16%
+ 144  HQ539761.1_Amanita_yuaniana_voucher_Yang_2489_large_subunit_ribosomal_RNA_gene                                       0.54%    passed     94.44%
+ 145  HQ539762.1_Amanita_zambiana_voucher_RET_343-10_large_subunit_ribosomal_RNA_gene                                      0.23%    passed     92.18%
+ 146  MH486958.1_Amanita_zangii_voucher_HKAS99663_28S_ribosomal_RNA_gene                                                  33.95%    passed     81.97%
+ 147  PQ636802.1_Zhuliangomyces_illinitus_voucher_AMB_20114_large_subunit_ribosomal_RNA_gene                              58.97%    passed     25.28%
+ 148  HM562242.1_Pluteus_aff._cervinus_AJ148_25S_ribosomal_RNA_gene                                                       29.22%    passed     98.35%
+ 149  HM562224.1_Pluteus_petasatus_voucher_AJ201_25S_ribosomal_RNA_gene                                                   28.75%    passed     98.66%
+ 150  PQ198161.1_Volvariella_volvacea_voucher_Dai_25696_large_subunit_ribosomal_RNA_gene                                   0.78%    failed      0.22%
+WARNING: 11 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                                                                                                               21.90%  5 sequences failed composition chi2 test (p-value<5%; df=3)
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.011 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -21055.361
+Optimal log-likelihood: -21055.240
+Rate parameters:  A-C: 0.74114  A-G: 4.50764  A-T: 1.82882  C-G: 0.73000  C-T: 7.13492  G-T: 1.00000
+Base frequencies:  A: 0.275  C: 0.189  G: 0.293  T: 0.244
+Proportion of invariable sites: 0.161
+Gamma shape alpha: 0.413
+Parameters optimization took 1 rounds (2.007 sec)
+Time for fast ML tree search: 13.067 seconds
+
+NOTE: ModelFinder requires 44 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 1287 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         24036.164    305 48682.328    48872.603    50256.149
+  2  GTR+F+I       23189.341    306 46990.683    47182.401    48569.664
+  3  GTR+F+G4      21066.064    306 42744.128    42935.846    44323.109
+  4  GTR+F+I+G4    21056.243    307 42726.485    42919.654    44310.626
+  5  GTR+F+R2      21127.759    307 42869.519    43062.687    44453.660
+  6  GTR+F+R3      20942.629    309 42503.259    42699.349    44097.720
+  7  GTR+F+R4      20935.248    311 42492.495    42691.535    44097.277
+  8  GTR+F+R5      20935.211    313 42496.422    42698.440    44111.523
+ 14  GTR+F+I+R2    21095.894    308 42807.789    43002.414    44397.090
+ 15  GTR+F+I+R3    20965.483    310 42550.965    42748.527    44150.587
+ 16  GTR+F+I+R4    20965.475    312 42554.950    42755.476    44164.892
+ 28  SYM+R3        20965.752    306 42543.504    42735.222    44122.485
+ 29  SYM+R4        20958.915    308 42533.830    42728.456    44123.132
+ 50  TVM+F+R3      20977.055    308 42570.110    42764.736    44159.412
+ 51  TVM+F+R4      20969.750    310 42559.499    42757.061    44159.121
+ 72  TVMe+R3       20966.820    305 42543.639    42733.914    44117.460
+ 73  TVMe+R4       20959.941    307 42533.883    42727.051    44118.024
+ 94  TIM3+F+R3     20963.434    307 42540.867    42734.036    44125.009
+ 95  TIM3+F+R4     20955.174    309 42528.349    42724.439    44122.810
+116  TIM3e+R3      20983.035    304 42574.069    42762.909    44142.730
+117  TIM3e+R4      20975.197    306 42562.394    42754.112    44141.375
+138  TIM2+F+R3     20977.725    307 42569.451    42762.620    44153.592
+139  TIM2+F+R4     20970.257    309 42558.515    42754.605    44152.976
+160  TIM2e+R3      21026.532    304 42661.064    42849.903    44229.725
+161  TIM2e+R4      21019.019    306 42650.038    42841.756    44229.019
+182  TIM+F+R3      20982.601    307 42579.201    42772.370    44163.342
+183  TIM+F+R4      20974.558    309 42567.116    42763.206    44161.577
+204  TIMe+R3       21030.587    304 42669.174    42858.013    44237.835
+205  TIMe+R4       21022.265    306 42656.529    42848.248    44235.511
+226  TPM3u+F+R3    20995.893    306 42603.786    42795.504    44182.767
+227  TPM3u+F+R4    20987.823    308 42591.646    42786.272    44180.947
+248  TPM3+R3       20983.748    303 42573.497    42760.907    44136.998
+249  TPM3+R4       20975.985    305 42561.970    42752.245    44135.791
+270  TPM2u+F+R3    21013.444    306 42638.888    42830.607    44217.870
+271  TPM2u+F+R4    21004.878    308 42625.756    42820.382    44215.057
+292  TPM2+R3       21027.429    303 42660.858    42848.268    44224.359
+293  TPM2+R4       21019.865    305 42649.729    42840.004    44223.550
+314  K3Pu+F+R3     21016.951    306 42645.901    42837.620    44224.883
+315  K3Pu+F+R4     21007.827    308 42631.653    42826.279    44220.955
+336  K3P+R3        21031.202    303 42668.404    42855.814    44231.905
+337  K3P+R4        21022.845    305 42655.689    42845.964    44229.510
+358  TN+F+R3       20992.188    306 42596.375    42788.094    44175.356
+359  TN+F+R4       20983.940    308 42583.879    42778.505    44173.181
+380  TNe+R3        21038.306    303 42682.611    42870.021    44246.112
+381  TNe+R4        21029.916    305 42669.833    42860.108    44243.654
+402  HKY+F+R3      21025.979    305 42661.957    42852.233    44235.779
+403  HKY+F+R4      21016.697    307 42647.394    42840.562    44231.535
+424  K2P+R3        21038.881    302 42681.762    42867.750    44240.103
+425  K2P+R4        21030.459    304 42668.918    42857.757    44237.579
+446  F81+F+R3      22124.987    304 44857.975    45046.814    46426.636
+447  F81+F+R4      22120.878    306 44853.756    45045.475    46432.737
+468  JC+R3         22107.555    301 44817.110    45001.683    46370.291
+469  JC+R4         22107.562    303 44821.124    45008.534    46384.625
+Akaike Information Criterion:           GTR+F+R4
+Corrected Akaike Information Criterion: GTR+F+R4
+Bayesian Information Criterion:         GTR+F+R4
+Best-fit model: GTR+F+R4 chosen according to BIC
+
+All model information printed to trim_al_XS_LSU.fasta.model.gz
+CPU time for ModelFinder: 248.613 seconds (0h:4m:8s)
+Wall-clock time for ModelFinder: 248.894 seconds (0h:4m:8s)
+
+NOTE: 17 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -22119.289
+2. Current log-likelihood: -20934.919
+3. Current log-likelihood: -20926.077
+Optimal log-likelihood: -20926.011
+Rate parameters:  A-C: 0.74438  A-G: 4.39447  A-T: 1.70431  C-G: 0.75808  C-T: 6.76661  G-T: 1.00000
+Base frequencies:  A: 0.275  C: 0.189  G: 0.293  T: 0.244
+Site proportion and rates:  (0.771,0.199) (0.090,1.608) (0.052,3.395) (0.086,6.096)
+Parameters optimization took 3 rounds (9.509 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0749424 secs using 98.42% CPU
+Computing ML distances took 0.075521 sec (of wall-clock time) 0.074184 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000490041 secs using 123.9% CPU
+Computing RapidNJ tree took 0.001927 sec (of wall-clock time) 0.002056 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -21424.956
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 1.142 second
+Computing log-likelihood of 98 initial trees ... 16.087 seconds
+Current best score: -20926.011
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -20920.058
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -20849.725
+Iteration 10 / LogL: -20864.933 / Time: 0h:5m:11s
+Iteration 20 / LogL: -20866.868 / Time: 0h:5m:39s
+Finish initializing candidate tree set (20)
+Current best tree score: -20849.725 / CPU time: 78.829
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 21: -20846.497
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 23: -20839.829
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 25: -20836.964
+Iteration 30 / LogL: -20842.411 / Time: 0h:6m:38s (0h:8m:10s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 37: -20835.320
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 40: -20832.483
+Iteration 40 / LogL: -20832.483 / Time: 0h:7m:18s (0h:8m:7s left)
+Iteration 50 / LogL: -20836.782 / Time: 0h:7m:55s (0h:6m:57s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 59: -20830.589
+Iteration 60 / LogL: -20834.520 / Time: 0h:8m:35s (0h:7m:27s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 65: -20830.212
+Iteration 70 / LogL: -20855.251 / Time: 0h:9m:14s (0h:7m:1s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 72: -20829.831
+Iteration 80 / LogL: -20835.620 / Time: 0h:9m:55s (0h:6m:43s left)
+Iteration 90 / LogL: -20830.698 / Time: 0h:10m:31s (0h:5m:52s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 93: -20829.487
+Iteration 100 / LogL: -20836.326 / Time: 0h:11m:9s (0h:6m:35s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 110: -20827.913
+Iteration 110 / LogL: -20827.913 / Time: 0h:11m:49s (0h:7m:2s left)
+Iteration 120 / LogL: -20835.759 / Time: 0h:12m:26s (0h:6m:15s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 125: -20826.479
+Iteration 130 / LogL: -20833.117 / Time: 0h:13m:4s (0h:6m:34s left)
+Iteration 140 / LogL: -20857.901 / Time: 0h:13m:39s (0h:5m:49s left)
+Iteration 150 / LogL: -20834.853 / Time: 0h:14m:15s (0h:5m:5s left)
+Iteration 160 / LogL: -20834.315 / Time: 0h:14m:51s (0h:4m:22s left)
+Iteration 170 / LogL: -20832.321 / Time: 0h:15m:29s (0h:3m:41s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 173: -20826.277
+Iteration 180 / LogL: -21501.879 / Time: 0h:16m:9s (0h:6m:14s left)
+Estimate model parameters (epsilon = 0.100)
+UPDATE BEST LOG-LIKELIHOOD: -20826.228
+Iteration 190 / LogL: -20837.661 / Time: 0h:16m:46s (0h:5m:32s left)
+Iteration 200 / LogL: -20828.768 / Time: 0h:17m:21s (0h:4m:50s left)
+Iteration 210 / LogL: -21487.597 / Time: 0h:18m:0s (0h:4m:10s left)
+Iteration 220 / LogL: -20920.400 / Time: 0h:18m:34s (0h:3m:29s left)
+Iteration 230 / LogL: -20837.267 / Time: 0h:19m:10s (0h:2m:49s left)
+Iteration 240 / LogL: -20830.587 / Time: 0h:19m:47s (0h:2m:9s left)
+Estimate model parameters (epsilon = 0.100)
+UPDATE BEST LOG-LIKELIHOOD: -20826.198
+Iteration 250 / LogL: -20830.679 / Time: 0h:20m:25s (0h:1m:30s left)
+Iteration 260 / LogL: -20876.777 / Time: 0h:21m:0s (0h:0m:50s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 265: -20825.828
+Iteration 270 / LogL: -20833.466 / Time: 0h:21m:38s (0h:6m:10s left)
+Iteration 280 / LogL: -20826.431 / Time: 0h:22m:13s (0h:5m:30s left)
+Iteration 290 / LogL: -20837.369 / Time: 0h:22m:49s (0h:4m:50s left)
+Iteration 300 / LogL: -20835.944 / Time: 0h:23m:25s (0h:4m:11s left)
+Iteration 310 / LogL: -20839.413 / Time: 0h:24m:1s (0h:3m:32s left)
+Iteration 320 / LogL: -20841.519 / Time: 0h:24m:39s (0h:2m:53s left)
+Iteration 330 / LogL: -20848.713 / Time: 0h:25m:15s (0h:2m:14s left)
+Iteration 340 / LogL: -20834.900 / Time: 0h:25m:51s (0h:1m:36s left)
+Iteration 350 / LogL: -20834.419 / Time: 0h:26m:25s (0h:0m:57s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 355: -20825.510
+Iteration 360 / LogL: -20858.589 / Time: 0h:27m:4s (0h:6m:4s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 361: -20825.313
+Iteration 370 / LogL: -20857.422 / Time: 0h:27m:42s (0h:5m:48s left)
+Iteration 380 / LogL: -20834.144 / Time: 0h:28m:17s (0h:5m:9s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 389: -20824.966
+Iteration 390 / LogL: -20837.321 / Time: 0h:28m:57s (0h:6m:18s left)
+Iteration 400 / LogL: -20830.368 / Time: 0h:29m:35s (0h:5m:40s left)
+Iteration 410 / LogL: -20845.271 / Time: 0h:30m:12s (0h:5m:1s left)
+Iteration 420 / LogL: -21499.169 / Time: 0h:30m:49s (0h:4m:23s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 425: -20823.897
+Iteration 430 / LogL: -20835.193 / Time: 0h:31m:27s (0h:6m:2s left)
+Iteration 440 / LogL: -20840.891 / Time: 0h:32m:3s (0h:5m:24s left)
+Iteration 450 / LogL: -20827.247 / Time: 0h:32m:38s (0h:4m:45s left)
+Iteration 460 / LogL: -20844.220 / Time: 0h:33m:14s (0h:4m:7s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 468: -20823.399
+Iteration 470 / LogL: -20828.939 / Time: 0h:33m:54s (0h:6m:13s left)
+Iteration 480 / LogL: -20826.623 / Time: 0h:34m:31s (0h:5m:34s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 488: -20823.306
+Iteration 490 / LogL: -20834.500 / Time: 0h:35m:11s (0h:6m:13s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 495: -20822.255
+Iteration 500 / LogL: -20826.207 / Time: 0h:35m:48s (0h:6m:1s left)
+Iteration 510 / LogL: -20837.340 / Time: 0h:36m:23s (0h:5m:23s left)
+Iteration 520 / LogL: -20828.424 / Time: 0h:37m:0s (0h:4m:44s left)
+Iteration 530 / LogL: -20839.465 / Time: 0h:37m:35s (0h:4m:6s left)
+Iteration 540 / LogL: -20871.025 / Time: 0h:38m:14s (0h:3m:28s left)
+Iteration 550 / LogL: -20823.079 / Time: 0h:38m:52s (0h:2m:50s left)
+Iteration 560 / LogL: -20827.125 / Time: 0h:39m:27s (0h:2m:12s left)
+Iteration 570 / LogL: -20828.918 / Time: 0h:40m:5s (0h:1m:34s left)
+Iteration 580 / LogL: -20824.408 / Time: 0h:40m:42s (0h:0m:56s left)
+Iteration 590 / LogL: -20846.738 / Time: 0h:41m:19s (0h:0m:18s left)
+TREE SEARCH COMPLETED AFTER 596 ITERATIONS / Time: 0h:41m:41s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -20822.255
+2. Current log-likelihood: -20822.232
+3. Current log-likelihood: -20822.215
+4. Current log-likelihood: -20822.204
+Optimal log-likelihood: -20822.190
+Rate parameters:  A-C: 0.73947  A-G: 4.40150  A-T: 1.66467  C-G: 0.75188  C-T: 6.88442  G-T: 1.00000
+Base frequencies:  A: 0.275  C: 0.189  G: 0.293  T: 0.244
+Site proportion and rates:  (0.775,0.202) (0.090,1.709) (0.053,3.510) (0.082,6.167)
+Parameters optimization took 4 rounds (6.978 sec)
+BEST SCORE FOUND : -20822.190
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+2.350 sec.
+Total tree length: 11.165
+
+Total number of iterations: 596
+CPU time used for tree search: 2235.591 sec (0h:37m:15s)
+Wall-clock time used for tree search: 2240.748 sec (0h:37m:20s)
+Total CPU time used: 2504.929 sec (0h:41m:44s)
+Total wall-clock time used: 2510.417 sec (0h:41m:50s)
+
+Analysis results written to: 
+  IQ-TREE report:                trim_al_XS_LSU.fasta.iqtree
+  Maximum-likelihood tree:       trim_al_XS_LSU.fasta.treefile
+  Likelihood distances:          trim_al_XS_LSU.fasta.mldist
+  Screen log file:               trim_al_XS_LSU.fasta.log
+
+Date and Time: Thu May 15 20:15:51 2025

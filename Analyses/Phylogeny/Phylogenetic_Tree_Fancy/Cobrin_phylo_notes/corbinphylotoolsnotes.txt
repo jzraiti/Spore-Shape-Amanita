@@ -73,3 +73,17 @@ put output into tree annotator
 ----
 
 take tree annotator output put back into figtree (using java a)
+
+--- HOW TO USE ASTRAL
+
+start up the docker image
+
+docker run -it --rm -v $(pwd):$(pwd) -w $(pwd) multimuscaria/phylotools:6.0 /bin/bash
+
+for file in *; do
+    if [[ -f "$file" ]]; then
+        echo "Processing $file..."
+        iqtree2 -s "$file" --alrt 1000
+    fi
+done
+

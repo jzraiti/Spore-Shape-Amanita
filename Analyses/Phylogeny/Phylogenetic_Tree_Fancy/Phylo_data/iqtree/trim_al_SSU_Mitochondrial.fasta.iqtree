@@ -1,0 +1,368 @@
+IQ-TREE 2.4.0 built Apr 23 2025
+
+Input file name: trim_al_SSU_Mitochondrial.fasta
+Type of analysis: ModelFinder + tree reconstruction
+Random seed number: 794055
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 81 sequences with 557 nucleotide sites
+Number of constant sites: 338 (= 60.6822% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 338 (= 60.6822% of all sites)
+Number of parsimony informative sites: 143
+Number of distinct site patterns: 251
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: TVM+F+I+R3
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+TVM+F+I+R3        -4692.361    9726.722 +    0.309    9879.512 +    0.603   10465.881 +    0.811
+GTR+F+I+R3        -4690.840    9725.680 +    0.521    9880.660 +     0.34   10469.162 +    0.157
+TVM+F+R4          -4692.980    9729.960 +   0.0613    9884.939 -     0.04   10473.441 -   0.0185
+TVM+F+R3          -4699.978    9739.957 - 0.000414    9890.578 -  0.00239   10474.793 -  0.00942
+GTR+F+R3          -4698.548    9739.096 - 0.000636    9891.886 -  0.00124   10478.255 -  0.00167
+GTR+F+R4          -4692.468    9730.935 -   0.0377    9888.126 -  0.00813   10478.739 -  0.00131
+GTR+F+I+R4        -4690.855    9729.710 +   0.0695    9889.134 -  0.00491   10481.836 - 0.000278
+GTR+F+I+R2        -4705.390    9750.780 - 1.85e-06    9901.402 - 1.06e-05   10485.616 - 4.21e-05
+TPM2u+F+I+R3      -4715.677    9769.354 - 1.71e-10    9917.830 - 2.88e-09   10499.868 - 3.38e-08
+TIM2+F+I+R3       -4713.748    9767.496 - 4.33e-10    9918.118 -  2.5e-09   10502.332 - 9.86e-09
+GTR+F+I+G4        -4717.612    9773.223 - 2.47e-11    9921.699 - 4.17e-10   10503.737 - 4.89e-09
+TPM2u+F+R3        -4721.517    9779.033 - 1.35e-12    9925.384 -  6.6e-11   10505.224 - 2.32e-09
+TPM2u+F+R4        -4715.933    9771.866 - 4.87e-11    9922.488 - 2.81e-10   10506.702 - 1.11e-09
+TIM2+F+R3         -4719.808    9777.617 - 2.75e-12    9926.092 - 4.63e-11   10508.130 - 5.43e-10
+TIM2+F+R4         -4714.224    9770.448 -  9.9e-11    9923.238 - 1.93e-10   10509.607 -  2.6e-10
+TPM3u+F+I+R3      -4727.314    9792.628 - 1.51e-15    9941.103 - 2.55e-14   10523.141 - 2.99e-13
+TIM3+F+I+R3       -4726.069    9792.138 - 1.93e-15    9942.759 - 1.11e-14   10526.974 -  4.4e-14
+TPM3u+F+R3        -4732.899    9801.799 - 1.54e-17    9948.149 - 7.52e-16   10527.990 - 2.65e-14
+TPM3u+F+R4        -4726.826    9793.651 - 9.06e-16    9944.273 - 5.22e-15   10528.488 - 2.06e-14
+K3Pu+F+I+R3       -4731.337    9800.673 - 2.71e-17    9949.149 - 4.56e-16   10531.187 - 5.35e-15
+TIM3+F+R3         -4731.739    9801.479 - 1.81e-17    9949.954 - 3.05e-16   10531.992 - 3.58e-15
+TIM3+F+R4         -4725.820    9793.640 - 9.11e-16    9946.430 - 1.78e-15   10532.799 - 2.39e-15
+GTR+F+G4          -4735.609    9807.217 - 1.03e-18    9953.568 - 5.01e-17   10533.408 - 1.76e-15
+TIM+F+I+R3        -4729.862    9799.723 - 4.35e-17    9950.345 - 2.51e-16   10534.559 - 9.91e-16
+K3Pu+F+R3         -4736.295    9808.590 - 5.17e-19    9954.941 - 2.52e-17   10534.781 - 8.87e-16
+K3Pu+F+R4         -4730.969    9801.939 - 1.44e-17    9952.560 - 8.29e-17   10536.775 - 3.27e-16
+TIM+F+R3          -4734.945    9807.889 - 7.34e-19    9956.364 - 1.24e-17   10538.403 - 1.45e-16
+GTR+F+R2          -4735.509    9809.017 - 4.17e-19    9957.493 - 7.03e-18   10539.531 - 8.25e-17
+TIM+F+R4          -4729.640    9801.280 -    2e-17    9954.070 -  3.9e-17   10540.439 - 5.24e-17
+TVMe+I+R3         -4745.281    9826.562 - 6.47e-23    9972.913 - 3.15e-21   10552.753 - 1.11e-19
+SYM+I+R3          -4743.632    9825.263 - 1.24e-22    9973.739 - 2.09e-21   10555.777 - 2.45e-20
+TVMe+R4           -4746.106    9830.211 - 1.04e-23    9978.687 - 1.76e-22   10560.725 - 2.06e-21
+HKY+F+I+R3        -4750.283    9836.566 - 4.35e-25    9982.917 - 2.12e-23   10562.757 - 7.46e-22
+SYM+R4            -4744.438    9828.877 - 2.03e-23    9979.499 - 1.17e-22   10563.713 - 4.63e-22
+TVMe+R3           -4753.942    9841.885 - 3.04e-26    9986.132 - 4.25e-24   10563.753 - 4.53e-22
+HKY+F+R3          -4754.640    9843.281 - 1.51e-26    9987.528 - 2.11e-24   10565.149 - 2.26e-22
+TN+F+I+R3         -4748.852    9835.703 - 6.69e-25    9984.179 - 1.13e-23   10566.217 - 1.32e-22
+SYM+R3            -4752.748    9841.495 -  3.7e-26    9987.846 -  1.8e-24   10567.686 - 6.35e-23
+HKY+F+R4          -4749.695    9837.391 - 2.88e-25    9985.866 - 4.85e-24   10567.904 - 5.69e-23
+TN+F+R3           -4753.234    9842.467 - 2.27e-26    9988.818 - 1.11e-24   10568.658 -  3.9e-23
+TN+F+R4           -4748.337    9836.675 - 4.12e-25    9987.296 - 2.37e-24   10571.511 - 9.38e-24
+F81+F+I+R3        -4759.596    9853.192 - 1.07e-28    9997.439 - 1.49e-26   10575.060 - 1.59e-24
+F81+F+R3          -4764.177    9860.354 - 2.97e-30   10002.518 - 1.18e-27   10577.900 - 3.84e-25
+F81+F+R4          -4759.129    9854.258 - 6.26e-29   10000.608 - 3.05e-27   10580.449 - 1.07e-25
+TPM2+I+R3         -4810.836    9953.671 - 1.62e-50   10095.835 - 6.41e-48   10671.217 - 2.09e-45
+TIM2e+I+R3        -4808.166    9950.331 -  8.6e-50   10094.578 -  1.2e-47   10672.200 - 1.28e-45
+TPM2+R3           -4817.115    9964.230 - 8.25e-53   10104.332 - 9.15e-50   10677.453 - 9.27e-47
+TIM2e+R3          -4814.150    9960.300 - 5.89e-52   10102.464 - 2.33e-49   10677.846 - 7.61e-47
+TPM2+R4           -4811.362    9956.724 - 3.52e-51   10100.971 - 4.91e-49   10678.592 - 5.24e-47
+TIM2e+R4          -4808.855    9953.711 - 1.59e-50   10100.062 - 7.74e-49   10679.902 - 2.72e-47
+TPM3+I+R3         -4817.377    9966.755 - 2.33e-53   10108.919 - 9.24e-51   10684.301 - 3.02e-48
+TIM3e+I+R3        -4816.246    9966.493 - 2.66e-53   10110.739 - 3.72e-51   10688.361 - 3.97e-49
+TPM3+R3           -4823.501    9977.001 - 1.39e-55   10117.103 - 1.54e-52   10690.224 - 1.56e-49
+TPM3+R4           -4817.344    9968.688 - 8.88e-54   10112.935 - 1.24e-51   10690.556 - 1.32e-49
+TIM3e+R4          -4816.380    9968.761 - 8.56e-54   10115.111 - 4.18e-52   10694.952 - 1.47e-50
+TIM3e+R3          -4822.806    9977.613 - 1.02e-55   10119.777 - 4.05e-53   10695.159 - 1.32e-50
+K3P+I+R3          -4842.903   10017.805 - 1.92e-64   10159.969 - 7.59e-62   10735.351 - 2.48e-59
+TIMe+I+R3         -4840.943   10015.887 -    5e-64   10160.134 - 6.99e-62   10737.755 - 7.46e-60
+K3P+R3            -4847.580   10025.159 - 4.85e-66   10165.261 - 5.38e-63   10738.382 - 5.45e-60
+TIMe+R3           -4845.580   10023.161 - 1.32e-65   10165.325 - 5.21e-63   10740.707 -  1.7e-60
+K3P+R4            -4842.808   10019.616 - 7.75e-65   10163.863 - 1.08e-62   10741.485 - 1.16e-60
+TIMe+R4           -4840.909   10017.819 -  1.9e-64   10164.169 - 9.29e-63   10744.010 - 3.27e-61
+K2P+I+R3          -4880.447   10090.893 - 2.58e-80   10230.995 - 2.86e-77   10804.116 -  2.9e-74
+TNe+I+R3          -4878.548   10089.097 - 6.34e-80   10231.261 - 2.51e-77   10806.642 -  8.2e-75
+K2P+R3            -4885.105   10098.211 - 6.65e-82   10236.272 - 2.05e-78   10807.112 - 6.49e-75
+JC+I+R3           -4886.213   10100.426 -  2.2e-82   10238.487 - 6.76e-79   10809.326 - 2.14e-75
+TNe+R3            -4883.058   10096.117 -  1.9e-81   10236.219 -  2.1e-78   10809.340 - 2.13e-75
+K2P+R4            -4880.357   10092.714 - 1.04e-80   10234.878 - 4.11e-78   10810.260 - 1.34e-75
+JC+R3             -4890.791   10107.582 - 6.14e-84   10243.623 - 5.19e-80   10812.161 - 5.19e-76
+GTR+F+I           -4875.023   10086.047 - 2.91e-79   10232.397 - 1.42e-77   10812.238 -    5e-76
+TNe+R4            -4878.428   10090.856 - 2.63e-80   10235.103 - 3.67e-78   10812.724 - 3.92e-76
+JC+R4             -4886.124   10102.247 - 8.84e-83   10242.350 -  9.8e-80   10815.471 - 9.93e-77
+GTR+F             -5228.904   10791.808 - 1.62e-232   10936.055 - 2.27e-230   11513.676 - 2.42e-228
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: TVM+F+I+R3
+
+Rate parameter R:
+
+  A-C: 1.4261
+  A-G: 2.8308
+  A-T: 3.5174
+  C-G: 0.3636
+  C-T: 2.8308
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.3747
+  pi(C) = 0.1461
+  pi(G) = 0.2109
+  pi(T) = 0.2683
+
+Rate matrix Q:
+
+  A    -1.049    0.1249    0.3579    0.5658
+  C    0.3203   -0.8216   0.04596    0.4553
+  G    0.6358   0.03183   -0.8284    0.1609
+  T    0.7899    0.2479    0.1264    -1.164
+
+Model of rate heterogeneity: Invar+FreeRate with 3 categories
+Proportion of invariable sites: 0.3926
+Site proportion and rates:  (0.4487,0.4796) (0.1138,3.033) (0.04491,9.794)
+
+ Category  Relative_rate  Proportion
+  0         0              0.3926
+  1         0.4796         0.4487
+  2         3.033          0.1138
+  3         9.794          0.04491
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -4627.8000 (s.e. 272.5663)
+Unconstrained log-likelihood (without tree): -2265.2708
+Number of free parameters (#branches + #model parameters): 171
+Akaike information criterion (AIC) score: 9597.6001
+Corrected Akaike information criterion (AICc) score: 9750.3897
+Bayesian information criterion (BIC) score: 10336.7587
+
+Total tree length (sum of branch lengths): 1.5869
+Sum of internal branch lengths: 0.5329 (33.5820% of tree length)
+
+WARNING: 20 near-zero internal branches (<0.0018) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'HQ539923.1_Amanita_muscaria_subsp._flavivolvata_voucher_BW_Veiss_01_small_subunit_ribosomal_RNA_gene' is drawn at root
+Numbers in parentheses are SH-aLRT support (%)
+
++**HQ539923.1_Amanita_muscaria_subsp._flavivolvata_voucher_BW_Veiss_01_small_subunit_ribosomal_RNA_gene
+|
+|                                +--HQ539871.1_Amanita_abrupta_voucher_BW_HP_101_small_subunit_ribosomal_RNA_gene
+|                             +--| (79.2)
+|                             |  |     +-----HQ539879.1_Amanita_amanitoides_voucher_RET_344-9_small_subunit_ribosomal_RNA_gene
+|                             |  |  +**| (75.6)
+|                             |  |  |  |  +--HQ539900.1_Amanita_effusa_voucher_PSC_2007_small_subunit_ribosomal_RNA_gene
+|                             |  |  |  +--| (73)
+|                             |  |  |     +--HQ539960.1_Amanita_sublutea_voucher_PSC_2401_small_subunit_ribosomal_RNA_gene
+|                             |  +**| (0)
+|                             |     |        +--HQ539891.1_Amanita_clelandii_voucher_PSC_2524_small_subunit_ribosomal_RNA_gene
+|                             |     |     +**| (48)
+|                             |     |     |  +--HQ539943.1_Amanita_pyramidiferina_voucher_PSC_2441_small_subunit_ribosomal_RNA_gene
+|                             |     |  +--| (75.3)
+|                             |     |  |  +---------HQ539932.1_Amanita_pelioma_voucher_RET_312-4_small_subunit_ribosomal_RNA_gene
+|                             |     +--| (74.5)
+|                             |        |  +--HQ539894.1_Amanita_conicobulbosa_voucher_PSC_1368_small_subunit_ribosomal_RNA_gene
+|                             |        +--| (94.3)
+|                             |           +------------HQ539939.1_Amanita_proxima_voucher_RET_290-10_small_subunit_ribosomal_RNA_gene
+|                          +--| (77.4)
+|                          |  |  +----HQ539883.1_Amanita_eriophora_voucher_RET_350-4_small_subunit_ribosomal_RNA_gene
+|                          |  +--| (79.4)
+|                          |     |  +--HQ539915.1_Amanita_longipes_voucher_RET_360-1_small_subunit_ribosomal_RNA_gene
+|                          |     +**| (0)
+|                          |        +**HQ539962.1_Amanita_sp.__tephrea__voucher_RET_378-9_small_subunit_ribosomal_RNA_gene
+|                       +--| (88.1)
+|                       |  |           +**HQ539877.1_Amanita_afrospinosa_voucher_RET_347-1_small_subunit_ribosomal_RNA_gene
+|                       |  |        +--| (85.5)
+|                       |  |        |  |        +**HQ539893.1_Amanita_cokeri_voucher_BW_STF_090506-19_small_subunit_ribosomal_RNA_gene
+|                       |  |        |  |     +--| (82.9)
+|                       |  |        |  |     |  +--------------HQ539897.1_Amanita_sp.__crassiconus__voucher_RET_348-5_small_subunit_ribosomal_RNA_gene
+|                       |  |        |  |  +--| (93.6)
+|                       |  |        |  |  |  +**HQ539963.1_Amanita_thiersii_voucher_DPL_7272_small_subunit_ribosomal_RNA_gene
+|                       |  |        |  +**| (67.2)
+|                       |  |        |     +---HQ539926.1_Amanita_nauseosa_voucher_DPL_6117_small_subunit_ribosomal_RNA_gene
+|                       |  |     +**| (0)
+|                       |  |     |  +--HQ539899.1_Amanita_daucipes_voucher_RET_386-8_small_subunit_ribosomal_RNA_gene
+|                       |  |  +**| (0)
+|                       |  |  |  |           +--HQ539881.1_Amanita_atkinsoniana_voucher_RET_301-1_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |        +--| (85.7)
+|                       |  |  |  |        |  +**HQ539951.1_Amanita_smithiana_voucher_RET_382-6_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |     +**| (0)
+|                       |  |  |  |     |  |     +--HQ539910.1_Amanita_gracilior_voucher_RET_342-2_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |     |  |  +--| (77.4)
+|                       |  |  |  |     |  |  |  +--HQ539952.1_Amanita_solitaria_voucher_RET_298-1_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |     |  +**| (0)
+|                       |  |  |  |     |     +--HQ539928.1_Amanita_ochrophylla_voucher_PSC_1127_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |  +--| (37)
+|                       |  |  |  |  |  +--HQ539929.1_Amanita_onusta_voucher_RET_297-3_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  +**| (0)
+|                       |  |  |     |     +-----------HQ539888.1_Amanita_cinereoconia_voucher_BW_PSF_small_subunit_ribosomal_RNA_gene
+|                       |  |  |     |  +**| (0)
+|                       |  |  |     |  |  +----HQ539937.1_Amanita_praelongispora_voucher_RET_314-8_small_subunit_ribosomal_RNA_gene
+|                       |  |  |     +--| (92.9)
+|                       |  |  |        +**HQ539944.1_Amanita_rhopalopus_voucher_BW_RET_386-3_small_subunit_ribosomal_RNA_gene
+|                       |  +--| (79.2)
+|                       |     |        +**HQ539887.1_Amanita_chlorinosma_voucher_RET_328-6_small_subunit_ribosomal_RNA_gene
+|                       |     |     +--| (94.7)
+|                       |     |     |  +**HQ539934.1_Amanita_polypyramis_voucher_RET_159-8_small_subunit_ribosomal_RNA_gene
+|                       |     |  +**| (0)
+|                       |     |  |  +----HQ539961.1_Amanita_subsolitaria_voucher_RET_327-4_small_subunit_ribosomal_RNA_gene
+|                       |     +**| (78.8)
+|                       |        +--HQ539903.1_Amanita_farinacea_voucher_PSC_2529_small_subunit_ribosomal_RNA_gene
+|                    +**| (0)
+|                    |  |     +---HQ539880.1_Amanita_armillariiformis_voucher_RET_266-8_small_subunit_ribosomal_RNA_gene
+|                    |  |  +--| (85.3)
+|                    |  |  |  |  +--HQ539911.1_Amanita_grallipes_voucher_RET_379-5_small_subunit_ribosomal_RNA_gene
+|                    |  |  |  +--| (54.1)
+|                    |  |  |     +--HQ539919.1_Amanita_manicata_voucher_RET_387-4_small_subunit_ribosomal_RNA_gene
+|                    |  +--| (90.1)
+|                    |     |            +**HQ539892.1_Amanita_codinae_voucher_RET_275-8_small_subunit_ribosomal_RNA_gene
+|                    |     |     +------| (99.5)
+|                    |     |     |      |  +--HQ539913.1_Amanita_inopinata_voucher_BW_GK2005-1_small_subunit_ribosomal_RNA_gene
+|                    |     |     |      +**| (0)
+|                    |     |     |         +---HQ539949.1_Amanita_singeri_voucher_LIP_88.056_small_subunit_ribosomal_RNA_gene
+|                    |     |  +--| (82.7)
+|                    |     |  |  +--HQ539967.1_Amanita_vittadinii_voucher_RET_277-1_small_subunit_ribosomal_RNA_gene
+|                    |     +--| (75)
+|                    |        +--HQ539938.1_Amanita_prairiicola_voucher_RET_266-1_small_subunit_ribosomal_RNA_gene
+|                 +**| (65)
+|                 |  |       +-------------------------------------HQ539974.1_Zhuliangomyces_illinitus_voucher_SFSU_HDT_54917_small_subunit_ribosomal_RNA_gene
+|                 |  +-------| (91.6)
+|                 |          |                              +**HQ539975.1_Pluteus_cervinus_voucher_Field_88934_small_subunit_ribosomal_RNA_gene
+|                 |          |                    +---------| (94.8)
+|                 |          |                    |         +**HQ539976.1_Pluteus_petasatus_voucher_NYBG_720956_small_subunit_ribosomal_RNA_gene
+|                 |          +--------------------| (98.3)
+|                 |                               +-------------HQ539977.1_Volvariella_volvacea_voucher_Penn_State_Mushroom_Culture_Collection_WC_427_small_subunit_ribosomal_RNA_gene
+|              +--| (93.7)
+|              |  |                                                +--HQ539884.1_Amanita_brunneolocularis_voucher_NY_460913_small_subunit_ribosomal_RNA_gene
+|              |  |                                         +------| (99.8)
+|              |  |                                         |      |  +---HQ539904.1_Amanita_flavoconia_voucher_BW_PH22_small_subunit_ribosomal_RNA_gene
+|              |  |                                         |      +--| (74.7)
+|              |  |                                         |         +--HQ539927.1_Amanita_novinupta_voucher_RET_093-10_small_subunit_ribosomal_RNA_gene
+|              |  |                                      +--| (78)
+|              |  |                                      |  +--HQ539954.1_Amanita_spissa_voucher_NYBG_47779_small_subunit_ribosomal_RNA_gene
+|              |  |                                 +----| (95.5)
+|              |  |                                 |    +---HQ539902.1_Amanita_excelsa_voucher_Ge_816_small_subunit_ribosomal_RNA_gene
+|              |  |                          +------| (97.1)
+|              |  |                          |      |   +----HQ539885.1_Amanita_brunnescens_voucher_BW_HP12_small_subunit_ribosomal_RNA_gene
+|              |  |                          |      +---| (93.7)
+|              |  |                          |          +-----HQ539890.1_Amanita_citrina_voucher_BW_JLR_102106-1_small_subunit_ribosomal_RNA_gene
+|              |  |                       +--| (77.2)
+|              |  |                       |  +--HQ539948.1_Amanita_silvicola_voucher_RET_382-4_small_subunit_ribosomal_RNA_gene
+|              |  |            +----------| (99.7)
+|              |  |            |          +---------HQ539969.1_Amanita_westii_voucher_BW_SH26_small_subunit_ribosomal_RNA_gene
+|              |  |         +--| (72.9)
+|              |  |         |  +--------HQ539925.1_Amanita_mutabilis_voucher_RET_314-6_small_subunit_ribosomal_RNA_gene
+|              |  |      +--| (71.7)
+|              |  |      |  +------------HQ539920.1_Amanita_marmorata_voucher_AP_RoweAM2005_small_subunit_ribosomal_RNA_gene
+|              |  |  +---| (92.4)
+|              |  |  |   +---HQ539912.1_Amanita_hesleri_voucher_RET_155-1_small_subunit_ribosomal_RNA_gene
+|              |  +--| (88.8)
+|              |     |     +--HQ539889.1_Amanita_cinereopannosa_voucher_RET_319-8_small_subunit_ribosomal_RNA_gene
+|              |     |  +--| (22.3)
+|              |     |  |  +--------HQ539956.1_Amanita_subalbida_voucher_PSC_2509_small_subunit_ribosomal_RNA_gene
+|              |     +--| (73.5)
+|              |        +**HQ539955.1_Amanita_strobiliformis_voucher_AP_10407-1_small_subunit_ribosomal_RNA_gene
+|           +--| (88.1)
+|           |  |            +--HQ539901.1_Amanita_egregia_voucher_NYBG_66253_small_subunit_ribosomal_RNA_gene
+|           |  |        +---| (90.8)
+|           |  |        |   +--HQ539972.1_Amanita_zambiana_voucher_RET_343-10_small_subunit_ribosomal_RNA_gene
+|           |  |     +--| (91.7)
+|           |  |     |  |  +--------------HQ539914.1_Amanita_jacksonii_voucher_BW_PH17_small_subunit_ribosomal_RNA_gene
+|           |  |     |  +--| (81.6)
+|           |  |     |     +-------HQ539971.1_Amanita_yuaniana_voucher_Yang_2489_small_subunit_ribosomal_RNA_gene
+|           |  |  +**| (0)
+|           |  |  |  |      +--HQ539931.1_Amanita_peckiana_voucher_RET_320-3_small_subunit_ribosomal_RNA_gene
+|           |  |  |  +------| (98.1)
+|           |  |  |         |        +--HQ539966.1_Amanita_virosa_voucher_BW_HP082906-2_small_subunit_ribosomal_RNA_gene
+|           |  |  |         +--------| (99.5)
+|           |  |  |                  +--HQ539876.1_Amanita_aff._volvata_BW_STF_090506-8_small_subunit_ribosomal_RNA_gene
+|           |  +--| (86.9)
+|           |     |         +--HQ539908.1_Amanita_fulva_voucher_BW_PH82906-7_small_subunit_ribosomal_RNA_gene
+|           |     |      +**| (0)
+|           |     |      |  +**HQ539933.1_Amanita_phalloides_voucher_BW_JLR0226_small_subunit_ribosomal_RNA_gene
+|           |     |  +---| (94.5)
+|           |     |  |   |     +--HQ539935.1_Amanita_populiphila_voucher_RET_266-9_small_subunit_ribosomal_RNA_gene
+|           |     |  |   |  +**| (0)
+|           |     |  |   |  |  +--HQ539965.1_Amanita_vaginata_voucher_BW_PH82906-11_small_subunit_ribosomal_RNA_gene
+|           |     |  |   +--| (79.8)
+|           |     |  |      +--HQ539950.1_Amanita_sinicoflava_voucher_BW_PH061306-1_small_subunit_ribosomal_RNA_gene
+|           |     +--| (13.2)
+|           |        |       +--HQ539922.1_Amanita_murinoflammeum_voucher_NYBG_66697_small_subunit_ribosomal_RNA_gene
+|           |        +-------| (99.8)
+|           |                +--HQ539964.1_Amanita_umbrinella_voucher_PSC_1813_small_subunit_ribosomal_RNA_gene
+|        +--| (76.5)
+|        |  +--HQ539968.1_Amanita_wellsii_voucher_RET_001-5_small_subunit_ribosomal_RNA_gene
+|     +--| (57.6)
+|     |  +--HQ539907.1_Amanita_frostiana_voucher_BW_PH37_small_subunit_ribosomal_RNA_gene
+|  +--| (69.3)
+|  |  +-----HQ539941.1_Amanita_pudica_voucher_RET_344-40_small_subunit_ribosomal_RNA_gene
++--| (76.1)
+|  |        +--HQ539878.1_Amanita_altipes_voucher_Yang_2431_small_subunit_ribosomal_RNA_gene
+|  |     +--| (84.2)
+|  |     |  +--HQ539959.1_Amanita_subglobosa_voucher_Yang_2488_small_subunit_ribosomal_RNA_gene
+|  |  +**| (0)
+|  |  |  +---HQ539930.1_Amanita_parvipantherina_voucher_Yang_2490_small_subunit_ribosomal_RNA_gene
+|  +--| (88.3)
+|     +--HQ539921.1_Amanita_multisquamosa_voucher_BW_RP14_small_subunit_ribosomal_RNA_gene
+|
++**HQ539924.1_Amanita_muscaria_var._guessowii_voucher_BW_STF090506-7_small_subunit_ribosomal_RNA_gene
+
+Tree in newick format:
+
+(HQ539923.1_Amanita_muscaria_subsp._flavivolvata_voucher_BW_Veiss_01_small_subunit_ribosomal_RNA_gene:0.0000021707,(((((((((((HQ539871.1_Amanita_abrupta_voucher_BW_HP_101_small_subunit_ribosomal_RNA_gene:0.0036473378,((HQ539879.1_Amanita_amanitoides_voucher_RET_344-9_small_subunit_ribosomal_RNA_gene:0.0196435706,(HQ539900.1_Amanita_effusa_voucher_PSC_2007_small_subunit_ribosomal_RNA_gene:0.0056178437,HQ539960.1_Amanita_sublutea_voucher_PSC_2401_small_subunit_ribosomal_RNA_gene:0.0091207486)73:0.0023657978)75.6:0.0016408554,(((HQ539891.1_Amanita_clelandii_voucher_PSC_2524_small_subunit_ribosomal_RNA_gene:0.0057846299,HQ539943.1_Amanita_pyramidiferina_voucher_PSC_2441_small_subunit_ribosomal_RNA_gene:0.0096219937)48:0.0013456818,HQ539932.1_Amanita_pelioma_voucher_RET_312-4_small_subunit_ribosomal_RNA_gene:0.0321138691)75.3:0.0022614238,(HQ539894.1_Amanita_conicobulbosa_voucher_PSC_1368_small_subunit_ribosomal_RNA_gene:0.0021471200,HQ539939.1_Amanita_proxima_voucher_RET_290-10_small_subunit_ribosomal_RNA_gene:0.0419400754)94.3:0.0093154775)74.5:0.0018078136)0:0.0000025137)79.2:0.0018475087,(HQ539883.1_Amanita_eriophora_voucher_RET_350-4_small_subunit_ribosomal_RNA_gene:0.0174733025,(HQ539915.1_Amanita_longipes_voucher_RET_360-1_small_subunit_ribosomal_RNA_gene:0.0055389384,HQ539962.1_Amanita_sp.__tephrea__voucher_RET_378-9_small_subunit_ribosomal_RNA_gene:0.0000010629)0:0.0000023274)79.4:0.0036812035)77.4:0.0018110695,((((HQ539877.1_Amanita_afrospinosa_voucher_RET_347-1_small_subunit_ribosomal_RNA_gene:0.0000028392,(((HQ539893.1_Amanita_cokeri_voucher_BW_STF_090506-19_small_subunit_ribosomal_RNA_gene:0.0000010629,HQ539897.1_Amanita_sp.__crassiconus__voucher_RET_348-5_small_subunit_ribosomal_RNA_gene:0.0493872549)82.9:0.0026419010,HQ539963.1_Amanita_thiersii_voucher_DPL_7272_small_subunit_ribosomal_RNA_gene:0.0000010629)93.6:0.0092821667,HQ539926.1_Amanita_nauseosa_voucher_DPL_6117_small_subunit_ribosomal_RNA_gene:0.0148407814)67.2:0.0012202349)85.5:0.0018259460,HQ539899.1_Amanita_daucipes_voucher_RET_386-8_small_subunit_ribosomal_RNA_gene:0.0074059294)0:0.0000023881,((((HQ539881.1_Amanita_atkinsoniana_voucher_RET_301-1_small_subunit_ribosomal_RNA_gene:0.0036718944,HQ539951.1_Amanita_smithiana_voucher_RET_382-6_small_subunit_ribosomal_RNA_gene:0.0000026014)85.7:0.0018246982,((HQ539910.1_Amanita_gracilior_voucher_RET_342-2_small_subunit_ribosomal_RNA_gene:0.0037277048,HQ539952.1_Amanita_solitaria_voucher_RET_298-1_small_subunit_ribosomal_RNA_gene:0.0018324282)77.4:0.0018408890,HQ539928.1_Amanita_ochrophylla_voucher_PSC_1127_small_subunit_ribosomal_RNA_gene:0.0074573289)0:0.0000023768)0:0.0000027669,HQ539929.1_Amanita_onusta_voucher_RET_297-3_small_subunit_ribosomal_RNA_gene:0.0055293995)37:0.0018255239,((HQ539888.1_Amanita_cinereoconia_voucher_BW_PSF_small_subunit_ribosomal_RNA_gene:0.0397313608,HQ539937.1_Amanita_praelongispora_voucher_RET_314-8_small_subunit_ribosomal_RNA_gene:0.0169996120)0:0.0000024526,HQ539944.1_Amanita_rhopalopus_voucher_BW_RET_386-3_small_subunit_ribosomal_RNA_gene:0.0000010629)92.9:0.0036614444)0:0.0000027749)0:0.0000027795,(((HQ539887.1_Amanita_chlorinosma_voucher_RET_328-6_small_subunit_ribosomal_RNA_gene:0.0000027274,HQ539934.1_Amanita_polypyramis_voucher_RET_159-8_small_subunit_ribosomal_RNA_gene:0.0000010629)94.7:0.0093723089,HQ539961.1_Amanita_subsolitaria_voucher_RET_327-4_small_subunit_ribosomal_RNA_gene:0.0178403242)0:0.0000028667,HQ539903.1_Amanita_farinacea_voucher_PSC_2529_small_subunit_ribosomal_RNA_gene:0.0075236651)78.8:0.0017884751)79.2:0.0018069732)88.1:0.0038929115,((HQ539880.1_Amanita_armillariiformis_voucher_RET_266-8_small_subunit_ribosomal_RNA_gene:0.0129209651,(HQ539911.1_Amanita_grallipes_voucher_RET_379-5_small_subunit_ribosomal_RNA_gene:0.0110709590,HQ539919.1_Amanita_manicata_voucher_RET_387-4_small_subunit_ribosomal_RNA_gene:0.0020659151)54.1:0.0037805585)85.3:0.0052885712,(((HQ539892.1_Amanita_codinae_voucher_RET_275-8_small_subunit_ribosomal_RNA_gene:0.0000010629,(HQ539913.1_Amanita_inopinata_voucher_BW_GK2005-1_small_subunit_ribosomal_RNA_gene:0.0038292146,HQ539949.1_Amanita_singeri_voucher_LIP_88.056_small_subunit_ribosomal_RNA_gene:0.0132584429)0:0.0000027296)99.5:0.0229412077,HQ539967.1_Amanita_vittadinii_voucher_RET_277-1_small_subunit_ribosomal_RNA_gene:0.0118089739)82.7:0.0068851920,HQ539938.1_Amanita_prairiicola_voucher_RET_266-1_small_subunit_ribosomal_RNA_gene:0.0085807647)75:0.0038771293)90.1:0.0066953832)0:0.0000020881,(HQ539974.1_Zhuliangomyces_illinitus_voucher_SFSU_HDT_54917_small_subunit_ribosomal_RNA_gene:0.1203333223,((HQ539975.1_Pluteus_cervinus_voucher_Field_88934_small_subunit_ribosomal_RNA_gene:0.0000010629,HQ539976.1_Pluteus_petasatus_voucher_NYBG_720956_small_subunit_ribosomal_RNA_gene:0.0000010629)94.8:0.0324817957,HQ539977.1_Volvariella_volvacea_voucher_Penn_State_Mushroom_Culture_Collection_WC_427_small_subunit_ribosomal_RNA_gene:0.0459941398)98.3:0.0659100665)91.6:0.0270195315)65:0.0009475122,((((((((((HQ539884.1_Amanita_brunneolocularis_voucher_NY_460913_small_subunit_ribosomal_RNA_gene:0.0119445865,(HQ539904.1_Amanita_flavoconia_voucher_BW_PH22_small_subunit_ribosomal_RNA_gene:0.0138241680,HQ539927.1_Amanita_novinupta_voucher_RET_093-10_small_subunit_ribosomal_RNA_gene:0.0047706981)74.7:0.0021788278)99.8:0.0230395972,HQ539954.1_Amanita_spissa_voucher_NYBG_47779_small_subunit_ribosomal_RNA_gene:0.0080659636)78:0.0037130466,HQ539902.1_Amanita_excelsa_voucher_Ge_816_small_subunit_ribosomal_RNA_gene:0.0141086128)95.5:0.0157330425,(HQ539885.1_Amanita_brunnescens_voucher_BW_HP12_small_subunit_ribosomal_RNA_gene:0.0174437897,HQ539890.1_Amanita_citrina_voucher_BW_JLR_102106-1_small_subunit_ribosomal_RNA_gene:0.0188707711)93.7:0.0148672914)97.1:0.0236589382,HQ539948.1_Amanita_silvicola_voucher_RET_382-4_small_subunit_ribosomal_RNA_gene:0.0033682528)77.2:0.0056075509,HQ539969.1_Amanita_westii_voucher_BW_SH26_small_subunit_ribosomal_RNA_gene:0.0329735590)99.7:0.0364141918,HQ539925.1_Amanita_mutabilis_voucher_RET_314-6_small_subunit_ribosomal_RNA_gene:0.0303684389)72.9:0.0071767680,HQ539920.1_Amanita_marmorata_voucher_AP_RoweAM2005_small_subunit_ribosomal_RNA_gene:0.0418533803)71.7:0.0055457105,HQ539912.1_Amanita_hesleri_voucher_RET_155-1_small_subunit_ribosomal_RNA_gene:0.0132046416)92.4:0.0134453509,((HQ539889.1_Amanita_cinereopannosa_voucher_RET_319-8_small_subunit_ribosomal_RNA_gene:0.0095801778,HQ539956.1_Amanita_subalbida_voucher_PSC_2509_small_subunit_ribosomal_RNA_gene:0.0301349858)22.3:0.0020945955,HQ539955.1_Amanita_strobiliformis_voucher_AP_10407-1_small_subunit_ribosomal_RNA_gene:0.0000021879)73.5:0.0039774160)88.8:0.0063925861)93.7:0.0082904972,((((HQ539901.1_Amanita_egregia_voucher_NYBG_66253_small_subunit_ribosomal_RNA_gene:0.0038922466,HQ539972.1_Amanita_zambiana_voucher_RET_343-10_small_subunit_ribosomal_RNA_gene:0.0036620067)90.8:0.0129835766,(HQ539914.1_Amanita_jacksonii_voucher_BW_PH17_small_subunit_ribosomal_RNA_gene:0.0488762082,HQ539971.1_Amanita_yuaniana_voucher_Yang_2489_small_subunit_ribosomal_RNA_gene:0.0274337237)81.6:0.0060404804)91.7:0.0101861116,(HQ539931.1_Amanita_peckiana_voucher_RET_320-3_small_subunit_ribosomal_RNA_gene:0.0068820726,(HQ539966.1_Amanita_virosa_voucher_BW_HP082906-2_small_subunit_ribosomal_RNA_gene:0.0114401499,HQ539876.1_Amanita_aff._volvata_BW_STF_090506-8_small_subunit_ribosomal_RNA_gene:0.0020656123)99.5:0.0279557286)98.1:0.0225608555)0:0.0000021059,(((HQ539908.1_Amanita_fulva_voucher_BW_PH82906-7_small_subunit_ribosomal_RNA_gene:0.0037155571,HQ539933.1_Amanita_phalloides_voucher_BW_JLR0226_small_subunit_ribosomal_RNA_gene:0.0000023187)0:0.0000024796,((HQ539935.1_Amanita_populiphila_voucher_RET_266-9_small_subunit_ribosomal_RNA_gene:0.0075695825,HQ539965.1_Amanita_vaginata_voucher_BW_PH82906-11_small_subunit_ribosomal_RNA_gene:0.0114023344)0:0.0000020714,HQ539950.1_Amanita_sinicoflava_voucher_BW_PH061306-1_small_subunit_ribosomal_RNA_gene:0.0018486377)79.8:0.0018484524)94.5:0.0126238649,(HQ539922.1_Amanita_murinoflammeum_voucher_NYBG_66697_small_subunit_ribosomal_RNA_gene:0.0051679740,HQ539964.1_Amanita_umbrinella_voucher_PSC_1813_small_subunit_ribosomal_RNA_gene:0.0021044958)99.8:0.0256025343)13.2:0.0038101822)86.9:0.0064739222)88.1:0.0059376598,HQ539968.1_Amanita_wellsii_voucher_RET_001-5_small_subunit_ribosomal_RNA_gene:0.0115870911)76.5:0.0029542921,HQ539907.1_Amanita_frostiana_voucher_BW_PH37_small_subunit_ribosomal_RNA_gene:0.0064570162)57.6:0.0041134811,HQ539941.1_Amanita_pudica_voucher_RET_344-40_small_subunit_ribosomal_RNA_gene:0.0203531741)69.3:0.0045112840,(((HQ539878.1_Amanita_altipes_voucher_Yang_2431_small_subunit_ribosomal_RNA_gene:0.0037431013,HQ539959.1_Amanita_subglobosa_voucher_Yang_2488_small_subunit_ribosomal_RNA_gene:0.0076382802)84.2:0.0038797571,HQ539930.1_Amanita_parvipantherina_voucher_Yang_2490_small_subunit_ribosomal_RNA_gene:0.0136121030)0:0.0000023073,HQ539921.1_Amanita_multisquamosa_voucher_BW_RP14_small_subunit_ribosomal_RNA_gene:0.0037136972)88.3:0.0052717240)76.1:0.0029693484,HQ539924.1_Amanita_muscaria_var._guessowii_voucher_BW_STF090506-7_small_subunit_ribosomal_RNA_gene:0.0000025409);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t trim_al_SSU_Mitochondrial.fasta.treefile -m "TVM{1.42605,2.83083,3.51736,0.36356}+F{0.374665,0.146082,0.210908,0.268345}+I{0.392612}+R3{0.448728,0.479575,0.113754,3.03293,0.0449065,9.79354}" --length 557
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s trim_al_SSU_Mitochondrial.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s trim_al_SSU_Mitochondrial.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Thu May 15 19:11:15 2025
+Total CPU time used: 149.825 seconds (0h:2m:29s)
+Total wall-clock time used: 150.695 seconds (0h:2m:30s)
+

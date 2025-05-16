@@ -1,0 +1,286 @@
+IQ-TREE multicore version 2.4.0 for Linux ARM 64-bit built Apr 23 2025
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    e58c2982b851 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s trim_al_18S_SSU.fasta --alrt 1000
+Seed:    228796 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu May 15 18:08:38 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file trim_al_18S_SSU.fasta ... Fasta format detected
+Reading fasta file: done in 0.00430237 secs using 70.75% CPU
+Alignment most likely contains DNA/RNA sequences
+Alignment has 79 sequences with 1072 columns, 334 distinct patterns
+176 parsimony-informative, 93 singleton sites, 803 constant sites
+WARNING: Some sequence names are changed as follows:
+HQ539790.1_Amanita_sp._'crassiconus'_voucher_RET_348-5_18S_ribosomal_RNA_gene -> HQ539790.1_Amanita_sp.__crassiconus__voucher_RET_348-5_18S_ribosomal_RNA_gene
+HQ539855.1_Amanita_sp._'tephrea'_voucher_RET_378-9_18S_ribosomal_RNA_gene -> HQ539855.1_Amanita_sp.__tephrea__voucher_RET_378-9_18S_ribosomal_RNA_gene
+
+                                                                                                              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 4.8667e-05 secs using 98.63% CPU
+   1  HQ539816.1_Amanita_muscaria_subsp._flavivolvata_voucher_BW_Veiss_01_18S_ribosomal_RNA_gene                      0.00%    passed     97.69%
+   2  HQ539768.1_Amanita_abrupta_voucher_BW_HP_101_18S_ribosomal_RNA_gene                                             0.00%    passed     93.07%
+   3  HQ539774.1_Amanita_afrospinosa_voucher_RET_347-1_18S_ribosomal_RNA_gene                                        68.84%    passed     50.72%
+   4  HQ539775.1_Amanita_altipes_voucher_Yang_2431_18S_ribosomal_RNA_gene                                             2.43%    passed     73.38%
+   5  HQ539776.1_Amanita_armillariiformis_voucher_RET_266-8_18S_ribosomal_RNA_gene                                    0.00%    passed     93.23%
+   6  HQ539777.1_Amanita_atkinsoniana_voucher_RET_301-1_18S_ribosomal_RNA_gene                                        0.00%    passed     96.38%
+   7  HQ539779.1_Amanita_brunneolocularis_voucher_NY_460913_18S_ribosomal_RNA_gene                                    0.37%    passed     96.61%
+   8  HQ539780.1_Amanita_brunnescens_voucher_BW_HP12_18S_ribosomal_RNA_gene                                           1.49%    passed     99.91%
+   9  HQ539781.1_Amanita_chlorinosma_voucher_RET_328-6_18S_ribosomal_RNA_gene                                         0.09%    passed     92.26%
+  10  HQ539782.1_Amanita_cinereopannosa_voucher_RET_319-8_18S_ribosomal_RNA_gene                                      0.00%    passed     95.01%
+  11  HQ539783.1_Amanita_citrina_voucher_BW_JLR_102106-1_18S_ribosomal_RNA_gene                                       2.99%    passed     99.44%
+  12  HQ539784.1_Amanita_clelandii_voucher_PSC_2524_18S_ribosomal_RNA_gene                                            0.00%    passed     88.98%
+  13  HQ539785.1_Amanita_codinae_voucher_RET_275-8_18S_ribosomal_RNA_gene                                             1.59%    passed     97.70%
+  14  HQ539786.1_Amanita_cokeri_voucher_BW_STF_090506-19_18S_ribosomal_RNA_gene                                       0.19%    passed     95.02%
+  15  HQ539787.1_Amanita_conicobulbosa_voucher_PSC_1368_18S_ribosomal_RNA_gene                                        0.09%    passed     84.73%
+  16  HQ539790.1_Amanita_sp.__crassiconus__voucher_RET_348-5_18S_ribosomal_RNA_gene                                  10.17%    passed     67.50%
+  17  HQ539792.1_Amanita_daucipes_voucher_RET_386-8_18S_ribosomal_RNA_gene                                            0.28%    passed     99.09%
+  18  HQ539793.1_Amanita_effusa_voucher_PSC_2007_18S_ribosomal_RNA_gene                                               0.00%    passed     93.27%
+  19  HQ539794.1_Amanita_egregia_voucher_NYBG_66253_18S_ribosomal_RNA_gene                                            2.15%    passed     87.19%
+  20  HQ539795.1_Amanita_excelsa_voucher_Ge_816_18S_ribosomal_RNA_gene                                               12.31%    passed     99.58%
+  21  HQ539796.1_Amanita_farinacea_voucher_PSC_2529_18S_ribosomal_RNA_gene                                            0.00%    passed     98.76%
+  22  HQ539797.1_Amanita_flavoconia_voucher_BW_PH22_18S_ribosomal_RNA_gene                                            1.68%    passed     97.65%
+  23  HQ539800.1_Amanita_frostiana_voucher_BW_PH37_18S_ribosomal_RNA_gene                                             0.00%    passed     85.42%
+  24  HQ539801.1_Amanita_fulva_voucher_BW_PH82906-7_18S_ribosomal_RNA_gene                                            0.00%    passed     96.94%
+  25  HQ539803.1_Amanita_gracilior_voucher_RET_342-2_18S_ribosomal_RNA_gene                                           0.00%    passed     94.19%
+  26  HQ539804.1_Amanita_grallipes_voucher_RET_379-5_18S_ribosomal_RNA_gene                                           0.00%    passed     93.77%
+  27  KY418916.1_Amanita_griseofolia_voucher_ZRL20151138_18S_ribosomal_RNA_gene                                      27.05%    passed     49.49%
+  28  HQ539805.1_Amanita_hesleri_voucher_RET_155-1_18S_ribosomal_RNA_gene                                             0.56%    passed     98.78%
+  29  HQ539806.1_Amanita_inopinata_voucher_BW_GK2005-1_18S_ribosomal_RNA_gene                                         0.00%    passed     95.28%
+  30  HQ539807.1_Amanita_jacksonii_voucher_BW_PH17_18S_ribosomal_RNA_gene                                             0.00%    passed     93.44%
+  31  HQ539808.1_Amanita_longipes_voucher_RET_360-1_18S_ribosomal_RNA_gene                                            0.00%    passed     96.40%
+  32  HQ539812.1_Amanita_manicata_voucher_RET_387-4_18S_ribosomal_RNA_gene                                            0.00%    passed     96.85%
+  33  HQ539813.1_Amanita_marmorata_voucher_AP_RoweAM2005_18S_ribosomal_RNA_gene                                       0.09%    passed     98.49%
+  34  HQ539814.1_Amanita_multisquamosa_voucher_BW_RP14_18S_ribosomal_RNA_gene                                         0.00%    passed     91.09%
+  35  HQ539815.1_Amanita_murinoflammeum_voucher_NYBG_66697_18S_ribosomal_RNA_gene                                     6.06%    passed     90.61%
+  36  HQ539817.1_Amanita_muscaria_var._guessowii_voucher_BW_STF090506-7_18S_ribosomal_RNA_gene                        0.00%    passed     96.71%
+  37  HQ539818.1_Amanita_mutabilis_voucher_RET_314-6_18S_ribosomal_RNA_gene                                           0.09%    passed     98.20%
+  38  HQ539819.1_Amanita_nauseosa_voucher_DPL_6117_18S_ribosomal_RNA_gene                                             0.00%    passed     96.37%
+  39  HQ539820.1_Amanita_novinupta_voucher_RET_093-10_18S_ribosomal_RNA_gene                                          0.19%    passed     94.02%
+  40  HQ539821.1_Amanita_ochrophylla_voucher_PSC_1127_18S_ribosomal_RNA_gene                                          7.00%    passed     92.52%
+  41  HQ539822.1_Amanita_onusta_voucher_RET_297-3_18S_ribosomal_RNA_gene                                              0.09%    passed     97.63%
+  42  HQ539823.1_Amanita_parvipantherina_voucher_Yang_2490_18S_ribosomal_RNA_gene                                     2.52%    passed     78.08%
+  43  HQ539824.1_Amanita_peckiana_voucher_RET_320-3_18S_ribosomal_RNA_gene                                            0.19%    passed     99.93%
+  44  HQ539825.1_Amanita_pelioma_voucher_RET_312-4_18S_ribosomal_RNA_gene                                             0.09%    passed     76.38%
+  45  HQ539826.1_Amanita_phalloides_voucher_BW_JLR0226_18S_ribosomal_RNA_gene                                         0.09%    passed     97.63%
+  46  HQ539827.1_Amanita_polypyramis_voucher_RET_159-8_18S_ribosomal_RNA_gene                                         0.19%    passed     91.56%
+  47  HQ539828.1_Amanita_populiphila_voucher_RET_266-9_18S_ribosomal_RNA_gene                                         0.00%    passed     92.11%
+  48  HQ539830.1_Amanita_praelongispora_voucher_RET_314-8_18S_ribosomal_RNA_gene                                     19.59%    passed     97.91%
+  49  HQ539831.1_Amanita_prairiicola_voucher_RET_266-1_18S_ribosomal_RNA_gene                                         0.00%    passed     91.81%
+  50  HQ539832.1_Amanita_proxima_voucher_RET_290-10_18S_ribosomal_RNA_gene                                            0.00%    passed     98.46%
+  51  HQ539834.1_Amanita_pudica_voucher_RET_344-40_18S_ribosomal_RNA_gene                                             0.00%    passed     79.60%
+  52  HQ539836.1_Amanita_pyramidiferina_voucher_PSC_2441_18S_ribosomal_RNA_gene                                       0.00%    passed     91.77%
+  53  HQ539837.1_Amanita_rhopalopus_voucher_BW_RET_386-3_18S_ribosomal_RNA_gene                                       0.00%    passed     99.39%
+  54  HQ539841.1_Amanita_silvicola_voucher_RET_382-4_18S_ribosomal_RNA_gene                                           0.00%    passed     98.87%
+  55  HQ539842.1_Amanita_singeri_voucher_LIP_88.056_18S_ribosomal_RNA_gene                                           47.01%    passed     42.93%
+  56  HQ539843.1_Amanita_sinicoflava_voucher_BW_PH061306-1_18S_ribosomal_RNA_gene                                     0.00%    passed     95.23%
+  57  HQ539844.1_Amanita_smithiana_voucher_RET_382-6_18S_ribosomal_RNA_gene                                           0.00%    passed     91.28%
+  58  HQ539845.1_Amanita_solitaria_voucher_RET_298-1_18S_ribosomal_RNA_gene                                           0.00%    passed     90.93%
+  59  HQ539847.1_Amanita_spissa_voucher_NYBG_47779_18S_ribosomal_RNA_gene                                             1.96%    passed     94.94%
+  60  HQ539848.1_Amanita_strobiliformis_voucher_AP_10407-1_18S_ribosomal_RNA_gene                                     0.19%    passed     85.25%
+  61  HQ539849.1_Amanita_subalbida_voucher_PSC_2509_18S_ribosomal_RNA_gene                                            0.00%    passed     95.93%
+  62  HQ539852.1_Amanita_subglobosa_voucher_Yang_2488_18S_ribosomal_RNA_gene                                          2.33%    passed     81.88%
+  63  HQ539853.1_Amanita_sublutea_voucher_PSC_2401_18S_ribosomal_RNA_gene                                             0.09%    passed     93.93%
+  64  HQ539854.1_Amanita_subsolitaria_voucher_RET_327-4_18S_ribosomal_RNA_gene                                        0.09%    passed     94.71%
+  65  HQ539855.1_Amanita_sp.__tephrea__voucher_RET_378-9_18S_ribosomal_RNA_gene                                       0.00%    passed     95.98%
+  66  HQ539856.1_Amanita_thiersii_voucher_DPL_7272_18S_ribosomal_RNA_gene                                             0.19%    passed     96.56%
+  67  HQ539857.1_Amanita_umbrinella_voucher_PSC_1813_18S_ribosomal_RNA_gene                                           0.00%    passed     98.92%
+  68  HQ539858.1_Amanita_vaginata_voucher_BW_PH82906-11_18S_ribosomal_RNA_gene                                        0.00%    passed     96.70%
+  69  HQ539859.1_Amanita_verna_voucher_RET_280-3_18S_ribosomal_RNA_gene                                               0.09%    passed     98.85%
+  70  HQ539860.1_Amanita_virosa_voucher_BW_HP082906-2_18S_ribosomal_RNA_gene                                          0.09%    passed     98.09%
+  71  HQ539773.1_Amanita_aff._volvata_BW_STF_090506-8_18S_ribosomal_RNA_gene                                          0.00%    passed     97.95%
+  72  HQ539861.1_Amanita_wellsii_voucher_RET_001-5_18S_ribosomal_RNA_gene                                             0.09%    passed     92.82%
+  73  HQ539862.1_Amanita_westii_voucher_BW_SH26_18S_ribosomal_RNA_gene                                                0.00%    passed     99.61%
+  74  HQ539864.1_Amanita_yuaniana_voucher_Yang_2489_18S_ribosomal_RNA_gene                                            0.00%    passed     93.44%
+  75  HQ539865.1_Amanita_zambiana_voucher_RET_343-10_18S_ribosomal_RNA_gene                                           8.68%    passed     96.26%
+  76  HQ539867.1_Limacella_illinita_voucher_SFSU_HDT_54917_18S_ribosomal_RNA_gene                                    69.12%    passed     69.78%
+  77  HM562261.1_Pluteus_cervinus_voucher_AJ82_18S_ribosomal_RNA_gene                                                 0.19%    passed     88.37%
+  78  HM562273.1_Pluteus_petasatus_voucher_AJ201_18S_ribosomal_RNA_gene                                               0.19%    passed     85.24%
+  79  HQ539870.1_Volvariella_volvacea_voucher_Penn_State_Mushroom_Culture_Collection_WC_427_18S_ribosomal_RNA_gene   18.84%    passed     20.79%
+WARNING: 2 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                                                                                                           4.02%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.003 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -6745.597
+2. Current log-likelihood: -6743.808
+3. Current log-likelihood: -6742.590
+4. Current log-likelihood: -6741.578
+Optimal log-likelihood: -6740.643
+Rate parameters:  A-C: 1.86565  A-G: 5.20968  A-T: 3.20769  C-G: 1.03277  C-T: 9.15203  G-T: 1.00000
+Base frequencies:  A: 0.278  C: 0.186  G: 0.265  T: 0.271
+Proportion of invariable sites: 0.505
+Gamma shape alpha: 0.341
+Parameters optimization took 4 rounds (1.212 sec)
+Time for fast ML tree search: 3.541 seconds
+
+NOTE: ModelFinder requires 8 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 1072 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         7706.056     163 15738.113    15796.994    16549.410
+  2  GTR+F+I       6942.646     164 14213.292    14272.962    15029.566
+  3  GTR+F+G4      6806.586     164 13941.171    14000.841    14757.446
+  4  GTR+F+I+G4    6737.956     165 13805.911    13866.375    14627.162
+  5  GTR+F+R2      6765.601     165 13861.202    13921.666    14682.454
+  6  GTR+F+R3      6720.127     167 13774.254    13836.325    14605.460
+  7  GTR+F+R4      6719.625     169 13777.250    13840.953    14618.411
+ 14  GTR+F+I+R2    6731.093     166 13794.186    13855.450    14620.415
+ 15  GTR+F+I+R3    6717.637     168 13771.273    13834.157    14607.457
+ 16  GTR+F+I+R4    6716.211     170 13772.422    13836.950    14618.559
+ 28  SYM+R3        6734.733     164 13797.466    13857.136    14613.741
+ 37  SYM+I+R3      6730.851     165 13791.702    13852.166    14612.954
+ 50  TVM+F+R3      6728.937     166 13789.874    13851.138    14616.103
+ 59  TVM+F+I+R3    6726.307     167 13786.614    13848.685    14617.820
+ 72  TVMe+R3       6736.578     163 13799.157    13858.038    14610.453
+ 81  TVMe+I+R3     6732.396     164 13792.791    13852.461    14609.065
+ 94  TIM3+F+R3     6746.412     165 13822.824    13883.287    14644.075
+103  TIM3+F+I+R3   6743.560     166 13819.121    13880.385    14645.349
+116  TIM3e+R3      6763.001     162 13850.003    13908.102    14656.322
+125  TIM3e+I+R3    6758.813     163 13843.627    13902.508    14654.924
+138  TIM2+F+R3     6725.950     165 13781.899    13842.363    14603.151
+147  TIM2+F+I+R3   6724.364     166 13780.729    13841.993    14606.958
+160  TIM2e+R3      6750.129     162 13824.259    13882.358    14630.578
+169  TIM2e+I+R3    6747.524     163 13821.048    13879.929    14632.345
+182  TIM+F+R3      6742.644     165 13815.287    13875.751    14636.539
+191  TIM+F+I+R3    6740.055     166 13812.111    13873.375    14638.339
+204  TIMe+R3       6768.532     162 13861.063    13919.162    14667.383
+213  TIMe+I+R3     6765.117     163 13856.234    13915.115    14667.531
+226  TPM3u+F+R3    6753.066     164 13834.133    13893.802    14650.407
+235  TPM3u+F+I+R3  6750.385     165 13830.769    13891.233    14652.021
+248  TPM3+R3       6763.891     161 13849.781    13907.104    14651.124
+257  TPM3+I+R3     6759.675     162 13843.350    13901.449    14649.669
+270  TPM2u+F+R3    6734.847     164 13797.693    13857.362    14613.967
+279  TPM2u+F+I+R3  6733.402     165 13796.805    13857.268    14618.056
+292  TPM2+R3       6751.730     161 13825.460    13882.783    14626.803
+301  TPM2+I+R3     6748.937     162 13821.875    13879.974    14628.194
+314  K3Pu+F+R3     6749.872     164 13827.744    13887.414    14644.018
+323  K3Pu+F+I+R3   6747.632     165 13825.263    13885.727    14646.515
+336  K3P+R3        6769.267     161 13860.535    13917.858    14661.877
+345  K3P+I+R3      6765.911     162 13855.822    13913.921    14662.141
+358  TN+F+R3       6750.431     164 13828.861    13888.531    14645.136
+367  TN+F+I+R3     6748.040     165 13826.079    13886.543    14647.331
+380  TNe+R3        6776.572     161 13875.144    13932.467    14676.486
+389  TNe+I+R3      6773.386     162 13870.773    13928.872    14677.092
+402  HKY+F+R3      6757.268     163 13840.536    13899.417    14651.833
+411  HKY+F+I+R3    6755.281     164 13838.562    13898.231    14654.836
+424  K2P+R3        6777.283     160 13874.567    13931.120    14670.932
+433  K2P+I+R3      6774.110     161 13870.220    13927.543    14671.562
+446  F81+F+R3      6967.527     162 14259.054    14317.153    15065.374
+455  F81+F+I+R3    6965.070     163 14256.140    14315.021    15067.437
+468  JC+R3         6974.507     159 14267.014    14322.804    15058.402
+477  JC+I+R3       6971.551     160 14263.103    14319.656    15059.468
+Akaike Information Criterion:           GTR+F+I+R3
+Corrected Akaike Information Criterion: GTR+F+I+R3
+Bayesian Information Criterion:         TIM2+F+R3
+Best-fit model: TIM2+F+R3 chosen according to BIC
+
+All model information printed to trim_al_18S_SSU.fasta.model.gz
+CPU time for ModelFinder: 48.604 seconds (0h:0m:48s)
+Wall-clock time for ModelFinder: 48.689 seconds (0h:0m:48s)
+
+NOTE: 2 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -6967.919
+2. Current log-likelihood: -6727.425
+3. Current log-likelihood: -6726.087
+4. Current log-likelihood: -6725.981
+Optimal log-likelihood: -6725.915
+Rate parameters:  A-C: 2.43712  A-G: 5.28142  A-T: 2.43712  C-G: 1.00000  C-T: 8.46759  G-T: 1.00000
+Base frequencies:  A: 0.278  C: 0.186  G: 0.265  T: 0.271
+Site proportion and rates:  (0.832,0.117) (0.111,2.785) (0.057,10.417)
+Parameters optimization took 4 rounds (1.521 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0196739 secs using 99.07% CPU
+Computing ML distances took 0.019921 sec (of wall-clock time) 0.019615 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000134209 secs using 99.84% CPU
+Computing RapidNJ tree took 0.000655 sec (of wall-clock time) 0.000786 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -6765.362
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.327 second
+Computing log-likelihood of 98 initial trees ... 2.268 seconds
+Current best score: -6712.851
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -6702.984
+Iteration 10 / LogL: -6713.690 / Time: 0h:0m:57s
+Iteration 20 / LogL: -6715.129 / Time: 0h:1m:0s
+Finish initializing candidate tree set (20)
+Current best tree score: -6702.984 / CPU time: 10.108
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 24: -6702.279
+Iteration 30 / LogL: -6706.688 / Time: 0h:1m:6s (0h:0m:56s left)
+Iteration 40 / LogL: -6724.156 / Time: 0h:1m:11s (0h:0m:49s left)
+Iteration 50 / LogL: -6711.228 / Time: 0h:1m:17s (0h:0m:43s left)
+Iteration 60 / LogL: -6702.382 / Time: 0h:1m:22s (0h:0m:36s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 65: -6701.815
+Iteration 70 / LogL: -6703.222 / Time: 0h:1m:28s (0h:0m:54s left)
+Iteration 80 / LogL: -6719.241 / Time: 0h:1m:34s (0h:0m:48s left)
+Iteration 90 / LogL: -6703.648 / Time: 0h:1m:39s (0h:0m:42s left)
+Iteration 100 / LogL: -6701.872 / Time: 0h:1m:45s (0h:0m:37s left)
+Iteration 110 / LogL: -6702.963 / Time: 0h:1m:50s (0h:0m:31s left)
+Iteration 120 / LogL: -6710.758 / Time: 0h:1m:56s (0h:0m:25s left)
+Iteration 130 / LogL: -6704.813 / Time: 0h:2m:1s (0h:0m:19s left)
+Iteration 140 / LogL: -6701.815 / Time: 0h:2m:7s (0h:0m:14s left)
+Iteration 150 / LogL: -6702.863 / Time: 0h:2m:12s (0h:0m:8s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 156: -6701.663
+Iteration 160 / LogL: -6702.068 / Time: 0h:2m:18s (0h:0m:54s left)
+UPDATE BEST LOG-LIKELIHOOD: -6701.661
+Iteration 170 / LogL: -6701.806 / Time: 0h:2m:23s (0h:0m:48s left)
+Iteration 180 / LogL: -6703.755 / Time: 0h:2m:29s (0h:0m:42s left)
+Iteration 190 / LogL: -6720.872 / Time: 0h:2m:35s (0h:0m:37s left)
+Iteration 200 / LogL: -6703.059 / Time: 0h:2m:41s (0h:0m:31s left)
+Iteration 210 / LogL: -6707.563 / Time: 0h:2m:46s (0h:0m:25s left)
+Iteration 220 / LogL: -6705.996 / Time: 0h:2m:52s (0h:0m:20s left)
+Iteration 230 / LogL: -6701.983 / Time: 0h:2m:57s (0h:0m:14s left)
+Iteration 240 / LogL: -6704.527 / Time: 0h:3m:3s (0h:0m:9s left)
+Iteration 250 / LogL: -6702.980 / Time: 0h:3m:8s (0h:0m:3s left)
+TREE SEARCH COMPLETED AFTER 257 ITERATIONS / Time: 0h:3m:12s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -6701.661
+Optimal log-likelihood: -6701.656
+Rate parameters:  A-C: 2.53990  A-G: 5.51713  A-T: 2.53990  C-G: 1.00000  C-T: 9.30225  G-T: 1.00000
+Base frequencies:  A: 0.278  C: 0.186  G: 0.265  T: 0.271
+Site proportion and rates:  (0.828,0.112) (0.110,2.493) (0.062,10.173)
+Parameters optimization took 1 rounds (0.210 sec)
+BEST SCORE FOUND : -6701.656
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.795 sec.
+Total tree length: 1.116
+
+Total number of iterations: 257
+CPU time used for tree search: 141.428 sec (0h:2m:21s)
+Wall-clock time used for tree search: 142.226 sec (0h:2m:22s)
+Total CPU time used: 192.725 sec (0h:3m:12s)
+Total wall-clock time used: 193.627 sec (0h:3m:13s)
+
+Analysis results written to: 
+  IQ-TREE report:                trim_al_18S_SSU.fasta.iqtree
+  Maximum-likelihood tree:       trim_al_18S_SSU.fasta.treefile
+  Likelihood distances:          trim_al_18S_SSU.fasta.mldist
+  Screen log file:               trim_al_18S_SSU.fasta.log
+
+Date and Time: Thu May 15 18:11:51 2025

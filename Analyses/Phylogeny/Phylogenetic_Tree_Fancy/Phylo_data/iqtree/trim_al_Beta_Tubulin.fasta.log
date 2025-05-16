@@ -1,0 +1,275 @@
+IQ-TREE multicore version 2.4.0 for Linux ARM 64-bit built Apr 23 2025
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    e58c2982b851 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s trim_al_Beta_Tubulin.fasta --alrt 1000
+Seed:    917876 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu May 15 18:11:51 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file trim_al_Beta_Tubulin.fasta ... Fasta format detected
+Reading fasta file: done in 0.000503125 secs using 61.42% CPU
+Alignment most likely contains DNA/RNA sequences
+Alignment has 57 sequences with 226 columns, 112 distinct patterns
+73 parsimony-informative, 39 singleton sites, 114 constant sites
+WARNING: Some sequence names are changed as follows:
+ON125308.1_Amanita_altipes_voucher_MHHNU_32286_beta-tubulin_(tub2)_mRNA -> ON125308.1_Amanita_altipes_voucher_MHHNU_32286_beta-tubulin__tub2__mRNA
+MN909831.1_Amanita_carneiphylla_voucher_AD282179_beta-tubulin_(btub)_gene -> MN909831.1_Amanita_carneiphylla_voucher_AD282179_beta-tubulin__btub__gene
+MT993786.1_Amanita_aff._drummondii_isolate_JAC13423_beta-tubulin_(Btub)_gene -> MT993786.1_Amanita_aff._drummondii_isolate_JAC13423_beta-tubulin__Btub__gene
+MN928571.1_Amanita_fibrillopes_voucher_PERTH08793573_beta-tubulin_(btub)_gene -> MN928571.1_Amanita_fibrillopes_voucher_PERTH08793573_beta-tubulin__btub__gene
+MF440398.1_Amanita_flammeola_voucher_JD960_beta-tubulin_(Btub)_gene -> MF440398.1_Amanita_flammeola_voucher_JD960_beta-tubulin__Btub__gene
+OQ740092.1_Amanita_griseofarinosa_voucher_SDBR-STO20-09_beta-tubulin_(BTUB)_gene -> OQ740092.1_Amanita_griseofarinosa_voucher_SDBR-STO20-09_beta-tubulin__BTUB__gene
+MT993801.1_Amanita_inopinata_isolate_JAC11447_beta-tubulin_(Btub)_gene -> MT993801.1_Amanita_inopinata_isolate_JAC11447_beta-tubulin__Btub__gene
+KY656869.1_Amanita_macrocarpa_voucher_OR1223_beta-tubulin_(Btub)_gene -> KY656869.1_Amanita_macrocarpa_voucher_OR1223_beta-tubulin__Btub__gene
+MT993802.1_Amanita_manicata_isolate_PDD_88301_beta-tubulin_(Btub)_gene -> MT993802.1_Amanita_manicata_isolate_PDD_88301_beta-tubulin__Btub__gene
+MT993790.1_Amanita_marmorata_isolate_JAC14571_beta-tubulin_(Btub)_gene -> MT993790.1_Amanita_marmorata_isolate_JAC14571_beta-tubulin__Btub__gene
+ON125316.1_Amanita_muscaria_voucher_MHHNU_32652_beta-tubulin_(tub2)_mRNA -> ON125316.1_Amanita_muscaria_voucher_MHHNU_32652_beta-tubulin__tub2__mRNA
+ON125320.1_Amanita_parvipantherina_voucher_MHHNU_32350_beta-tubulin_(tub2)_mRNA -> ON125320.1_Amanita_parvipantherina_voucher_MHHNU_32350_beta-tubulin__tub2__mRNA
+MT993796.1_Amanita_phalloides_isolate_JAC12931_beta-tubulin_(Btub)_gene -> MT993796.1_Amanita_phalloides_isolate_JAC12931_beta-tubulin__Btub__gene
+MT993797.1_Amanita_rubescens_isolate_JAC12932_beta-tubulin_(Btub)_gene -> MT993797.1_Amanita_rubescens_isolate_JAC12932_beta-tubulin__Btub__gene
+MN657436.1_Amanita_sepiacea_isolate_Li150915-72_beta-tubulin_(btub)_gene -> MN657436.1_Amanita_sepiacea_isolate_Li150915-72_beta-tubulin__btub__gene
+ON125329.1_Amanita_sinensis_voucher_MHHNU_8585_beta-tubulin_(tub2)_mRNA -> ON125329.1_Amanita_sinensis_voucher_MHHNU_8585_beta-tubulin__tub2__mRNA
+MT993787.1_Amanita_spissa_isolate_JAC10739_beta-tubulin_(Btub)_gene -> MT993787.1_Amanita_spissa_isolate_JAC10739_beta-tubulin__Btub__gene
+ON125333.1_Amanita_subglobosa_voucher_MHHNU_32538_beta-tubulin_(tub2)_mRNA -> ON125333.1_Amanita_subglobosa_voucher_MHHNU_32538_beta-tubulin__tub2__mRNA
+MN928568.1_Amanita_wadjukiorum_voucher_PERTH08793522_beta-tubulin_(btub)_gene -> MN928568.1_Amanita_wadjukiorum_voucher_PERTH08793522_beta-tubulin__btub__gene
+MN928564.1_Amanita_wadulawitu_voucher_PERTH09144382_beta-tubulin_(btub)_gene -> MN928564.1_Amanita_wadulawitu_voucher_PERTH09144382_beta-tubulin__btub__gene
+KF528327.1_Volvariella_volvacea_strain_PYd21_beta-tubulin_2_(TUBb2)_gene -> KF528327.1_Volvariella_volvacea_strain_PYd21_beta-tubulin_2__TUBb2__gene
+
+                                                                                  Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 1.1e-05 secs
+   1  MH485443.1_Amanita_cf._xanthogala_voucher_HKAS84707_beta-tubulin_gene               0.00%    passed     99.91%
+   2  ON125308.1_Amanita_altipes_voucher_MHHNU_32286_beta-tubulin__tub2__mRNA             0.00%    passed     96.24%
+   3  OR498096.1_Amanita_brunneolocularis_voucher_ART-2019-72_beta-tubulin_gene           0.00%    passed     85.27%
+   4  LC779191.1_Amanita_caesareoides_S-319_Btub_gene_for_beta-tubulin                    0.00%    passed     90.98%
+   5  MN909831.1_Amanita_carneiphylla_voucher_AD282179_beta-tubulin__btub__gene           0.00%    passed     96.83%
+   6  MH485457.1_Amanita_cinereopannosa_voucher_RET_477-10_beta-tubulin_gene              0.00%    passed     97.23%
+   7  MH485461.1_Amanita_citrina_voucher_HKAS53467_beta-tubulin_gene                      0.00%    passed     69.25%
+   8  MH485477.1_Amanita_concentrica_voucher_HKAS87061_beta-tubulin_gene                  0.00%    passed     93.76%
+   9  MF000744.1_Amanita_djarilmari_voucher_PERTH08776083_beta-tubulin_gene               0.00%    passed     99.51%
+  10  MT993786.1_Amanita_aff._drummondii_isolate_JAC13423_beta-tubulin__Btub__gene        0.00%    passed     97.59%
+  11  MF000747.1_Amanita_eucalypti_voucher_PERTH8809763_beta-tubulin_gene                 0.00%    passed     99.82%
+  12  MN928571.1_Amanita_fibrillopes_voucher_PERTH08793573_beta-tubulin__btub__gene       0.00%    passed     65.73%
+  13  MF440398.1_Amanita_flammeola_voucher_JD960_beta-tubulin__Btub__gene                 0.00%    passed     95.97%
+  14  MH485542.1_Amanita_fulva_voucher_HKAS96168_beta-tubulin_gene                       13.72%    passed     77.68%
+  15  MF000748.1_Amanita_gardneri_voucher_PERTH08776121_beta-tubulin_gene                 0.00%    passed     98.90%
+  16  OQ740092.1_Amanita_griseofarinosa_voucher_SDBR-STO20-09_beta-tubulin__BTUB__gene    0.00%    passed     98.86%
+  17  MH485550.1_Amanita_griseofolia_voucher_HKAS96928_beta-tubulin_gene                  0.00%    passed     86.17%
+  18  MH485562.1_Amanita_griseoverrucosa_voucher_HKAS57357_beta-tubulin_gene              0.00%    passed     96.07%
+  19  MH485568.1_Amanita_heishidingensis_voucher_HKAS82282_beta-tubulin_gene              0.00%    passed     98.35%
+  20  MH485570.1_Amanita_ibotengutake_voucher_HKAS83269_beta-tubulin_gene                 0.00%    passed     93.53%
+  21  MH485573.1_Amanita_imazekii_voucher_HKAS92022_beta-tubulin_gene                     0.00%    passed     75.16%
+  22  MT993801.1_Amanita_inopinata_isolate_JAC11447_beta-tubulin__Btub__gene              0.00%    passed     75.91%
+  23  MH485441.1_Amanita_cf._javanica_voucher_HKAS101408_beta-tubulin_gene                0.00%    passed     95.87%
+  24  MH485585.1_Amanita_kitamagotake_voucher_HKAS91997_beta-tubulin_gene                 0.00%    passed     82.09%
+  25  MH485594.1_Amanita_liquii_voucher_HKAS93915_beta-tubulin_gene                       0.00%    passed     74.34%
+  26  KY656869.1_Amanita_macrocarpa_voucher_OR1223_beta-tubulin__Btub__gene               0.00%    passed     88.86%
+  27  ON894307.1_Amanita_madagascariensis_voucher_JEIC0588_beta-tubulin_gene              0.00%    passed     90.37%
+  28  MT993802.1_Amanita_manicata_isolate_PDD_88301_beta-tubulin__Btub__gene              0.00%    passed     30.42%
+  29  MT993790.1_Amanita_marmorata_isolate_JAC14571_beta-tubulin__Btub__gene              0.00%    passed     98.42%
+  30  MF000760.1_Amanita_millsii_voucher_HO581533_beta-tubulin_gene                       0.00%    passed     98.90%
+  31  AB095882.1_Amanita_multisquamosa_gene_for_beta-tubulin                              0.00%    passed     86.55%
+  32  ON125316.1_Amanita_muscaria_voucher_MHHNU_32652_beta-tubulin__tub2__mRNA            0.00%    passed     90.17%
+  33  MH485648.1_Amanita_orientifulva_voucher_HKAS97891_beta-tubulin_gene                 0.00%    passed     99.98%
+  34  ON125320.1_Amanita_parvipantherina_voucher_MHHNU_32350_beta-tubulin__tub2__mRNA     0.00%    passed     97.38%
+  35  MT993796.1_Amanita_phalloides_isolate_JAC12931_beta-tubulin__Btub__gene             0.00%    passed     97.63%
+  36  MH485690.1_Amanita_princeps_voucher_HKAS60269_beta-tubulin_gene                     0.00%    passed     99.98%
+  37  OP272676.1_Amanita_quenda_voucher_PERTH09472754_beta-tubulin_gene                   0.00%    passed     96.83%
+  38  MH485719.1_Amanita_ravenelii_voucher_RET_459-10_beta-tubulin_gene                   0.00%    passed     94.27%
+  39  MH485722.1_Amanita_rimosa_voucher_HKAS101393_beta-tubulin_gene                      0.00%    passed     72.32%
+  40  MT993797.1_Amanita_rubescens_isolate_JAC12932_beta-tubulin__Btub__gene              0.44%    passed     75.61%
+  41  MH485748.1_Amanita_rubromarginata_voucher_HKAS89018_beta-tubulin_gene               0.00%    passed     75.57%
+  42  MN657436.1_Amanita_sepiacea_isolate_Li150915-72_beta-tubulin__btub__gene            0.00%    passed     58.05%
+  43  ON125329.1_Amanita_sinensis_voucher_MHHNU_8585_beta-tubulin__tub2__mRNA             0.00%    passed     94.76%
+  44  MT993787.1_Amanita_spissa_isolate_JAC10739_beta-tubulin__Btub__gene                 0.00%    passed     75.91%
+  45  ON894327.1_Amanita_strobilaceovolvata_voucher_JEIC0437_2_beta-tubulin_gene         11.06%    passed     99.30%
+  46  MH485798.1_Amanita_strobiliformis_voucher_MB-001177_beta-tubulin_gene               0.00%    passed     98.42%
+  47  ON125333.1_Amanita_subglobosa_voucher_MHHNU_32538_beta-tubulin__tub2__mRNA          0.00%    passed     76.00%
+  48  KP691713.1_Amanita_subpallidorosea_voucher_LHJ140923-17_beta-tubulin_gene           0.00%    passed     99.95%
+  49  MH485831.1_Amanita_timida_voucher_HKAS83455_beta-tubulin_gene                       0.00%    passed     93.69%
+  50  GQ401357.1_Amanita_vernicoccora_beta-tubulin_gene                                  43.36%    passed     88.45%
+  51  MH485844.1_Amanita_vestita_voucher_HKAS89002_beta-tubulin_gene                      0.00%    passed     99.49%
+  52  MH485848.1_Amanita_virosa_voucher_MB-001176_beta-tubulin_gene                       0.00%    passed     94.20%
+  53  MN928568.1_Amanita_wadjukiorum_voucher_PERTH08793522_beta-tubulin__btub__gene       0.44%    passed     97.30%
+  54  MN928564.1_Amanita_wadulawitu_voucher_PERTH09144382_beta-tubulin__btub__gene        0.00%    passed     86.75%
+  55  MH485854.1_Amanita_yuaniana_voucher_HKAS68662_beta-tubulin_gene                     0.00%    passed     99.75%
+  56  MH485855.1_Amanita_zangii_voucher_HKAS99663_beta-tubulin_gene                       0.00%    passed     91.79%
+  57  KF528327.1_Volvariella_volvacea_strain_PYd21_beta-tubulin_2__TUBb2__gene            0.00%    passed     97.59%
+****  TOTAL                                                                               1.21%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: MT993787.1_Amanita_spissa_isolate_JAC10739_beta-tubulin__Btub__gene is identical to MT993801.1_Amanita_inopinata_isolate_JAC11447_beta-tubulin__Btub__gene but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.005 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -2786.101
+2. Current log-likelihood: -2781.942
+3. Current log-likelihood: -2773.758
+4. Current log-likelihood: -2771.059
+5. Current log-likelihood: -2769.809
+Optimal log-likelihood: -2768.978
+Rate parameters:  A-C: 2.26253  A-G: 13.21308  A-T: 0.66234  C-G: 1.55500  C-T: 15.91049  G-T: 1.00000
+Base frequencies:  A: 0.206  C: 0.249  G: 0.293  T: 0.252
+Proportion of invariable sites: 0.110
+Gamma shape alpha: 0.130
+Parameters optimization took 5 rounds (0.535 sec)
+Time for fast ML tree search: 1.599 seconds
+
+NOTE: ModelFinder requires 2 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 226 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         3258.276     119 6754.551     7023.985     7161.595
+  2  GTR+F+I       2912.641     120 6065.282     6341.854     6475.746
+  3  GTR+F+G4      2769.526     120 5779.052     6055.624     6189.516
+  4  GTR+F+I+G4    2768.828     121 5779.657     6063.542     6193.542
+  5  GTR+F+R2      2777.519     121 5797.039     6080.923     6210.924
+  6  GTR+F+R3      2776.175     123 5798.349     6097.408     6219.075
+ 14  GTR+F+I+R2    2769.288     122 5782.576     6073.954     6199.881
++I+R3 reinitialized from +I+R2 with factor 0.500
++I+R3 reinitialized from +I+R2 with factor 0.250
++I+R3 reinitialized from +I+R2 with factor 0.125
+ 15  GTR+F+I+R3    2769.333     124 5786.667     6093.597     6210.813
+ 25  SYM+G4        2772.241     117 5778.481     6034.148     6178.684
+ 26  SYM+I+G4      2772.409     118 5780.817     6043.285     6184.441
+ 47  TVM+F+G4      2770.706     119 5779.412     6048.846     6186.456
+ 48  TVM+F+I+G4    2770.839     120 5781.678     6058.249     6192.142
+ 69  TVMe+G4       2774.326     116 5780.652     6029.679     6177.434
+ 70  TVMe+I+G4     2774.421     117 5782.842     6038.509     6183.045
+ 91  TIM3+F+G4     2770.117     118 5776.235     6038.702     6179.858
+ 92  TIM3+F+I+G4   2770.239     119 5778.479     6047.913     6185.522
+113  TIM3e+G4      2772.798     115 5775.596     6018.142     6168.958
+114  TIM3e+I+G4    2772.904     116 5777.809     6026.837     6174.591
+135  TIM2+F+G4     2773.857     118 5783.713     6046.180     6187.336
+136  TIM2+F+I+G4   2773.954     119 5785.908     6055.342     6192.951
+157  TIM2e+G4      2776.611     115 5783.222     6025.767     6176.583
+158  TIM2e+I+G4    2776.692     116 5785.385     6034.412     6182.167
+179  TIM+F+G4      2773.830     118 5783.659     6046.127     6187.282
+180  TIM+F+I+G4    2773.904     119 5785.808     6055.242     6192.852
+201  TIMe+G4       2776.589     115 5783.178     6025.724     6176.540
+202  TIMe+I+G4     2776.655     116 5785.309     6034.337     6182.091
+223  TPM3u+F+G4    2771.375     117 5776.751     6032.417     6176.953
+224  TPM3u+F+I+G4  2771.439     118 5778.879     6041.346     6182.502
+245  TPM3+G4       2774.945     114 5777.890     6014.107     6167.831
+246  TPM3+I+G4     2774.998     115 5779.996     6022.542     6173.358
+267  TPM2u+F+G4    2775.139     117 5784.277     6039.944     6184.480
+268  TPM2u+F+I+G4  2775.191     118 5786.382     6048.849     6190.005
+289  TPM2+G4       2778.738     114 5785.477     6021.693     6175.418
+290  TPM2+I+G4     2778.778     115 5787.557     6030.102     6180.918
+311  K3Pu+F+G4     2775.138     117 5784.277     6039.943     6184.479
+312  K3Pu+F+I+G4   2775.178     118 5786.357     6048.824     6189.980
+333  K3P+G4        2778.742     114 5785.484     6021.701     6175.425
+334  K3P+I+G4      2778.776     115 5787.551     6030.096     6180.913
+355  TN+F+G4       2774.034     117 5782.069     6037.735     6182.271
+356  TN+F+I+G4     2774.068     118 5784.136     6046.603     6187.759
+377  TNe+G4        2776.710     114 5781.419     6017.635     6171.360
+378  TNe+I+G4      2776.739     115 5783.478     6026.023     6176.839
+399  HKY+F+G4      2775.366     116 5782.732     6031.759     6179.514
+400  HKY+F+I+G4    2775.394     117 5784.787     6040.454     6184.990
+421  K2P+G4        2778.896     113 5783.792     6013.828     6170.312
+422  K2P+I+G4      2778.919     114 5785.838     6022.054     6175.779
+443  F81+F+G4      3072.886     115 6375.772     6618.318     6769.134
+444  F81+F+I+G4    3072.946     116 6377.893     6626.920     6774.675
+465  JC+G4         3072.442     112 6368.884     6592.884     6751.984
+466  JC+I+G4       3072.495     113 6370.990     6601.026     6757.511
+Akaike Information Criterion:           TIM3e+G4
+Corrected Akaike Information Criterion: K2P+G4
+Bayesian Information Criterion:         TPM3+G4
+Best-fit model: TPM3+G4 chosen according to BIC
+
+All model information printed to trim_al_Beta_Tubulin.fasta.model.gz
+CPU time for ModelFinder: 8.806 seconds (0h:0m:8s)
+Wall-clock time for ModelFinder: 8.846 seconds (0h:0m:8s)
+
+NOTE: 0 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -3072.442
+2. Current log-likelihood: -2780.827
+3. Current log-likelihood: -2775.305
+Optimal log-likelihood: -2775.286
+Rate parameters:  A-C: 2.07681  A-G: 16.17030  A-T: 1.00000  C-G: 2.07681  C-T: 16.17030  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Gamma shape alpha: 0.126
+Parameters optimization took 3 rounds (0.271 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0109894 secs using 99.99% CPU
+Computing ML distances took 0.011160 sec (of wall-clock time) 0.011058 sec (of CPU time)
+WARNING: Some pairwise ML distances are too long (saturated)
+Setting up auxiliary I and S matrices: done in 8.0333e-05 secs using 127% CPU
+Computing RapidNJ tree took 0.000448 sec (of wall-clock time) 0.000574 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -2811.180
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.146 second
+Computing log-likelihood of 98 initial trees ... 0.817 seconds
+Current best score: -2775.286
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -2775.286
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -2771.034
+BETTER TREE FOUND at iteration 5: -2771.034
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 6: -2770.886
+Iteration 10 / LogL: -2772.020 / Time: 0h:0m:12s
+Iteration 20 / LogL: -2772.021 / Time: 0h:0m:14s
+Finish initializing candidate tree set (16)
+Current best tree score: -2770.886 / CPU time: 5.331
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+BETTER TREE FOUND at iteration 23: -2770.880
+Iteration 30 / LogL: -2770.932 / Time: 0h:0m:17s (0h:0m:29s left)
+UPDATE BEST LOG-LIKELIHOOD: -2770.876
+Iteration 40 / LogL: -2772.831 / Time: 0h:0m:21s (0h:0m:26s left)
+Iteration 50 / LogL: -2770.877 / Time: 0h:0m:24s (0h:0m:23s left)
+Iteration 60 / LogL: -2774.172 / Time: 0h:0m:28s (0h:0m:21s left)
+UPDATE BEST LOG-LIKELIHOOD: -2770.876
+Iteration 70 / LogL: -2770.940 / Time: 0h:0m:32s (0h:0m:18s left)
+Iteration 80 / LogL: -2772.025 / Time: 0h:0m:36s (0h:0m:15s left)
+UPDATE BEST LOG-LIKELIHOOD: -2770.876
+Iteration 90 / LogL: -2771.103 / Time: 0h:0m:39s (0h:0m:11s left)
+UPDATE BEST LOG-LIKELIHOOD: -2770.876
+Iteration 100 / LogL: -2782.109 / Time: 0h:0m:42s (0h:0m:7s left)
+Iteration 110 / LogL: -2776.872 / Time: 0h:0m:45s (0h:0m:4s left)
+Iteration 120 / LogL: -2770.876 / Time: 0h:0m:49s (0h:0m:1s left)
+TREE SEARCH COMPLETED AFTER 124 ITERATIONS / Time: 0h:0m:52s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -2770.876
+Optimal log-likelihood: -2770.876
+Rate parameters:  A-C: 2.20390  A-G: 16.41580  A-T: 1.00000  C-G: 2.20390  C-T: 16.41580  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Gamma shape alpha: 0.125
+Parameters optimization took 1 rounds (0.039 sec)
+BEST SCORE FOUND : -2770.876
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.145 sec.
+Total tree length: 12.516
+
+Total number of iterations: 124
+CPU time used for tree search: 42.296 sec (0h:0m:42s)
+Wall-clock time used for tree search: 42.793 sec (0h:0m:42s)
+Total CPU time used: 51.680 sec (0h:0m:51s)
+Total wall-clock time used: 52.229 sec (0h:0m:52s)
+
+Analysis results written to: 
+  IQ-TREE report:                trim_al_Beta_Tubulin.fasta.iqtree
+  Maximum-likelihood tree:       trim_al_Beta_Tubulin.fasta.treefile
+  Likelihood distances:          trim_al_Beta_Tubulin.fasta.mldist
+  Screen log file:               trim_al_Beta_Tubulin.fasta.log
+
+Date and Time: Thu May 15 18:12:44 2025
