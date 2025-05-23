@@ -1,0 +1,721 @@
+IQ-TREE 2.4.0 built Apr 23 2025
+
+Input file name: trim_file
+Type of analysis: ModelFinder + tree reconstruction
+Random seed number: 497021
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 241 sequences with 431 nucleotide sites
+Number of constant sites: 92 (= 21.3457% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 92 (= 21.3457% of all sites)
+Number of parsimony informative sites: 261
+Number of distinct site patterns: 383
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: TIM2+F+R5
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+TIM2+F+R5        -12225.855   25437.709 +    0.133  512521.709 -        0   27442.301 +    0.544
+TIM2+F+I+R4      -12229.543   25443.086 -  0.00905  510555.086 -        0   27443.611 +    0.283
+TIM2+F+I+R5      -12224.187   25436.374 +    0.259  514496.374 -        0   27445.031 +    0.139
+GTR+F+I+R4       -12226.596   25441.193 -   0.0233  514501.193 -        0   27449.850 -   0.0125
+GTR+F+R5         -12223.588   25437.176 +    0.174  516477.176 -        0   27449.900 -   0.0122
+GTR+F+I+R5       -12221.820   25435.641 +    0.374  518459.641 -        0   27452.431 -  0.00344
+TN+F+R5          -12235.192   25454.384 - 3.18e-05  510566.384 -        0   27454.910 - 0.000995
+TIM3+F+I+R4      -12235.332   25454.663 - 2.77e-05  510566.663 -        0   27455.188 - 0.000866
+TIM3+F+R5        -12232.432   25450.865 - 0.000185  512534.865 -        0   27455.456 - 0.000757
+TPM2u+F+R5       -12235.681   25455.362 - 1.95e-05  510567.362 -        0   27455.887 -  0.00061
+TN+F+I+R4        -12238.776   25459.552 -  2.4e-06  508603.552 -        0   27456.011 - 0.000574
+TPM2u+F+I+R5     -12232.776   25451.553 - 0.000131  512535.553 -        0   27456.144 - 0.000537
+TN+F+I+R5        -12233.431   25452.861 - 6.82e-05  512536.861 -        0   27457.453 - 0.000279
+TPM2u+F+I+R4     -12239.631   25461.263 - 1.02e-06  508605.263 -        0   27457.722 - 0.000244
+TIM3+F+I+R5      -12230.534   25449.068 - 0.000455  514509.068 -        0   27457.725 - 0.000244
+TIM+F+R5         -12233.962   25453.925 - 4.01e-05  512537.925 -        0   27458.516 - 0.000164
+TIM+F+I+R4       -12237.506   25459.013 - 3.15e-06  510571.013 -        0   27459.538 - 9.84e-05
+GTR+F+R4         -12234.747   25455.495 - 1.83e-05  512539.495 -        0   27460.086 - 7.48e-05
+TIM+F+I+R5       -12232.233   25452.467 - 8.31e-05  514512.467 -        0   27461.124 - 4.45e-05
+TVM+F+I+R5       -12229.499   25448.998 - 0.000471  516488.998 -        0   27461.722 -  3.3e-05
+GTR+F+R6         -12223.499   25440.997 -   0.0257  520452.997 -        0   27461.853 - 3.09e-05
+TVM+F+R5         -12232.731   25453.463 - 5.05e-05  514513.463 -        0   27462.120 - 2.71e-05
+GTR+F+I+G4       -12247.938   25473.875 - 1.86e-09  504693.875 -        0   27462.202 -  2.6e-05
+TVM+F+I+R4       -12236.048   25458.095 - 4.98e-06  512542.095 -        0   27462.687 - 2.04e-05
+TPM3u+F+I+R4     -12244.209   25470.417 - 1.05e-08  508614.417 -        0   27466.876 - 2.51e-06
+TPM3u+F+I+R5     -12238.279   25462.559 - 5.34e-07  512546.559 -        0   27467.150 - 2.19e-06
+TPM3u+F+R5       -12241.596   25467.191 - 5.27e-08  510579.191 -        0   27467.716 - 1.65e-06
+HKY+F+I+R5       -12241.676   25467.353 - 4.86e-08  510579.353 -        0   27467.878 - 1.52e-06
+HKY+F+I+R4       -12247.788   25475.575 - 7.97e-10  506655.575 -        0   27467.968 - 1.45e-06
+HKY+F+R5         -12244.840   25471.680 - 5.59e-09  508615.680 -        0   27468.139 - 1.33e-06
+GTR+F+G4         -12255.270   25486.540 - 3.31e-12  502750.540 -        0   27470.801 - 3.52e-07
+K3Pu+F+I+R5      -12240.514   25467.027 - 5.72e-08  512551.027 -        0   27471.619 - 2.34e-07
+K3Pu+F+I+R4      -12246.619   25475.238 - 9.43e-10  508619.238 -        0   27471.697 - 2.25e-07
+K3Pu+F+R5        -12243.616   25471.232 - 6.99e-09  510583.232 -        0   27471.758 - 2.18e-07
+GTR+F+I+R3       -12245.594   25475.188 - 9.67e-10  510587.188 -        0   27475.714 - 3.02e-08
+GTR+F+R3         -12254.850   25491.700 - 2.51e-13  508635.700 -        0   27488.159 -    6e-11
+SYM+I+R4         -12260.676   25503.353 - 7.41e-16  508647.353 -        0   27499.812 - 1.77e-13
+SYM+I+R5         -12257.700   25501.399 - 1.97e-15  512585.399 -        0   27505.991 - 8.05e-15
+SYM+R5           -12261.372   25506.743 - 1.36e-16  510618.743 -        0   27507.269 - 4.25e-15
+TIM3e+I+R4       -12271.611   25521.221 - 9.76e-20  504741.221 -        0   27509.548 - 1.36e-15
+TVMe+I+R4        -12270.812   25521.624 - 7.98e-20  506701.624 -        0   27514.017 - 1.46e-16
+TIM3e+I+R5       -12268.602   25519.203 - 2.68e-19  508663.204 -        0   27515.663 - 6.39e-17
+TIM3e+R5         -12271.699   25523.398 - 3.29e-20  506703.398 -        0   27515.791 - 5.99e-17
+TVMe+I+R5        -12268.714   25521.428 -  8.8e-20  510633.428 -        0   27521.954 - 2.75e-18
+TPM3+I+R4        -12281.211   25538.422 -  1.8e-23  502802.422 -        0   27522.682 - 1.91e-18
+TVMe+R5          -12273.425   25528.850 - 2.15e-21  508672.850 -        0   27525.309 - 5.14e-19
+TPM3+I+R5        -12278.958   25537.915 - 2.31e-23  506717.915 -        0   27530.308 - 4.22e-20
+TPM3+R5          -12283.556   25545.113 - 6.33e-25  504765.113 -        0   27533.440 - 8.82e-21
+TIM2e+I+R4       -12285.358   25548.716 - 1.04e-25  504768.716 -        0   27537.043 - 1.45e-21
+TIM2e+R5         -12284.036   25548.072 - 1.44e-25  506728.072 -        0   27540.465 - 2.63e-22
+TIM2e+I+R5       -12281.434   25544.868 - 7.16e-25  508688.868 -        0   27541.327 - 1.71e-22
+TNe+I+R4         -12295.844   25567.688 - 7.93e-30  502831.688 -        0   27551.949 - 8.43e-25
+TIMe+I+R4        -12294.397   25566.795 - 1.24e-29  504786.795 -        0   27555.122 - 1.73e-25
+TNe+R5           -12294.634   25567.269 - 9.78e-30  504787.269 -        0   27555.595 - 1.36e-25
+TPM2+I+R4        -12297.983   25571.966 - 9.34e-31  502835.966 -        0   27556.227 - 9.93e-26
+TPM2+I+R5        -12291.974   25563.947 - 5.15e-29  506743.947 -        0   27556.340 - 9.39e-26
+TNe+I+R5         -12292.190   25564.380 - 4.15e-29  506744.380 -        0   27556.773 - 7.56e-26
+TPM2+R5          -12295.684   25569.367 - 3.43e-30  504789.367 -        0   27557.694 - 4.77e-26
+TIMe+R5          -12293.251   25566.501 - 1.44e-29  506746.501 -        0   27558.894 - 2.62e-26
+TIMe+I+R5        -12290.807   25563.614 - 6.08e-29  508707.614 -        0   27560.073 - 1.45e-26
+K2P+I+R4         -12307.321   25588.643 - 2.23e-34  500900.643 - 3.45e-236   27568.838 - 1.81e-28
+K2P+I+R5         -12302.321   25582.641 - 4.49e-33  504802.641 -        0   27570.968 - 6.25e-29
+K3P+I+R4         -12305.898   25587.795 - 3.41e-34  502851.795 -        0   27572.056 - 3.63e-29
+K2P+R5           -12306.120   25588.239 - 2.73e-34  502852.239 -        0   27572.500 - 2.91e-29
+K3P+I+R5         -12300.895   25581.790 - 6.88e-33  506761.790 -        0   27574.183 - 1.25e-29
+K3P+R5           -12304.746   25587.492 - 3.97e-34  504807.492 -        0   27575.819 - 5.53e-30
+GTR+F+I+R2       -12340.496   25660.993 - 4.35e-50  506840.993 -        0   27653.386 - 7.93e-47
+GTR+F+R2         -12391.900   25761.801 -  5.6e-72  504981.801 -        0   27750.128 -  7.8e-68
+F81+F+I+R5       -12690.153   26362.306 - 2.24e-202  509506.306 -        0   28358.765 - 5.35e-200
+F81+F+I+R4       -12696.545   26371.089 - 2.77e-204  505591.089 -        0   28359.416 - 3.86e-200
+F81+F+R5         -12693.565   26367.131 - 2.01e-203  507547.131 -        0   28359.524 - 3.66e-200
+JC+I+R4          -12740.150   26452.301 - 6.43e-222  499816.301 +        1   28428.429 - 3.99e-215
+JC+I+R5          -12735.238   26446.477 - 1.18e-220  503710.477 -        0   28430.738 - 1.26e-215
+JC+R5            -12738.809   26451.617 - 9.05e-222  501763.617 -        0   28431.812 - 7.35e-216
+GTR+F+I          -13032.885   27041.769 -        0  504305.769 -        0   29026.030 -        0
+GTR+F            -13465.856   27905.712 -        0  503217.712 -        0   29885.907 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: TIM2+F+R5
+
+Rate parameter R:
+
+  A-C: 1.3393
+  A-G: 3.7135
+  A-T: 1.3393
+  C-G: 1.0000
+  C-T: 5.2263
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2458
+  pi(C) = 0.2068
+  pi(G) = 0.2393
+  pi(T) = 0.3081
+
+Rate matrix Q:
+
+  A   -0.9347    0.1641    0.5263    0.2444
+  C     0.195     -1.29    0.1417    0.9536
+  G    0.5407    0.1225   -0.8457    0.1825
+  T     0.195    0.6403    0.1417    -0.977
+
+Model of rate heterogeneity: FreeRate with 5 categories
+Site proportion and rates:  (0.4114,0.08707) (0.1962,0.456) (0.2115,1.313) (0.1495,2.834) (0.03134,5.528)
+
+ Category  Relative_rate  Proportion
+  1         0.08707        0.4114
+  2         0.456          0.1962
+  3         1.313          0.2115
+  4         2.834          0.1495
+  5         5.528          0.03134
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -12148.6084 (s.e. 543.5024)
+Unconstrained log-likelihood (without tree): -2520.3137
+Number of free parameters (#branches + #model parameters): 493
+Akaike information criterion (AIC) score: 25283.2168
+Corrected Akaike information criterion (AICc) score: 512367.2168
+Bayesian information criterion (BIC) score: 27287.8081
+
+**************************** WARNING ****************************
+Number of parameters (K, model parameters and branch lengths): 493
+Sample size (n, alignment length): 431
+
+Given that K>=n, the parameter estimates might be inaccurate.
+Thus, phylogenetic estimates should be interpreted with caution.
+
+Ideally, it is desirable that n >> K. When selecting optimal models,
+1. use AIC or BIC if n > 40K;
+2. use AICc or BIC if 40K >= n > K;
+3. be extremely cautious if n <= K
+
+To improve the situation (3), consider the following options:
+  1. Increase the sample size (n)
+  2. Decrease the number of parameters (K) to be estimated. If
+     possible:
+     a. Remove the least important sequences from the alignment
+     b. Specify some of the parameter values for the substitution
+        model (e.g., the nucleotide or amino acid frequencies)
+     c. Specify some of the parameter values for the rates-across-
+        sites model (e.g., the shape parameter for the discrete
+        Gamma distribution, the proportion of invariable sites, or
+        the rates of change for different rate categories under
+        the FreeRate model)
+
+Reference:
+Burnham KR, Anderson DR (2002). Model Selection and Multimodel
+Inference: A Practical Information-Theoretic Approach. Springer,
+New York.
+************************ END OF WARNING ***********************
+
+Total tree length (sum of branch lengths): 10.4678
+Sum of internal branch lengths: 3.1082 (29.6928% of tree length)
+
+WARNING: 55 near-zero internal branches (<0.0023) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'OR543296.1_Amanita_cf._afrospinosa_voucher_08.334_internal_transcribed_spacer_1' is drawn at root
+
++----OR543296.1_Amanita_cf._afrospinosa_voucher_08.334_internal_transcribed_spacer_1
+|
+|                                                                +--PP375683.1_Amanita_griseofulva_f._albida_voucher_DB-2021-07-31-3_internal_transcribed_spacer_1
+|                                                             +**|
+|                                                             |  |  +**MH508480.1_Amanita_pachycolea_voucher_HKAS101422_internal_transcribed_spacer_1
+|                                                             |  +--|
+|                                                             |     +--MH508637.1_Amanita_umbrinolutea_voucher_HKAS89201_small_subunit_ribosomal_RNA_gene
+|                                                          +--|
+|                                                          |  |  +--PP762955.1_Amanita_fulva_voucher_MQ23-HL156A_internal_transcribed_spacer_1
+|                                                          |  +**|
+|                                                          |     +--MH508468.1_Amanita_orientifulva_voucher_HKAS87937_internal_transcribed_spacer_1
+|                                                       +**|
+|                                                       |  +--MH508394.1_Amanita_hamadae_voucher_HKAS79076_small_subunit_ribosomal_RNA_gene
+|                                                    +**|
+|                                                    |  |              +--PP762913.1_Amanita_vaginata_voucher_MQ21-CMMF005528_small_subunit_ribosomal_RNA_gene
+|                                                    |  |           +**|
+|                                                    |  |           |  |           +--OR058526.1_Amanita_vaginata_var._vaginata_voucher_BJTC_677_internal_transcribed_spacer_1
+|                                                    |  |           |  |        +--|
+|                                                    |  |           |  |        |  +--OR058523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_small_subunit_ribosomal_RNA_gene
+|                                                    |  |           |  |     +--|
+|                                                    |  |           |  |     |  +--MH508266.1_Amanita_battarrae_voucher_HKAS92090_internal_transcribed_spacer_1
+|                                                    |  |           |  |  +**|
+|                                                    |  |           |  |  |  |     +**MH508303.1_Amanita_chiui_voucher_HKAS76328_internal_transcribed_spacer_1
+|                                                    |  |           |  |  |  |  +--|
+|                                                    |  |           |  |  |  |  |  +--OR058505.1_Amanita_chiui_voucher_BJTC_L130_small_subunit_ribosomal_RNA_gene
+|                                                    |  |           |  |  |  +--|
+|                                                    |  |           |  |  |     +**MH508389.1_Amanita_griseoumbonata_voucher_HKAS92103_small_subunit_ribosomal_RNA_gene
+|                                                    |  |           |  +**|
+|                                                    |  |           |     +--MH508590.1_Amanita_shennongjiana_voucher_HKAS75553_small_subunit_ribosomal_RNA_gene
+|                                                    |  |        +--|
+|                                                    |  |        |  |     +--MH508531.1_Amanita_pseudovaginata_voucher_HKAS70138_small_subunit_ribosomal_RNA_gene
+|                                                    |  |        |  |  +**|
+|                                                    |  |        |  |  |  +**MH508269.1_Amanita_brunneofuliginea_voucher_HKAS89226_small_subunit_ribosomal_RNA_gene
+|                                                    |  |        |  +--|
+|                                                    |  |        |     +--MH508252.1_Amanita_aff._brunneofuliginea_voucher_MB-000633_small_subunit_ribosomal_RNA_gene
+|                                                    |  |     +--|
+|                                                    |  |     |  |  +--MH508543.1_Amanita_retenta_voucher_HKAS70020_small_subunit_ribosomal_RNA_gene
+|                                                    |  |     |  +**|
+|                                                    |  |     |     +**MH508482.1_Amanita_pallidocarnea_voucher_HKAS97678_small_subunit_ribosomal_RNA_gene
+|                                                    |  |  +--|
+|                                                    |  |  |  |  +--MH508465.1_Amanita_orienticrocea_voucher_HKAS90455_internal_transcribed_spacer_1
+|                                                    |  |  |  +--|
+|                                                    |  |  |     +--MH508299.1_Amanita_changtuia_voucher_HKAS92100_small_subunit_ribosomal_RNA_gene
+|                                                    |  +--|
+|                                                    |     +--MH508457.1_Amanita_olivaceofusca_voucher_HKAS97581_internal_transcribed_spacer_1
+|                                                 +--|
+|                                                 |  +------PV249421.1_Amanita_ceciliae_voucher_V94_SVRG-42_internal_transcribed_spacer_1
+|                                              +--|
+|                                              |  |  +--PV133431.1_Amanita_liquii_strain_HKAS_134231_internal_transcribed_spacer_1
+|                                              |  +--|
+|                                              |     |  +**PP762907.1_Amanita_sinicoflava_voucher_MQ21-HL109a-QFB32925_small_subunit_ribosomal_RNA_gene
+|                                              |     +--|
+|                                              |        +--MH508626.1_Amanita_submembranacea_voucher_MB-001174_small_subunit_ribosomal_RNA_gene
+|                                           +--|
+|                                           |  +---ON392696.1_Amanita_crebresulcata_voucher_INPA_No._265556_TRTC176622_internal_transcribed_spacer_1
+|                                        +--|
+|                                        |  |     +-----MH508479.1_Amanita_ovalispora_voucher_HKAS79625_small_subunit_ribosomal_RNA_gene
+|                                        |  |  +--|
+|                                        |  |  |  +--MH508478.1_Amanita_ovalispora_voucher_HKAS101406_small_subunit_ribosomal_RNA_gene
+|                                        |  +--|
+|                                        |     +-----------OR058510.1_Amanita_ovalispora_voucher_BJTC_Z311_small_subunit_ribosomal_RNA_gene
+|                                     +--|
+|                                     |  +---------------------------PP454962.1_Amanita_orientifulva_voucher_520625MF707-16_internal_transcribed_spacer_1
+|                                +----|
+|                                |    |        +----NR_158347.1_Amanita_cingulata_HKAS_75600_ITS_region__from_TYPE_material
+|                                |    |     +--|
+|                                |    |     |  +-----------ON843330.1_Amanita_strobilaceovolvata_voucher_JEIC0609_internal_transcribed_spacer_1
+|                                |    |  +--|
+|                                |    |  |  |  +--------ON843334.1_Amanita_madagascariensis_voucher_JEIC0588_internal_transcribed_spacer_1
+|                                |    |  |  +--|
+|                                |    |  |     |     +--MH508292.1_Amanita_cf._angustilamellata_voucher_HKAS89451_small_subunit_ribosomal_RNA_gene
+|                                |    |  |     +-----|
+|                                |    |  |           +--OR058511.1_Amanita_sp._voucher_BJTC_S233_small_subunit_ribosomal_RNA_gene
+|                                |    +--|
+|                                |       +-------MF461585.1_Amanita_flammeola_voucher_JD960_small_subunit_ribosomal_RNA_gene
+|                             +--|
+|                             |  |                                      +**ON131731.1_Amanita_altipes_voucher_MHNNU_32286_small_subunit_ribosomal_RNA_gene
+|                             |  |                                   +--|
+|                             |  |                                   |  +--MH508254.1_Amanita_altipes_voucher_HKAS91125_small_subunit_ribosomal_RNA_gene
+|                             |  |                                +--|
+|                             |  |                                |  |  +--OQ200140.1_Amanita_eucalypti_strain_FG2018025_small_subunit_ribosomal_RNA_gene
+|                             |  |                                |  +--|
+|                             |  |                                |     +--MH508334.1_Amanita_elata_voucher_HKAS83449_internal_transcribed_spacer_1
+|                             |  |                             +--|
+|                             |  |                             |  |     +**MH508440.1_Amanita_muscaria_voucher_HMJAU4549_internal_transcribed_spacer_1
+|                             |  |                             |  |  +**|
+|                             |  |                             |  |  |  +**OR058506.1_Amanita_muscaria_voucher_BJTC_L491_small_subunit_ribosomal_RNA_gene
+|                             |  |                             |  +--|
+|                             |  |                             |     +**MH508439.1_Amanita_muscaria_voucher_HKAS61888_internal_transcribed_spacer_1
+|                             |  |                          +**|
+|                             |  |                          |  |                +**PQ164612.1_Amanita_concentrica_voucher_Dai_25606_internal_transcribed_spacer_1
+|                             |  |                          |  |           +----|
+|                             |  |                          |  |           |    +**MH508327.1_Amanita_concentrica_voucher_HKAS87061_internal_transcribed_spacer_1
+|                             |  |                          |  |        +**|
+|                             |  |                          |  |        |  |  +--PV578029.1_Amanita_parvipantherina_strain_x20210727-06_internal_transcribed_spacer_1
+|                             |  |                          |  |        |  +--|
+|                             |  |                          |  |        |     +--MH508496.1_Amanita_parvipantherina_voucher_HKAS67828_internal_transcribed_spacer_1
+|                             |  |                          |  |     +--|
+|                             |  |                          |  |     |  +**NR_154668.1_Amanita_persicina_RET_151-4_ITS_region__from_TYPE_material
+|                             |  |                          |  |  +**|
+|                             |  |                          |  |  |  +**MH508355.1_Amanita_flavopantherina_voucher_HKAS82613_internal_transcribed_spacer_1
+|                             |  |                          |  +**|
+|                             |  |                          |     |  +--KR673677.1_Amanita_ibotengutake_voucher_KA13-1204_internal_transcribed_spacer_1
+|                             |  |                          |     +--|
+|                             |  |                          |        |  +--PP265124.1_Amanita_sinensis_voucher_CAIQ12036_internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene
+|                             |  |                          |        +--|
+|                             |  |                          |           +**MH508596.1_Amanita_sinensis_voucher_HKAS74388_internal_transcribed_spacer_1
+|                             |  |                       +--|
+|                             |  |                       |  +--PP762851.1_Amanita_muscaria_voucher_MQ21-HL071a-QFB32888_small_subunit_ribosomal_RNA_gene
+|                             |  |                    +**|
+|                             |  |                    |  |           +--MH508437.1_Amanita_mira_voucher_HKAS91953_small_subunit_ribosomal_RNA_gene
+|                             |  |                    |  |        +**|
+|                             |  |                    |  |        |  +--MH508432.1_Amanita_melleiceps_voucher_HKAS80145_internal_transcribed_spacer_1
+|                             |  |                    |  |     +--|
+|                             |  |                    |  |     |  +**MH508469.1_Amanita_orientigemmata_voucher_HKAS80978_internal_transcribed_spacer_1
+|                             |  |                    |  |  +**|
+|                             |  |                    |  |  |  |  +--MH508530.1_Amanita_pseudosychnopyramis_voucher_HKAS87999_internal_transcribed_spacer_1
+|                             |  |                    |  |  |  +--|
+|                             |  |                    |  |  |     |  +--OM955206.1_Amanita_sp._YS-2022a_voucher_MHHNU_31095_internal_transcribed_spacer_1
+|                             |  |                    |  |  |     +--|
+|                             |  |                    |  |  |        +--KY747465.1_Amanita_rubrovolvata_voucher_BZ2015_68_18S_ribosomal_RNA_gene
+|                             |  |                    |  +**|
+|                             |  |                    |     +**MH508385.1_Amanita_griseopantherina_voucher_HKAS83560_internal_transcribed_spacer_1
+|                             |  |                 +**|
+|                             |  |                 |  |                    +**PV155196.1_Amanita_subglobosa_strain_KH38_internal_transcribed_spacer_1
+|                             |  |                 |  |                 +--|
+|                             |  |                 |  |                 |  +--MH508430.1_Amanita_melleialba_voucher_HKAS83446_internal_transcribed_spacer_1
+|                             |  |                 |  |              +**|
+|                             |  |                 |  |              |  |  +**OR058499.1_Amanita_sp._voucher_BJTC_Z110_small_subunit_ribosomal_RNA_gene
+|                             |  |                 |  |              |  +--|
+|                             |  |                 |  |              |     +**OR058500.1_Amanita_sp._voucher_BJTC_L169_small_subunit_ribosomal_RNA_gene
+|                             |  |                 |  |           +**|
+|                             |  |                 |  |           |  +**MH508619.1_Amanita_subglobosa_voucher_HKAS67914_internal_transcribed_spacer_1
+|                             |  |                 |  |        +**|
+|                             |  |                 |  |        |  +--MH508643.1_Amanita_velatipes_voucher_RET_489-2_internal_transcribed_spacer_1
+|                             |  |                 |  |     +**|
+|                             |  |                 |  |     |  +--MH508514.1_Amanita_pseudopantherina_voucher_HKAS80007_internal_transcribed_spacer_1
+|                             |  |                 |  |  +**|
+|                             |  |                 |  |  |  +**MH508488.1_Amanita_pantherina_voucher_MB-102863_internal_transcribed_spacer_1
+|                             |  |                 |  +--|
+|                             |  |                 |     +--OR058513.1_Amanita_subglobosa_voucher_HMAS_253798_small_subunit_ribosomal_RNA_gene
+|                             |  |              +--|
+|                             |  |              |  +--JN943173.1_Amanita_subfrostiana_strain_HKAS_57042_internal_transcribed_spacer_1
+|                             |  |           +--|
+|                             |  |           |  |     +---JX398314.1_Amanita_fibrillopes_voucher_PERTH08353158_clone_26_18S_ribosomal_RNA_gene
+|                             |  |           |  |  +--|
+|                             |  |           |  |  |  |  +--KC855222.2_Amanita_cruzii_voucher_BARONI_8998__CORT__18S_ribosomal_RNA_gene
+|                             |  |           |  |  |  +--|
+|                             |  |           |  |  |     +------MH508579.1_Amanita_rufoferruginea_voucher_HKAS79616_internal_transcribed_spacer_1
+|                             |  |           |  +--|
+|                             |  |           |     +-----MH508341.1_Amanita_farinosa_voucher_HKAS67958_internal_transcribed_spacer_1
+|                             |  |        +**|
+|                             |  |        |  |    +--OM955215.1_Amanita_sp._YS-2022b_voucher_MHHNU_33170_internal_transcribed_spacer_1
+|                             |  |        |  +----|
+|                             |  |        |       +**OM955207.1_Amanita_sp._YS-2022b_voucher_MHHNU_33169_internal_transcribed_spacer_1
+|                             |  |     +--|
+|                             |  |     |  +----------------------------------------------OR766090.1_Amanita_drummondii_isolate_M127_internal_transcribed_spacer_1
+|                             |  |  +--|
+|                             |  |  |  +----------------PQ433170.1_Amanita_umbrinella_clone_5.7_internal_transcribed_spacer_1
+|                             |  +--|
+|                             |     |     +--MT229864.1_Amanita_inopinata_voucher_RET_270-3_18S_ribosomal_RNA_gene
+|                             |     |  +--|
+|                             |     |  |  +---PV248376.1_Amanita_manicata_voucher_HTBM0602_internal_transcribed_spacer_1
+|                             |     +--|
+|                             |        +---PV109738.1_Amanita_vittadinii_strain_CIRM-BRFM_3597_small_subunit_ribosomal_RNA_gene
+|                          +--|
+|                          |  |        +-------------ON000812.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_small_subunit_ribosomal_RNA_gene
+|                          |  |     +--|
+|                          |  |     |  +-----------MH508658.1_Limacella_glioderma_voucher_HKAS90169_internal_transcribed_spacer_1
+|                          |  |  +--|
+|                          |  |  |  |    +--PQ636780.1_Zhuliangomyces_illinitus_voucher_AMB_20114_internal_transcribed_spacer_1
+|                          |  |  |  +----|
+|                          |  |  |       |  +**MH508660.1_Zhuliangomyces_ochraceoluteus_voucher_MEL2305332_small_subunit_ribosomal_RNA_gene
+|                          |  |  |       +--|
+|                          |  |  |          +**MH508661.1_Zhuliangomyces_ochraceoluteus_voucher_MEL2341329_small_subunit_ribosomal_RNA_gene
+|                          |  +--|
+|                          |     |       +--PV605400.1_Pluteus_cervinus_isolate_CA_FUNDIS_iNaturalist___242012842_small_subunit_ribosomal_RNA_gene
+|                          |     +-------|
+|                          |             +--PP727834.1_Pluteus_petasatus_voucher_IAvH-TRI-MR107_internal_transcribed_spacer_1
+|                       +--|
+|                       |  |                 +**KU714577.1_Amanita_aporema_voucher_FRIM
+|                       |  |              +--|
+|                       |  |              |  +--KU714575.1_Amanita_aporema_voucher_FRIM
+|                       |  |           +--|
+|                       |  |           |  +--MH508527.1_Amanita_pseudoprinceps_voucher_HKAS97523_small_subunit_ribosomal_RNA_gene
+|                       |  |     +-----|
+|                       |  |     |     |     +--KU714563.1_Amanita_egregia_voucher_RET_273-7_18S_ribosomal_RNA_gene
+|                       |  |     |     |  +--|
+|                       |  |     |     |  |  |  +--JX844734.1_Amanita_aff._princeps_TRTC-150309_internal_transcribed_spacer_1
+|                       |  |     |     |  |  +**|
+|                       |  |     |     |  |     +--MH508603.1_Amanita_sp._HKAS101390_small_subunit_ribosomal_RNA_gene
+|                       |  |     |     +**|
+|                       |  |     |        |        +--PP768996.1_Amanita_loosei_voucher_EDC_14-088_small_subunit_ribosomal_RNA_gene
+|                       |  |     |        |     +--|
+|                       |  |     |        |     |  +**JX844753.1_Amanita_zambiana_strain_RET-094-7_internal_transcribed_spacer_1
+|                       |  |     |        |  +--|
+|                       |  |     |        |  |  +--KU714569.1_Amanita_chepangiana_voucher_HKAS
+|                       |  |     |        +**|
+|                       |  |     |           |  +---PQ858242.1_Amanita_princeps_strain_SAAS08032_small_subunit_ribosomal_RNA_gene
+|                       |  |     |           +--|
+|                       |  |     |              +--KU714576.1_Amanita_princeps_voucher_FRIM
+|                       |  |  +--|
+|                       |  |  |  |        +--PP890026.1_Amanita_imazekii_voucher_SFC20180907-35_internal_transcribed_spacer_1
+|                       |  |  |  |     +--|
+|                       |  |  |  |     |  +**MH508398.1_Amanita_imazekii_voucher_HKAS92011_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  |  +--|
+|                       |  |  |  |  |  +-----MH508613.1_Amanita_squarrosipes_voucher_HKAS76359_small_subunit_ribosomal_RNA_gene
+|                       |  |  |  +--|
+|                       |  |  |     |           +--OP749151.1_Amanita_virginiana_isolate_S.D._Russell_ONT_iNaturalist_129770300_small_subunit_ribosomal_RNA_gene
+|                       |  |  |     |        +--|
+|                       |  |  |     |        |  |  +**OR058501.1_Amanita_sp._voucher_BJTC_Z087_small_subunit_ribosomal_RNA_gene
+|                       |  |  |     |        |  +--|
+|                       |  |  |     |        |     +--OR058502.1_Amanita_sp._voucher_BJTC_C650_internal_transcribed_spacer_1
+|                       |  |  |     |     +--|
+|                       |  |  |     |     |  +--MH508428.1_Amanita_longistriata_voucher_HKAS68331_internal_transcribed_spacer_1
+|                       |  |  |     |  +--|
+|                       |  |  |     |  |  +--MH508400.1_Amanita_incarnatifolia_voucher_HKAS100593_small_subunit_ribosomal_RNA_gene
+|                       |  |  |     +--|
+|                       |  |  |        |     +**PP262180.1_Amanita_yuaniana_isolate_CAIQ12006_small_subunit_ribosomal_RNA_gene
+|                       |  |  |        |  +--|
+|                       |  |  |        |  |  +**MH508653.1_Amanita_yuaniana_voucher_HKAS58807_small_subunit_ribosomal_RNA_gene
+|                       |  |  |        +--|
+|                       |  |  |           |  +**MH508338.1_Amanita_esculenta_voucher_HKAS89035_small_subunit_ribosomal_RNA_gene
+|                       |  |  |           +--|
+|                       |  |  |              +--MH508396.1_Amanita_hunanensis_voucher_HKAS100632_internal_transcribed_spacer_1
+|                       |  +--|
+|                       |     |                       +--PP890087.1_Amanita_caesareoides_voucher_KA14-0772_internal_transcribed_spacer_1
+|                       |     |                    +--|
+|                       |     |                    |  |  +**OR058503.1_Amanita_caesareoides_voucher_BJTC_630_small_subunit_ribosomal_RNA_gene
+|                       |     |                    |  +**|
+|                       |     |                    |     +--OR058504.1_Amanita_caesareoides_voucher_BJTC_C654_small_subunit_ribosomal_RNA_gene
+|                       |     |                 +**|
+|                       |     |                 |  +--PP762928.1_Amanita_jacksonii_voucher_MQ23-HL160A_internal_transcribed_spacer_1
+|                       |     |              +--|
+|                       |     |              |  |  +**MH508284.1_Amanita_caesareoides_voucher_HKAS71021_small_subunit_ribosomal_RNA_gene
+|                       |     |              |  +**|
+|                       |     |              |     +**MH508285.1_Amanita_caesareoides_voucher_HKAS92009_small_subunit_ribosomal_RNA_gene
+|                       |     |           +--|
+|                       |     |           |  +--MH508283.1_Amanita_caesarea_voucher_HKAS96166_small_subunit_ribosomal_RNA_gene
+|                       |     |        +--|
+|                       |     |        |  |              +--PP890090.1_Amanita_chatamagotake_voucher_NIBRFG0000144243_internal_transcribed_spacer_1
+|                       |     |        |  |           +--|
+|                       |     |        |  |           |  |     +**KU714573.1_Amanita_similis_voucher_FRIM
+|                       |     |        |  |           |  |  +--|
+|                       |     |        |  |           |  |  |  +**KU714566.1_Amanita_similis_voucher_FRIM
+|                       |     |        |  |           |  +--|
+|                       |     |        |  |           |     +--MH508372.1_Amanita_fuscoflava_voucher_HKAS59800_small_subunit_ribosomal_RNA_gene
+|                       |     |        |  |        +--|
+|                       |     |        |  |        |  +--MH508568.1_Amanita_rubroflava_voucher_HKAS83089_small_subunit_ribosomal_RNA_gene
+|                       |     |        |  |     +--|
+|                       |     |        |  |     |  |  +--PQ874132.1_Amanita_vernicoccora_isolate_CA_FUNDIS_iNaturalist___198128604_small_subunit_ribosomal_RNA_gene
+|                       |     |        |  |     |  +--|
+|                       |     |        |  |     |     +--MH508454.1_Amanita_ochracea_voucher_HKAS87986_small_subunit_ribosomal_RNA_gene
+|                       |     |        |  |  +--|
+|                       |     |        |  |  |  +---OR058512.1_Amanita_sp._voucher_HMAS_26491_small_subunit_ribosomal_RNA_gene
+|                       |     |        |  +**|
+|                       |     |        |     |     +----------PP454961.1_Amanita_javanica_voucher_520621MF634-10_internal_transcribed_spacer_1
+|                       |     |        |     |  +--|
+|                       |     |        |     |  |  +--PP890089.1_Amanita_kitamagotake_voucher_NIBRFG0000144241_internal_transcribed_spacer_1
+|                       |     |        |     +--|
+|                       |     |        |        |  +--PQ062263.1_Amanita_rubromarginata_voucher_HNL502458_small_subunit_ribosomal_RNA_gene
+|                       |     |        |        +--|
+|                       |     |        |           +--KU714572.1_Amanita_javanica_voucher_FRIM
+|                       |     |     +--|
+|                       |     |     |  +---JQ512089.1_Amanita_mafingensis_strain_PC_0084424_18S_ribosomal_RNA_gene
+|                       |     +-----|
+|                       |           +---PV593817.1_Amanita_masasiensis_voucher_JEIC0684_small_subunit_ribosomal_RNA_gene
+|                    +--|
+|                    |  |           +--KY977746.1_Amanita_djarilmari_voucher_PERTH08776083_5_internal_transcribed_spacer_1
+|                    |  |        +**|
+|                    |  |        |  +--NR_173766.1_Amanita_millsii_HO_581533_ITS_region__from_TYPE_material
+|                    |  |     +--|
+|                    |  |     |  +**NR_169902.1_Amanita_gardneri_PERTH_08776121_ITS_region__from_TYPE_material
+|                    |  |  +--|
+|                    |  |  |  +--PQ498127.1_Amanita_marmorata_isolate_BDC_iNaturalist___192051356_small_subunit_ribosomal_RNA_gene
+|                    |  +--|
+|                    |     |           +**PV529713.1_Amanita_phalloides_isolate_CA_FUNDIS_iNaturalist___258493071_small_subunit_ribosomal_RNA_gene
+|                    |     |        +--|
+|                    |     |        |  +--JX998031.1_Amanita_phalloides_voucher_HKAS
+|                    |     |     +**|
+|                    |     |     |  |                    +**PP806283.1_Amanita_subpallidorosea_voucher_HKAS134526_internal_transcribed_spacer_1
+|                    |     |     |  |                 +--|
+|                    |     |     |  |                 |  |  +**KJ466400.1_Amanita_sp._2_ZLY-2014_voucher_HKAS77350_internal_transcribed_spacer_1
+|                    |     |     |  |                 |  +--|
+|                    |     |     |  |                 |     +**KP691683.1_Amanita_subpallidorosea_voucher_LHJ140923-41_18S_ribosomal_RNA_gene
+|                    |     |     |  |              +--|
+|                    |     |     |  |              |  |        +**PV124173.1_Amanita_virosa_isolate_A.virosa_Bettina_Haberl_internal_transcribed_spacer_1
+|                    |     |     |  |              |  |     +--|
+|                    |     |     |  |              |  |     |  +**JX998030.1_Amanita_virosa_voucher_HKAS
+|                    |     |     |  |              |  |  +**|
+|                    |     |     |  |              |  |  |  |  +--KJ466374.1_Amanita_bisporigera_voucher_RET377-9_internal_transcribed_spacer_1
+|                    |     |     |  |              |  |  |  +--|
+|                    |     |     |  |              |  |  |     +**KJ466382.1_Amanita_pallidorosea_voucher_HKAS61937_internal_transcribed_spacer_1
+|                    |     |     |  |              |  +**|
+|                    |     |     |  |              |     +**KJ466381.1_Amanita_ocreata_voucher_HKAS79686_internal_transcribed_spacer_1
+|                    |     |     |  |           +**|
+|                    |     |     |  |           |  |        +--MH508655.1_Amanita_zangii_voucher_HKAS99663_internal_transcribed_spacer_1
+|                    |     |     |  |           |  |     +--|
+|                    |     |     |  |           |  |     |  |        +**KJ466408.1_Amanita_sp._6_ZLY-2014_voucher_HKAS75555_internal_transcribed_spacer_1
+|                    |     |     |  |           |  |     |  |     +**|
+|                    |     |     |  |           |  |     |  |     |  +**KJ466410.1_Amanita_sp._6_ZLY-2014_voucher_HMJAU20469_internal_transcribed_spacer_1
+|                    |     |     |  |           |  |     |  |  +--|
+|                    |     |     |  |           |  |     |  |  |  +--KJ466409.1_Amanita_sp._6_ZLY-2014_voucher_HKAS77324_internal_transcribed_spacer_1
+|                    |     |     |  |           |  |     |  +--|
+|                    |     |     |  |           |  |     |     +--KJ466411.1_Amanita_sp._7_ZLY-2014_voucher_HKAS77332_internal_transcribed_spacer_1
+|                    |     |     |  |           |  |  +**|
+|                    |     |     |  |           |  |  |  +--KJ466420.1_Amanita_suballiacea_voucher_RET490-1_internal_transcribed_spacer_1
+|                    |     |     |  |           |  +--|
+|                    |     |     |  |           |     +--JX998027.1_Amanita_exitialis_voucher_HKAS
+|                    |     |     |  |        +**|
+|                    |     |     |  |        |  +**JX998034.1_Amanita_subjunquillea_voucher_HKAS
+|                    |     |     |  |     +**|
+|                    |     |     |  |     |  |  +**OR058516.1_Amanita_subjunquillea_voucher_BJTC_C558_small_subunit_ribosomal_RNA_gene
+|                    |     |     |  |     |  +--|
+|                    |     |     |  |     |     |  +**OR058519.1_Amanita_subjunquillea_voucher_BJTC_Z276_small_subunit_ribosomal_RNA_gene
+|                    |     |     |  |     |     +--|
+|                    |     |     |  |     |        |  +**OR058520.1_Amanita_subjunquillea_voucher_BJTC_112_small_subunit_ribosomal_RNA_gene
+|                    |     |     |  |     |        +--|
+|                    |     |     |  |     |           +--OR058521.1_Amanita_subjunquillea_voucher_BJTC_Z172_small_subunit_ribosomal_RNA_gene
+|                    |     |     |  |  +**|
+|                    |     |     |  |  |  +**OR058517.1_Amanita_subjunquillea_voucher_BJTC_033_small_subunit_ribosomal_RNA_gene
+|                    |     |     |  +**|
+|                    |     |     |     +**OR058514.1_Amanita_subjunquillea_voucher_BJTC_217_small_subunit_ribosomal_RNA_gene
+|                    |     |  +**|
+|                    |     |  |  |  +**JX998032.1_Amanita_subjunquillea_voucher_HKAS
+|                    |     |  |  +--|
+|                    |     |  |     +**OR058522.1_Amanita_subjunquillea_voucher_HMAS_253775_small_subunit_ribosomal_RNA_gene
+|                    |     +--|
+|                    |        |           +--PV191123.1_Amanita_rimosa_voucher_Dai_32531_small_subunit_ribosomal_RNA_gene
+|                    |        |     +-----|
+|                    |        |     |     +**JX998018.1_Amanita_rimosa_voucher_HKAS
+|                    |        |  +--|
+|                    |        |  |  +**KJ466404.1_Amanita_sp._4_ZLY-2014_voucher_HKAS77326_internal_transcribed_spacer_1
+|                    |        +--|
+|                    |           +--JX998023.1_Amanita_fuliginea_voucher_HKAS
+|                 +**|
+|                 |  |     +---------------------MT594772.1_Amanita_cinereopannosa_strain_OTU1252_5.8S_ribosomal_RNA_gene
+|                 |  |  +**|
+|                 |  |  |  |     +----OM451516.1_Amanita_strobiliformis_voucher_PC
+|                 |  |  |  |  +--|
+|                 |  |  |  |  |  +--------MW016759.1_Amanita_alboradicata_voucher_MHHNU_10531_small_subunit_ribosomal_RNA_gene
+|                 |  |  |  +**|
+|                 |  |  |     |      +--ON181686.1_Amanita_vestita_voucher_B21062704_internal_transcribed_spacer_1
+|                 |  |  |     +------|
+|                 |  |  |            +--MH508647.1_Amanita_vestita_voucher_HKAS79687_internal_transcribed_spacer_1
+|                 |  +--|
+|                 |     |  +---MH508392.1_Amanita_griseoverrucosa_voucher_HKAS57357_internal_transcribed_spacer_1
+|                 |     +--|
+|                 |        |  +--KF258722.1_Amanita_wadjukiorum_voucher_PERTH_08403988_clone_46_18S_ribosomal_RNA_gene
+|                 |        +--|
+|                 |           +--JX398328.1_Amanita_wadulawitu_voucher_PERTH_08615861_clone_14R2_18S_ribosomal_RNA_gene
+|              +--|
+|              |  |                                   +**OR824675.1_Amanita_augusta_isolate_OMDL_iNat___179046396_small_subunit_ribosomal_RNA_gene
+|              |  |                                +**|
+|              |  |                                |  |     +--MH508494.1_Amanita_parvifritillaria_voucher_HKAS83737_internal_transcribed_spacer_1
+|              |  |                                |  |  +**|
+|              |  |                                |  |  |  |  +**MH508328.1_Amanita_detersa_voucher_HKAS71476_internal_transcribed_spacer_1
+|              |  |                                |  |  |  +--|
+|              |  |                                |  |  |     +--MH508351.1_Amanita_flavoconia_voucher_RET_485-6_internal_transcribed_spacer_1
+|              |  |                                |  +**|
+|              |  |                                |     +**MH508343.1_Amanita_flavipes_voucher_HKAS57650_internal_transcribed_spacer_1
+|              |  |                             +--|
+|              |  |                             |  |  +--PP762870.1_Amanita_flavoconia_voucher_MQ21-HL087a-QFB32903_small_subunit_ribosomal_RNA_gene
+|              |  |                             |  +**|
+|              |  |                             |     +--MH508337.1_Amanita_elongata_voucher_RET_384-5_internal_transcribed_spacer_1
+|              |  |                          +--|
+|              |  |                          |  |     +**OR506128.1_Amanita_brunneolocularis_voucher_ART201972_internal_transcribed_spacer_1
+|              |  |                          |  |  +**|
+|              |  |                          |  |  |  +--PP762946.1_Amanita_rubescens_voucher_MQ22-QFB33039-HL127_internal_transcribed_spacer_1
+|              |  |                          |  +--|
+|              |  |                          |     |  +**MH508558.1_Amanita_rubescens_voucher_HKAS92034_internal_transcribed_spacer_1
+|              |  |                          |     +--|
+|              |  |                          |        +--MH508554.1_Amanita_rubescens_voucher_HKAS100631_small_subunit_ribosomal_RNA_gene
+|              |  |                       +--|
+|              |  |                       |  |     +--OR236792.1_Amanita_spissa_voucher_HMAS_297600_internal_transcribed_spacer_1
+|              |  |                       |  |  +--|
+|              |  |                       |  |  |  +**MH508612.1_Amanita_spissa_voucher_HKAS92089_internal_transcribed_spacer_1
+|              |  |                       |  +**|
+|              |  |                       |     +--MH508320.1_Amanita_citrinoindusiata_voucher_HKAS100522_internal_transcribed_spacer_1
+|              |  |                    +**|
+|              |  |                    |  |  +**KJ466373.1_Amanita_aff._fritillaria_ZLY-2014_voucher_HKAS57649_internal_transcribed_spacer_1
+|              |  |                    |  +--|
+|              |  |                    |     +**MH508609.1_Amanita_spissacea_voucher_HKAS57754_internal_transcribed_spacer_1
+|              |  |                 +--|
+|              |  |                 |  +--MH508318.1_Amanita_citrinoannulata_voucher_HKAS83459_internal_transcribed_spacer_1
+|              |  |              +--|
+|              |  |              |  |        +**OR058527.1_Amanita_sp._voucher_BJTC_Z083_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |     +--|
+|              |  |              |  |     |  |  +**OR058529.1_Amanita_sp._voucher_BJTC_Z049_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |     |  +--|
+|              |  |              |  |     |     +**OR058530.1_Amanita_sp._voucher_BJTC_Z824_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |  +--|
+|              |  |              |  |  |  |        +--OR058531.1_Amanita_sp._voucher_BJTC_C182_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |  |  |     +--|
+|              |  |              |  |  |  |     |  +--OR058532.1_Amanita_sp._voucher_BJTC_Z815_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |  |  |  +--|
+|              |  |              |  |  |  |  |  +**OR058534.1_Amanita_sp._voucher_BJTC_Z820_small_subunit_ribosomal_RNA_gene
+|              |  |              |  |  |  +--|
+|              |  |              |  |  |     +--OR058533.1_Amanita_sp._voucher_BJTC_Z819_small_subunit_ribosomal_RNA_gene
+|              |  |              |  +--|
+|              |  |              |     +**OR058528.1_Amanita_sp._voucher_BJTC_Z760_small_subunit_ribosomal_RNA_gene
+|              |  |           +--|
+|              |  |           |  |     +--PQ164615.1_Amanita_griseofolia_voucher_Dai_25124_internal_transcribed_spacer_1
+|              |  |           |  |  +--|
+|              |  |           |  |  |  +--MH508367.1_Amanita_fritillaria_voucher_HKAS91952_internal_transcribed_spacer_1
+|              |  |           |  +--|
+|              |  |           |     +--MH508373.1_Amanita_fuscosquamosa_voucher_PDD92862_internal_transcribed_spacer_1
+|              |  |        +--|
+|              |  |        |  +--MH508474.1_Amanita_orsonii_voucher_HKAS52264_internal_transcribed_spacer_1
+|              |  |     +--|
+|              |  |     |  +**MH508584.1_Amanita_sepiacea_voucher_HKAS56799_internal_transcribed_spacer_1
+|              |  |  +--|
+|              |  |  |  +**ON794382.1_Amanita_sepiacea_voucher_HKAS122581_internal_transcribed_spacer_1
+|              |  +--|
+|              |     |  +--PP762814.1_Amanita_brunnescens_voucher_MQ22-QFB33036-HL124_internal_transcribed_spacer_1
+|              |     +--|
+|              |        |        +--PP762860.1_Amanita_citrina_voucher_MQ24-RPL30181-CMMF27216_internal_transcribed_spacer_1
+|              |        |     +--|
+|              |        |     |  +--MH508311.1_Amanita_citrina_voucher_HKAS101397_internal_transcribed_spacer_1
+|              |        |  +--|
+|              |        |  |  +--MH508598.1_Amanita_sinocitrina_voucher_HKAS100530_internal_transcribed_spacer_1
+|              |        +--|
+|              |           +--MH508506.1_Amanita_porphyria_voucher_HKAS92088_internal_transcribed_spacer_1
+|           +--|
+|           |  |  +----OR543300.1_Amanita_aff._eriophora_voucher_HKAS79577_small_subunit_ribosomal_RNA_gene
+|           |  +--|
+|           |     |     +---------MH508281.1_Amanita_brunneostrobilipes_voucher_HKAS60291_internal_transcribed_spacer_1
+|           |     |  +--|
+|           |     |  |  |     +------MH508291.1_Amanita_caojizong_voucher_HKAS79673_internal_transcribed_spacer_1
+|           |     |  |  |  +--|
+|           |     |  |  |  |  +-----MH508415.1_Amanita_kotohiraensis_voucher_HKAS100577_small_subunit_ribosomal_RNA_gene
+|           |     |  |  +--|
+|           |     |  |     +--MH508333.1_Amanita_eijii_voucher_HKAS70229_internal_transcribed_spacer_1
+|           |     +--|
+|           |        +-----------MH508335.1_Amanita_elliptica_voucher_HKAS79602_internal_transcribed_spacer_1
+|        +--|
+|        |  |     +---ON971239.1_Amanita_rufobrunnescens_voucher_B22060216_internal_transcribed_spacer_1
+|        |  +-----|
+|        |        +---MH508278.1_Amanita_brunneomaculata_voucher_HKAS68393_internal_transcribed_spacer_1
+|     +--|
+|     |  +-------MT878220.1_Amanita_fulvopyramidalis_voucher_MHHNU_8814_small_subunit_ribosomal_RNA_gene
+|  +--|
+|  |  |        +---------------MN919216.1_Amanita_carneiphylla_clone_AD282179_5_internal_transcribed_spacer_1
+|  |  |     +--|
+|  |  |     |  |  +-----MH508445.1_Amanita_neo-ovoidea_voucher_HKAS89025_internal_transcribed_spacer_1
+|  |  |     |  +--|
+|  |  |     |     +--------MH508524.1_Amanita_pseudoporphyria_voucher_HKAS89074_internal_transcribed_spacer_1
+|  |  |  +--|
+|  |  |  |  |  +--MH508435.1_Amanita_minutisquama_voucher_HKAS100504_internal_transcribed_spacer_1
+|  |  |  |  +--|
+|  |  |  |     +----------MH508648.1_Amanita_virgineoides_voucher_HKAS100518_internal_transcribed_spacer_1
+|  |  +--|
+|  |     +-----MH508652.1_Amanita_yenii_voucher_HKAS87047_internal_transcribed_spacer_1
++--|
+|  |              +--ON545069.1_Amanita_macrocarpa_voucher_B21051513_internal_transcribed_spacer_1
+|  |           +**|
+|  |           |  +--MH508393.1_Amanita_gymnopus_voucher_HKAS71618_internal_transcribed_spacer_1
+|  |        +--|
+|  |        |  +----KP012750.1_Amanita_aff._ochrophylla_MEL_2382876_internal_transcribed_spacer_1
+|  |     +--|
+|  |     |  +--PP516700.1_Amanita_ravenelii_isolate_OMDL_iNat___173977882_small_subunit_ribosomal_RNA_gene
+|  |  +--|
+|  |  |  +----------MH508548.1_Amanita_roseolifolia_voucher_HKAS101403_internal_transcribed_spacer_1
+|  +--|
+|     +------KP137063.1_Amanita_quenda_voucher_PERTH08587116_clone_26_18S_ribosomal_RNA_gene
+|
+|      +**NR_151651.1_Amanita_heishidingensis_HKAS_76122_ITS_region__from_TYPE_material
+|  +---|
+|  |   +--KJ922999.1_Amanita_heishidingensis_voucher_HKAS81484_internal_transcribed_spacer_1
++--|
+   |  +--PQ492966.1_Amanita_smithiana_bio-material_iNAT
+   +--|
+      |        +--KJ466380.1_Amanita_oberwinklerana_voucher_HKAS77330_internal_transcribed_spacer_1
+      |    +---|
+      |    |   |   +--OR058508.1_Amanita_oberwinkleriana_voucher_HMAS_253800_small_subunit_ribosomal_RNA_gene
+      |    |   +---|
+      |    |       +--OR058509.1_Amanita_oberwinkleriana_voucher_HMAS_253796_small_subunit_ribosomal_RNA_gene
+      +----|
+           |     +--MH508535.1_Amanita_pyramidata_voucher_HKAS87943_internal_transcribed_spacer_1
+           +-----|
+                 +----MH508561.1_Amanita_rubiginosa_voucher_HKAS52216_internal_transcribed_spacer_1
+
+Tree in newick format:
+
+(OR543296.1_Amanita_cf._afrospinosa_voucher_08.334_internal_transcribed_spacer_1:0.0733471390,(((((((((((((((((((((PP375683.1_Amanita_griseofulva_f._albida_voucher_DB-2021-07-31-3_internal_transcribed_spacer_1:0.0113966627,(MH508480.1_Amanita_pachycolea_voucher_HKAS101422_internal_transcribed_spacer_1:0.0000026492,MH508637.1_Amanita_umbrinolutea_voucher_HKAS89201_small_subunit_ribosomal_RNA_gene:0.0156489845):0.0075822165):0.0000021955,(PP762955.1_Amanita_fulva_voucher_MQ23-HL156A_internal_transcribed_spacer_1:0.0110433715,MH508468.1_Amanita_orientifulva_voucher_HKAS87937_internal_transcribed_spacer_1:0.0334348577):0.0000018748):0.0117567146,MH508394.1_Amanita_hamadae_voucher_HKAS79076_small_subunit_ribosomal_RNA_gene:0.0109435113):0.0000026262,(((((PP762913.1_Amanita_vaginata_voucher_MQ21-CMMF005528_small_subunit_ribosomal_RNA_gene:0.0034523960,((((OR058526.1_Amanita_vaginata_var._vaginata_voucher_BJTC_677_internal_transcribed_spacer_1:0.0144384528,OR058523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_small_subunit_ribosomal_RNA_gene:0.0112569685):0.0188252645,MH508266.1_Amanita_battarrae_voucher_HKAS92090_internal_transcribed_spacer_1:0.0117319119):0.0034992314,((MH508303.1_Amanita_chiui_voucher_HKAS76328_internal_transcribed_spacer_1:0.0000022989,OR058505.1_Amanita_chiui_voucher_BJTC_L130_small_subunit_ribosomal_RNA_gene:0.0046569325):0.0224339830,MH508389.1_Amanita_griseoumbonata_voucher_HKAS92103_small_subunit_ribosomal_RNA_gene:0.0000022157):0.0075614190):0.0000025546,MH508590.1_Amanita_shennongjiana_voucher_HKAS75553_small_subunit_ribosomal_RNA_gene:0.0039901486):0.0000022989):0.0000024751,((MH508531.1_Amanita_pseudovaginata_voucher_HKAS70138_small_subunit_ribosomal_RNA_gene:0.0040104033,MH508269.1_Amanita_brunneofuliginea_voucher_HKAS89226_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0000016606,MH508252.1_Amanita_aff._brunneofuliginea_voucher_MB-000633_small_subunit_ribosomal_RNA_gene:0.0035597734):0.0035602715):0.0038901483,(MH508543.1_Amanita_retenta_voucher_HKAS70020_small_subunit_ribosomal_RNA_gene:0.0038536493,MH508482.1_Amanita_pallidocarnea_voucher_HKAS97678_small_subunit_ribosomal_RNA_gene:0.0000021969):0.0000022592):0.0040236440,(MH508465.1_Amanita_orienticrocea_voucher_HKAS90455_internal_transcribed_spacer_1:0.0281819629,MH508299.1_Amanita_changtuia_voucher_HKAS92100_small_subunit_ribosomal_RNA_gene:0.0457028898):0.0038145960):0.0058820094,MH508457.1_Amanita_olivaceofusca_voucher_HKAS97581_internal_transcribed_spacer_1:0.0070808323):0.0058877982):0.0000170849,PV249421.1_Amanita_ceciliae_voucher_V94_SVRG-42_internal_transcribed_spacer_1:0.0873144722):0.0109436165,(PV133431.1_Amanita_liquii_strain_HKAS_134231_internal_transcribed_spacer_1:0.0336291143,(PP762907.1_Amanita_sinicoflava_voucher_MQ21-HL109a-QFB32925_small_subunit_ribosomal_RNA_gene:0.0000010243,MH508626.1_Amanita_submembranacea_voucher_MB-001174_small_subunit_ribosomal_RNA_gene:0.0071119464):0.0182139042):0.0044535343):0.0041602523,ON392696.1_Amanita_crebresulcata_voucher_INPA_No._265556_TRTC176622_internal_transcribed_spacer_1:0.0582997001):0.0380832794,((MH508479.1_Amanita_ovalispora_voucher_HKAS79625_small_subunit_ribosomal_RNA_gene:0.0803016515,MH508478.1_Amanita_ovalispora_voucher_HKAS101406_small_subunit_ribosomal_RNA_gene:0.0370699807):0.0214874199,OR058510.1_Amanita_ovalispora_voucher_BJTC_Z311_small_subunit_ribosomal_RNA_gene:0.1521357753):0.0247894678):0.0084165045,PP454962.1_Amanita_orientifulva_voucher_520625MF707-16_internal_transcribed_spacer_1:0.3512964384):0.0110249733,(((NR_158347.1_Amanita_cingulata_HKAS_75600_ITS_region__from_TYPE_material:0.0725762294,ON843330.1_Amanita_strobilaceovolvata_voucher_JEIC0609_internal_transcribed_spacer_1:0.1504030641):0.0233467634,(ON843334.1_Amanita_madagascariensis_voucher_JEIC0588_internal_transcribed_spacer_1:0.1206590782,(MH508292.1_Amanita_cf._angustilamellata_voucher_HKAS89451_small_subunit_ribosomal_RNA_gene:0.0061617326,OR058511.1_Amanita_sp._voucher_BJTC_S233_small_subunit_ribosomal_RNA_gene:0.0270820630):0.0812793367):0.0245469529):0.0057659190,MF461585.1_Amanita_flammeola_voucher_JD960_small_subunit_ribosomal_RNA_gene:0.1035235647):0.0374810983):0.0702118128,(((((((((((((ON131731.1_Amanita_altipes_voucher_MHNNU_32286_small_subunit_ribosomal_RNA_gene:0.0000010243,MH508254.1_Amanita_altipes_voucher_HKAS91125_small_subunit_ribosomal_RNA_gene:0.0032423462):0.0093614461,(OQ200140.1_Amanita_eucalypti_strain_FG2018025_small_subunit_ribosomal_RNA_gene:0.0043434208,MH508334.1_Amanita_elata_voucher_HKAS83449_internal_transcribed_spacer_1:0.0221502149):0.0336591517):0.0057305852,((MH508440.1_Amanita_muscaria_voucher_HMJAU4549_internal_transcribed_spacer_1:0.0000010243,OR058506.1_Amanita_muscaria_voucher_BJTC_L491_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0000020174,MH508439.1_Amanita_muscaria_voucher_HKAS61888_internal_transcribed_spacer_1:0.0000021734):0.0076309282):0.0043923708,(((((PQ164612.1_Amanita_concentrica_voucher_Dai_25606_internal_transcribed_spacer_1:0.0000025127,MH508327.1_Amanita_concentrica_voucher_HKAS87061_internal_transcribed_spacer_1:0.0000021394):0.0619249311,(PV578029.1_Amanita_parvipantherina_strain_x20210727-06_internal_transcribed_spacer_1:0.0031469972,MH508496.1_Amanita_parvipantherina_voucher_HKAS67828_internal_transcribed_spacer_1:0.0030750669):0.0122972491):0.0000020787,NR_154668.1_Amanita_persicina_RET_151-4_ITS_region__from_TYPE_material:0.0000024865):0.0096726688,MH508355.1_Amanita_flavopantherina_voucher_HKAS82613_internal_transcribed_spacer_1:0.0000026184):0.0000020399,(KR673677.1_Amanita_ibotengutake_voucher_KA13-1204_internal_transcribed_spacer_1:0.0075085633,(PP265124.1_Amanita_sinensis_voucher_CAIQ12036_internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene:0.0065732135,MH508596.1_Amanita_sinensis_voucher_HKAS74388_internal_transcribed_spacer_1:0.0000023348):0.0341735103):0.0269435093):0.0000026433):0.0000023447,PP762851.1_Amanita_muscaria_voucher_MQ21-HL071a-QFB32888_small_subunit_ribosomal_RNA_gene:0.0028512277):0.0030014590,((((MH508437.1_Amanita_mira_voucher_HKAS91953_small_subunit_ribosomal_RNA_gene:0.0313504449,MH508432.1_Amanita_melleiceps_voucher_HKAS80145_internal_transcribed_spacer_1:0.0132067519):0.0000025401,MH508469.1_Amanita_orientigemmata_voucher_HKAS80978_internal_transcribed_spacer_1:0.0000025850):0.0030121245,(MH508530.1_Amanita_pseudosychnopyramis_voucher_HKAS87999_internal_transcribed_spacer_1:0.0190617340,(OM955206.1_Amanita_sp._YS-2022a_voucher_MHHNU_31095_internal_transcribed_spacer_1:0.0177627971,KY747465.1_Amanita_rubrovolvata_voucher_BZ2015_68_18S_ribosomal_RNA_gene:0.0189532080):0.0064848379):0.0067625546):0.0000020923,MH508385.1_Amanita_griseopantherina_voucher_HKAS83560_internal_transcribed_spacer_1:0.0000025874):0.0000022699):0.0000023928,(((((((PV155196.1_Amanita_subglobosa_strain_KH38_internal_transcribed_spacer_1:0.0000022967,MH508430.1_Amanita_melleialba_voucher_HKAS83446_internal_transcribed_spacer_1:0.0265193154):0.0032531474,(OR058499.1_Amanita_sp._voucher_BJTC_Z110_small_subunit_ribosomal_RNA_gene:0.0000010243,OR058500.1_Amanita_sp._voucher_BJTC_L169_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0040619967):0.0000023995,MH508619.1_Amanita_subglobosa_voucher_HKAS67914_internal_transcribed_spacer_1:0.0000010243):0.0000024798,MH508643.1_Amanita_velatipes_voucher_RET_489-2_internal_transcribed_spacer_1:0.0031035740):0.0000028535,MH508514.1_Amanita_pseudopantherina_voucher_HKAS80007_internal_transcribed_spacer_1:0.0062597636):0.0000023878,MH508488.1_Amanita_pantherina_voucher_MB-102863_internal_transcribed_spacer_1:0.0000010243):0.0015482994,OR058513.1_Amanita_subglobosa_voucher_HMAS_253798_small_subunit_ribosomal_RNA_gene:0.0116091601):0.0029354596):0.0000026586,JN943173.1_Amanita_subfrostiana_strain_HKAS_57042_internal_transcribed_spacer_1:0.0205268790):0.0080630020,((JX398314.1_Amanita_fibrillopes_voucher_PERTH08353158_clone_26_18S_ribosomal_RNA_gene:0.0570089956,(KC855222.2_Amanita_cruzii_voucher_BARONI_8998__CORT__18S_ribosomal_RNA_gene:0.0363067968,MH508579.1_Amanita_rufoferruginea_voucher_HKAS79616_internal_transcribed_spacer_1:0.0878501887):0.0243587301):0.0182128629,MH508341.1_Amanita_farinosa_voucher_HKAS67958_internal_transcribed_spacer_1:0.0824397866):0.0239412151):0.0192982015,(OM955215.1_Amanita_sp._YS-2022b_voucher_MHHNU_33170_internal_transcribed_spacer_1:0.0063239679,OM955207.1_Amanita_sp._YS-2022b_voucher_MHHNU_33169_internal_transcribed_spacer_1:0.0000021340):0.0626878275):0.0000024019,OR766090.1_Amanita_drummondii_isolate_M127_internal_transcribed_spacer_1:0.5935298686):0.0181974888,PQ433170.1_Amanita_umbrinella_clone_5.7_internal_transcribed_spacer_1:0.2182250921):0.0153088270,((MT229864.1_Amanita_inopinata_voucher_RET_270-3_18S_ribosomal_RNA_gene:0.0437251645,PV248376.1_Amanita_manicata_voucher_HTBM0602_internal_transcribed_spacer_1:0.0550463172):0.0181331399,PV109738.1_Amanita_vittadinii_strain_CIRM-BRFM_3597_small_subunit_ribosomal_RNA_gene:0.0537740570):0.0082995829):0.0045994068):0.0063474340,(((ON000812.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_small_subunit_ribosomal_RNA_gene:0.1845321613,MH508658.1_Limacella_glioderma_voucher_HKAS90169_internal_transcribed_spacer_1:0.1486555569):0.0397077861,(PQ636780.1_Zhuliangomyces_illinitus_voucher_AMB_20114_internal_transcribed_spacer_1:0.0165645262,(MH508660.1_Zhuliangomyces_ochraceoluteus_voucher_MEL2305332_small_subunit_ribosomal_RNA_gene:0.0000010243,MH508661.1_Zhuliangomyces_ochraceoluteus_voucher_MEL2341329_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0199006928):0.0683558720):0.0446243833,(PV605400.1_Pluteus_cervinus_isolate_CA_FUNDIS_iNaturalist___242012842_small_subunit_ribosomal_RNA_gene:0.0032296449,PP727834.1_Pluteus_petasatus_voucher_IAvH-TRI-MR107_internal_transcribed_spacer_1:0.0202919830):0.1059110278):0.0164804701):0.0047312541,(((((KU714577.1_Amanita_aporema_voucher_FRIM:0.0000024880,KU714575.1_Amanita_aporema_voucher_FRIM:0.0033471657):0.0028868099,MH508527.1_Amanita_pseudoprinceps_voucher_HKAS97523_small_subunit_ribosomal_RNA_gene:0.0164938906):0.0144056055,((KU714563.1_Amanita_egregia_voucher_RET_273-7_18S_ribosomal_RNA_gene:0.0084907425,(JX844734.1_Amanita_aff._princeps_TRTC-150309_internal_transcribed_spacer_1:0.0086104860,MH508603.1_Amanita_sp._HKAS101390_small_subunit_ribosomal_RNA_gene:0.0261352083):0.0000020526):0.0038038620,(((PP768996.1_Amanita_loosei_voucher_EDC_14-088_small_subunit_ribosomal_RNA_gene:0.0040398816,JX844753.1_Amanita_zambiana_strain_RET-094-7_internal_transcribed_spacer_1:0.0000020261):0.0277696873,KU714569.1_Amanita_chepangiana_voucher_HKAS:0.0077550637):0.0045154004,(PQ858242.1_Amanita_princeps_strain_SAAS08032_small_subunit_ribosomal_RNA_gene:0.0563510888,KU714576.1_Amanita_princeps_voucher_FRIM:0.0134578835):0.0041212274):0.0000025564):0.0000029080):0.0821404651,(((PP890026.1_Amanita_imazekii_voucher_SFC20180907-35_internal_transcribed_spacer_1:0.0041283906,MH508398.1_Amanita_imazekii_voucher_HKAS92011_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0192872370,MH508613.1_Amanita_squarrosipes_voucher_HKAS76359_small_subunit_ribosomal_RNA_gene:0.0796757546):0.0396913819,((((OP749151.1_Amanita_virginiana_isolate_S.D._Russell_ONT_iNaturalist_129770300_small_subunit_ribosomal_RNA_gene:0.0101359184,(OR058501.1_Amanita_sp._voucher_BJTC_Z087_small_subunit_ribosomal_RNA_gene:0.0000026464,OR058502.1_Amanita_sp._voucher_BJTC_C650_internal_transcribed_spacer_1:0.0059949199):0.0184282113):0.0026301411,MH508428.1_Amanita_longistriata_voucher_HKAS68331_internal_transcribed_spacer_1:0.0110806737):0.0067042389,MH508400.1_Amanita_incarnatifolia_voucher_HKAS100593_small_subunit_ribosomal_RNA_gene:0.0144746753):0.0249504057,((PP262180.1_Amanita_yuaniana_isolate_CAIQ12006_small_subunit_ribosomal_RNA_gene:0.0000023611,MH508653.1_Amanita_yuaniana_voucher_HKAS58807_small_subunit_ribosomal_RNA_gene:0.0000022354):0.0146190457,(MH508338.1_Amanita_esculenta_voucher_HKAS89035_small_subunit_ribosomal_RNA_gene:0.0000029535,MH508396.1_Amanita_hunanensis_voucher_HKAS100632_internal_transcribed_spacer_1:0.0090039507):0.0026142270):0.0381400393):0.0234734245):0.0146224413):0.0091068720,(((((((PP890087.1_Amanita_caesareoides_voucher_KA14-0772_internal_transcribed_spacer_1:0.0391026778,(OR058503.1_Amanita_caesareoides_voucher_BJTC_630_small_subunit_ribosomal_RNA_gene:0.0000010243,OR058504.1_Amanita_caesareoides_voucher_BJTC_C654_small_subunit_ribosomal_RNA_gene:0.0034101776):0.0000023003):0.0063309228,PP762928.1_Amanita_jacksonii_voucher_MQ23-HL160A_internal_transcribed_spacer_1:0.0288133493):0.0004907588,(MH508284.1_Amanita_caesareoides_voucher_HKAS71021_small_subunit_ribosomal_RNA_gene:0.0000010243,MH508285.1_Amanita_caesareoides_voucher_HKAS92009_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0000020837):0.0054703931,MH508283.1_Amanita_caesarea_voucher_HKAS96166_small_subunit_ribosomal_RNA_gene:0.0166084412):0.0041156002,(((((PP890090.1_Amanita_chatamagotake_voucher_NIBRFG0000144243_internal_transcribed_spacer_1:0.0333567557,((KU714573.1_Amanita_similis_voucher_FRIM:0.0000025082,KU714566.1_Amanita_similis_voucher_FRIM:0.0000023276):0.0161816790,MH508372.1_Amanita_fuscoflava_voucher_HKAS59800_small_subunit_ribosomal_RNA_gene:0.0131890269):0.0245892283):0.0092651792,MH508568.1_Amanita_rubroflava_voucher_HKAS83089_small_subunit_ribosomal_RNA_gene:0.0177492503):0.0045341401,(PQ874132.1_Amanita_vernicoccora_isolate_CA_FUNDIS_iNaturalist___198128604_small_subunit_ribosomal_RNA_gene:0.0037331805,MH508454.1_Amanita_ochracea_voucher_HKAS87986_small_subunit_ribosomal_RNA_gene:0.0139757433):0.0035663644):0.0060182269,OR058512.1_Amanita_sp._voucher_HMAS_26491_small_subunit_ribosomal_RNA_gene:0.0504403208):0.0135647224,((PP454961.1_Amanita_javanica_voucher_520621MF634-10_internal_transcribed_spacer_1:0.1388960583,PP890089.1_Amanita_kitamagotake_voucher_NIBRFG0000144241_internal_transcribed_spacer_1:0.0188042781):0.0264641567,(PQ062263.1_Amanita_rubromarginata_voucher_HNL502458_small_subunit_ribosomal_RNA_gene:0.0310372764,KU714572.1_Amanita_javanica_voucher_FRIM:0.0350748027):0.0171356963):0.0093166171):0.0023195363):0.0190111363,JQ512089.1_Amanita_mafingensis_strain_PC_0084424_18S_ribosomal_RNA_gene:0.0560169281):0.0098184149,PV593817.1_Amanita_masasiensis_voucher_JEIC0684_small_subunit_ribosomal_RNA_gene:0.0530391480):0.0843375970):0.0331289886):0.0213943407,((((KY977746.1_Amanita_djarilmari_voucher_PERTH08776083_5_internal_transcribed_spacer_1:0.0060656719,NR_173766.1_Amanita_millsii_HO_581533_ITS_region__from_TYPE_material:0.0030433327):0.0000029010,NR_169902.1_Amanita_gardneri_PERTH_08776121_ITS_region__from_TYPE_material:0.0000010243):0.0078001895,PQ498127.1_Amanita_marmorata_isolate_BDC_iNaturalist___192051356_small_subunit_ribosomal_RNA_gene:0.0054769833):0.0084424937,((((PV529713.1_Amanita_phalloides_isolate_CA_FUNDIS_iNaturalist___258493071_small_subunit_ribosomal_RNA_gene:0.0000010243,JX998031.1_Amanita_phalloides_voucher_HKAS:0.0029976886):0.0026462330,(((((((PP806283.1_Amanita_subpallidorosea_voucher_HKAS134526_internal_transcribed_spacer_1:0.0000021502,(KJ466400.1_Amanita_sp._2_ZLY-2014_voucher_HKAS77350_internal_transcribed_spacer_1:0.0000020423,KP691683.1_Amanita_subpallidorosea_voucher_LHJ140923-41_18S_ribosomal_RNA_gene:0.0000024048):0.0055772480):0.0057815528,(((PV124173.1_Amanita_virosa_isolate_A.virosa_Bettina_Haberl_internal_transcribed_spacer_1:0.0000026558,JX998030.1_Amanita_virosa_voucher_HKAS:0.0000020020):0.0055992686,(KJ466374.1_Amanita_bisporigera_voucher_RET377-9_internal_transcribed_spacer_1:0.0058895355,KJ466382.1_Amanita_pallidorosea_voucher_HKAS61937_internal_transcribed_spacer_1:0.0000028323):0.0153608566):0.0022163039,KJ466381.1_Amanita_ocreata_voucher_HKAS79686_internal_transcribed_spacer_1:0.0000029529):0.0000026418):0.0063503371,(((MH508655.1_Amanita_zangii_voucher_HKAS99663_internal_transcribed_spacer_1:0.0389525911,(((KJ466408.1_Amanita_sp._6_ZLY-2014_voucher_HKAS75555_internal_transcribed_spacer_1:0.0000010243,KJ466410.1_Amanita_sp._6_ZLY-2014_voucher_HMJAU20469_internal_transcribed_spacer_1:0.0000010243):0.0000010243,KJ466409.1_Amanita_sp._6_ZLY-2014_voucher_HKAS77324_internal_transcribed_spacer_1:0.0029345473):0.0090339597,KJ466411.1_Amanita_sp._7_ZLY-2014_voucher_HKAS77332_internal_transcribed_spacer_1:0.0132155773):0.0099086292):0.0069410520,KJ466420.1_Amanita_suballiacea_voucher_RET490-1_internal_transcribed_spacer_1:0.0059919423):0.0000021209,JX998027.1_Amanita_exitialis_voucher_HKAS:0.0055403591):0.0059417724):0.0000021358,JX998034.1_Amanita_subjunquillea_voucher_HKAS:0.0000010243):0.0000021671,(OR058516.1_Amanita_subjunquillea_voucher_BJTC_C558_small_subunit_ribosomal_RNA_gene:0.0000021569,(OR058519.1_Amanita_subjunquillea_voucher_BJTC_Z276_small_subunit_ribosomal_RNA_gene:0.0000025479,(OR058520.1_Amanita_subjunquillea_voucher_BJTC_112_small_subunit_ribosomal_RNA_gene:0.0000023415,OR058521.1_Amanita_subjunquillea_voucher_BJTC_Z172_small_subunit_ribosomal_RNA_gene:0.0082334117):0.0027115769):0.0027085144):0.0027094897):0.0000023031,OR058517.1_Amanita_subjunquillea_voucher_BJTC_033_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0000021397,OR058514.1_Amanita_subjunquillea_voucher_BJTC_217_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0000029464):0.0000010243,(JX998032.1_Amanita_subjunquillea_voucher_HKAS:0.0000027907,OR058522.1_Amanita_subjunquillea_voucher_HMAS_253775_small_subunit_ribosomal_RNA_gene:0.0000021335):0.0108155131):0.0000027501,(((PV191123.1_Amanita_rimosa_voucher_Dai_32531_small_subunit_ribosomal_RNA_gene:0.0077071099,JX998018.1_Amanita_rimosa_voucher_HKAS:0.0000024842):0.0805360834,KJ466404.1_Amanita_sp._4_ZLY-2014_voucher_HKAS77326_internal_transcribed_spacer_1:0.0000025307):0.0035794578,JX998023.1_Amanita_fuliginea_voucher_HKAS:0.0154862686):0.0104747020):0.0074844737):0.0276163044):0.0051568162,((MT594772.1_Amanita_cinereopannosa_strain_OTU1252_5.8S_ribosomal_RNA_gene:0.2825683663,((OM451516.1_Amanita_strobiliformis_voucher_PC:0.0690867415,MW016759.1_Amanita_alboradicata_voucher_MHHNU_10531_small_subunit_ribosomal_RNA_gene:0.1193972894):0.0390423157,(ON181686.1_Amanita_vestita_voucher_B21062704_internal_transcribed_spacer_1:0.0044365695,MH508647.1_Amanita_vestita_voucher_HKAS79687_internal_transcribed_spacer_1:0.0060671909):0.0954298147):0.0000028088):0.0000021278,(MH508392.1_Amanita_griseoverrucosa_voucher_HKAS57357_internal_transcribed_spacer_1:0.0614535134,(KF258722.1_Amanita_wadjukiorum_voucher_PERTH_08403988_clone_46_18S_ribosomal_RNA_gene:0.0283991354,JX398328.1_Amanita_wadulawitu_voucher_PERTH_08615861_clone_14R2_18S_ribosomal_RNA_gene:0.0447671804):0.0303948075):0.0065898958):0.0065888001):0.0000020808,((((((((((((OR824675.1_Amanita_augusta_isolate_OMDL_iNat___179046396_small_subunit_ribosomal_RNA_gene:0.0000010243,((MH508494.1_Amanita_parvifritillaria_voucher_HKAS83737_internal_transcribed_spacer_1:0.0126267170,(MH508328.1_Amanita_detersa_voucher_HKAS71476_internal_transcribed_spacer_1:0.0000023701,MH508351.1_Amanita_flavoconia_voucher_RET_485-6_internal_transcribed_spacer_1:0.0027384483):0.0055498687):0.0000022118,MH508343.1_Amanita_flavipes_voucher_HKAS57650_internal_transcribed_spacer_1:0.0000021808):0.0000022030):0.0000022155,(PP762870.1_Amanita_flavoconia_voucher_MQ21-HL087a-QFB32903_small_subunit_ribosomal_RNA_gene:0.0026156836,MH508337.1_Amanita_elongata_voucher_RET_384-5_internal_transcribed_spacer_1:0.0111684555):0.0000023966):0.0028212792,((OR506128.1_Amanita_brunneolocularis_voucher_ART201972_internal_transcribed_spacer_1:0.0000010243,PP762946.1_Amanita_rubescens_voucher_MQ22-QFB33039-HL127_internal_transcribed_spacer_1:0.0026976268):0.0000023326,(MH508558.1_Amanita_rubescens_voucher_HKAS92034_internal_transcribed_spacer_1:0.0000028462,MH508554.1_Amanita_rubescens_voucher_HKAS100631_small_subunit_ribosomal_RNA_gene:0.0056605090):0.0026522158):0.0052844297):0.0061702988,((OR236792.1_Amanita_spissa_voucher_HMAS_297600_internal_transcribed_spacer_1:0.0029908433,MH508612.1_Amanita_spissa_voucher_HKAS92089_internal_transcribed_spacer_1:0.0000022239):0.0029843741,MH508320.1_Amanita_citrinoindusiata_voucher_HKAS100522_internal_transcribed_spacer_1:0.0027652789):0.0000020046):0.0030208077,(KJ466373.1_Amanita_aff._fritillaria_ZLY-2014_voucher_HKAS57649_internal_transcribed_spacer_1:0.0000010243,MH508609.1_Amanita_spissacea_voucher_HKAS57754_internal_transcribed_spacer_1:0.0000020887):0.0027749338):0.0000024785,MH508318.1_Amanita_citrinoannulata_voucher_HKAS83459_internal_transcribed_spacer_1:0.0058630955):0.0042968500,(((OR058527.1_Amanita_sp._voucher_BJTC_Z083_small_subunit_ribosomal_RNA_gene:0.0000027216,(OR058529.1_Amanita_sp._voucher_BJTC_Z049_small_subunit_ribosomal_RNA_gene:0.0000010243,OR058530.1_Amanita_sp._voucher_BJTC_Z824_small_subunit_ribosomal_RNA_gene:0.0000010243):0.0025984010):0.0027228074,(((OR058531.1_Amanita_sp._voucher_BJTC_C182_small_subunit_ribosomal_RNA_gene:0.0025906496,OR058532.1_Amanita_sp._voucher_BJTC_Z815_small_subunit_ribosomal_RNA_gene:0.0078475479):0.0025902847,OR058534.1_Amanita_sp._voucher_BJTC_Z820_small_subunit_ribosomal_RNA_gene:0.0000021294):0.0052192089,OR058533.1_Amanita_sp._voucher_BJTC_Z819_small_subunit_ribosomal_RNA_gene:0.0026351594):0.0024557804):0.0080053523,OR058528.1_Amanita_sp._voucher_BJTC_Z760_small_subunit_ribosomal_RNA_gene:0.0000027680):0.0060060782):0.0041431338,((PQ164615.1_Amanita_griseofolia_voucher_Dai_25124_internal_transcribed_spacer_1:0.0316862138,MH508367.1_Amanita_fritillaria_voucher_HKAS91952_internal_transcribed_spacer_1:0.0078760260):0.0091299236,MH508373.1_Amanita_fuscosquamosa_voucher_PDD92862_internal_transcribed_spacer_1:0.0028393199):0.0088875330):0.0058626542,MH508474.1_Amanita_orsonii_voucher_HKAS52264_internal_transcribed_spacer_1:0.0144988371):0.0090823151,MH508584.1_Amanita_sepiacea_voucher_HKAS56799_internal_transcribed_spacer_1:0.0000028960):0.0026889068,ON794382.1_Amanita_sepiacea_voucher_HKAS122581_internal_transcribed_spacer_1:0.0000022303):0.0049086382,(PP762814.1_Amanita_brunnescens_voucher_MQ22-QFB33036-HL124_internal_transcribed_spacer_1:0.0115257344,(((PP762860.1_Amanita_citrina_voucher_MQ24-RPL30181-CMMF27216_internal_transcribed_spacer_1:0.0069795474,MH508311.1_Amanita_citrina_voucher_HKAS101397_internal_transcribed_spacer_1:0.0143968652):0.0040417060,MH508598.1_Amanita_sinocitrina_voucher_HKAS100530_internal_transcribed_spacer_1:0.0064990770):0.0061080102,MH508506.1_Amanita_porphyria_voucher_HKAS92088_internal_transcribed_spacer_1:0.0059921218):0.0033038072):0.0098349369):0.0309475682):0.0138914241,(OR543300.1_Amanita_aff._eriophora_voucher_HKAS79577_small_subunit_ribosomal_RNA_gene:0.0712434434,((MH508281.1_Amanita_brunneostrobilipes_voucher_HKAS60291_internal_transcribed_spacer_1:0.1348644046,((MH508291.1_Amanita_caojizong_voucher_HKAS79673_internal_transcribed_spacer_1:0.0887271268,MH508415.1_Amanita_kotohiraensis_voucher_HKAS100577_small_subunit_ribosomal_RNA_gene:0.0752744988):0.0422042032,MH508333.1_Amanita_eijii_voucher_HKAS70229_internal_transcribed_spacer_1:0.0377334363):0.0158641739):0.0062914999,MH508335.1_Amanita_elliptica_voucher_HKAS79602_internal_transcribed_spacer_1:0.1509475788):0.0043476242):0.0168080298):0.0181870946,(ON971239.1_Amanita_rufobrunnescens_voucher_B22060216_internal_transcribed_spacer_1:0.0589005590,MH508278.1_Amanita_brunneomaculata_voucher_HKAS68393_internal_transcribed_spacer_1:0.0537777560):0.0756902451):0.0170133892,MT878220.1_Amanita_fulvopyramidalis_voucher_MHHNU_8814_small_subunit_ribosomal_RNA_gene:0.1090319596):0.0082112808,(((MN919216.1_Amanita_carneiphylla_clone_AD282179_5_internal_transcribed_spacer_1:0.2006723445,(MH508445.1_Amanita_neo-ovoidea_voucher_HKAS89025_internal_transcribed_spacer_1:0.0786799533,MH508524.1_Amanita_pseudoporphyria_voucher_HKAS89074_internal_transcribed_spacer_1:0.1162057905):0.0360478960):0.0149654248,(MH508435.1_Amanita_minutisquama_voucher_HKAS100504_internal_transcribed_spacer_1:0.0486016943,MH508648.1_Amanita_virgineoides_voucher_HKAS100518_internal_transcribed_spacer_1:0.1448023362):0.0404007890):0.0153847998,MH508652.1_Amanita_yenii_voucher_HKAS87047_internal_transcribed_spacer_1:0.0818898559):0.0323157770):0.0057160468,(((((ON545069.1_Amanita_macrocarpa_voucher_B21051513_internal_transcribed_spacer_1:0.0380395495,MH508393.1_Amanita_gymnopus_voucher_HKAS71618_internal_transcribed_spacer_1:0.0373295162):0.0000024583,KP012750.1_Amanita_aff._ochrophylla_MEL_2382876_internal_transcribed_spacer_1:0.0721485714):0.0096925855,PP516700.1_Amanita_ravenelii_isolate_OMDL_iNat___173977882_small_subunit_ribosomal_RNA_gene:0.0172416992):0.0247862677,MH508548.1_Amanita_roseolifolia_voucher_HKAS101403_internal_transcribed_spacer_1:0.1377026008):0.0131175832,KP137063.1_Amanita_quenda_voucher_PERTH08587116_clone_26_18S_ribosomal_RNA_gene:0.0968120237):0.0084745377):0.0100405754,((NR_151651.1_Amanita_heishidingensis_HKAS_76122_ITS_region__from_TYPE_material:0.0000028248,KJ922999.1_Amanita_heishidingensis_voucher_HKAS81484_internal_transcribed_spacer_1:0.0030487065):0.0515406446,(PQ492966.1_Amanita_smithiana_bio-material_iNAT:0.0120754992,((KJ466380.1_Amanita_oberwinklerana_voucher_HKAS77330_internal_transcribed_spacer_1:0.0309457813,(OR058508.1_Amanita_oberwinkleriana_voucher_HMAS_253800_small_subunit_ribosomal_RNA_gene:0.0380059268,OR058509.1_Amanita_oberwinkleriana_voucher_HMAS_253796_small_subunit_ribosomal_RNA_gene:0.0114697862):0.0560871477):0.0495671031,(MH508535.1_Amanita_pyramidata_voucher_HKAS87943_internal_transcribed_spacer_1:0.0404784035,MH508561.1_Amanita_rubiginosa_voucher_HKAS52216_internal_transcribed_spacer_1:0.0724890180):0.0838483596):0.0665625379):0.0094230435):0.0078482918);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t trim_file.treefile -m "TIM2{1.33931,3.71351,5.22634}+F{0.245837,0.206835,0.23927,0.308058}+R5{0.411394,0.0870675,0.196238,0.455958,0.211528,1.31342,0.149505,2.83367,0.0313351,5.5284}" --length 431
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s trim_file --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s trim_file --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon May 19 17:08:44 2025
+Total CPU time used: 3895.95 seconds (1h:4m:55s)
+Total wall-clock time used: 3911.69 seconds (1h:5m:11s)
+

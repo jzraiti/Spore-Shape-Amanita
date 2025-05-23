@@ -87,3 +87,47 @@ for file in *; do
     fi
 done
 
+
+
+--- How to do data preprocessing for phylogenetics
+
+* remove accession if not in morpho data 
+* get new accession if in morpho 
+
+1. get raw fasta
+2. align 
+3. view alignments in aliview, are there replicates? remove from accessions or replace, and do corresponding in fasta files or regenerate
+4. trim using docker phylotools
+5. revisualize, check for discrepancies, reiterate
+6. run fasta tree using conda or iqtree2 -s trim_file to get a test tree
+    maybe this can be done in an automated way for all of your files using CHTC? Or all 8 cores?
+7. check tree for branches that are crazy or samples that group wrong and trim/remove, look specifically for your outgroups - dont forget to reiterate by removing them from your accessions etc
+8. do this for all loci
+9. plug into astral, and pray baby pray
+
+
+---- phylo todo may 19
+
+Make list of disqualified accession numbers and why
+
+Get conda fast tree
+
+Put OTU filter on your accession numbers?
+
+OP798794.1
+Get rid of OP798794.1
+
+Check ON000812.1 why is it with outgroup
+
+Make list of disqualified accession numbers and why
+
+Write down list of lepidella sp
+
+80 is the number to beat, with functionally two loci
+
+Ceciliacea - found in us and Europe
+
+
+Check on outgroup from multiple continents
+
+Filter dataset based on quality and coverage
