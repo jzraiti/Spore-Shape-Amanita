@@ -143,6 +143,30 @@ for file in *; do
     fi
 done
 
+#make gene to taxa map for astral
+
+
+#Calling astral
+/root/ASTER/bin/astral -h
+
+/root/ASTER/bin/astral -i /path/to/gene_trees/*.treefile -o species_tree_output.nwk -r 8
+
+/root/ASTER/bin/astral \
+  -i *.treefile \  # Input gene tree files (make sure all relevant files are included)
+  -o species_tree_output.tree \  # Output species tree in Newick format
+  -r 16 \  # Number of initial rounds of placements
+  -s 16 \  # Number of rounds of subsampling per exploration step
+  -t 8 \  # Number of threads to use
+  -u 3 \  # Output detailed support (freqQuad.csv)
+  -a ../mapping_file.txt \  # Mapping string file (gene names to taxa names)
+  --root "Pluteus_cervinus" \  # Optionally root the tree at a specific species (replace "Amanita" with your root species name)
+  --lambda 0.5 \  # Rate of Yule process (adjust depending on the tree you're working with)
+  --seed 1234  # Set a seed for reproducibility
+
+/root/ASTER/bin/astral -i gene.trees -o "species_tree_output.tree" -r 16 -s 16 -t 4 -u 3 -a "../../astral_mapping.txt" --lambda 0.5 --seed 1234 -v 2
+
+
+/root/ASTER/bin/wastral -i gene.trees -o "species_tree_output.tree" -r 16 -s 16 -t 4 -u 3 -a "../../astral_mapping.txt" --lambda 0.5 --seed 1234 -v 2
 
 
 --- How to do data preprocessing for phylogenetics
