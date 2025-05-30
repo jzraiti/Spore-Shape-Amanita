@@ -1,0 +1,337 @@
+IQ-TREE multicore version 2.3.6 for Linux ARM 64-bit built Dec  1 2024
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    fa4f67bc55c6 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s cleaned_mantrim_al_RPB2.fasta -m MFP -B 1000 --alrt 1000
+Seed:    673138 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri May 30 02:28:17 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file cleaned_mantrim_al_RPB2.fasta ... Fasta format detected
+Reading fasta file: done in 0.00120967 secs using 55.47% CPU
+Alignment most likely contains DNA/RNA sequences
+WARNING: 12 sites contain only gaps or ambiguous characters.
+Alignment has 78 sequences with 462 columns, 218 distinct patterns
+189 parsimony-informative, 20 singleton sites, 253 constant sites
+                                                                                                                                         Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 3.1917e-05 secs using 97.13% CPU
+   1  OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds           3.25%    passed     92.09%
+   2  MH485862.1_Amanita_altipes_voucher_HKAS91125_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                3.25%    passed     96.94%
+   3  KU714593.1_Amanita_aporema_voucher_FRIM_62674_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     92.79%
+   4  MH485870.1_Amanita_augusta_voucher_HKAS101419_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     89.22%
+   5  ON007282.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds              3.25%    passed     99.33%
+   6  OR529183.1_Amanita_brunneolocularis_voucher_ART201972_rpb2_mRNA__partial_cds                                                               3.25%    passed     69.69%
+   7  AY780936.1_Amanita_brunnescens_isolate_AFTOL-ID_673_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds                      3.90%    passed     87.03%
+   8  MH485899.1_Amanita_caesareoides_voucher_HKAS71021_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds           3.25%    passed     37.54%
+   9  MN928558.1_Amanita_carneiphylla_voucher_AD282179_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds            3.25%    passed     98.39%
+  10  OR554314.1_Amanita_chatamagotake_voucher_EFHAAU1669_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds         3.25%    passed     58.39%
+  11  MH485932.1_Amanita_cinereopannosa_voucher_RET_477-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     91.59%
+  12  KP259288.1_Amanita_cinereovelata_voucher_HKAS_81647_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds         3.25%    passed     88.45%
+  13  MH485935.1_Amanita_cingulata_voucher_HKAS100640_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds             3.25%    passed     86.84%
+  14  MH485936.1_Amanita_citrina_voucher_HKAS101397_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     96.14%
+  15  KR824794.1_Amanita_concentrica_voucher_HKAS_87061_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds           3.25%    passed     98.06%
+  16  OR554280.1_Amanita_sp.__crassiconus__voucher_JEIC0641_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds       3.25%    passed     99.48%
+  17  ON492123.1_Amanita_crebresulcata_voucher_INPA_265285_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     93.36%
+  18  MF000755.1_Amanita_djarilmari_voucher_PERTH08776067_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds                3.25%    passed     98.09%
+  19  MT993780.1_Amanita_aff._drummondii_isolate_JAC13423_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     98.48%
+  20  KF877052.1_Amanita_egregia_voucher_RET_136-7_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds                                         3.25%    passed     95.06%
+  21  MF000758.1_Amanita_eucalypti_voucher_PERTH8809828_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds                  3.46%    passed     96.84%
+  22  MN928573.1_Amanita_fibrillopes_voucher_PERTH08793573_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     59.52%
+  23  MH485985.1_Amanita_flavoconia_voucher_RET_485-6_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds             3.25%    passed     66.89%
+  24  MH486022.1_Amanita_fulva_voucher_HKAS96168_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                  3.25%    passed     92.52%
+  25  MF000756.1_Amanita_gardneri_voucher_PERTH08776121_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds                  3.25%    passed     91.31%
+  26  MH486025.1_Amanita_griseofarinosa_voucher_HKAS80926_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds         3.25%    passed     78.18%
+  27  OR051728.1_Amanita_griseofolia_voucher_EFHAAU555_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds            3.25%    passed     99.26%
+  28  MH486043.1_Amanita_griseoverrucosa_voucher_HKAS57357_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     99.89%
+  29  MH486044.1_Amanita_gymnopus_voucher_HKAS71618_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     57.18%
+  30  MH486049.1_Amanita_heishidingensis_voucher_HKAS81484_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     98.48%
+  31  MH486051.1_Amanita_ibotengutake_voucher_HKAS83269_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds           3.25%    passed     71.14%
+  32  MT993768.1_Amanita_inopinata_isolate_JAC11447_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds              3.25%    passed     94.63%
+  33  MH486063.1_Amanita_jacksonii_voucher_Wolf2183_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     45.34%
+  34  MH485915.1_Amanita_cf._javanica_voucher_HKAS101408_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds          3.25%    passed     66.68%
+  35  LC723390.1_Amanita_kitamagotake_S-76_rpb2_gene_for_RNA_polymerase_II_second_largest_subunit__partial_sequence                              3.25%    passed     81.44%
+  36  KU714584.1_Amanita_liquii_voucher_HKAS_54568_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                3.25%    passed     98.48%
+  37  ON325593.1_Amanita_macrocarpa_voucher_B21051513_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds            3.25%    passed     76.89%
+  38  ON854980.1_Amanita_madagascariensis_voucher_JEIC0515_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     88.09%
+  39  KF877069.1_Amanita_aff._mafingensis_MA_898_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds                                           3.68%    passed     52.56%
+  40  ON007285.1_Amanita_manicata_voucher_SDBR-STO-2020-36_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds                     3.25%    passed     57.38%
+  41  MT993784.1_Amanita_marmorata_isolate_JAC14571_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds              3.46%    passed     97.94%
+  42  MT729677.1_Amanita_masasiensis_voucher_BRF4071_RNA_polymerase_II_subunit_II__RPB2__gene__partial_cds                                       3.25%    passed     72.14%
+  43  MF000753.1_Amanita_millsii_voucher_HO581533_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds                        3.25%    passed     99.22%
+  44  OR554363.1_Amanita_ochrophylla_voucher_09.207_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     99.20%
+  45  MH486139.1_Amanita_orientifulva_voucher_HKAS97971_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds           3.25%    passed     94.79%
+  46  MH486174.1_Amanita_parvipantherina_voucher_HKAS67828_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.25%    passed     80.15%
+  47  KU714594.1_Amanita_princeps_voucher_FRIM_62849_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds              3.25%    passed     99.70%
+  48  MK557916.1_Amanita_proxima_voucher_S16_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                      3.25%    passed     98.49%
+  49  OP272670.1_Amanita_quenda_voucher_PERTH09472754_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds                    3.25%    passed     98.52%
+  50  MH486210.1_Amanita_ravenelii_voucher_RET_459-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds             3.25%    passed     98.50%
+  51  KJ466615.1_Amanita_rimosa_voucher_HKAS75777_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds                    3.25%    passed     94.91%
+  52  MH486226.1_Amanita_rubescens_voucher_HKAS92034_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds              3.25%    passed     73.35%
+  53  KU714590.1_Amanita_rubromarginata_voucher_HKAS_59740_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.68%    passed     77.07%
+  54  MH486256.1_Amanita_sepiacea_voucher_HKAS56799_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               2.60%    passed     69.09%
+  55  LC325296.1_Amanita_cf._similis_TMI_26363_rpb2_gene_for_RNA_polymerase_II_subunit_II__partial_cds                                           3.46%    passed     87.38%
+  56  MH486277.1_Amanita_sinensis_voucher_HKAS74388_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     68.71%
+  57  MK557917.1_Amanita_smithiana_voucher_S18_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                    3.25%    passed     92.86%
+  58  MH486296.1_Amanita_spissa_voucher_HKAS92089_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                 3.25%    passed     80.63%
+  59  OR554358.1_Amanita_austrostraminea_voucher_09.354_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds           3.25%    passed     87.69%
+  60  OR554309.1_Amanita_cf._strobilaceovolvata_voucher_08.107_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds    3.25%    passed     96.94%
+  61  MH486298.1_Amanita_strobiliformis_voucher_MB-001177_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds         3.25%    passed     81.18%
+  62  OR051516.1_Amanita_subglobosa_voucher_HMAS_253798_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                        3.25%    passed     90.40%
+  63  KP691703.1_Amanita_subpallidorosea_voucher_LHJ140926-11_RNA_polymerase_II_second-largest_subunit__RPB2__gene__partial_cds                  3.25%    passed     97.06%
+  64  MH486323.1_Amanita_timida_voucher_HKAS83228_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                 3.25%    passed     89.50%
+  65  PQ493142.1_Amanita_umbrinella_voucher_AD-C56413_DNA-dependent_RNA_polymerase_II_second_largest_subunit_1__rpb2__gene__partial_cds          3.68%    passed     85.57%
+  66  OR051523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds            3.25%    passed     99.48%
+  67  KF877090.1_Amanita_vernicoccora_voucher_RET_385-6_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds                                    3.46%    passed     34.31%
+  68  KJ466662.1_Amanita_vestita_voucher_HKAS79687_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds                   3.25%    passed     91.82%
+  69  KF877092.1_Amanita_virginiana_voucher_RET_374-8_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds                                      3.46%    passed     97.14%
+  70  KJ466664.1_Amanita_virosa_voucher_HKAS56694_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds                    3.25%    passed     96.87%
+  71  MH486342.1_Amanita_vittadinii_voucher_HKAS101430_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds            3.25%    passed     72.19%
+  72  MN928570.1_Amanita_wadjukiorum_voucher_PERTH08793522_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds        3.46%    passed     98.32%
+  73  MN928561.1_Amanita_wadulawitu_voucher_PERTH09144382_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds         3.25%    passed     99.28%
+  74  MH485918.1_Amanita_cf._xanthogala_voucher_HKAS84707_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds         3.25%    passed     87.61%
+  75  MH486347.1_Amanita_yuaniana_voucher_HKAS58807_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds               3.25%    passed     90.58%
+  76  KF877097.1_Amanita_zambiana_voucher_RET_343-10_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds                                       3.25%    passed     99.98%
+  77  MH486351.1_Amanita_zangii_voucher_HKAS99663_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds                 3.25%    passed     85.66%
+  78  OR828288.1_Pluteus_cervinus_voucher_AMB_18870_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds                            5.19%    passed     85.49%
+****  TOTAL                                                                                                                                      3.31%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.002 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -7903.695
+2. Current log-likelihood: -7898.154
+3. Current log-likelihood: -7893.651
+4. Current log-likelihood: -7891.015
+Optimal log-likelihood: -7890.196
+Rate parameters:  A-C: 1.39883  A-G: 9.41201  A-T: 1.16727  C-G: 1.08705  C-T: 15.23592  G-T: 1.00000
+Base frequencies:  A: 0.286  C: 0.186  G: 0.292  T: 0.236
+Proportion of invariable sites: 0.515
+Gamma shape alpha: 1.283
+Parameters optimization took 4 rounds (1.140 sec)
+Time for fast ML tree search: 3.439 seconds
+
+NOTE: ModelFinder requires 6 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 462 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         9256.631     161 18835.263    19009.143    19501.088
+  2  GTR+F+I       8093.187     162 16510.373    16687.002    17180.335
+  3  GTR+F+G4      7938.281     162 16200.562    16377.190    16870.523
+  4  GTR+F+I+G4    7890.050     163 16106.100    16285.509    16780.197
+  5  GTR+F+R2      7953.143     163 16232.286    16411.696    16906.383
+  6  GTR+F+R3      7889.787     165 16109.573    16294.641    16791.942
+  7  GTR+F+R4      7879.004     167 16092.009    16282.866    16782.648
+  8  GTR+F+R5      7878.643     169 16095.286    16292.066    16794.196
+ 14  GTR+F+I+R2    7909.923     164 16147.846    16330.069    16826.079
+ 15  GTR+F+I+R3    7879.130     166 16090.260    16278.205    16776.763
+ 16  GTR+F+I+R4    7878.409     168 16092.819    16286.621    16787.594
+ 26  SYM+I+G4      7898.376     160 16116.752    16287.915    16778.443
+ 29  SYM+R4        7887.487     164 16102.973    16285.195    16781.206
+ 37  SYM+I+R3      7888.214     163 16102.429    16281.838    16776.526
+ 48  TVM+F+I+G4    7904.421     162 16132.841    16309.470    16802.803
+ 51  TVM+F+R4      7893.648     166 16119.296    16307.242    16805.800
+ 59  TVM+F+I+R3    7894.178     165 16118.357    16303.424    16800.725
+ 70  TVMe+I+G4     7898.423     159 16114.847    16283.324    16772.402
+ 73  TVMe+R4       7887.108     163 16100.217    16279.626    16774.314
+ 81  TVMe+I+R3     7888.255     162 16100.509    16277.138    16770.471
+ 92  TIM3+F+I+G4   7891.116     161 16104.231    16278.111    16770.057
+ 95  TIM3+F+R4     7879.520     165 16089.040    16274.107    16771.408
+103  TIM3+F+I+R3   7880.332     164 16088.664    16270.886    16766.897
+114  TIM3e+I+G4    7899.191     158 16114.383    16280.204    16767.802
+117  TIM3e+R4      7887.905     162 16099.810    16276.438    16769.771
+125  TIM3e+I+R3    7889.250     161 16100.500    16274.380    16766.326
+136  TIM2+F+I+G4   7890.471     161 16102.942    16276.822    16768.768
+139  TIM2+F+R4     7878.157     165 16086.314    16271.382    16768.683
+147  TIM2+F+I+R3   7879.515     164 16087.031    16269.253    16765.264
+158  TIM2e+I+G4    7898.566     158 16113.132    16278.954    16766.551
+161  TIM2e+R4      7886.597     162 16097.193    16273.822    16767.155
+169  TIM2e+I+R3    7888.399     161 16098.797    16272.677    16764.623
+180  TIM+F+I+G4    7891.412     161 16104.825    16278.705    16770.651
+183  TIM+F+R4      7879.289     165 16088.578    16273.646    16770.947
+191  TIM+F+I+R3    7880.648     164 16089.297    16271.519    16767.529
+202  TIMe+I+G4     7899.261     158 16114.522    16280.344    16767.941
+205  TIMe+R4       7887.499     162 16098.999    16275.628    16768.960
+213  TIMe+I+R3     7889.314     161 16100.629    16274.509    16766.454
+224  TPM3u+F+I+G4  7905.572     160 16131.144    16302.307    16792.835
+227  TPM3u+F+R4    7893.924     164 16115.848    16298.071    16794.081
+235  TPM3u+F+I+R3  7895.652     163 16117.303    16296.712    16791.400
+246  TPM3+I+G4     7899.232     157 16112.463    16275.661    16761.747
+249  TPM3+R4       7887.265     161 16096.530    16270.410    16762.356
+257  TPM3+I+R3     7889.294     160 16098.588    16269.751    16760.278
+268  TPM2u+F+I+G4  7904.741     160 16129.482    16300.645    16791.172
+271  TPM2u+F+R4    7892.497     164 16112.993    16295.216    16791.226
+279  TPM2u+F+I+R3  7894.518     163 16115.035    16294.445    16789.132
+290  TPM2+I+G4     7898.609     157 16111.219    16274.416    16760.502
+293  TPM2+R4       7886.080     161 16094.160    16268.040    16759.986
+301  TPM2+I+R3     7888.415     160 16096.831    16267.994    16758.521
+312  K3Pu+F+I+G4   7905.735     160 16131.471    16302.634    16793.161
+315  K3Pu+F+R4     7893.772     164 16115.544    16297.766    16793.777
+323  K3Pu+F+I+R3   7895.828     163 16117.656    16297.066    16791.753
+334  K3P+I+G4      7899.307     157 16112.615    16275.812    16761.899
+337  K3P+R4        7887.093     161 16096.187    16270.067    16762.012
+345  K3P+I+R3      7889.359     160 16098.718    16269.880    16760.408
+356  TN+F+I+G4     7891.487     160 16102.974    16274.137    16764.664
+359  TN+F+R4       7878.754     164 16085.508    16267.731    16763.741
+367  TN+F+I+R3     7880.718     163 16087.436    16266.846    16761.534
+378  TNe+I+G4      7899.319     157 16112.638    16275.835    16761.921
+381  TNe+R4        7886.980     161 16095.959    16269.839    16761.785
+389  TNe+I+R3      7889.363     160 16098.726    16269.889    16760.417
+400  HKY+F+I+G4    7905.819     159 16129.638    16298.114    16787.192
+403  HKY+F+R4      7893.597     163 16113.193    16292.603    16787.291
+411  HKY+F+I+R3    7895.905     162 16115.809    16292.438    16785.771
+422  K2P+I+G4      7899.367     156 16110.735    16271.338    16755.883
+425  K2P+R4        7886.951     160 16093.901    16265.064    16755.591
+433  K2P+I+R3      7889.412     159 16096.824    16265.301    16754.379
+444  F81+F+I+G4    8754.397     158 17824.795    17990.617    18478.214
+447  F81+F+R4      8737.642     162 17799.284    17975.912    18469.245
+455  F81+F+I+R3    8739.895     161 17801.789    17975.669    18467.615
+466  JC+I+G4       8739.831     155 17789.662    17947.701    18430.675
+469  JC+R4         8723.362     159 17764.723    17933.200    18422.278
+477  JC+I+R3       8725.902     158 17767.804    17933.626    18421.224
+Akaike Information Criterion:           TN+F+R4
+Corrected Akaike Information Criterion: K2P+R4
+Bayesian Information Criterion:         K2P+I+R3
+Best-fit model: K2P+I+R3 chosen according to BIC
+
+All model information printed to cleaned_mantrim_al_RPB2.fasta.model.gz
+CPU time for ModelFinder: 51.887 seconds (0h:0m:51s)
+Wall-clock time for ModelFinder: 52.069 seconds (0h:0m:52s)
+Generating 1000 samples for ultrafast bootstrap (seed: 673138)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -8725.902
+2. Current log-likelihood: -8424.704
+3. Current log-likelihood: -8289.750
+4. Current log-likelihood: -8281.102
+5. Current log-likelihood: -8272.370
+6. Current log-likelihood: -8263.196
+7. Current log-likelihood: -8253.530
+8. Current log-likelihood: -8243.301
+9. Current log-likelihood: -8232.431
+10. Current log-likelihood: -8220.826
+11. Current log-likelihood: -8208.316
+12. Current log-likelihood: -8194.878
+13. Current log-likelihood: -8180.188
+14. Current log-likelihood: -8164.096
+15. Current log-likelihood: -8146.291
+16. Current log-likelihood: -8126.391
+17. Current log-likelihood: -8103.906
+18. Current log-likelihood: -8078.193
+19. Current log-likelihood: -8048.402
+20. Current log-likelihood: -8013.476
+21. Current log-likelihood: -7912.915
+22. Current log-likelihood: -7890.129
+23. Current log-likelihood: -7889.451
+Optimal log-likelihood: -7889.414
+Rate parameters:  A-C: 1.00000  A-G: 10.04268  A-T: 1.00000  C-G: 1.00000  C-T: 10.04268  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Proportion of invariable sites: 0.502
+Site proportion and rates:  (0.123,0.242) (0.232,1.731) (0.143,3.985)
+Parameters optimization took 23 rounds (3.751 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0242758 secs using 99.42% CPU
+Computing ML distances took 0.024590 sec (of wall-clock time) 0.024288 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.00016525 secs
+Computing RapidNJ tree took 0.001917 sec (of wall-clock time) 0.000019 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -7901.291
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.271 second
+Computing log-likelihood of 98 initial trees ... 1.649 seconds
+Current best score: -7889.414
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -7889.409
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -7871.219
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 3: -7868.484
+Iteration 10 / LogL: -7868.506 / Time: 0h:1m:1s
+Iteration 20 / LogL: -7871.340 / Time: 0h:1m:4s
+Finish initializing candidate tree set (13)
+Current best tree score: -7868.484 / CPU time: 8.172
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 22: -7868.264
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 29: -7868.099
+Iteration 30 / LogL: -7870.605 / Time: 0h:1m:8s (0h:0m:56s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 31: -7867.845
+Iteration 40 / LogL: -7867.858 / Time: 0h:1m:13s (0h:0m:49s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 49: -7867.704
+Iteration 50 / LogL: -7873.536 / Time: 0h:1m:17s (0h:0m:51s left)
+Log-likelihood cutoff on original alignment: -7897.735
+Iteration 60 / LogL: -7869.671 / Time: 0h:1m:21s (0h:0m:44s left)
+Iteration 70 / LogL: -7875.660 / Time: 0h:1m:25s (0h:0m:38s left)
+Iteration 80 / LogL: -7868.648 / Time: 0h:1m:30s (0h:0m:33s left)
+Iteration 90 / LogL: -7868.093 / Time: 0h:1m:34s (0h:0m:28s left)
+Iteration 100 / LogL: -7867.863 / Time: 0h:1m:38s (0h:0m:23s left)
+Log-likelihood cutoff on original alignment: -7897.382
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.997
+Iteration 110 / LogL: -7867.828 / Time: 0h:1m:43s (0h:0m:42s left)
+Iteration 120 / LogL: -7867.893 / Time: 0h:1m:47s (0h:0m:37s left)
+Iteration 130 / LogL: -7874.933 / Time: 0h:1m:51s (0h:0m:32s left)
+Iteration 140 / LogL: -7867.831 / Time: 0h:1m:55s (0h:0m:27s left)
+Iteration 150 / LogL: -7867.794 / Time: 0h:2m:0s (0h:0m:22s left)
+Log-likelihood cutoff on original alignment: -7897.698
+TREE SEARCH COMPLETED AFTER 150 ITERATIONS / Time: 0h:2m:0s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -7867.704
+Optimal log-likelihood: -7867.700
+Rate parameters:  A-C: 1.00000  A-G: 10.55479  A-T: 1.00000  C-G: 1.00000  C-T: 10.55479  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Proportion of invariable sites: 0.504
+Site proportion and rates:  (0.124,0.249) (0.223,1.735) (0.149,3.897)
+Parameters optimization took 1 rounds (0.138 sec)
+BEST SCORE FOUND : -7867.700
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.383 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file cleaned_mantrim_al_RPB2.fasta.splits.nex
+Total tree length: 5.955
+
+Total number of iterations: 150
+CPU time used for tree search: 63.800 sec (0h:1m:3s)
+Wall-clock time used for tree search: 64.432 sec (0h:1m:4s)
+Total CPU time used: 120.195 sec (0h:2m:0s)
+Total wall-clock time used: 121.055 sec (0h:2m:1s)
+
+Computing bootstrap consensus tree...
+Reading input file cleaned_mantrim_al_RPB2.fasta.splits.nex...
+78 taxa and 455 splits.
+Consensus tree written to cleaned_mantrim_al_RPB2.fasta.contree
+Reading input trees file cleaned_mantrim_al_RPB2.fasta.contree
+Log-likelihood of consensus tree: -7867.937
+
+Analysis results written to: 
+  IQ-TREE report:                cleaned_mantrim_al_RPB2.fasta.iqtree
+  Maximum-likelihood tree:       cleaned_mantrim_al_RPB2.fasta.treefile
+  Likelihood distances:          cleaned_mantrim_al_RPB2.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          cleaned_mantrim_al_RPB2.fasta.splits.nex
+  Consensus tree:                cleaned_mantrim_al_RPB2.fasta.contree
+  Screen log file:               cleaned_mantrim_al_RPB2.fasta.log
+
+Date and Time: Fri May 30 02:30:18 2025

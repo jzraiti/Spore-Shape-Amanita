@@ -1,0 +1,362 @@
+IQ-TREE multicore version 2.3.6 for Linux ARM 64-bit built Dec  1 2024
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    fa4f67bc55c6 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s cleaned_mantrim_al_ITS.fasta -m MFP -B 1000 --alrt 1000
+Seed:    19574 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri May 30 02:14:36 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file cleaned_mantrim_al_ITS.fasta ... Fasta format detected
+Reading fasta file: done in 0.00267971 secs using 25.79% CPU
+Alignment most likely contains DNA/RNA sequences
+Alignment has 109 sequences with 467 columns, 349 distinct patterns
+235 parsimony-informative, 63 singleton sites, 169 constant sites
+                                                                                                                                                                                                                                                                Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 5.3459e-05 secs using 99.14% CPU
+   1  MH508254.1_Amanita_altipes_voucher_HKAS91125_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                               30.41%    passed     95.19%
+   2  KU714575.1_Amanita_aporema_voucher_FRIM_62674_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_25S_ribosomal_RNA_gene__partial_sequence               38.97%    passed     69.82%
+   3  HQ625012.1_Amanita_armillariiformis_voucher_RET_266-8_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence       32.55%    passed     98.87%
+   4  MW899480.1_Amanita_atkinsoniana_isolate_Taxon_285_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                               37.47%    passed     96.15%
+   5  OR824675.1_Amanita_augusta_isolate_OMDL_iNat___179046396_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gen   35.76%    passed     96.41%
+   6  PP762814.1_Amanita_brunnescens_voucher_MQ22-QFB33036-HL124_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                      35.33%    passed     97.56%
+   7  MH508284.1_Amanita_caesareoides_voucher_HKAS71021_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                          40.47%    passed     97.34%
+   8  JX398325.1_Amanita_carneiphylla_voucher_PERTH_08351279_clone_41_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_se   33.83%    passed     77.81%
+   9  PV249421.1_Amanita_ceciliae_voucher_V94_SVRG-42_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                 39.40%    passed     90.72%
+  10  PP890090.1_Amanita_chatamagotake_voucher_NIBRFG0000144243_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                       42.18%    passed     98.77%
+  11  FJ596836.1_Amanita_cinereopannosa_voucher_TENN61560_clone_C2_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_seque   36.62%    passed     78.70%
+  12  MH508310.1_Amanita_cingulata_voucher_HKAS75600_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial   41.97%    passed     86.86%
+  13  MH508311.1_Amanita_citrina_voucher_HKAS101397_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                              35.33%    passed     88.95%
+  14  ON782459.1_Amanita_codinae_voucher_DS881_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                                   35.76%    passed     94.96%
+  15  MK580746.1_Amanita_cokeri_isolate_712_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                      36.40%    passed     75.09%
+  16  MH508327.1_Amanita_concentrica_voucher_HKAS87061_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                           28.05%    passed     94.25%
+  17  ON392696.1_Amanita_crebresulcata_voucher_INPA_No._265556_TRTC176622_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                             39.83%    passed     76.62%
+  18  OP743556.1_Amanita_daucipes_isolate_S.D._Russell_ONT_NAMA2022_iNaturalist___137768131_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_la   36.62%    passed     77.74%
+  19  KY977746.1_Amanita_djarilmari_voucher_PERTH08776083_5_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                           36.40%    passed     89.12%
+  20  KF859757.1_Amanita_drummondii_voucher_PERTH08587175_clone_7.6_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_26S_ribosomal_RNA_gene__partial_sequ   38.54%    passed     95.04%
+  21  KU714563.1_Amanita_egregia_voucher_RET_273-7_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_25S_ribosomal_RNA_gene__partial_sequence                36.83%    passed     48.81%
+  22  OR543300.1_Amanita_aff._eriophora_voucher_HKAS79577_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__pa   32.98%    passed     84.19%
+  23  OQ200140.1_Amanita_eucalypti_strain_FG2018025_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial    31.05%    passed     68.97%
+  24  MW899462.1_Amanita_excelsa_isolate_Taxon_238_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_s   35.76%    passed     97.78%
+  25  JX398314.1_Amanita_fibrillopes_voucher_PERTH08353158_clone_26_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequ   27.62%    passed     95.74%
+  26  MH508351.1_Amanita_flavoconia_voucher_RET_485-6_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                            35.76%    passed     88.16%
+  27  PP762940.1_Amanita_frostiana_voucher_MQ21-HL054a-QFB32875_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                       36.19%    passed     88.43%
+  28  MH508371.1_Amanita_fulva_voucher_HKAS96168_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                 36.83%    passed     76.44%
+  29  NR_169902.1_Amanita_gardneri_PERTH_08776121_ITS_region__from_TYPE_material                                                                                                                                                                                       35.55%    passed     90.36%
+  30  MH508375.1_Amanita_griseofarinosa_voucher_HKAS80926_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                             34.05%    passed     92.65%
+  31  AY436448.1_Amanita_aff._ceciliae_HKAS_38159_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                     38.54%    passed     46.84%
+  32  PP375683.1_Amanita_griseofulva_f._albida_voucher_DB-2021-07-31-3_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                40.26%    passed     79.77%
+  33  MH508392.1_Amanita_griseoverrucosa_voucher_HKAS57357_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                            40.69%    passed     77.83%
+  34  MH508393.1_Amanita_gymnopus_voucher_HKAS71618_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                   33.62%    passed     51.89%
+  35  KJ922999.1_Amanita_heishidingensis_voucher_HKAS81484_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                                 34.05%    passed     79.31%
+  36  MT036486.1_Amanita_hesleri_voucher_RET_866-3_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                37.47%    passed     84.73%
+  37  KR673677.1_Amanita_ibotengutake_voucher_KA13-1204_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                               29.76%    passed     99.61%
+  38  PP890026.1_Amanita_imazekii_voucher_SFC20180907-35_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                              38.54%    passed     81.31%
+  39  MT229864.1_Amanita_inopinata_voucher_RET_270-3_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence              31.05%    passed     85.24%
+  40  PP762928.1_Amanita_jacksonii_voucher_MQ23-HL160A_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                41.97%    passed     88.65%
+  41  KU714572.1_Amanita_javanica_voucher_FRIM_61503_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_25S_ribosomal_RNA_gene__partial_sequence              40.47%    passed     89.02%
+  42  MN919348.1_Amanita_kitamagotake_voucher_YN20190804-02_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                      40.04%    passed     97.94%
+  43  AY436462.1_Amanita_liquii_voucher_HKAS_36611_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                    37.69%    passed     85.31%
+  44  FJ596834.1_Amanita_longipes_voucher_TENN61554_clone_C5_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence      34.26%    passed     93.75%
+  45  ON545069.1_Amanita_macrocarpa_voucher_B21051513_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                 33.83%    passed     47.57%
+  46  ON843333.1_Amanita_madagascariensis_voucher_JEIC0515_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                       38.97%    passed     45.51%
+  47  JQ512089.1_Amanita_mafingensis_strain_PC_0084424_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence            40.90%    passed     72.50%
+  48  PV248376.1_Amanita_manicata_voucher_HTBM0602_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                               28.05%    passed     89.23%
+  49  PQ498127.1_Amanita_marmorata_isolate_BDC_iNaturalist___192051356_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal   36.19%    passed     84.35%
+  50  PV593817.1_Amanita_masasiensis_voucher_JEIC0684_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                            38.54%    passed     96.48%
+  51  NR_173766.1_Amanita_millsii_HO_581533_ITS_region__from_TYPE_material                                                                                                                                                                                             36.62%    passed     91.43%
+  52  PP762887.1_Amanita_multisquamosa_voucher_MQ24-HRL4183_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                           32.55%    passed     98.85%
+  53  PV534722.1_Amanita_muscaria_subsp._flavivolvata_isolate_OMDL_iNat___237223554_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subu   32.33%    passed     84.55%
+  54  PV534589.1_Amanita_mutabilis_isolate_OMDL_iNat___195109888_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_g   31.69%    passed     66.70%
+  55  HQ625013.1_Amanita_nauseosa_voucher_DPL_6117_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                28.27%    passed     89.68%
+  56  PQ874117.1_Amanita_novinupta_isolate_CA_FUNDIS_iNaturalist___197687318_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_rib   36.19%    passed     94.53%
+  57  KP012750.1_Amanita_aff._ochrophylla_MEL_2382876_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                            33.62%    passed     93.46%
+  58  OR987336.1_Amanita_onusta_isolate_OMDL_iNat___149262289_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene   34.69%    passed     92.69%
+  59  FJ441035.1_Amanita_orientifulva_isolate_A5_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_26S_ribosomal_RNA_gene__partial_sequence                  39.40%    passed     74.88%
+  60  MH508496.1_Amanita_parvipantherina_voucher_HKAS67828_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                       32.98%    passed     94.50%
+  61  PP796173.1_Amanita_peckiana_voucher_CMMF001767_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                             37.90%    passed     90.75%
+  62  OR945128.1_Amanita_pelioma_isolate_OMDL_iNat___162408800_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gen   34.48%    passed     37.28%
+  63  KJ638291.1_Amanita_cf._virosa_sensu_auct._amer._isolate_2190_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                         36.83%    passed     98.04%
+  64  PP156188.1_Amanita_polypyramis_isolate_OMDL_iNat___189784363_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA   34.69%    passed     90.72%
+  65  MH930174.1_Amanita_populiphila_voucher_4746_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_se   40.26%    passed     96.32%
+  66  MK580762.1_Amanita_praelongispora_isolate_710_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                   29.34%    passed     47.08%
+  67  HQ625015.1_Amanita_prairiicola_voucher_RET_266-1_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                                     34.05%    passed     87.63%
+  68  KU714576.1_Amanita_princeps_voucher_FRIM_62849_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_25S_ribosomal_RNA_gene__partial_sequence              37.26%    passed     40.35%
+  69  KY606978.1_Amanita_proxima_voucher_S16_clone_C1_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partia   31.91%    passed     30.59%
+  70  KP137063.1_Amanita_quenda_voucher_PERTH08587116_clone_26_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_26S_ribosomal_RNA_gene__partial_sequence    35.12%    passed     48.59%
+  71  PP516700.1_Amanita_ravenelii_isolate_OMDL_iNat___173977882_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_g   35.97%    passed     83.24%
+  72  OP642917.1_Amanita_rhopalopus_isolate_S.D._Russell_ONT_iNaturalist___130794334_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_sub   35.97%    passed     83.24%
+  73  JX998018.1_Amanita_rimosa_voucher_HKAS_75777_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                34.69%    passed     95.27%
+  74  MH508554.1_Amanita_rubescens_voucher_HKAS100631_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                            36.19%    passed     94.53%
+  75  PQ062263.1_Amanita_rubromarginata_voucher_HNL502458_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                        40.90%    passed     96.64%
+  76  MH508584.1_Amanita_sepiacea_voucher_HKAS56799_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                              36.19%    passed     83.37%
+  77  PQ492996.1_Amanita_silvicola_bio-material_iNAT_190969241_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gen   35.33%    passed     93.89%
+  78  KU714566.1_Amanita_similis_voucher_FRIM_3740_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                         38.33%    passed     74.58%
+  79  MH508596.1_Amanita_sinensis_voucher_HKAS74388_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                   29.12%    passed     64.91%
+  80  OR354511.1_Amanita_singeri_voucher_MV_22.9679_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial    31.26%    passed     73.88%
+  81  PP762907.1_Amanita_sinicoflava_voucher_MQ21-HL109a-QFB32925_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA    39.40%    passed     87.94%
+  82  PQ492966.1_Amanita_smithiana_bio-material_iNAT_37646161_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene   37.04%    passed     92.55%
+  83  MZ088086.1_Amanita_solitaria_voucher_Q1-4_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequ   34.05%    passed     73.53%
+  84  MH508612.1_Amanita_spissa_voucher_HKAS92089_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                                35.76%    passed     97.78%
+  85  ON843330.1_Amanita_strobilaceovolvata_voucher_JEIC0609_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                          38.33%    passed     69.35%
+  86  MK285639.1_Amanita_strobiliformis_strain_A14_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence                               36.83%    passed     41.55%
+  87  OR058513.1_Amanita_subglobosa_voucher_HMAS_253798_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__part   32.55%    passed     98.85%
+  88  PP806283.1_Amanita_subpallidorosea_voucher_HKAS134526_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                           36.83%    passed     96.37%
+  89  MH508636.1_Amanita_timida_voucher_HKAS83228_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                     34.90%    passed     72.13%
+  90  PQ433170.1_Amanita_umbrinella_clone_5.7_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                         35.76%    passed     82.56%
+  91  OR058523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RN   40.26%    passed     97.04%
+  92  PP375799.1_Amanita_verna_voucher_DB-2019-06-09_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                  36.19%    passed     96.09%
+  93  PQ874132.1_Amanita_vernicoccora_isolate_CA_FUNDIS_iNaturalist___198128604_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit    38.76%    passed     98.68%
+  94  MH508647.1_Amanita_vestita_voucher_HKAS79687_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                    36.62%    passed     88.21%
+  95  OP749151.1_Amanita_virginiana_isolate_S.D._Russell_ONT_iNaturalist_129770300_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subun   40.26%    passed     95.78%
+  96  JX998030.1_Amanita_virosa_voucher_HKAS_56694_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_sequence                36.40%    passed     99.39%
+  97  PV109738.1_Amanita_vittadinii_strain_CIRM-BRFM_3597_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                        34.90%    passed     98.35%
+  98  PP762772.1_Amanita_volvata_voucher_MQ21-HL063a-QFB32881_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene   37.47%    passed     81.56%
+  99  KF258722.1_Amanita_wadjukiorum_voucher_PERTH_08403988_clone_46_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_seq   38.12%    passed     85.76%
+ 100  JX398328.1_Amanita_wadulawitu_voucher_PERTH_08615861_clone_14R2_18S_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_28S_ribosomal_RNA_gene__partial_se   35.33%    passed     82.37%
+ 101  PP796333.1_Amanita_wellsii_voucher_CMMF00741_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1_and_5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                               36.62%    passed     78.01%
+ 102  OP163232.1_Amanita_westii_voucher_FLAS-F-69033_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                  35.12%    passed     90.96%
+ 103  MH508298.1_Amanita_cf._xanthogala_voucher_HKAS84707_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                             31.91%    passed     95.17%
+ 104  MH508653.1_Amanita_yuaniana_voucher_HKAS58807_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial    40.26%    passed     77.98%
+ 105  JX844753.1_Amanita_zambiana_strain_RET-094-7_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                    38.97%    passed     50.66%
+ 106  MH508655.1_Amanita_zangii_voucher_HKAS99663_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                                     37.04%    passed     77.33%
+ 107  PQ636780.1_Zhuliangomyces_illinitus_voucher_AMB_20114_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                           34.69%    passed     64.50%
+ 108  PV605400.1_Pluteus_cervinus_isolate_CA_FUNDIS_iNaturalist___242012842_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribo   38.33%    passed     74.62%
+ 109  PP727834.1_Pluteus_petasatus_voucher_IAvH-TRI-MR107_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence                                                             38.33%    passed     69.68%
+****  TOTAL                                                                                                                                                                                                                                                            35.97%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: MH508612.1_Amanita_spissa_voucher_HKAS92089_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene_and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_sequence is identical to MW899462.1_Amanita_excelsa_isolate_Taxon_238_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__partial_s but kept for subsequent analysis
+NOTE: OR058513.1_Amanita_subglobosa_voucher_HMAS_253798_small_subunit_ribosomal_RNA_gene__partial_sequence__internal_transcribed_spacer_1__5.8S_ribosomal_RNA_gene__and_internal_transcribed_spacer_2__complete_sequence__and_large_subunit_ribosomal_RNA_gene__part is identical to PP762887.1_Amanita_multisquamosa_voucher_MQ24-HRL4183_internal_transcribed_spacer_1__partial_sequence__5.8S_ribosomal_RNA_gene__complete_sequence__and_internal_transcribed_spacer_2__partial_sequence but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.008 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -8989.809
+Optimal log-likelihood: -8989.102
+Rate parameters:  A-C: 0.52900  A-G: 2.86531  A-T: 1.14084  C-G: 0.58153  C-T: 2.70945  G-T: 1.00000
+Base frequencies:  A: 0.265  C: 0.186  G: 0.230  T: 0.319
+Proportion of invariable sites: 0.233
+Gamma shape alpha: 0.715
+Parameters optimization took 1 rounds (0.828 sec)
+Time for fast ML tree search: 4.947 seconds
+
+NOTE: ModelFinder requires 13 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 467 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         10484.090    223 21414.179    21825.307    22338.811
+  2  GTR+F+I       9656.434     224 19760.867    20177.396    20689.645
+  3  GTR+F+G4      9013.726     224 18475.452    18891.981    19404.230
+  4  GTR+F+I+G4    8988.747     225 18427.494    18849.486    19360.418
+  5  GTR+F+R2      9145.170     225 18740.340    19162.332    19673.264
+  6  GTR+F+R3      9027.400     227 18508.800    18941.905    19450.017
+  7  GTR+F+R4      8998.750     229 18455.501    18899.973    19405.010
+  8  GTR+F+R5      8986.511     231 18435.023    18891.125    19392.825
+  9  GTR+F+R6      8979.570     233 18425.139    18893.139    19391.234
+ 10  GTR+F+R7      8978.755     235 18427.510    18907.683    19401.897
+ 14  GTR+F+I+R2    9067.575     226 18587.149    19014.666    19524.220
+ 15  GTR+F+I+R3    8986.185     228 18428.370    18867.126    19373.733
+ 16  GTR+F+I+R4    8978.168     230 18416.336    18866.590    19369.992
+ 17  GTR+F+I+R5    8977.578     232 18419.156    18881.173    19381.105
+ 26  SYM+I+G4      9048.556     222 18541.112    18946.899    19461.597
+ 38  SYM+I+R4      9037.944     227 18529.888    18962.993    19471.105
+ 48  TVM+F+I+G4    8988.953     224 18425.906    18842.434    19354.683
+ 60  TVM+F+I+R4    8977.466     229 18412.932    18857.405    19362.441
+ 70  TVMe+I+G4     9049.443     221 18540.886    18941.392    19457.225
+ 82  TVMe+I+R4     9038.547     226 18529.094    18956.611    19466.165
+ 92  TIM3+F+I+G4   8989.367     223 18424.734    18835.862    19349.366
+104  TIM3+F+I+R4   8977.814     228 18411.628    18850.384    19356.991
+114  TIM3e+I+G4    9052.024     220 18544.047    18939.332    19456.240
+126  TIM3e+I+R4    9040.907     225 18531.815    18953.806    19464.739
+136  TIM2+F+I+G4   9007.379     223 18460.758    18871.885    19385.389
+148  TIM2+F+I+R4   8994.254     228 18444.507    18883.264    19389.870
+158  TIM2e+I+G4    9111.563     220 18663.127    19058.411    19575.319
+170  TIM2e+I+R4    9099.837     225 18649.675    19071.667    19582.599
+180  TIM+F+I+G4    9006.453     223 18458.905    18870.033    19383.537
+192  TIM+F+I+R4    8993.193     228 18442.385    18881.141    19387.748
+202  TIMe+I+G4     9111.196     220 18662.391    19057.676    19574.584
+214  TIMe+I+R4     9099.216     225 18648.432    19070.424    19581.356
+224  TPM3u+F+I+G4  8989.545     222 18423.089    18828.876    19343.575
+236  TPM3u+F+I+R4  8977.413     227 18408.827    18841.931    19350.043
+246  TPM3+I+G4     9052.959     219 18543.917    18934.039    19451.964
+258  TPM3+I+R4     9041.644     224 18531.288    18947.817    19460.066
+268  TPM2u+F+I+G4  9007.512     222 18459.023    18864.810    19379.508
+280  TPM2u+F+I+R4  8994.239     227 18442.477    18875.582    19383.694
+290  TPM2+I+G4     9113.125     219 18664.249    19054.371    19572.296
+302  TPM2+I+R4     9101.261     224 18650.521    19067.050    19579.299
+312  K3Pu+F+I+G4   9006.601     222 18457.203    18862.990    19377.688
+324  K3Pu+F+I+R4   8993.256     227 18440.511    18873.616    19381.728
+334  K3P+I+G4      9112.821     219 18663.642    19053.763    19571.688
+346  K3P+I+R4      9100.596     224 18649.192    19065.721    19577.969
+356  TN+F+I+G4     9007.662     222 18459.324    18865.111    19379.809
+368  TN+F+I+R4     8994.305     227 18442.610    18875.715    19383.827
+378  TNe+I+G4      9114.344     219 18666.688    19056.810    19574.735
+390  TNe+I+R4      9102.246     224 18652.493    19069.022    19581.271
+400  HKY+F+I+G4    9007.829     221 18457.658    18858.165    19373.997
+412  HKY+F+I+R4    8994.300     226 18440.600    18868.117    19377.671
+422  K2P+I+G4      9115.970     218 18667.941    19052.957    19571.841
+434  K2P+I+R4      9103.712     223 18653.425    19064.552    19578.056
+444  F81+F+I+G4    9229.517     220 18899.034    19294.318    19811.226
+456  F81+F+I+R4    9214.290     225 18878.580    19300.572    19811.504
+466  JC+I+G4       9304.229     217 19042.458    19422.426    19942.211
+478  JC+I+R4       9290.038     222 19024.076    19429.862    19944.561
+Akaike Information Criterion:           TPM3u+F+I+R4
+Corrected Akaike Information Criterion: TPM3u+F+I+G4
+Bayesian Information Criterion:         TPM3u+F+I+G4
+Best-fit model: TPM3u+F+I+G4 chosen according to BIC
+
+All model information printed to cleaned_mantrim_al_ITS.fasta.model.gz
+CPU time for ModelFinder: 160.989 seconds (0h:2m:40s)
+Wall-clock time for ModelFinder: 161.391 seconds (0h:2m:41s)
+Generating 1000 samples for ultrafast bootstrap (seed: 19574)...
+
+NOTE: 6 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+Thoroughly optimizing +I+G parameters from 10 start values...
+Init pinv, alpha: 0.000, 0.856 / Estimate: 0.000, 0.418 / LogL: -9014.552
+Init pinv, alpha: 0.040, 0.856 / Estimate: 0.245, 0.749 / LogL: -8989.601
+Init pinv, alpha: 0.080, 0.856 / Estimate: 0.245, 0.748 / LogL: -8989.604
+Init pinv, alpha: 0.121, 0.856 / Estimate: 0.245, 0.749 / LogL: -8989.601
+Init pinv, alpha: 0.161, 0.856 / Estimate: 0.247, 0.752 / LogL: -8989.582
+Init pinv, alpha: 0.201, 0.856 / Estimate: 0.246, 0.751 / LogL: -8989.588
+Init pinv, alpha: 0.241, 0.856 / Estimate: 0.246, 0.751 / LogL: -8989.591
+Init pinv, alpha: 0.281, 0.856 / Estimate: 0.251, 0.764 / LogL: -8989.550
+Init pinv, alpha: 0.322, 0.856 / Estimate: 0.254, 0.771 / LogL: -8989.560
+Init pinv, alpha: 0.362, 0.856 / Estimate: 0.254, 0.770 / LogL: -8989.575
+Optimal pinv,alpha: 0.251, 0.764 / LogL: -8989.550
+
+Parameters optimization took 26.501 sec
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.058101 secs using 97.78% CPU
+Computing ML distances took 0.058927 sec (of wall-clock time) 0.057318 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.001287 secs using 72.96% CPU
+Computing RapidNJ tree took 0.002179 sec (of wall-clock time) 0.001835 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -9107.001
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.547 second
+Computing log-likelihood of 98 initial trees ... 4.813 seconds
+Current best score: -8989.550
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -8989.543
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -8963.200
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 10: -8959.694
+Iteration 10 / LogL: -8959.694 / Time: 0h:3m:29s
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 12: -8959.261
+Iteration 20 / LogL: -8988.642 / Time: 0h:3m:47s
+Finish initializing candidate tree set (20)
+Current best tree score: -8959.261 / CPU time: 38.544
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 23: -8956.709
+Iteration 30 / LogL: -8959.823 / Time: 0h:4m:4s (0h:4m:27s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 37: -8955.145
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 39: -8954.296
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 40: -8953.291
+Iteration 40 / LogL: -8953.291 / Time: 0h:4m:22s (0h:4m:19s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 41: -8952.982
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 43: -8949.297
+Iteration 50 / LogL: -8954.658 / Time: 0h:4m:42s (0h:3m:49s left)
+Log-likelihood cutoff on original alignment: -8997.585
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 53: -8948.823
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 55: -8948.799
+Iteration 60 / LogL: -8949.803 / Time: 0h:5m:0s (0h:3m:44s left)
+Iteration 70 / LogL: -8972.048 / Time: 0h:5m:18s (0h:3m:13s left)
+Iteration 80 / LogL: -8951.677 / Time: 0h:5m:35s (0h:2m:45s left)
+Iteration 90 / LogL: -8960.200 / Time: 0h:5m:52s (0h:2m:19s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 96: -8948.785
+Iteration 100 / LogL: -8949.368 / Time: 0h:6m:11s (0h:3m:23s left)
+Log-likelihood cutoff on original alignment: -8997.585
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.989
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 110 / LogL: -8950.213 / Time: 0h:6m:30s (0h:3m:9s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 117: -8948.362
+Iteration 120 / LogL: -8948.731 / Time: 0h:6m:49s (0h:3m:22s left)
+Iteration 130 / LogL: -8949.656 / Time: 0h:7m:7s (0h:2m:59s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 133: -8948.319
+BETTER TREE FOUND at iteration 139: -8948.319
+Iteration 140 / LogL: -8955.671 / Time: 0h:7m:25s (0h:3m:22s left)
+Iteration 150 / LogL: -8948.352 / Time: 0h:7m:44s (0h:3m:0s left)
+Log-likelihood cutoff on original alignment: -8997.585
+Iteration 160 / LogL: -8951.283 / Time: 0h:8m:1s (0h:2m:38s left)
+Iteration 170 / LogL: -8948.401 / Time: 0h:8m:18s (0h:2m:17s left)
+Iteration 180 / LogL: -8952.139 / Time: 0h:8m:36s (0h:1m:56s left)
+Iteration 190 / LogL: -8959.697 / Time: 0h:8m:53s (0h:1m:36s left)
+Iteration 200 / LogL: -8948.320 / Time: 0h:9m:11s (0h:1m:16s left)
+Log-likelihood cutoff on original alignment: -8997.585
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.997
+Iteration 210 / LogL: -8948.374 / Time: 0h:9m:29s (0h:2m:55s left)
+Iteration 220 / LogL: -8955.770 / Time: 0h:9m:46s (0h:2m:35s left)
+Iteration 230 / LogL: -8951.210 / Time: 0h:10m:4s (0h:2m:15s left)
+Iteration 240 / LogL: -8950.170 / Time: 0h:10m:20s (0h:1m:55s left)
+TREE SEARCH COMPLETED AFTER 240 ITERATIONS / Time: 0h:10m:20s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -8948.319
+Optimal log-likelihood: -8948.318
+Rate parameters:  A-C: 0.48708  A-G: 2.63351  A-T: 1.00000  C-G: 0.48708  C-T: 2.63351  G-T: 1.00000
+Base frequencies:  A: 0.265  C: 0.186  G: 0.230  T: 0.319
+Proportion of invariable sites: 0.254
+Gamma shape alpha: 0.786
+Parameters optimization took 1 rounds (0.246 sec)
+BEST SCORE FOUND : -8948.318
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.663 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file cleaned_mantrim_al_ITS.fasta.splits.nex
+Total tree length: 13.952
+
+Total number of iterations: 240
+CPU time used for tree search: 429.340 sec (0h:7m:9s)
+Wall-clock time used for tree search: 431.628 sec (0h:7m:11s)
+Total CPU time used: 618.758 sec (0h:10m:18s)
+Total wall-clock time used: 621.580 sec (0h:10m:21s)
+
+Computing bootstrap consensus tree...
+Reading input file cleaned_mantrim_al_ITS.fasta.splits.nex...
+109 taxa and 943 splits.
+Consensus tree written to cleaned_mantrim_al_ITS.fasta.contree
+Reading input trees file cleaned_mantrim_al_ITS.fasta.contree
+Log-likelihood of consensus tree: -8948.697
+
+Analysis results written to: 
+  IQ-TREE report:                cleaned_mantrim_al_ITS.fasta.iqtree
+  Maximum-likelihood tree:       cleaned_mantrim_al_ITS.fasta.treefile
+  Likelihood distances:          cleaned_mantrim_al_ITS.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          cleaned_mantrim_al_ITS.fasta.splits.nex
+  Consensus tree:                cleaned_mantrim_al_ITS.fasta.contree
+  Screen log file:               cleaned_mantrim_al_ITS.fasta.log
+
+Date and Time: Fri May 30 02:24:58 2025

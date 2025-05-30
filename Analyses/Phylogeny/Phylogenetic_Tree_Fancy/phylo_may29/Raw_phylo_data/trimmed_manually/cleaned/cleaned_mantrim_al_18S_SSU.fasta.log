@@ -296,3 +296,68 @@ Estimate model parameters (epsilon = 0.100)
 BETTER TREE FOUND at iteration 167: -5971.714
 Iteration 170 / LogL: -5973.769 / Time: 0h:2m:59s (0h:1m:16s left)
 UPDATE BEST LOG-LIKELIHOOD: -5971.709
+Iteration 180 / LogL: -5971.781 / Time: 0h:3m:5s (0h:1m:7s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 186: -5971.637
+Iteration 190 / LogL: -5973.397 / Time: 0h:3m:11s (0h:1m:13s left)
+UPDATE BEST LOG-LIKELIHOOD: -5971.637
+Iteration 200 / LogL: -5972.113 / Time: 0h:3m:17s (0h:1m:5s left)
+Log-likelihood cutoff on original alignment: -6006.117
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.993
+Iteration 210 / LogL: -5971.912 / Time: 0h:3m:23s (0h:1m:7s left)
+Iteration 220 / LogL: -5971.725 / Time: 0h:3m:29s (0h:0m:59s left)
+UPDATE BEST LOG-LIKELIHOOD: -5971.636
+Iteration 230 / LogL: -5972.572 / Time: 0h:3m:34s (0h:0m:51s left)
+Iteration 240 / LogL: -5971.725 / Time: 0h:3m:41s (0h:0m:43s left)
+UPDATE BEST LOG-LIKELIHOOD: -5971.635
+Iteration 250 / LogL: -5971.636 / Time: 0h:3m:46s (0h:0m:36s left)
+Log-likelihood cutoff on original alignment: -6006.255
+Iteration 260 / LogL: -5971.722 / Time: 0h:3m:52s (0h:0m:28s left)
+Iteration 270 / LogL: -5971.723 / Time: 0h:3m:57s (0h:0m:21s left)
+Iteration 280 / LogL: -5971.725 / Time: 0h:4m:4s (0h:0m:14s left)
+TREE SEARCH COMPLETED AFTER 287 ITERATIONS / Time: 0h:4m:7s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -5971.635
+Optimal log-likelihood: -5971.633
+Rate parameters:  A-C: 3.24717  A-G: 6.41360  A-T: 3.24717  C-G: 1.00000  C-T: 10.82176  G-T: 1.00000
+Base frequencies:  A: 0.279  C: 0.185  G: 0.265  T: 0.271
+Proportion of invariable sites: 0.642
+Gamma shape alpha: 0.463
+Parameters optimization took 1 rounds (0.120 sec)
+BEST SCORE FOUND : -5971.633
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.702 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file cleaned_mantrim_al_18S_SSU.fasta.splits.nex
+Total tree length: 1.017
+
+Total number of iterations: 287
+CPU time used for tree search: 170.713 sec (0h:2m:50s)
+Wall-clock time used for tree search: 172.151 sec (0h:2m:52s)
+Total CPU time used: 246.955 sec (0h:4m:6s)
+Total wall-clock time used: 248.721 sec (0h:4m:8s)
+
+Computing bootstrap consensus tree...
+Reading input file cleaned_mantrim_al_18S_SSU.fasta.splits.nex...
+67 taxa and 569 splits.
+Consensus tree written to cleaned_mantrim_al_18S_SSU.fasta.contree
+Reading input trees file cleaned_mantrim_al_18S_SSU.fasta.contree
+Log-likelihood of consensus tree: -5973.396
+
+Analysis results written to: 
+  IQ-TREE report:                cleaned_mantrim_al_18S_SSU.fasta.iqtree
+  Maximum-likelihood tree:       cleaned_mantrim_al_18S_SSU.fasta.treefile
+  Likelihood distances:          cleaned_mantrim_al_18S_SSU.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          cleaned_mantrim_al_18S_SSU.fasta.splits.nex
+  Consensus tree:                cleaned_mantrim_al_18S_SSU.fasta.contree
+  Screen log file:               cleaned_mantrim_al_18S_SSU.fasta.log
+
+Date and Time: Fri May 30 02:14:35 2025
