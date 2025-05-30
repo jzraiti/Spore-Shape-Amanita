@@ -1,6 +1,6 @@
 #!/bin/bash
 
-my_array=(3 4 5 6 7 8 9 10)
+my_array=(5 6 7 8 9 10 11)
 
 mkdir -p ./Raw_phylo_data/raw_fasta
 

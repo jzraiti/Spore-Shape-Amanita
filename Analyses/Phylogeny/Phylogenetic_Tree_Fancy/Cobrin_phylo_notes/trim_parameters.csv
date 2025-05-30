@@ -1,0 +1,7 @@
+Locus,-gt,-st,Why
+ITS,0.3,0.001,"Very variable; avoid overtrimming, preserve short conserved cores"
+SSU (18S),0.5,0.05,"Highly conserved, so stricter trimming okay"
+LSU (28S),0.4,0.01,"Moderately conserved; balanced trimming"
+TEF1, RPB1/2,0.2–0.3,0.01–0.05,"Coding loci; alignment usually stronger, gaps less frequent"
+mtSSU,0.3–0.4,0.005–0.01,"Small, moderate divergence; retain informative sites"
+mtLSU,0.3–0.5,0.005–0.02,"More conserved than mtSSU, but shorter than nuclear LSU"

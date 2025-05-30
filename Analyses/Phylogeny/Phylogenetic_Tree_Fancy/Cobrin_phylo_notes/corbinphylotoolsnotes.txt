@@ -25,13 +25,69 @@ for i in $(ls); do  mafft --auto ${i} > al_${i}; done
 open in aliview - look manually for messed up sequences that dont match
 remove the parts of the alignment that look like theyre due to different primer usage
 
-Control f replace all spaces AND COLONS in alignments with underscores!!!
+Control f replace all special characters in alignments with underscores!!!
+replace spaces, :, #, ;, /
+
+for file in *; do
+  if [ -f "$file" ]; then
+    echo "Cleaning $file..."
+    sed -E 's/[^A-Za-z0-9_.>\-]/_/g' "$file" > "cleaned_${file%.*}.${file##*.}"
+  fi
+done
+
 
 # you can use trimal to auto trim the alignments in a reproducible way
 for i in $(ls); do trimal -automated1 -in ${i} -out trim_${i}; done
 
+May need to retrim shorter loci:
+SSU - automated1: Limacella grouping out with inopinata and nauseousa
+ITS - automated1: Limacella grouping out with welsii and pluteus and verna
+LSU mitochondrial - automated1: looks alright
+RPB2 - automated1: looks alright
+SSUmito - automated1: looks alright
+TEF1 - automated1: looks alright
+LSU - automated1: looks alright
+- [ ] Remove : ssu singeri, limacella
+- [ ] ITS: hand trim, rerun
+- [ ] TEF1: hand trim ends, remove super gappy taxa - zambiana , similis, javanica, aporema, princeps
+- [ ] LSU:manually trim! brunneolocularis, chlorinosma, strobilaceovolvata, austrostraminea, heishidingensis, cinerovelata, mafingensis, masasiensis
+
+
+Check the trim table: 
+Locus,-gt,-st,Why
+ITS,0.3,0.001,"Very variable; avoid overtrimming, preserve short conserved cores"
+SSU (18S),0.5,0.05,"Highly conserved, so stricter trimming okay"
+LSU (28S),0.4,0.01,"Moderately conserved; balanced trimming"
+TEF1, RPB1/2,0.2–0.3,0.01–0.05,"Coding loci; alignment usually stronger, gaps less frequent"
+mtSSU,0.3–0.4,0.005–0.01,"Small, moderate divergence; retain informative sites"
+mtLSU,0.3–0.5,0.005–0.02,"More conserved than mtSSU, but shorter than nuclear LSU"
+
+
+# Optional check your tree to see if anything is screwy at the gene level with fasttree
+conda create -n fasttree-env -c bioconda -c conda-forge fasttree mafft seqkit -y
+conda activate fasttree-env
+
+mkdir fasttree_run
+
+for file in *.fasta; do
+    echo "=== $file ==="
+    seqkit stats "$file"
+done
+
+for file in *.fasta; do
+    base="${file%.fasta}"
+    echo "Running FastTree on $file..."
+    FastTree -nt -gtr -gamma "$file" > "fasttree_${base}.tree"
+done
+
+
 # next use iqtree2 in docker
-for i in $(ls); do  iqtree2 -s ${i} --alrt 1000; done
+for i in *.fasta; do  
+  base="${i%.*}"
+  mkdir -p iqtree
+  iqtree2 -s "$i" -m MFP -B 1000 --alrt 1000 -pre "iqtree/$base"
+done
+
 
 # next open the tree in figtree
 # gotta open it manually in zsh
@@ -127,7 +183,16 @@ Write down list of lepidella sp
 
 Ceciliacea - found in us and Europe
 
-
 Check on outgroup from multiple continents
 
 Filter dataset based on quality and coverage
+
+
+for i in *.fasta; do     base="${i%.*}";   mkdir -p "$base";   iqtree2 -s "$i" -m MFP -B 1000 --alrt 1000; done
+
+
+-- may 29 run 
+
+ssu looks ok
+its outgroups still weird
+lsu mito slightly weird, WHY IS VOLVARIELLA NOT INCLUDED IN ANY OF THESE 

@@ -1,0 +1,495 @@
+IQ-TREE 2.3.6 built Dec  1 2024
+
+Input file name: trim_cleaned_al_RPB2.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 920549
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 78 sequences with 666 nucleotide sites
+Number of constant sites: 358 (= 53.7538% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 358 (= 53.7538% of all sites)
+Number of parsimony informative sites: 275
+Number of distinct site patterns: 353
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: TPM2+I+R3
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+TPM2+I+R3        -11492.683   23305.366 -  0.00515   23407.385 +     0.15   24025.572 +    0.736
+TIM2e+I+R3       -11490.994   23303.988 -   0.0103   23407.488 +    0.143   24028.696 +    0.154
+K2P+I+R3         -11498.245   23314.489 - 5.38e-05   23415.043 -  0.00326   24030.194 +    0.073
+TNe+I+R3         -11496.450   23312.899 - 0.000119   23414.919 -  0.00347   24033.106 -    0.017
+TIM2+F+I+R3      -11484.489   23296.979 +    0.341   23405.003 +    0.494   24035.190 -    0.006
+K3P+I+R3         -11497.548   23315.096 - 3.97e-05   23417.116 -  0.00116   24035.302 -  0.00568
+TPM3+I+R3        -11498.160   23316.320 - 2.16e-05   23418.340 - 0.000628   24036.526 -  0.00308
+TVMe+I+R3        -11492.112   23308.224 -  0.00123   23413.218 -  0.00813   24037.433 -  0.00196
+TIMe+I+R3        -11495.846   23313.692 - 8.02e-05   23417.192 -  0.00111   24038.400 -  0.00121
+TIM3e+I+R3       -11496.378   23314.756 - 4.71e-05   23418.256 - 0.000655   24039.463 - 0.000709
+SYM+I+R3         -11490.309   23306.619 -  0.00275   23413.121 -  0.00853   24040.329 -  0.00046
+TN+F+I+R3        -11490.526   23307.052 -  0.00222   23413.554 -  0.00687   24040.763 -  0.00037
+GTR+F+I+R3       -11482.053   23296.107 +    0.528   23407.217 +    0.163   24043.321 - 0.000103
+TIM3+F+I+R3      -11488.755   23305.510 -   0.0048   23413.534 -  0.00694   24043.721 - 8.43e-05
+TIM+F+I+R3       -11489.861   23307.721 -  0.00159   23415.745 -   0.0023   24045.933 - 2.79e-05
+GTR+F+I+R4       -11481.742   23299.483 +   0.0976   23413.737 -  0.00627   24055.700 - 2.11e-07
+GTR+F+R4         -11486.018   23306.035 -  0.00369   23418.710 - 0.000522   24057.751 - 7.57e-08
+TPM2u+F+I+R3     -11499.913   23325.827 - 1.86e-07   23432.329 - 5.76e-07   24059.537 -  3.1e-08
+GTR+F+I+G4       -11501.654   23329.308 - 3.26e-08   23435.810 - 1.01e-07   24063.019 - 5.44e-09
+HKY+F+I+R3       -11506.149   23336.298 - 9.89e-10   23441.292 - 6.51e-09   24065.507 - 1.57e-09
+TVM+F+I+R3       -11498.015   23326.030 - 1.68e-07   23435.590 - 1.13e-07   24068.743 - 3.11e-10
+GTR+F+R3         -11498.048   23326.096 - 1.62e-07   23435.656 - 1.09e-07   24068.809 - 3.01e-10
+TPM3u+F+I+R3     -11504.787   23335.575 - 1.42e-09   23442.077 -  4.4e-09   24069.285 - 2.37e-10
+GTR+F+R5         -11485.495   23308.989 - 0.000842   23424.836 - 2.44e-05   24069.707 - 1.92e-10
+K3Pu+F+I+R3      -11505.347   23336.695 - 8.11e-10   23443.196 - 2.51e-09   24070.405 - 1.35e-10
+GTR+F+I+R2       -11528.925   23385.849 - 1.72e-20   23493.873 - 2.49e-20   24124.061 - 3.02e-22
+GTR+F+G4         -11566.179   23456.358 -  8.4e-36   23561.352 - 5.53e-35   24185.567 - 1.33e-35
+GTR+F+R2         -11583.525   23493.050 - 9.06e-44   23599.552 -  2.8e-43   24226.761 - 1.51e-44
+GTR+F+I          -11824.204   23972.407 - 7.34e-148   24077.401 - 4.83e-147   24701.616 - 1.16e-147
+JC+I+R3          -12728.659   25773.318 -        0   25872.419 -        0   26484.522 -        0
+F81+F+I+R3       -12771.834   25865.667 -        0   25969.167 -        0   26590.375 -        0
+GTR+F            -13555.657   27433.314 -        0   27536.814 -        0   28158.022 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: TPM2+I+R3
+
+Rate parameter R:
+
+  A-C: 1.4804
+  A-G: 12.5520
+  A-T: 1.4804
+  C-G: 1.0000
+  C-T: 12.5520
+  G-T: 1.0000
+
+State frequencies: (equal frequencies)
+
+Rate matrix Q:
+
+  A    -1.032   0.09848     0.835   0.09848
+  C   0.09848        -1   0.06652     0.835
+  G     0.835   0.06652    -0.968   0.06652
+  T   0.09848     0.835   0.06652        -1
+
+Model of rate heterogeneity: Invar+FreeRate with 3 categories
+Proportion of invariable sites: 0.49
+Site proportion and rates:  (0.1388,0.1874) (0.1882,1.578) (0.183,3.7)
+
+ Category  Relative_rate  Proportion
+  0         0              0.49
+  1         0.1874         0.1388
+  2         1.578          0.1882
+  3         3.7            0.183
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -11490.0014 (s.e. 508.5618)
+Unconstrained log-likelihood (without tree): -3187.1762
+Number of free parameters (#branches + #model parameters): 160
+Akaike information criterion (AIC) score: 23300.0027
+Corrected Akaike information criterion (AICc) score: 23402.0225
+Bayesian information criterion (BIC) score: 24020.2091
+
+Total tree length (sum of branch lengths): 5.9733
+Sum of internal branch lengths: 1.9793 (33.1357% of tree length)
+
+WARNING: 8 near-zero internal branches (<0.0015) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds' is drawn at root
+Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
+
++----OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|
+|                                                      +--MH485862.1_Amanita_altipes_voucher_HKAS91125_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                                   +--| (83/87)
+|                                                   |  +--MH486174.1_Amanita_parvipantherina_voucher_HKAS67828_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                                +**| (0/56)
+|                                                |  +--MH486051.1_Amanita_ibotengutake_voucher_HKAS83269_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                             +**| (0/73)
+|                                             |  +--OR051516.1_Amanita_subglobosa_voucher_HMAS_253798_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                          +--| (89.6/94)
+|                                          |  +--KR824794.1_Amanita_concentrica_voucher_HKAS_87061_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                                       +--| (64.8/88)
+|                                       |  +----MN928573.1_Amanita_fibrillopes_voucher_PERTH08793573_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                 +-----| (99.2/100)
+|                                 |     +--MH486277.1_Amanita_sinensis_voucher_HKAS74388_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                              +--| (38.1/80)
+|                              |  +-------------------PQ493142.1_Amanita_umbrinella_voucher_AD-C56413_DNA-dependent_RNA_polymerase_II_second_largest_subunit_1__rpb2__gene__partial_cds
+|                    +---------| (99.9/100)
+|                    |         |                     +--KF877052.1_Amanita_egregia_voucher_RET_136-7_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |                  +--| (83.1/99)
+|                    |         |                  |  +--KU714594.1_Amanita_princeps_voucher_FRIM_62849_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |               +--| (32.2/90)
+|                    |         |               |  +--KU714593.1_Amanita_aporema_voucher_FRIM_62674_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |          +----| (99.8/100)
+|                    |         |          |    +--KF877097.1_Amanita_zambiana_voucher_RET_343-10_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |       +--| (2.2/51)
+|                    |         |       |  |                  +--MH486063.1_Amanita_jacksonii_voucher_Wolf2183_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |               +--| (94.2/99)
+|                    |         |       |  |               |  +--MH485899.1_Amanita_caesareoides_voucher_HKAS71021_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |            +--| (43.6/70)
+|                    |         |       |  |            |  +--LC723390.1_Amanita_kitamagotake_S-76_rpb2_gene_for_RNA_polymerase_II_second_largest_subunit__partial_sequence
+|                    |         |       |  |         +**| (22.5/66)
+|                    |         |       |  |         |  +--KF877090.1_Amanita_vernicoccora_voucher_RET_385-6_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |       |  |      +--| (79.2/78)
+|                    |         |       |  |      |  +--MT729677.1_Amanita_masasiensis_voucher_BRF4071_RNA_polymerase_II_subunit_II__RPB2__gene__partial_cds
+|                    |         |       |  |   +--| (81.9/87)
+|                    |         |       |  |   |  |  +--LC325296.1_Amanita_cf._similis_TMI_26363_rpb2_gene_for_RNA_polymerase_II_subunit_II__partial_cds
+|                    |         |       |  |   |  +--| (96.6/99)
+|                    |         |       |  |   |     |     +--MH485915.1_Amanita_cf._javanica_voucher_HKAS101408_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |   |     |  +--| (90.9/99)
+|                    |         |       |  |   |     |  |  +--KU714590.1_Amanita_rubromarginata_voucher_HKAS_59740_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |   |     +--| (94.9/99)
+|                    |         |       |  |   |        +--OR554314.1_Amanita_chatamagotake_voucher_EFHAAU1669_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  +---| (99.3/100)
+|                    |         |       |      +--KF877069.1_Amanita_aff._mafingensis_MA_898_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |  +----| (99.3/100)
+|                    |         |  |    |  +--MH486347.1_Amanita_yuaniana_voucher_HKAS58807_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |  |    +--| (98.9/100)
+|                    |         |  |       +--KF877092.1_Amanita_virginiana_voucher_RET_374-8_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         +--| (71.7/89)
+|                    |            |               +--MH486022.1_Amanita_fulva_voucher_HKAS96168_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |            +--| (95/97)
+|                    |            |            |  +--MH486139.1_Amanita_orientifulva_voucher_HKAS97971_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |         +--| (67.3/93)
+|                    |            |         |  |     +--OR051728.1_Amanita_griseofolia_voucher_EFHAAU555_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                    |            |         |  |  +--| (79/100)
+|                    |            |         |  |  |  +--KU714584.1_Amanita_liquii_voucher_HKAS_54568_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |         |  +--| (91.8/99)
+|                    |            |         |     +--MT993780.1_Amanita_aff._drummondii_isolate_JAC13423_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |      +--| (99.9/98)
+|                    |            |      |  |  +--OR051523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |      |  +--| (19.6/59)
+|                    |            |      |     +--ON492123.1_Amanita_crebresulcata_voucher_INPA_265285_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |   +**| (0/71)
+|                    |            |   |  |  +--ON854980.1_Amanita_madagascariensis_voucher_JEIC0515_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |   |  +--| (91.3/95)
+|                    |            |   |     +--OR554309.1_Amanita_cf._strobilaceovolvata_voucher_08.107_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            +---| (98.8/99)
+|                    |                +--MH485935.1_Amanita_cingulata_voucher_HKAS100640_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 +--| (18.3/72)
+|                 |  |                     +--OR529183.1_Amanita_brunneolocularis_voucher_ART201972_rpb2_mRNA__partial_cds
+|                 |  |                  +--| (80.3/83)
+|                 |  |                  |  +--MH486226.1_Amanita_rubescens_voucher_HKAS92034_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |               +**| (0/68)
+|                 |  |               |  +--MH486296.1_Amanita_spissa_voucher_HKAS92089_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |            +--| (85.6/83)
+|                 |  |            |  +--MH485985.1_Amanita_flavoconia_voucher_RET_485-6_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |         +--| (99.8/100)
+|                 |  |         |  +--MH485870.1_Amanita_augusta_voucher_HKAS101419_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |     +---| (100/100)
+|                 |  |     |   |     +---AY780936.1_Amanita_brunnescens_isolate_AFTOL-ID_673_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                 |  |     |   |  +--| (99/100)
+|                 |  |     |   |  |  +--MH485936.1_Amanita_citrina_voucher_HKAS101397_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |     |   +--| (11.6/72)
+|                 |  |     |      +--MH486256.1_Amanita_sepiacea_voucher_HKAS56799_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  +--| (70.4/80)
+|                 |  |  |  |               +--MT993784.1_Amanita_marmorata_isolate_JAC14571_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |  |            +--| (93/100)
+|                 |  |  |  |            |  +--MF000758.1_Amanita_eucalypti_voucher_PERTH8809828_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         +--| (91.4/99)
+|                 |  |  |  |         |  |     +--MF000755.1_Amanita_djarilmari_voucher_PERTH08776067_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         |  |  +--| (93.1/100)
+|                 |  |  |  |         |  |  |  +--MF000756.1_Amanita_gardneri_voucher_PERTH08776121_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         |  +--| (87.4/100)
+|                 |  |  |  |         |     +--MF000753.1_Amanita_millsii_voucher_HO581533_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |      +--| (99.1/100)
+|                 |  |  |  |      |  |   +--KJ466664.1_Amanita_virosa_voucher_HKAS56694_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|                 |  |  |  |      |  +---| (99.9/100)
+|                 |  |  |  |      |      |  +--KJ466615.1_Amanita_rimosa_voucher_HKAS75777_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|                 |  |  |  |      |      +--| (41.2/89)
+|                 |  |  |  |      |         +--KP691703.1_Amanita_subpallidorosea_voucher_LHJ140926-11_RNA_polymerase_II_second-largest_subunit__RPB2__gene__partial_cds
+|                 |  |  |  |  +---| (99.3/100)
+|                 |  |  |  |  |   +---MH486351.1_Amanita_zangii_voucher_HKAS99663_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |  +--| (75.3/78)
+|                 |  |  |     |  +--MN928561.1_Amanita_wadulawitu_voucher_PERTH09144382_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |     +--| (93.6/100)
+|                 |  |  |        +---MN928570.1_Amanita_wadjukiorum_voucher_PERTH08793522_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  +--| (97/99)
+|                 |     |     +--MH485932.1_Amanita_cinereopannosa_voucher_RET_477-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     |  +--| (98.9/100)
+|                 |     |  |  |  +--MH486043.1_Amanita_griseoverrucosa_voucher_HKAS57357_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     |  |  +--| (85.9/99)
+|                 |     |  |     +--MH486210.1_Amanita_ravenelii_voucher_RET_459-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     +--| (86/96)
+|                 |        +--MH486298.1_Amanita_strobiliformis_voucher_MB-001177_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              +--| (86.3/97)
+|              |  |      +------------MT993768.1_Amanita_inopinata_isolate_JAC11447_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              |  +------| (98.5/99)
+|              |         |     +--------------ON007285.1_Amanita_manicata_voucher_SDBR-STO-2020-36_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|              |         |  +--| (85.5/79)
+|              |         |  |  +------MH486342.1_Amanita_vittadinii_voucher_HKAS101430_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              |         +--| (84.9/79)
+|              |            |  +----------------------------------------OR828288.1_Pluteus_cervinus_voucher_AMB_18870_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|              |            +--| (80/85)
+|              |               +------------ON007282.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           +--| (81.6/91)
+|           |  |        +--OR554280.1_Amanita_sp.__crassiconus__voucher_JEIC0641_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           |  |     +--| (97.9/100)
+|           |  |     |  |  +--KP259288.1_Amanita_cinereovelata_voucher_HKAS_81647_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           |  |     |  +--| (94.2/99)
+|           |  |     |     +--MH486025.1_Amanita_griseofarinosa_voucher_HKAS80926_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|           |  |  +--| (17.1/78)
+|           |  |  |  +----KJ466662.1_Amanita_vestita_voucher_HKAS79687_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|           |  +--| (87.8/98)
+|           |     +---MH486323.1_Amanita_timida_voucher_HKAS83228_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|        +--| (85.5/98)
+|        |  +----MH485918.1_Amanita_cf._xanthogala_voucher_HKAS84707_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|     +--| (86.4/79)
+|     |  +--MH486049.1_Amanita_heishidingensis_voucher_HKAS81484_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  +**| (22.8/73)
+|  |  |  +--MN928558.1_Amanita_carneiphylla_voucher_AD282179_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  |  +--| (95.1/98)
+|  |     |  +--OP272670.1_Amanita_quenda_voucher_PERTH09472754_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|  |     +**| (0/90)
+|  |        +--OR554358.1_Amanita_austrostraminea_voucher_09.354_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
++--| (82/87)
+|  |  +--MK557916.1_Amanita_proxima_voucher_S16_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  +**| (0/62)
+|     +--MK557917.1_Amanita_smithiana_voucher_S18_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|
+|  +---OR554363.1_Amanita_ochrophylla_voucher_09.207_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
++--| (93/99)
+   |  +--MH486044.1_Amanita_gymnopus_voucher_HKAS71618_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+   +--| (83/98)
+      +--ON325593.1_Amanita_macrocarpa_voucher_B21051513_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+
+Tree in newick format:
+
+(OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0880050995,(((((((((((((((MH485862.1_Amanita_altipes_voucher_HKAS91125_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0126099623,MH486174.1_Amanita_parvipantherina_voucher_HKAS67828_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0229230341)83/87:0.0047091845,MH486051.1_Amanita_ibotengutake_voucher_HKAS83269_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0187705253)0/56:0.0000022757,OR051516.1_Amanita_subglobosa_voucher_HMAS_253798_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0324839453)0/73:0.0004435086,KR824794.1_Amanita_concentrica_voucher_HKAS_87061_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0290355486)89.6/94:0.0114264607,MN928573.1_Amanita_fibrillopes_voucher_PERTH08793573_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0776428155)64.8/88:0.0096678634,MH486277.1_Amanita_sinensis_voucher_HKAS74388_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0092502359)99.2/100:0.0951705285,PQ493142.1_Amanita_umbrinella_voucher_AD-C56413_DNA-dependent_RNA_polymerase_II_second_largest_subunit_1__rpb2__gene__partial_cds:0.3102244316)38.1/80:0.0163418912,((((((KF877052.1_Amanita_egregia_voucher_RET_136-7_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0126897723,KU714594.1_Amanita_princeps_voucher_FRIM_62849_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0273864514)83.1/99:0.0054879091,KU714593.1_Amanita_aporema_voucher_FRIM_62674_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0185440098)32.2/90:0.0115286952,KF877097.1_Amanita_zambiana_voucher_RET_343-10_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0566228423)99.8/100:0.0815117022,((((((MH486063.1_Amanita_jacksonii_voucher_Wolf2183_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0038462240,MH485899.1_Amanita_caesareoides_voucher_HKAS71021_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0056264356)94.2/99:0.0145375449,LC723390.1_Amanita_kitamagotake_S-76_rpb2_gene_for_RNA_polymerase_II_second_largest_subunit__partial_sequence:0.0190168926)43.6/70:0.0032857522,KF877090.1_Amanita_vernicoccora_voucher_RET_385-6_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0106719654)22.5/66:0.0011175416,MT729677.1_Amanita_masasiensis_voucher_BRF4071_RNA_polymerase_II_subunit_II__RPB2__gene__partial_cds:0.0438922389)79.2/78:0.0088430796,(LC325296.1_Amanita_cf._similis_TMI_26363_rpb2_gene_for_RNA_polymerase_II_subunit_II__partial_cds:0.0441981026,((MH485915.1_Amanita_cf._javanica_voucher_HKAS101408_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0114781349,KU714590.1_Amanita_rubromarginata_voucher_HKAS_59740_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0180653188)90.9/99:0.0080644266,OR554314.1_Amanita_chatamagotake_voucher_EFHAAU1669_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0093244107)94.9/99:0.0222999047)96.6/99:0.0260063644)81.9/87:0.0126051380,KF877069.1_Amanita_aff._mafingensis_MA_898_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0549820284)99.3/100:0.0616793432)2.2/51:0.0049719743,(MH486347.1_Amanita_yuaniana_voucher_HKAS58807_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0210924185,KF877092.1_Amanita_virginiana_voucher_RET_374-8_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0504995394)98.9/100:0.0498359775)99.3/100:0.0765939479,(((((MH486022.1_Amanita_fulva_voucher_HKAS96168_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0329906300,MH486139.1_Amanita_orientifulva_voucher_HKAS97971_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0063571996)95/97:0.0121377434,((OR051728.1_Amanita_griseofolia_voucher_EFHAAU555_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0243840581,KU714584.1_Amanita_liquii_voucher_HKAS_54568_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0177770752)79/100:0.0058127928,MT993780.1_Amanita_aff._drummondii_isolate_JAC13423_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0354507888)91.8/99:0.0107376233)67.3/93:0.0046592873,(OR051523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0356496265,ON492123.1_Amanita_crebresulcata_voucher_INPA_265285_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0483366787)19.6/59:0.0064042761)99.9/98:0.0421195014,(ON854980.1_Amanita_madagascariensis_voucher_JEIC0515_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0519070770,OR554309.1_Amanita_cf._strobilaceovolvata_voucher_08.107_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0392619388)91.3/95:0.0230529652)0/71:0.0012750011,MH485935.1_Amanita_cingulata_voucher_HKAS100640_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0189325391)98.8/99:0.0634917998)71.7/89:0.0251465038)99.9/100:0.1568925344,(((((((OR529183.1_Amanita_brunneolocularis_voucher_ART201972_rpb2_mRNA__partial_cds:0.0116862309,MH486226.1_Amanita_rubescens_voucher_HKAS92034_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0119735381)80.3/83:0.0032859226,MH486296.1_Amanita_spissa_voucher_HKAS92089_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0305483348)0/68:0.0000021701,MH485985.1_Amanita_flavoconia_voucher_RET_485-6_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0213469306)85.6/83:0.0095530735,MH485870.1_Amanita_augusta_voucher_HKAS101419_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0275479142)99.8/100:0.0560835821,((AY780936.1_Amanita_brunnescens_isolate_AFTOL-ID_673_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0613151998,MH485936.1_Amanita_citrina_voucher_HKAS101397_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0260583294)99/100:0.0328580083,MH486256.1_Amanita_sepiacea_voucher_HKAS56799_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0296933019)11.6/72:0.0051472617)100/100:0.0735715485,(((((MT993784.1_Amanita_marmorata_isolate_JAC14571_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0175621140,MF000758.1_Amanita_eucalypti_voucher_PERTH8809828_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0107957645)93/100:0.0138741556,((MF000755.1_Amanita_djarilmari_voucher_PERTH08776067_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0159497486,MF000756.1_Amanita_gardneri_voucher_PERTH08776121_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0101682325)93.1/100:0.0088912892,MF000753.1_Amanita_millsii_voucher_HO581533_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0131923273)87.4/100:0.0085270735)91.4/99:0.0282034579,(KJ466664.1_Amanita_virosa_voucher_HKAS56694_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0041585825,(KJ466615.1_Amanita_rimosa_voucher_HKAS75777_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0569837750,KP691703.1_Amanita_subpallidorosea_voucher_LHJ140926-11_RNA_polymerase_II_second-largest_subunit__RPB2__gene__partial_cds:0.0155489292)41.2/89:0.0024251186)99.9/100:0.0653339973)99.1/100:0.0584318661,MH486351.1_Amanita_zangii_voucher_HKAS99663_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0745150552)99.3/100:0.0734564824,(MN928561.1_Amanita_wadulawitu_voucher_PERTH09144382_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0482584463,MN928570.1_Amanita_wadjukiorum_voucher_PERTH08793522_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0628171593)93.6/100:0.0409803510)75.3/78:0.0082213824)70.4/80:0.0047848876,((MH485932.1_Amanita_cinereopannosa_voucher_RET_477-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0131482946,(MH486043.1_Amanita_griseoverrucosa_voucher_HKAS57357_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0216097951,MH486210.1_Amanita_ravenelii_voucher_RET_459-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0040066485)85.9/99:0.0079739854)98.9/100:0.0291660688,MH486298.1_Amanita_strobiliformis_voucher_MB-001177_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0537339377)86/96:0.0149329939)97/99:0.0462765592)18.3/72:0.0168501510,(MT993768.1_Amanita_inopinata_isolate_JAC11447_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.2017430815,((ON007285.1_Amanita_manicata_voucher_SDBR-STO-2020-36_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.2353118861,MH486342.1_Amanita_vittadinii_voucher_HKAS101430_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.1116025596)85.5/79:0.0526682481,(OR828288.1_Pluteus_cervinus_voucher_AMB_18870_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.6288240600,ON007282.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.2109467065)80/85:0.0593535706)84.9/79:0.0477958507)98.5/99:0.1079493519)86.3/97:0.0304656717,(((OR554280.1_Amanita_sp.__crassiconus__voucher_JEIC0641_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0468311193,(KP259288.1_Amanita_cinereovelata_voucher_HKAS_81647_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0203092601,MH486025.1_Amanita_griseofarinosa_voucher_HKAS80926_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0110425221)94.2/99:0.0279515129)97.9/100:0.0509462657,KJ466662.1_Amanita_vestita_voucher_HKAS79687_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0893468695)17.1/78:0.0078446748,MH486323.1_Amanita_timida_voucher_HKAS83228_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0616120530)87.8/98:0.0146337206)81.6/91:0.0123084796,MH485918.1_Amanita_cf._xanthogala_voucher_HKAS84707_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0767128445)85.5/98:0.0103930501,MH486049.1_Amanita_heishidingensis_voucher_HKAS81484_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0283665638)86.4/79:0.0077158373,(MN928558.1_Amanita_carneiphylla_voucher_AD282179_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0257290687,(OP272670.1_Amanita_quenda_voucher_PERTH09472754_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0459465157,OR554358.1_Amanita_austrostraminea_voucher_09.354_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0330731804)0/90:0.0012897826)95.1/98:0.0133031850)22.8/73:0.0010625825,(MK557916.1_Amanita_proxima_voucher_S16_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0520424609,MK557917.1_Amanita_smithiana_voucher_S18_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0191673157)0/62:0.0005222860)82/87:0.0117416164,(OR554363.1_Amanita_ochrophylla_voucher_09.207_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0759547354,(MH486044.1_Amanita_gymnopus_voucher_HKAS71618_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0167276048,ON325593.1_Amanita_macrocarpa_voucher_B21051513_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0402002682)83/98:0.0112777563)93/99:0.0233937581);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -11490.001867
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++----OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|
+|                                                      +--MH485862.1_Amanita_altipes_voucher_HKAS91125_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                                   +--| (87)
+|                                                   |  +--MH486174.1_Amanita_parvipantherina_voucher_HKAS67828_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                                +--| (56)
+|                                                |  +--MH486051.1_Amanita_ibotengutake_voucher_HKAS83269_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                             +--| (73)
+|                                             |  +--OR051516.1_Amanita_subglobosa_voucher_HMAS_253798_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                          +--| (94)
+|                                          |  +--KR824794.1_Amanita_concentrica_voucher_HKAS_87061_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                                       +--| (88)
+|                                       |  +----MN928573.1_Amanita_fibrillopes_voucher_PERTH08793573_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                                 +-----| (100)
+|                                 |     +--MH486277.1_Amanita_sinensis_voucher_HKAS74388_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                              +--| (80)
+|                              |  +-------------------PQ493142.1_Amanita_umbrinella_voucher_AD-C56413_DNA-dependent_RNA_polymerase_II_second_largest_subunit_1__rpb2__gene__partial_cds
+|                    +---------| (100)
+|                    |         |                     +--KF877052.1_Amanita_egregia_voucher_RET_136-7_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |                  +--| (99)
+|                    |         |                  |  +--KU714594.1_Amanita_princeps_voucher_FRIM_62849_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |               +--| (90)
+|                    |         |               |  +--KU714593.1_Amanita_aporema_voucher_FRIM_62674_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |          +----| (100)
+|                    |         |          |    +--KF877097.1_Amanita_zambiana_voucher_RET_343-10_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |       +--| (51)
+|                    |         |       |  |                  +--MH486063.1_Amanita_jacksonii_voucher_Wolf2183_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |               +--| (99)
+|                    |         |       |  |               |  +--MH485899.1_Amanita_caesareoides_voucher_HKAS71021_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |            +--| (70)
+|                    |         |       |  |            |  +--LC723390.1_Amanita_kitamagotake_S-76_rpb2_gene_for_RNA_polymerase_II_second_largest_subunit__partial_sequence
+|                    |         |       |  |         +--| (66)
+|                    |         |       |  |         |  +--KF877090.1_Amanita_vernicoccora_voucher_RET_385-6_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |       |  |      +--| (78)
+|                    |         |       |  |      |  +--MT729677.1_Amanita_masasiensis_voucher_BRF4071_RNA_polymerase_II_subunit_II__RPB2__gene__partial_cds
+|                    |         |       |  |   +--| (87)
+|                    |         |       |  |   |  |  +--LC325296.1_Amanita_cf._similis_TMI_26363_rpb2_gene_for_RNA_polymerase_II_subunit_II__partial_cds
+|                    |         |       |  |   |  +--| (99)
+|                    |         |       |  |   |     |     +--MH485915.1_Amanita_cf._javanica_voucher_HKAS101408_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |   |     |  +--| (99)
+|                    |         |       |  |   |     |  |  +--KU714590.1_Amanita_rubromarginata_voucher_HKAS_59740_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  |   |     +--| (99)
+|                    |         |       |  |   |        +--OR554314.1_Amanita_chatamagotake_voucher_EFHAAU1669_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |       |  +---| (100)
+|                    |         |       |      +--KF877069.1_Amanita_aff._mafingensis_MA_898_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         |  +----| (100)
+|                    |         |  |    |  +--MH486347.1_Amanita_yuaniana_voucher_HKAS58807_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |         |  |    +--| (100)
+|                    |         |  |       +--KF877092.1_Amanita_virginiana_voucher_RET_374-8_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds
+|                    |         +--| (89)
+|                    |            |               +--MH486022.1_Amanita_fulva_voucher_HKAS96168_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |            +--| (97)
+|                    |            |            |  +--MH486139.1_Amanita_orientifulva_voucher_HKAS97971_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |         +--| (93)
+|                    |            |         |  |     +--OR051728.1_Amanita_griseofolia_voucher_EFHAAU555_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                    |            |         |  |  +--| (100)
+|                    |            |         |  |  |  +--KU714584.1_Amanita_liquii_voucher_HKAS_54568_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |         |  +--| (99)
+|                    |            |         |     +--MT993780.1_Amanita_aff._drummondii_isolate_JAC13423_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |      +--| (98)
+|                    |            |      |  |  +--OR051523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |      |  +--| (59)
+|                    |            |      |     +--ON492123.1_Amanita_crebresulcata_voucher_INPA_265285_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |   +--| (71)
+|                    |            |   |  |  +--ON854980.1_Amanita_madagascariensis_voucher_JEIC0515_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            |   |  +--| (95)
+|                    |            |   |     +--OR554309.1_Amanita_cf._strobilaceovolvata_voucher_08.107_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                    |            +---| (99)
+|                    |                +--MH485935.1_Amanita_cingulata_voucher_HKAS100640_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 +--| (72)
+|                 |  |                     +--OR529183.1_Amanita_brunneolocularis_voucher_ART201972_rpb2_mRNA__partial_cds
+|                 |  |                  +--| (83)
+|                 |  |                  |  +--MH486226.1_Amanita_rubescens_voucher_HKAS92034_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |               +--| (68)
+|                 |  |               |  +--MH486296.1_Amanita_spissa_voucher_HKAS92089_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |            +--| (83)
+|                 |  |            |  +--MH485985.1_Amanita_flavoconia_voucher_RET_485-6_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |         +--| (100)
+|                 |  |         |  +--MH485870.1_Amanita_augusta_voucher_HKAS101419_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |     +---| (100)
+|                 |  |     |   |     +---AY780936.1_Amanita_brunnescens_isolate_AFTOL-ID_673_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|                 |  |     |   |  +--| (100)
+|                 |  |     |   |  |  +--MH485936.1_Amanita_citrina_voucher_HKAS101397_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |     |   +--| (72)
+|                 |  |     |      +--MH486256.1_Amanita_sepiacea_voucher_HKAS56799_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  +--| (80)
+|                 |  |  |  |               +--MT993784.1_Amanita_marmorata_isolate_JAC14571_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |  |            +--| (100)
+|                 |  |  |  |            |  +--MF000758.1_Amanita_eucalypti_voucher_PERTH8809828_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         +--| (99)
+|                 |  |  |  |         |  |     +--MF000755.1_Amanita_djarilmari_voucher_PERTH08776067_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         |  |  +--| (100)
+|                 |  |  |  |         |  |  |  +--MF000756.1_Amanita_gardneri_voucher_PERTH08776121_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |         |  +--| (100)
+|                 |  |  |  |         |     +--MF000753.1_Amanita_millsii_voucher_HO581533_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|                 |  |  |  |      +--| (100)
+|                 |  |  |  |      |  |   +--KJ466664.1_Amanita_virosa_voucher_HKAS56694_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|                 |  |  |  |      |  +---| (100)
+|                 |  |  |  |      |      |  +--KJ466615.1_Amanita_rimosa_voucher_HKAS75777_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|                 |  |  |  |      |      +--| (89)
+|                 |  |  |  |      |         +--KP691703.1_Amanita_subpallidorosea_voucher_LHJ140926-11_RNA_polymerase_II_second-largest_subunit__RPB2__gene__partial_cds
+|                 |  |  |  |  +---| (100)
+|                 |  |  |  |  |   +---MH486351.1_Amanita_zangii_voucher_HKAS99663_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |  +--| (78)
+|                 |  |  |     |  +--MN928561.1_Amanita_wadulawitu_voucher_PERTH09144382_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  |  |     +--| (100)
+|                 |  |  |        +---MN928570.1_Amanita_wadjukiorum_voucher_PERTH08793522_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |  +--| (99)
+|                 |     |     +--MH485932.1_Amanita_cinereopannosa_voucher_RET_477-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     |  +--| (100)
+|                 |     |  |  |  +--MH486043.1_Amanita_griseoverrucosa_voucher_HKAS57357_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     |  |  +--| (99)
+|                 |     |  |     +--MH486210.1_Amanita_ravenelii_voucher_RET_459-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|                 |     +--| (96)
+|                 |        +--MH486298.1_Amanita_strobiliformis_voucher_MB-001177_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              +--| (97)
+|              |  |      +------------MT993768.1_Amanita_inopinata_isolate_JAC11447_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              |  +------| (99)
+|              |         |     +--------------ON007285.1_Amanita_manicata_voucher_SDBR-STO-2020-36_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|              |         |  +--| (79)
+|              |         |  |  +------MH486342.1_Amanita_vittadinii_voucher_HKAS101430_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|              |         +--| (79)
+|              |            |  +----------------------------------------OR828288.1_Pluteus_cervinus_voucher_AMB_18870_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|              |            +--| (85)
+|              |               +------------ON007282.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           +--| (91)
+|           |  |        +--OR554280.1_Amanita_sp.__crassiconus__voucher_JEIC0641_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           |  |     +--| (100)
+|           |  |     |  |  +--KP259288.1_Amanita_cinereovelata_voucher_HKAS_81647_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds
+|           |  |     |  +--| (99)
+|           |  |     |     +--MH486025.1_Amanita_griseofarinosa_voucher_HKAS80926_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|           |  |  +--| (78)
+|           |  |  |  +----KJ466662.1_Amanita_vestita_voucher_HKAS79687_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds
+|           |  +--| (98)
+|           |     +---MH486323.1_Amanita_timida_voucher_HKAS83228_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|        +--| (98)
+|        |  +----MH485918.1_Amanita_cf._xanthogala_voucher_HKAS84707_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|     +--| (79)
+|     |  +--MH486049.1_Amanita_heishidingensis_voucher_HKAS81484_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  +--| (73)
+|  |  |  +--MN928558.1_Amanita_carneiphylla_voucher_AD282179_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  |  +--| (98)
+|  |     |  +--OP272670.1_Amanita_quenda_voucher_PERTH09472754_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds
+|  |     +--| (90)
+|  |        +--OR554358.1_Amanita_austrostraminea_voucher_09.354_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
++--| (87)
+|  |  +--MK557916.1_Amanita_proxima_voucher_S16_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|  +--| (62)
+|     +--MK557917.1_Amanita_smithiana_voucher_S18_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+|
+|  +---OR554363.1_Amanita_ochrophylla_voucher_09.207_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
++--| (99)
+   |  +--MH486044.1_Amanita_gymnopus_voucher_HKAS71618_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+   +--| (98)
+      +--ON325593.1_Amanita_macrocarpa_voucher_B21051513_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds
+
+
+Consensus tree in newick format: 
+
+(OR554366.1_Amanita_cf._afrospinosa_voucher_08.334_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0880078644,(((((((((((((((MH485862.1_Amanita_altipes_voucher_HKAS91125_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0126096118,MH486174.1_Amanita_parvipantherina_voucher_HKAS67828_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0229230682)87:0.0047085949,MH486051.1_Amanita_ibotengutake_voucher_HKAS83269_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0187704104)56:0.0000024717,OR051516.1_Amanita_subglobosa_voucher_HMAS_253798_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0324844946)73:0.0004437086,KR824794.1_Amanita_concentrica_voucher_HKAS_87061_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0290373493)94:0.0114284302,MN928573.1_Amanita_fibrillopes_voucher_PERTH08793573_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0776444115)88:0.0096717853,MH486277.1_Amanita_sinensis_voucher_HKAS74388_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0092409502)100:0.0951670968,PQ493142.1_Amanita_umbrinella_voucher_AD-C56413_DNA-dependent_RNA_polymerase_II_second_largest_subunit_1__rpb2__gene__partial_cds:0.3102494571)80:0.0163438623,((((((KF877052.1_Amanita_egregia_voucher_RET_136-7_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0126895623,KU714594.1_Amanita_princeps_voucher_FRIM_62849_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0273871252)99:0.0054870442,KU714593.1_Amanita_aporema_voucher_FRIM_62674_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0185446600)90:0.0115356070,KF877097.1_Amanita_zambiana_voucher_RET_343-10_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0566079288)100:0.0815058923,((((((MH486063.1_Amanita_jacksonii_voucher_Wolf2183_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0037673653,MH485899.1_Amanita_caesareoides_voucher_HKAS71021_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0056886977)99:0.0145398120,LC723390.1_Amanita_kitamagotake_S-76_rpb2_gene_for_RNA_polymerase_II_second_largest_subunit__partial_sequence:0.0189622647)70:0.0033127425,KF877090.1_Amanita_vernicoccora_voucher_RET_385-6_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0106742157)66:0.0011360416,MT729677.1_Amanita_masasiensis_voucher_BRF4071_RNA_polymerase_II_subunit_II__RPB2__gene__partial_cds:0.0438716656)78:0.0088383394,(LC325296.1_Amanita_cf._similis_TMI_26363_rpb2_gene_for_RNA_polymerase_II_subunit_II__partial_cds:0.0442000132,((MH485915.1_Amanita_cf._javanica_voucher_HKAS101408_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0114787226,KU714590.1_Amanita_rubromarginata_voucher_HKAS_59740_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0180670112)99:0.0080637169,OR554314.1_Amanita_chatamagotake_voucher_EFHAAU1669_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0093241084)99:0.0222986032)99:0.0260222903)87:0.0126071738,KF877069.1_Amanita_aff._mafingensis_MA_898_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0549683189)100:0.0616954280)51:0.0049665448,(MH486347.1_Amanita_yuaniana_voucher_HKAS58807_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0210938497,KF877092.1_Amanita_virginiana_voucher_RET_374-8_RNA_polymerase_II_subunit_II__rpb2__gene__partial_cds:0.0504996540)100:0.0498488957)100:0.0765922458,(((((MH486022.1_Amanita_fulva_voucher_HKAS96168_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0329907412,MH486139.1_Amanita_orientifulva_voucher_HKAS97971_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0063577059)97:0.0121376528,((OR051728.1_Amanita_griseofolia_voucher_EFHAAU555_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0243839493,KU714584.1_Amanita_liquii_voucher_HKAS_54568_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0177770898)100:0.0058133638,MT993780.1_Amanita_aff._drummondii_isolate_JAC13423_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0354507548)99:0.0107366276)93:0.0046591032,(OR051523.1_Amanita_vaginata_var._vaginata_voucher_HMAS_253281_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0356504984,ON492123.1_Amanita_crebresulcata_voucher_INPA_265285_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0483387069)59:0.0064030130)98:0.0421205082,(ON854980.1_Amanita_madagascariensis_voucher_JEIC0515_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0519077184,OR554309.1_Amanita_cf._strobilaceovolvata_voucher_08.107_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0392633209)95:0.0230540336)71:0.0012791136,MH485935.1_Amanita_cingulata_voucher_HKAS100640_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0189243098)99:0.0634853055)89:0.0251593150)100:0.1568790949,(((((((OR529183.1_Amanita_brunneolocularis_voucher_ART201972_rpb2_mRNA__partial_cds:0.0116857038,MH486226.1_Amanita_rubescens_voucher_HKAS92034_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0119738517)83:0.0032857097,MH486296.1_Amanita_spissa_voucher_HKAS92089_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0305486056)68:0.0000028512,MH485985.1_Amanita_flavoconia_voucher_RET_485-6_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0213465460)83:0.0095538085,MH485870.1_Amanita_augusta_voucher_HKAS101419_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0275468564)100:0.0560825246,((AY780936.1_Amanita_brunnescens_isolate_AFTOL-ID_673_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0613139892,MH485936.1_Amanita_citrina_voucher_HKAS101397_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0260589408)100:0.0328579766,MH486256.1_Amanita_sepiacea_voucher_HKAS56799_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0296921708)72:0.0051489224)100:0.0735632265,(((((MT993784.1_Amanita_marmorata_isolate_JAC14571_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0175613996,MF000758.1_Amanita_eucalypti_voucher_PERTH8809828_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0107955588)100:0.0138742987,((MF000755.1_Amanita_djarilmari_voucher_PERTH08776067_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0159490372,MF000756.1_Amanita_gardneri_voucher_PERTH08776121_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0101678337)100:0.0088910819,MF000753.1_Amanita_millsii_voucher_HO581533_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0131916080)100:0.0085265066)99:0.0282036043,(KJ466664.1_Amanita_virosa_voucher_HKAS56694_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0041579158,(KJ466615.1_Amanita_rimosa_voucher_HKAS75777_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0569841571,KP691703.1_Amanita_subpallidorosea_voucher_LHJ140926-11_RNA_polymerase_II_second-largest_subunit__RPB2__gene__partial_cds:0.0155490989)89:0.0024246083)100:0.0653314522)100:0.0584297556,MH486351.1_Amanita_zangii_voucher_HKAS99663_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0745150622)100:0.0734568617,(MN928561.1_Amanita_wadulawitu_voucher_PERTH09144382_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0482591482,MN928570.1_Amanita_wadjukiorum_voucher_PERTH08793522_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0628173959)100:0.0409840673)78:0.0082167041)80:0.0047844458,((MH485932.1_Amanita_cinereopannosa_voucher_RET_477-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0131484788,(MH486043.1_Amanita_griseoverrucosa_voucher_HKAS57357_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0216098157,MH486210.1_Amanita_ravenelii_voucher_RET_459-10_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0040065846)99:0.0079743470)100:0.0291647848,MH486298.1_Amanita_strobiliformis_voucher_MB-001177_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0537354677)96:0.0149255068)99:0.0462729832)72:0.0168465968,(MT993768.1_Amanita_inopinata_isolate_JAC11447_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.2017437364,((ON007285.1_Amanita_manicata_voucher_SDBR-STO-2020-36_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.2352978741,MH486342.1_Amanita_vittadinii_voucher_HKAS101430_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.1116101709)79:0.0526570458,(OR828288.1_Pluteus_cervinus_voucher_AMB_18870_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.6288452593,ON007282.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.2108970288)85:0.0594268575)79:0.0477880098)99:0.1079860443)97:0.0304679120,(((OR554280.1_Amanita_sp.__crassiconus__voucher_JEIC0641_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0468301015,(KP259288.1_Amanita_cinereovelata_voucher_HKAS_81647_DNA-directed_RNA_polymerase_II_second_largest_subunit__RPB2__gene__partial_cds:0.0203107352,MH486025.1_Amanita_griseofarinosa_voucher_HKAS80926_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0110418554)99:0.0279524372)100:0.0509446692,KJ466662.1_Amanita_vestita_voucher_HKAS79687_DNA-directed_RNA_polymerase_II_second_largest_subunit_one_gene__partial_cds:0.0893484193)78:0.0078417478,MH486323.1_Amanita_timida_voucher_HKAS83228_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0616142376)98:0.0146334078)91:0.0123077280,MH485918.1_Amanita_cf._xanthogala_voucher_HKAS84707_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0767110290)98:0.0103924659,MH486049.1_Amanita_heishidingensis_voucher_HKAS81484_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0283671586)79:0.0077153657,(MN928558.1_Amanita_carneiphylla_voucher_AD282179_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0257278377,(OP272670.1_Amanita_quenda_voucher_PERTH09472754_DNA-directed_RNA_polymerase_II_second_largest_subunit_gene__partial_cds:0.0459492685,OR554358.1_Amanita_austrostraminea_voucher_09.354_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0330756485)90:0.0012886003)98:0.0133021988)73:0.0010610335,(MK557916.1_Amanita_proxima_voucher_S16_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0520422633,MK557917.1_Amanita_smithiana_voucher_S18_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0191670978)62:0.0005233992)87:0.0117344466,(OR554363.1_Amanita_ochrophylla_voucher_09.207_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0759516062,(MH486044.1_Amanita_gymnopus_voucher_HKAS71618_DNA-directed_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0167264132,ON325593.1_Amanita_macrocarpa_voucher_B21051513_DNA-dependent_RNA_polymerase_II_second_largest_subunit__rpb2__gene__partial_cds:0.0401997455)98:0.0112790228)99:0.0233915278);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t trim_cleaned_al_RPB2.fasta.treefile -m "TPM2{1.48042,12.552}+FQ+I{0.490038}+R3{0.138832,0.187391,0.188154,1.57847,0.182975,3.6999}" --length 666
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s trim_cleaned_al_RPB2.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s trim_cleaned_al_RPB2.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon May 26 19:53:05 2025
+Total CPU time used: 125.870373 seconds (0h:2m:5s)
+Total wall-clock time used: 126.8537428 seconds (0h:2m:6s)
+
