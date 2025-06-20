@@ -293,6 +293,8 @@ df_pruned$species <- rownames(df_pruned)
 
 ```
 
+# Blomberg’s K 
+
 ```{r}
 
 # -------------------------------
@@ -316,6 +318,67 @@ cat("Blomberg’s K for Volume:\n")
 print(K_volume)
 
 ```
+# visualize K values
+
+```{r}
+
+# Make sure this folder exists
+dir.create("Blombergs_K_Plots", showWarnings = FALSE)
+
+```
+
+```{r}
+# === 1. Continuous trait mapping (PC1) ===
+png("Blombergs_K_Plots/PC1_contMap.png", width = 1000, height = 800)
+obj_pc1 <- contMap(tree_pruned, df_pruned$PC1, plot = FALSE)
+plot(obj_pc1, legend = TRUE, fsize = 0.6)
+title("PC1 mapped on Phylogeny")
+dev.off()
+
+
+```
+
+```{r}
+
+
+# === 2. Phylomorphospace: PC1 vs Volume ===
+png("Blombergs_K_Plots/Phylomorphospace_PC1_Volume.png", width = 1000, height = 800)
+phylomorphospace(tree_pruned, df_pruned[, c("PC1", "avg_volume_estimated")], label = "off")
+title("Phylomorphospace: PC1 vs Volume")
+dev.off()
+
+# === 3. Histogram of randomized K values ===
+set.seed(123)
+K_test <- phylosig(tree_pruned, df_pruned$PC1, method = "K", test = TRUE, nsim = 1000)
+
+png("Blombergs_K_Plots/K_null_distribution_PC1.png", width = 1000, height = 800)
+hist(K_test$random.K, main = "Null Distribution of Blomberg’s K (PC1)",
+     xlab = "K under random tip reshuffling", breaks = 30, col = "lightgray")
+abline(v = K_test$K, col = "red", lwd = 2)
+text(K_test$K, max(hist(K_test$random.K, plot = FALSE)$counts), 
+     labels = paste("Observed K =", signif(K_test$K, 3)), pos = 4, col = "red")
+dev.off()
+
+# === 4. Dotplot for K values across traits ===
+K_df <- tibble(
+  Trait = c("PC1", "Volume"),
+  K = c(K_PC1$K, K_volume$K),
+  P = c(K_PC1$P, K_volume$P)
+)
+
+png("Blombergs_K_Plots/K_dotplot.png", width = 800, height = 600)
+ggplot(K_df, aes(x = Trait, y = K)) +
+  geom_point(size = 6, color = "steelblue") +
+  geom_text(aes(label = paste0("p=", round(P, 3))), vjust = -1.2, size = 5) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Blomberg’s K Across Traits", y = "Blomberg’s K", x = "")
+dev.off()
+
+
+```
+
+
+# Pagel’s λ
 
 ```{r}
 
@@ -345,11 +408,6 @@ ggplot(df_pruned, aes(x = rainfall, y = PC1)) +
   geom_smooth(method = "lm", se = TRUE) +
   theme_minimal() +
   labs(title = "Rainfall vs PC1 (Spore Shape)", x = "Monthly Rainfall (mm)", y = "PC1 (Shape)")
-
-# -------------------------------
-# Save results (optional)
-# -------------------------------
-save(tree_pruned, df_pruned, K_PC1, lambda_PC1, file = "Amanita_phylo_analysis.RData")
 
 
 ```

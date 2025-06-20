@@ -45,34 +45,31 @@ library(stringr)
 
 ```
 
-# Morphometic analysis
+# Load PCA data and volume dataset
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
-# Import outlines: First list jpeg files to import
+# Load both datasets
+pca_df <- read_csv("/Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv")
+master_df <- read_csv("/Results/Weather_Volume/2_Open_weather_Analysis_MASTER.csv")
 
-jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+# Standardize species names for matching
+pca_df <- pca_df %>%
+  mutate(species = str_to_lower(str_trim(species)))
 
-# import them
+master_df <- master_df %>%
+  mutate(species = str_to_lower(str_trim(species)))
 
-spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
-out_spores <- Momocs::Out(spores)
-out_spores <- Momocs::coo_center(out_spores)
-out_spores_scaled <- Momocs::coo_scale(out_spores)
-out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
-# Ensure all outlines have the same number of points (e.g., 100 points per outline)
-out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
-# Now apply Procrustes alignment
-out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
-# Visualize to confirm
-panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
-efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
-pca_spores <- Momocs::PCA(efourier_spores)
+# Merge by species
+combined_df <- left_join(master_df, pca_df, by = "species")
+
+# Inspect
+head(combined_df)
 
 ```
 # Volume (size) analysis
 
 ```{r}
 # Load the spore volume data
-volume_data <- read_csv("spreadsheets/Sporelengthwidthvolume.csv")
+volume_data <- read_csv("Analyses/Volume shape and Niche/volume vs ShapePCA/June19/Amanita_spores_volumePCA.Rmd")
 
 # View the first few rows to confirm it's loaded correctly
 head(volume_data)
@@ -151,8 +148,6 @@ intercept <- round(coef(lm_model)[1], 3)         # Intercept
 
 
 ```{r}
-library(ggplot2)
-library(dplyr)
 
 # Identify the point with the lowest spore volume (X-axis)
 lowest_volume_point <- merged_data %>%
