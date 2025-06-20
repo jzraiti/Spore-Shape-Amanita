@@ -1,0 +1,12 @@
+1. Get and investigate the phylogenetic data with morphology. ALONE
+
+2. Get and clean and analyze volume data - incorporate with morphological data? Does it make sense to add this to our PC score? 
+
+- Maybe look at annual rainfall for each location there was a fruiting for each mushroom- pick 6 species, top 3 on each side of the PC1 spectrum- basically a case study.
+
+
+CLIMATE AND MORPHOLOGY
+
+
+
+CLIMATE AND PHYLOGENY

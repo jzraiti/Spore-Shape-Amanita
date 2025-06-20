@@ -1,0 +1,180 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(dplyr)
+library(stringr)
+
+library(ape)
+library(tidyverse)
+library(caper)
+
+```
+
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+
+jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+
+# import them
+
+spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
+out_spores <- Momocs::Out(spores)
+out_spores <- Momocs::coo_center(out_spores)
+out_spores_scaled <- Momocs::coo_scale(out_spores)
+out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
+# Ensure all outlines have the same number of points (e.g., 100 points per outline)
+out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
+# Now apply Procrustes alignment
+out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
+# Visualize to confirm
+panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
+efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
+pca_spores <- Momocs::PCA(efourier_spores)
+
+```
+
+# Volume (size) analysis
+
+```{r}
+# -------------------------------
+# Load data and tree
+# -------------------------------
+tree <- read.nexus("Analyses/Phylogeny_integrated/species_tree_output.tree")
+```
+
+```{r}
+
+
+df <- read_csv("Analyses/Phylogeny_integrated/2_Open_weather_Analysis_MASTER.csv")
+
+```
+
+```{r}
+
+# -------------------------------
+# Clean and summarize data
+# -------------------------------
+# Remove missing species or PC1
+
+# Clean species names in your data frame
+df$species <- df$species %>%
+  stringr::str_trim() %>%      # Remove leading/trailing whitespace
+  stringr::str_to_lower()      # Convert to lower case
+
+# Clean tree tip labels
+tree$tip.label <- tree$tip.label %>%
+  stringr::str_trim() %>%
+  stringr::str_to_lower()
+
+# Now proceed with your summarizing and matching
+df_clean <- df %>%
+  filter(!is.na(PC1)) %>%
+  group_by(species) %>%
+  summarize(
+    PC1 = mean(PC1, na.rm = TRUE),
+    avg_length = mean(avg_length, na.rm = TRUE),
+    avg_width = mean(avg_width, na.rm = TRUE),
+    volume = mean(avg_volume_estimated, na.rm = TRUE),
+    rainfall = mean(Precipitation_monthly, na.rm = TRUE)
+  ) %>%
+  filter(!is.na(volume)) %>%
+  as.data.frame()
+
+rownames(df_clean) <- df_clean$species
+df_clean$species <- NULL
+
+# Now matching will be robust
+species_in_both <- intersect(tree$tip.label, rownames(df_clean))
+```
+
+```{r}
+
+# -------------------------------
+# Match tree tips and data
+# -------------------------------
+species_in_both <- intersect(tree$tip.label, rownames(df_clean))
+tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
+df_pruned <- df_clean[species_in_both, ]
+
+# Ensure order matches
+df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
+stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
+
+```
+
+```{r}
+
+# -------------------------------
+# Phylogenetic Signal Tests
+# -------------------------------
+# Blomberg’s K
+K_PC1 <- phylosig(tree_pruned, df_pruned$PC1, method = "K", test = TRUE)
+K_volume <- phylosig(tree_pruned, df_pruned$volume, method = "K", test = TRUE)
+
+# Pagel’s λ
+comp_data <- comparative.data(tree_pruned, df_pruned, names.col = "row.names", vcv = TRUE)
+lambda_PC1 <- pgls(PC1 ~ 1, data = comp_data, lambda = "ML")
+lambda_volume <- pgls(volume ~ 1, data = comp_data, lambda = "ML")
+
+summary(lambda_PC1)
+summary(lambda_volume)
+
+```
+
+```{r}
+
+# -------------------------------
+# Plotting
+# -------------------------------
+# Trait vs Environment
+ggplot(df_pruned, aes(x = rainfall, y = PC1)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() +
+  labs(title = "Rainfall vs PC1 (Spore Shape)", x = "Monthly Rainfall (mm)", y = "PC1 (Shape)")
+
+# -------------------------------
+# Save results (optional)
+# -------------------------------
+save(tree_pruned, df_pruned, K_PC1, lambda_PC1, file = "Amanita_phylo_analysis.RData")
+
+
+```
