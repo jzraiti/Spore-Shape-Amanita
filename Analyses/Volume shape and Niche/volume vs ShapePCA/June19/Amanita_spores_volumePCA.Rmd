@@ -50,7 +50,7 @@ library(ggrepel)
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Load both datasets
 pca_df <- read_csv("./Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv")
-master_df <- read_csv("./Results/Weather_Volume/2_Open_weather_Analysis_MASTER.csv")
+master_df <- read_csv("./Results/Volume/Volume.csv")
 
 # Standardize species names for matching
 pca_df <- pca_df %>%
@@ -72,7 +72,7 @@ head(combined_df)
 
 # Remove NAs for plotting
 plot_df <- combined_df %>%
-  filter(!is.na(PC1), !is.na(avg_volume_estimated))
+  filter(!is.na(PC1_mean), !is.na(avg_volume_estimated))
 
 # Identify 5 largest volumes
 top_vol <- plot_df %>%
@@ -86,12 +86,12 @@ low_vol <- plot_df %>%
 
 # Identify 5 lowest PC1
 low_pc1 <- plot_df %>%
-  arrange(PC1) %>%
+  arrange(PC1_mean) %>%
   slice(1:5)
 
 # Identify 5 highest PC1
 high_pc1 <- plot_df %>%
-  arrange(desc(PC1)) %>%
+  arrange(desc(PC1_mean)) %>%
   slice(1:5)
 
   # Combine all for labeling
@@ -101,19 +101,24 @@ label_df <- bind_rows(top_vol, low_vol, low_pc1, high_pc1) %>%
 ```
 
 ```{r, label="plot PCA with outliers", echo=F, message=FALSE}
-# Create plot
-p <- ggplot(plot_df, aes(x = PC1, y = avg_volume_estimated)) +
+
+# Create plot with connecting lines from labels to data points
+p <- ggplot(plot_df, aes(x = PC1_mean, y = avg_volume_estimated)) +
   geom_point(size = 3, alpha = 0.8, color = "#2C77B8") +
   geom_smooth(method = "lm", se = TRUE, color = "black", linetype = "dashed") +
   stat_cor(method = "pearson", aes(label = paste(..r.label.., ..p.label.., sep = "~`,`~")),
-           label.x = min(plot_df$PC1, na.rm = TRUE), 
+           label.x = min(plot_df$PC1_mean, na.rm = TRUE), 
            label.y = max(plot_df$avg_volume_estimated, na.rm = TRUE) * 0.95,
            size = 5) +
-  geom_text_repel(
+  geom_label_repel(
     data = label_df,
     aes(label = species),
     size = 4,
-    max.overlaps = 20
+    box.padding = 0.4,
+    point.padding = 0.3,
+    segment.color = "black",
+    segment.size = 0.5,
+    nudge_y = 0.05 * max(plot_df$avg_volume_estimated, na.rm = TRUE)
   ) +
   labs(
     x = "PC1 (Spore Shape Axis)",
@@ -127,7 +132,53 @@ p <- ggplot(plot_df, aes(x = PC1, y = avg_volume_estimated)) +
   )
 
 # Save plot
-ggsave("PC1_vs_Volume_TopBottomLabels.jpg", plot = p, width = 8, height = 6, dpi = 300)
+ggsave("PC1_vs_Volume_TopBottomLabels_withLines.jpg", plot = p, width = 8, height = 6, dpi = 300)
 
+```
+
+
+```{r, label="plot PCA with outliers", echo=F, message=FALSE}
+
+# Create plot with connecting lines from labels to data points
+p <- ggplot(plot_df, aes(x = PC1_mean, y = avg_volume_estimated)) +
+  geom_point(size = 3, alpha = 0.8, color = "#2C77B8") +
+  geom_smooth(method = "lm", se = TRUE, color = "black", linetype = "dashed") +
+  stat_cor(method = "pearson", aes(label = paste(..r.label.., ..p.label.., sep = "~`,`~")),
+           label.x = min(plot_df$PC1_mean, na.rm = TRUE), 
+           label.y = max(plot_df$avg_volume_estimated, na.rm = TRUE) * 0.95,
+           size = 5) +
+  labs(
+    x = "PC1 (Spore Shape Axis)",
+    y = "Estimated Spore Volume (µm³)",
+    title = "PC1 and Volume"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+# Save plot
+ggsave("PC1_vs_Volume.jpg", plot = p, width = 8, height = 6, dpi = 300)
+
+```
+
+```{r, label="plot PCA with outliers", echo=F, message=FALSE}
+
+p <- ggplot(plot_df, aes(x = avg_volume_estimated)) +
+  geom_histogram(
+    bins = 30,                      # Number of bins; adjust for resolution
+    fill = "#2C77B8",               # Color of bars
+    color = "black",                # Outline of bars
+    alpha = 0.8                     # Transparency
+  ) +
+  labs(
+    title = "Distribution of Estimated Spore Volume",
+    x = "Estimated Spore Volume (µm³)",
+    y = "Count"
+  ) +
+  theme_minimal()
+
+ggsave("Volume.jpg", plot = p, width = 8, height = 6, dpi = 300)
 
 ```

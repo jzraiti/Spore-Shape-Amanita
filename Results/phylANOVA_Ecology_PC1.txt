@@ -1,0 +1,23 @@
+ANOVA table: Phylogenetic ANOVA
+
+Response: y
+           Sum Sq  Mean Sq  F value Pr(>F)
+x        0.079258 0.079258 7.567959  0.449
+Residual 0.890189 0.010473                
+
+P-value based on simulation.
+---------
+
+Pairwise posthoc test using method = "holm"
+
+Pairwise t-values:
+                ectomycorrhizal lepidella
+ectomycorrhizal        0.000000 -2.750992
+lepidella              2.750992  0.000000
+
+Pairwise corrected P-values:
+                ectomycorrhizal lepidella
+ectomycorrhizal           1.000     0.449
+lepidella                 0.449     1.000
+---------
+

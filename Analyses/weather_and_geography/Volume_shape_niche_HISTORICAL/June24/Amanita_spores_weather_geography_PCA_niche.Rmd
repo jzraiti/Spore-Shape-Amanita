@@ -1,0 +1,212 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ggrepel)
+
+# Load necessary libraries
+library(Hmisc)
+library(corrplot)
+
+# Load necessary libraries
+library(dunn.test)  # For post-hoc analysis
+
+library(ggplot2)
+library(ggpubr)
+library(dplyr)
+
+# Assuming 'clean_df' already has:
+# - PC1_mean
+# - avg_volume_estimated
+# - Precipitation_monthly
+# - Ecology (optional)
+
+
+```
+
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
+
+```
+
+
+
+# clean pca data and prep for data merge - including merging all samples within species
+```{r}
+# Clean and standardize species names across datasets
+pca <- pca %>% mutate(species = tolower(str_trim(species)))
+vol <- vol %>% mutate(species = tolower(str_trim(species)))
+eco <- eco %>% mutate(species = tolower(str_trim(species)))
+loc <- loc %>% mutate(species = tolower(str_trim(species)))
+
+# Merge all datasets
+merged_df <- pca %>%
+  left_join(vol, by = "species") %>%
+  left_join(eco, by = "species") %>%
+  left_join(loc, by = "species")
+
+# Check for NA or mismatched species
+summary(merged_df)
+
+```
+
+```{r}
+# Ensure numeric format for relevant columns
+merged_df <- merged_df %>%
+  mutate(across(c(avg_volume_estimated, PC1_mean, Precipitation_monthly), as.numeric))
+
+# Remove rows with NA in any of the three main variables
+clean_df <- merged_df %>%
+  filter(!is.na(avg_volume_estimated), !is.na(PC1_mean), !is.na(Precipitation_monthly))
+
+
+```
+
+```{r}
+
+# Create a new dataframe with precipitation in cm
+clean_df_cm <- clean_df %>%
+  mutate(Precip_cm = Precipitation_monthly * 2.54)  # 1 inch = 2.54 cm
+# Create a new dataframe without the top 3 precipitation values
+clean_df_cm_trimmed <- clean_df_cm %>%
+  arrange(desc(Precip_cm)) %>%
+  slice(-(1:3))  # Remove top 3 rows by precipitation
+
+# Check the range before and after trimming
+range(clean_df$Precipitation_monthly)  # Inches
+range(clean_df_cm$Precip_cm)           # cm before trimming
+range(clean_df_cm_trimmed$Precip_cm)   # cm after trimming
+
+```
+
+
+```{r}
+
+
+# PC1 ~ Precip
+cor_pc1 <- cor.test(clean_df_cm_trimmed$Precipitation_monthly, clean_df_cm_trimmed$PC1_mean, method = "pearson")
+r_pc1 <- round(cor_pc1$estimate, 2)
+p_pc1 <- format.pval(cor_pc1$p.value, digits = 2, eps = 0.001)
+
+# Volume ~ Precip
+cor_vol <- cor.test(clean_df_cm_trimmed$Precipitation_monthly, clean_df_cm_trimmed$avg_volume_estimated, method = "pearson")
+r_vol <- round(cor_vol$estimate, 2)
+p_vol <- format.pval(cor_vol$p.value, digits = 2, eps = 0.001)
+
+```
+
+```{r}
+
+plot_pc1 <- ggplot(clean_df_cm_trimmed, aes(x = Precipitation_monthly, y = PC1_mean, color = Ecology)) +
+  geom_point(size = 4, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linetype = "dashed", color = "black") +
+  annotate("text", 
+           x = Inf, y = Inf, 
+           label = paste0("r = ", r_pc1, ", p = ", p_pc1), 
+           hjust = 1.1, vjust = 1.5,
+           size = 6, fontface = "bold", color = "black") +
+  labs(
+    title = "Spore Shape (PC1) vs. Precipitation",
+    x = "30-day Precipitation (mm)",
+    y = "Mean PC1 (Spore Shape Axis)",
+    color = "Ecology"
+  ) +
+  theme_classic(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    axis.title = element_text(size = 18),
+    axis.text = element_text(size = 14),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14)
+  )
+
+
+```
+
+
+```{r}
+plot_volume <- ggplot(clean_df_cm_trimmed, aes(x = Precipitation_monthly, y = avg_volume_estimated, color = Ecology)) +
+  geom_point(size = 4, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linetype = "dashed", color = "black") +
+  annotate("text", 
+           x = Inf, y = Inf, 
+           label = paste0("r = ", r_vol, ", p = ", p_vol), 
+           hjust = 1.1, vjust = 1.5,
+           size = 6, fontface = "bold", color = "black") +
+  labs(
+    title = "Spore Volume vs. Precipitation",
+    x = "30-day Precipitation (mm)",
+    y = "Estimated Spore Volume",
+    color = "Ecology"
+  ) +
+  theme_classic(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    axis.title = element_text(size = 18),
+    axis.text = element_text(size = 14),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14)
+  )
+
+```
+
+
+```{r}
+ggsave("Figure_PC1_vs_Precip.png", plot = plot_pc1, width = 10, height = 8, dpi = 300)
+ggsave("Figure_Volume_vs_Precip.png", plot = plot_volume, width = 10, height = 8, dpi = 300)
+
+```

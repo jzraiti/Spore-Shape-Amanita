@@ -45,56 +45,31 @@ library(caper)
 
 library(terra)
 library(sf)
+library(ggtree)
+
 ```
 
-# Morphometic analysis
+# load data 
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+  mutate(species = tolower(species))
 
-jpg.list <- list.files("outlines", pattern=c( ".jpg"), full.names=TRUE) 
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
 
-# import them
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
 
-spores <- Momocs::import_jpg(jpg.paths = jpg.list, auto.notcentered = T)
-out_spores <- Momocs::Out(spores)
-out_spores <- Momocs::coo_center(out_spores)
-out_spores_scaled <- Momocs::coo_scale(out_spores)
-out_spores_smoothed <- Momocs::coo_smooth(out_spores_scaled, n = 5)
-# Ensure all outlines have the same number of points (e.g., 100 points per outline)
-out_spores_interp <- Momocs::coo_interpolate(out_spores_smoothed, n = 120)
-# Now apply Procrustes alignment
-out_spores_aligned <- Momocs::fgProcrustes(out_spores_interp)
-# Visualize to confirm
-panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
-efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
-pca_spores <- Momocs::PCA(efourier_spores)
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
 
 ```
-
-```{r}
-
-spore_scores <- as.data.frame(pca_spores$x)
-write.csv(spore_scores, "Blombergs_K_Plots/spore_PCA_scores.csv", row.names = TRUE)
-
-```
-
-# Phylogeny
-
-```{r}
-# -------------------------------
-# Load data and tree
-# -------------------------------
-tree <- read.nexus("Analyses/weather_and_geography/Climate_zones_phylogeny_morphology/species_tree_output.tree")
-```
-
-```{r}
-
-df <- read_csv("Analyses/weather_and_geography/Climate_zones_phylogeny_morphology/2_Open_weather_Analysis_MASTER.csv")
-
-```
-
 # Do Phylogenetic analysis
-
 
 ```{r}
 extract_pp1_tree <- function(file_path) {
@@ -169,7 +144,7 @@ extract_pp1_tree <- function(file_path) {
 ```
 
 ```{r}
-tree <- extract_pp1_tree("Analyses/Phylogeny_integrated/species_tree_output.tree")
+tree <- extract_pp1_tree("Results/Phylogeny/species_tree_output.tree")
 ```
 
 ```{r}
@@ -223,8 +198,6 @@ ggsave("Amanita_tree_highlighted.png",
 )
 ```
 
-
-
 # Prep combination of Morphometic and Phylogenetic data
 
 ```{r}
@@ -232,9 +205,6 @@ ggsave("Amanita_tree_highlighted.png",
 # -------------------------------
 # Clean species names for matching
 # -------------------------------
-df$species <- df$species %>%
-  stringr::str_trim() %>%
-  stringr::str_to_lower()
 
 tree$tip.label <- tree$tip.label %>%
   stringr::str_trim() %>%
@@ -245,11 +215,14 @@ tree$tip.label <- tree$tip.label %>%
 
 ```{r}
 
+# Merge all
+df <- pca %>% left_join(vol, by = "species") 
+
 # -------------------------------
 # Summarize morphometric + climate data per species
 # -------------------------------
 df_clean <- df %>%
-  filter(!is.na(PC1)) %>%
+  filter(!is.na(PC1_mean)) %>%
   filter(!is.na(avg_volume_estimated)) %>%
   column_to_rownames("species")
 
@@ -287,7 +260,8 @@ species_in_both <- intersect(tree$tip.label, rownames(df_clean))
 tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
 # Add a small branch length to avoid singularity
 tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
-
+node_backup <- tree_pruned$node.label
+tree_pruned$node.label <- NULL
 
 df_pruned <- df_clean[species_in_both, ]
 
@@ -296,6 +270,7 @@ df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
 stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
 
 df_pruned$species <- rownames(df_pruned)
+
 # -------------------------------
 
 ```
@@ -308,14 +283,14 @@ df_pruned$species <- rownames(df_pruned)
 # Phylogenetic Signal Tests
 # -------------------------------
 
-names_PC1 <- df_pruned$PC1
+names_PC1 <- df_pruned$PC1_mean
 names(names_PC1) <- rownames(df_pruned)
 
 names_volume <- df_pruned$avg_volume_estimated
 names(names_volume) <- rownames(df_pruned)
 
 # Blomberg’s K
-K_PC1 <- phylosig(tree_pruned, df_pruned$PC1, method = "K", test = TRUE)
+K_PC1 <- phylosig(tree_pruned, df_pruned$PC1_mean, method = "K", test = TRUE)
 K_volume <- phylosig(tree_pruned, df_pruned$avg_volume_estimated, method = "K", test = TRUE)
 
 cat("Blomberg’s K for PC1:\n")
@@ -325,75 +300,16 @@ cat("Blomberg’s K for Volume:\n")
 print(K_volume)
 
 ```
-# visualize K values
-
-```{r}
-
-# Make sure this folder exists
-dir.create("Blombergs_K_Plots", showWarnings = FALSE)
-
-```
-
-```{r}
-# === 1. Continuous trait mapping (PC1) ===
-png("Blombergs_K_Plots/PC1_contMap.png", width = 1000, height = 800)
-obj_pc1 <- contMap(tree_pruned, df_pruned$PC1, plot = FALSE)
-plot(obj_pc1, legend = TRUE, fsize = 0.6)
-title("PC1 mapped on Phylogeny")
-dev.off()
-
-
-```
-
-```{r}
-
-
-# === 2. Phylomorphospace: PC1 vs Volume ===
-png("Blombergs_K_Plots/Phylomorphospace_PC1_Volume.png", width = 1000, height = 800)
-phylomorphospace(tree_pruned, df_pruned[, c("PC1", "avg_volume_estimated")], label = "off")
-title("Phylomorphospace: PC1 vs Volume")
-dev.off()
-
-# === 3. Histogram of randomized K values ===
-set.seed(123)
-K_test <- phylosig(tree_pruned, df_pruned$PC1, method = "K", test = TRUE, nsim = 1000)
-
-png("Blombergs_K_Plots/K_null_distribution_PC1.png", width = 1000, height = 800)
-hist(K_test$random.K, main = "Null Distribution of Blomberg’s K (PC1)",
-     xlab = "K under random tip reshuffling", breaks = 30, col = "lightgray")
-abline(v = K_test$K, col = "red", lwd = 2)
-text(K_test$K, max(hist(K_test$random.K, plot = FALSE)$counts), 
-     labels = paste("Observed K =", signif(K_test$K, 3)), pos = 4, col = "red")
-dev.off()
-
-# === 4. Dotplot for K values across traits ===
-K_df <- tibble(
-  Trait = c("PC1", "Volume"),
-  K = c(K_PC1$K, K_volume$K),
-  P = c(K_PC1$P, K_volume$P)
-)
-
-png("Blombergs_K_Plots/K_dotplot.png", width = 800, height = 600)
-ggplot(K_df, aes(x = Trait, y = K)) +
-  geom_point(size = 6, color = "steelblue") +
-  geom_text(aes(label = paste0("p=", round(P, 3))), vjust = -1.2, size = 5) +
-  theme_minimal(base_size = 14) +
-  labs(title = "Blomberg’s K Across Traits", y = "Blomberg’s K", x = "")
-dev.off()
-
-
-```
 
 
 # Pagel’s λ
 
 ```{r}
 
-
 # Pagel’s λ using pgls
-comp_data <- comparative.data(tree_pruned, df_pruned, names.col = "row.names", vcv = TRUE)
+comp_data <- comparative.data(tree_pruned, df_pruned, names.col = "species", vcv = TRUE)
 
-lambda_PC1 <- pgls(PC1 ~ 1, data = comp_data, lambda = "ML")
+lambda_PC1 <- pgls(PC1_mean ~ 1, data = comp_data, lambda = "ML")
 lambda_volume <- pgls(avg_volume_estimated ~ 1, data = comp_data, lambda = "ML")
 
 cat("\nPagel's λ for PC1:\n")
@@ -404,17 +320,48 @@ summary(lambda_volume)
 
 ```
 
+
+
+# visualize 
+
 ```{r}
+# === 1. Continuous trait mapping (PC1) ===
+jpeg("Plots/PC1_contMap.jpg", width = 2000, height = 3000, res = 300)  # High-res JPEG
 
-# -------------------------------
-# Plotting
-# -------------------------------
-# Trait vs Environment
-ggplot(df_pruned, aes(x = rainfall, y = PC1)) +
-  geom_point(size = 3) +
-  geom_smooth(method = "lm", se = TRUE) +
-  theme_minimal() +
-  labs(title = "Rainfall vs PC1 (Spore Shape)", x = "Monthly Rainfall (mm)", y = "PC1 (Shape)")
+# Prepare trait and color map
+pc1_named <- df_pruned$PC1_mean
+names(pc1_named) <- rownames(df_pruned)
+obj_pc1 <- contMap(tree_pruned, pc1_named, plot = FALSE)
 
+# Set plot margins and plot
+par(mar = c(2, 2, 5, 2))  # Add space for title
+plot(obj_pc1, legend = TRUE, fsize = 0.5, outline = FALSE, lwd = 3)
+title("PC1 Shape Mapped on Phylogeny", cex.main = 1.5, font.main = 2, line = -.8)
+
+dev.off()
 
 ```
+
+```{r}
+# === Continuous trait mapping (Volume) ===
+jpeg("Plots/volume_contMap.jpg", width = 2000, height = 3000, res = 300)  # High-res JPEG
+
+# Prepare named vector
+volume_named <- df_pruned$avg_volume_estimated
+names(volume_named) <- rownames(df_pruned)
+
+# Create the contMap object
+obj_volume <- contMap(tree_pruned, volume_named, plot = FALSE)
+
+# Plot
+par(mar = c(2, 2, 5, 2))  # Adjust margins for title space
+plot(obj_volume, legend = TRUE, fsize = 0.5, outline = FALSE, lwd = 3)
+title("Spore Volume Mapped on Phylogeny", cex.main = 1.5, font.main = 2, line = -0.8)
+
+dev.off()
+
+```
+
+
+# visualize other plots
+

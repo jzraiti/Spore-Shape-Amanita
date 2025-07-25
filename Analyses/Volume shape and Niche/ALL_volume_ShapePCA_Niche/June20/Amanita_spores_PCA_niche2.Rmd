@@ -1,0 +1,144 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ggrepel)
+
+# Load necessary libraries
+library(Hmisc)
+library(corrplot)
+
+# Load necessary libraries
+library(dunn.test)  # For post-hoc analysis
+
+```
+
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
+# Load your files
+pca <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+  mutate(species = tolower(species))
+
+agg <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+df <- pca %>%
+  left_join(agg, by = "species") %>%
+  left_join(vol %>% select(species, avg_volume_estimated), by = "species")
+
+p <- ggboxplot(df, x = "Ecology", y = "PC1_mean", color = "Ecology",
+          add = "jitter", title = "PC1 Mean by Ecology") +
+stat_compare_means(method = "wilcox.test", label.y = max(df$PC1_mean, na.rm = TRUE) + 0.05)
+
+ggsave("PC1 Mean by Ecology.jpg", plot = p, width = 8, height = 6, dpi = 300)
+
+
+# ANOVA Test
+anova_result <- aov(PC1_mean ~ Ecology, data = df)
+summary(anova_result)
+
+# Kruskal-Wallis Test (if data not normal)
+kruskal.test(PC1_mean ~ Ecology, data = df)
+
+# Post-hoc (if Kruskal-Wallis is significant)
+dunn.test::dunn.test(df$PC1_mean, df$Ecology, method = "bonferroni")
+
+
+```
+
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# Do same for volume
+p <-  ggboxplot(df, x = "Ecology", y = "avg_volume_estimated", color = "Ecology",
+          add = "jitter", title = "Volume by Ecology") +
+stat_compare_means(method = "wilcox.test", label.y = max(df$avg_volume_estimated, na.rm = TRUE) + 0.05)
+
+ggsave("Volume Mean by Ecology.jpg", plot = p, width = 8, height = 6, dpi = 300)
+
+# ANOVA Test
+anova_result <- aov(avg_volume_estimated ~ Ecology, data = df)
+summary(anova_result)
+
+# Kruskal-Wallis Test (if data not normal)
+kruskal.test(avg_volume_estimated ~ Ecology, data = df)
+
+# Post-hoc (if Kruskal-Wallis is significant)
+dunn.test::dunn.test(df$avg_volume_estimated, df$Ecology, method = "bonferroni")
+
+
+```
+
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+# Scatterplot with separate group-wise correlations
+p <- ggplot(df, aes(x = PC1_mean, y = avg_volume_estimated, color = Ecology)) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linetype = "dashed", aes(group = Ecology)) +
+  stat_cor(method = "pearson",
+           aes(group = Ecology),
+           label.y.npc = c(0.9, 0.8),  # adjust as needed for more groups
+           size = 5,
+           group.by = "Ecology") +
+  labs(
+    x = "PC1 (Spore Shape Axis)",
+    y = "Estimated Spore Volume",
+    title = "Spore Shape vs Volume by Ecology"
+  ) +
+  theme_minimal()
+
+ggsave("PC1_vs_Volume_by_Ecology.jpg", plot = p, width = 8, height = 6, dpi = 300)
+
+
+# Save it
+ggsave("PC1_vs_Volume_by_Ecology.jpg", plot = p, width = 8, height = 6, dpi = 300)
+
+
+```

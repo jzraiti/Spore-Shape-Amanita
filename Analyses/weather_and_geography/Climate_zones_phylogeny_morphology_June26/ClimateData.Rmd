@@ -1,0 +1,289 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ape)
+library(tidyverse)
+library(caper)
+
+library(terra)
+library(sf)
+library(ggtree)
+
+```
+
+# load data 
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
+
+```
+
+```{r}
+
+# Merge all
+df <- pca %>% left_join(vol, by = "species") 
+
+# -------------------------------
+# Summarize morphometric + climate data per species
+# -------------------------------
+df_clean <- df %>%
+  filter(!is.na(PC1_mean)) %>%
+  filter(!is.na(avg_volume_estimated)) %>%
+  column_to_rownames("species")
+
+df_pruned <- df_clean  # Just use the cleaned dataset
+df_pruned$species <- rownames(df_pruned)
+
+```
+
+```{r}
+# === Load location data and Köppen raster ===
+
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Remove rows with missing lat/lon
+loc_clean <- loc %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+loc_sf <- st_as_sf(loc_clean, coords = c("Long_machine_readable", "Lat_machine_readable"), crs = 4326)
+
+# === Load raster before using it ===
+koppen_raster <- terra::rast("Analyses/weather_and_geography/Climate_zones_phylogeny_morphology_June26/koppen_geiger_tif/1991_2020/koppen_geiger_0p00833333.tif")
+
+# === Transform your spatial points to raster's CRS ===
+loc_transformed <- st_transform(loc_sf, crs(koppen_raster))
+
+# === Extract Köppen values ===
+koppen_values <- terra::extract(koppen_raster, vect(loc_transformed))
+
+# === Assign to data ===
+loc_clean$koppen_code <- koppen_values[,2]
+
+```
+
+# Climate data analysis
+
+```{r, label="climate_data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# Transform projection to match raster
+loc_transformed <- st_transform(loc_sf, crs(koppen_raster))
+
+# Extract Köppen values
+koppen_values <- terra::extract(koppen_raster, vect(loc_transformed))
+loc_clean$koppen_code <- koppen_values[,2]
+
+# === Optional: lookup Köppen labels ===
+koppen_lookup <- tibble::tibble(
+  koppen_code = 1:30,
+  koppen_label = c(
+    "Af",  "Am",  "Aw",  "BWh", "BWk", "BSh", "BSk",
+    "Csa", "Csb", "Csc", "Cwa", "Cwb", "Cwc",
+    "Cfa", "Cfb", "Cfc",
+    "Dsa", "Dsb", "Dsc", "Dsd",
+    "Dwa", "Dwb", "Dwc", "Dwd",
+    "Dfa", "Dfb", "Dfc", "Dfd",
+    "ET",  "EF"
+  ),
+  koppen_desc = c(
+    "Tropical rainforest", "Tropical monsoon", "Tropical savannah",
+    "Hot desert", "Cold desert", "Hot steppe", "Cold steppe",
+    "Hot-summer Mediterranean", "Warm-summer Mediterranean", "Cold-summer Mediterranean",
+    "Dry winter, hot summer (subtropical)", "Dry winter, warm summer (subtropical)",
+    "Dry winter, cold summer (subtropical)",
+    "Humid subtropical, hot summer", "Oceanic (marine west coast)", "Subpolar oceanic",
+    "Continental, dry summer, hot", "Continental, dry summer, warm",
+    "Continental, dry summer, cold", "Continental, dry summer, extreme",
+    "Continental, dry winter, hot", "Continental, dry winter, warm",
+    "Continental, dry winter, cold", "Continental, dry winter, extreme",
+    "Continental, no dry season, hot", "Continental, no dry season, warm",
+    "Continental, no dry season, cold", "Continental, no dry season, extreme",
+    "Tundra", "Ice cap"
+  )
+)
+
+# Add broad climate group
+koppen_lookup$climate_group <- dplyr::case_when(
+  koppen_lookup$koppen_label %in% c("Af", "Am", "Aw", "As") ~ "Tropical",
+  koppen_lookup$koppen_label %in% c("BWh", "BWk", "BSh", "BSk") ~ "Arid",
+  koppen_lookup$koppen_label %in% c("Csa", "Csb", "Csc", "Cwa", "Cwb", "Cwc", "Cfa", "Cfb", "Cfc") ~ "Temperate",
+  koppen_lookup$koppen_label %in% c("Dsa", "Dsb", "Dsc", "Dsd", "Dwa", "Dwb", "Dwc", "Dwd", "Dfa", "Dfb", "Dfc", "Dfd") ~ "Continental",
+  koppen_lookup$koppen_label %in% c("ET", "EF") ~ "Polar",
+  TRUE ~ "Other"
+)
+
+loc_clean <- loc_clean %>% left_join(koppen_lookup, by = "koppen_code")
+
+```
+
+```{r, label="climate_summary", echo=F, message=FALSE, warning=FALSE}
+
+
+# === Summarize: Most common climate zone per species ===
+climate_summary <- loc_clean %>%
+  dplyr::group_by(species, koppen_label, koppen_desc, climate_group) %>%
+  dplyr::summarise(n = dplyr::n(), .groups = "drop") %>%
+  dplyr::group_by(species) %>%
+  dplyr::slice_max(order_by = n, n = 1, with_ties = FALSE) %>%
+  dplyr::ungroup()
+
+
+
+```
+
+```{r, label="merge_climate_data", echo=F, message=FALSE, warning=FALSE}
+# === Merge with df_pruned ===
+
+df_pruned <- df_pruned %>%
+  dplyr::left_join(climate_summary, by = "species")
+
+
+table(df_pruned$koppen_label, useNA = "ifany")
+
+
+```
+
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+
+na_species <- df_pruned %>%
+  filter(is.na(koppen_label)) %>%
+  dplyr::select(species)
+
+# Now join and inspect coordinates
+missing_with_coords <- na_species %>%
+  left_join(loc_clean, by = "species") %>%
+  dplyr::select(species, Lat_machine_readable, Long_machine_readable)
+
+print(missing_with_coords)
+
+```
+
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+# Look into suspicious species and climate data
+
+# Subset the species assigned to polar climates
+polar_species <- df_pruned %>%
+  filter(koppen_label %in% c("ET", "EF")) %>%
+  dplyr::select(species, koppen_label, climate_group)
+
+print(polar_species)
+
+```
+
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+
+# Create data frame with correct column names
+xy <- data.frame(lon = 116.5588, lat = 6.0753)
+
+# Convert to a spatial vector
+p <- terra::vect(xy, geom = c("lon", "lat"), crs = "EPSG:4326")
+
+# Extract climate class from raster
+terra::extract(koppen_raster, p)
+
+#TODO MAYBE REMOVE THE POLAR CLIMATE ZONES FROM THE ANALYSIS! SAME WITH DESSERT?
+
+```
+
+# Prune data to remove rows with NA coordinates
+# Plot the cleaned data on a map of the Köppen climate zones
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+
+df_pruned_clean <- df_pruned %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+
+
+
+```
+
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(maps)
+
+# Base world map
+world_map <- map_data("world")
+
+ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group),
+               fill = "gray95", color = "gray80") +
+  geom_point(data = df_pruned_clean,
+             aes(x = Long_machine_readable, y = Lat_machine_readable, color = climate_group),
+             size = 3, alpha = 0.9) +
+  scale_color_manual(
+    values = c(
+      "Tropical" = "#1b9e77",
+      "Arid" = "#d95f02",
+      "Temperate" = "#7570b3",
+      "Continental" = "#e7298a",
+      "Polar" = "#66a61e",
+      "No data" = "gray70"
+    )
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  labs(
+    title = "Geographic Distribution of Amanita Samples by Climate Group",
+    x = "Longitude", y = "Latitude",
+    color = "Climate Group"
+  )
+
+
+```
+
+```{r, label="climate_data_summary", echo=F, message=FALSE, warning=FALSE}
+
+ggsave("Sample_Locations_by_Climate.jpg", width = 12, height = 7, dpi = 300)
+
+
+```

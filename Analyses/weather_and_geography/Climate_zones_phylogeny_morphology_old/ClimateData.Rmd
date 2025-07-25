@@ -1,0 +1,439 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ape)
+library(tidyverse)
+library(caper)
+
+library(terra)
+library(sf)
+library(ggtree)
+
+```
+
+# load data 
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
+
+```
+# Do Phylogenetic analysis
+
+```{r}
+extract_pp1_tree <- function(file_path) {
+  library(ape)
+  library(stringr)
+
+  # Step 1: Read file
+  tree_raw <- readLines(file_path)
+  tree_text <- paste(tree_raw, collapse = "")
+  tree_string <- sub("^.*tree [^=]+ = \\[&R\\] ", "", tree_text)
+
+  cat("=== Tree String Preview ===\n")
+  cat(substr(tree_string, 1, 1000), "\n\n")
+
+  # Step 2: Extract [&label="..."]: blocks
+  label_pattern <- "\\[&label=\"(.*?)\"\\]:"
+  label_matches <- str_match_all(tree_string, label_pattern)[[1]]
+  cat("=== Raw Label Match Count ===\n")
+  cat(nrow(label_matches), "metadata blocks matched\n\n")
+
+  if (nrow(label_matches) == 0) stop("No valid metadata blocks found.")
+
+  cat("=== First Metadata Block ===\n")
+  cat(label_matches[1, 1], "\n\n")
+
+  # Step 3: Extract pp1
+  label_blocks <- label_matches[, 2]
+  pp1_values <- sapply(label_blocks, function(x) {
+    str_match(x, "pp1=([0-9\\.]+)")[, 2]
+  }) |> as.numeric()
+  cat("Extracted", length(pp1_values), "pp1 values\n\n")
+
+  # Step 4: Clean tree string
+  clean_tree_string <- str_replace_all(tree_string, label_pattern, ":")
+  cat("=== Cleaned Tree String Preview ===\n")
+  cat(substr(clean_tree_string, 1, 1000), "\n\n")
+
+  # Step 5: Read tree
+  tree <- tryCatch(
+    {
+      read.tree(text = clean_tree_string)
+    },
+    error = function(e) {
+      cat("Error reading tree:\n", e$message, "\n")
+      return(NULL)
+    }
+  )
+
+  if (inherits(tree, "multiPhylo")) {
+    cat("Tree is multiPhylo — using the first tree.\n")
+    tree <- tree[[1]]
+  }
+
+  if (!inherits(tree, "phylo")) stop("Failed to parse tree properly.")
+
+  # Step 6: Check internal nodes
+  num_internal <- tree$Nnode
+  cat("Tree has", num_internal, "internal nodes\n")
+
+  # Step 7: Assign pp1 values
+  if (length(pp1_values) < num_internal) {
+    warning("Fewer pp1 values than internal nodes. Padding with NA.")
+    pp1_values <- c(pp1_values, rep(NA, num_internal - length(pp1_values)))
+  } else if (length(pp1_values) > num_internal) {
+    warning("More pp1 values than internal nodes. Trimming.")
+    pp1_values <- pp1_values[1:num_internal]
+  }
+
+  tree$node.label <- as.character(pp1_values)
+  return(tree)
+}
+```
+
+```{r}
+tree <- extract_pp1_tree("Results/Phylogeny/species_tree_output.tree")
+```
+
+```{r}
+# --- Root tree ---
+tree <- root(tree, outgroup = "Zhuliangomyces_illinitus", resolve.root = TRUE)
+
+# --- Fortify and add support ---
+tree_data <- ggtree::fortify(tree)
+tree_data$support <- NA
+internal_nodes <- which(tree_data$isTip == FALSE)
+tree_data$support[internal_nodes] <- as.numeric(tree$node.label)
+
+# --- Base plot ---
+p <- ggtree(tree, size = 0.6) %<+% tree_data +
+  geom_tree(aes(color = support)) +
+  scale_color_gradient2(
+    low = "#000000", mid = "#ff0000", high = "green",
+    midpoint = 0.40, na.value = "black"
+  ) +
+
+  # Tip labels with space (no clipping)
+  geom_tiplab(
+    size = 2.5, fontface = "italic",
+    align = TRUE, linesize = 0.3, offset = 0.03
+  ) +
+
+  # Internal support values
+  geom_text2(
+    aes(
+      subset = !isTip & !is.na(support) & support > 0.6,
+      label = round(support, 2)
+    ),
+    hjust = -0.4, size = 2.5, color = "#317000"
+  ) +
+
+  # Layout fixes
+  theme_minimal() +
+  expand_limits(x = 1.1) + # force extra space on the right
+  theme(
+    text = element_text(family = "Times"),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    plot.margin = margin(10, 40, 10, 10) # top, right, bottom, left
+  ) +
+  labs(color = "ASTRAL pp1 Support")
+
+```
+
+# Prep combination of Morphometic and Phylogenetic data
+
+```{r}
+
+# -------------------------------
+# Clean species names for matching
+# -------------------------------
+
+tree$tip.label <- tree$tip.label %>%
+  stringr::str_trim() %>%
+  stringr::str_to_lower() %>%
+  gsub("'|\"", "", .)  # Remove quotes if present
+
+```
+
+```{r}
+
+# Merge all
+df <- pca %>% left_join(vol, by = "species") 
+
+# -------------------------------
+# Summarize morphometric + climate data per species
+# -------------------------------
+df_clean <- df %>%
+  filter(!is.na(PC1_mean)) %>%
+  filter(!is.na(avg_volume_estimated)) %>%
+  column_to_rownames("species")
+
+```
+
+```{r}
+# -------------------------------
+# Match tree tips and data
+# -------------------------------
+species_in_both <- intersect(tree$tip.label, rownames(df_clean))
+cat("Species matched between data and tree:", length(species_in_both), "\n")
+
+# Optional: Save unmatched species for review
+unmatched_data <- setdiff(rownames(df_clean), tree$tip.label)
+unmatched_tree <- setdiff(tree$tip.label, rownames(df_clean))
+writeLines(unmatched_data, "unmatched_data_species.txt")
+writeLines(unmatched_tree, "unmatched_tree_species.txt")
+
+# Prune tree and data to matched species
+tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
+df_pruned <- df_clean[species_in_both, ]
+df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
+stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
+
+```
+
+```{r}
+
+# -------------------------------
+# Match tree tips and data
+# -------------------------------
+species_in_both <- intersect(tree$tip.label, rownames(df_clean))
+
+
+tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
+# Add a small branch length to avoid singularity
+tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
+node_backup <- tree_pruned$node.label
+tree_pruned$node.label <- NULL
+
+df_pruned <- df_clean[species_in_both, ]
+
+# Ensure order matches
+df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
+stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
+
+df_pruned$species <- rownames(df_pruned)
+
+# -------------------------------
+
+```
+
+```{r}
+# === Load location data and Köppen raster ===
+
+loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+  mutate(species = tolower(species))
+
+# Remove rows with missing lat/lon
+loc_clean <- loc %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+loc_sf <- st_as_sf(loc_clean, coords = c("Long_machine_readable", "Lat_machine_readable"), crs = 4326)
+
+# === Load raster before using it ===
+koppen_raster <- terra::rast("Analyses/weather_and_geography/Climate_zones_phylogeny_morphology/koppen_geiger_tif/1991_2020/koppen_geiger_0p00833333.tif")
+
+# === Transform your spatial points to raster's CRS ===
+loc_transformed <- st_transform(loc_sf, crs(koppen_raster))
+
+# === Extract Köppen values ===
+koppen_values <- terra::extract(koppen_raster, vect(loc_transformed))
+
+# === Assign to data ===
+loc_clean$koppen_code <- koppen_values[,2]
+
+```
+
+# Climate data analysis
+
+```{r, label="climate_data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# Transform projection to match raster
+loc_transformed <- st_transform(loc_sf, crs(koppen_raster))
+
+# Extract Köppen values
+koppen_values <- terra::extract(koppen_raster, vect(loc_transformed))
+loc_clean$koppen_code <- koppen_values[,2]
+
+# === Optional: lookup Köppen labels ===
+koppen_lookup <- tibble::tibble(
+  koppen_code = 1:30,
+  koppen_label = c(
+    "Af",  "Am",  "Aw",  "BWh", "BWk", "BSh", "BSk",
+    "Csa", "Csb", "Csc", "Cwa", "Cwb", "Cwc",
+    "Cfa", "Cfb", "Cfc",
+    "Dsa", "Dsb", "Dsc", "Dsd",
+    "Dwa", "Dwb", "Dwc", "Dwd",
+    "Dfa", "Dfb", "Dfc", "Dfd",
+    "ET",  "EF"
+  ),
+  koppen_desc = c(
+    "Tropical rainforest", "Tropical monsoon", "Tropical savannah",
+    "Hot desert", "Cold desert", "Hot steppe", "Cold steppe",
+    "Hot-summer Mediterranean", "Warm-summer Mediterranean", "Cold-summer Mediterranean",
+    "Dry winter, hot summer (subtropical)", "Dry winter, warm summer (subtropical)",
+    "Dry winter, cold summer (subtropical)",
+    "Humid subtropical, hot summer", "Oceanic (marine west coast)", "Subpolar oceanic",
+    "Continental, dry summer, hot", "Continental, dry summer, warm",
+    "Continental, dry summer, cold", "Continental, dry summer, extreme",
+    "Continental, dry winter, hot", "Continental, dry winter, warm",
+    "Continental, dry winter, cold", "Continental, dry winter, extreme",
+    "Continental, no dry season, hot", "Continental, no dry season, warm",
+    "Continental, no dry season, cold", "Continental, no dry season, extreme",
+    "Tundra", "Ice cap"
+  )
+)
+
+# Add broad climate group
+koppen_lookup$climate_group <- dplyr::case_when(
+  koppen_lookup$koppen_label %in% c("Af", "Am", "Aw", "As") ~ "Tropical",
+  koppen_lookup$koppen_label %in% c("BWh", "BWk", "BSh", "BSk") ~ "Arid",
+  koppen_lookup$koppen_label %in% c("Csa", "Csb", "Csc", "Cwa", "Cwb", "Cwc", "Cfa", "Cfb", "Cfc") ~ "Temperate",
+  koppen_lookup$koppen_label %in% c("Dsa", "Dsb", "Dsc", "Dsd", "Dwa", "Dwb", "Dwc", "Dwd", "Dfa", "Dfb", "Dfc", "Dfd") ~ "Continental",
+  koppen_lookup$koppen_label %in% c("ET", "EF") ~ "Polar",
+  TRUE ~ "Other"
+)
+
+loc_clean <- loc_clean %>% left_join(koppen_lookup, by = "koppen_code")
+
+```
+
+```{r, label="climate_summary", echo=F, message=FALSE, warning=FALSE}
+
+
+# === Summarize: Most common climate zone per species ===
+climate_summary <- loc_clean %>%
+  dplyr::group_by(species, koppen_label, koppen_desc, climate_group) %>%
+  dplyr::summarise(n = dplyr::n(), .groups = "drop") %>%
+  dplyr::group_by(species) %>%
+  dplyr::slice_max(order_by = n, n = 1, with_ties = FALSE) %>%
+  dplyr::ungroup()
+
+
+
+```
+
+```{r, label="merge_climate_data", echo=F, message=FALSE, warning=FALSE}
+# === Merge with df_pruned ===
+
+df_pruned <- df_pruned %>%
+  dplyr::left_join(climate_summary, by = "species")
+
+
+table(df_pruned$koppen_label, useNA = "ifany")
+
+
+```
+
+```{r, label="climate_data_plot", echo=F, message=FALSE, warning=FALSE}
+# Optional: replace NAs for visual clarity
+df_pruned$climate_group <- ifelse(is.na(df_pruned$climate_group), "No data", df_pruned$climate_group)
+
+# === Color palette for climate groups ===
+climate_colors <- c(
+  "Tropical" = "#1b9e77",
+  "Arid" = "#d95f02",
+  "Temperate" = "#7570b3",
+  "Continental" = "#e7298a",
+  "Polar" = "#66a61e",
+  "No data" = "gray70"
+)
+
+# === Final plot ===
+p_climate <- ggplot(df_pruned, aes(x = PC1_mean, y = avg_volume_estimated, color = climate_group)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_manual(values = climate_colors) +
+  theme_minimal(base_size = 14) +
+  labs(
+    x = "PC1 (Spore Shape)",
+    y = "Estimated Volume",
+    color = "Climate Group"
+  )
+
+# === Save ===
+ggsave("climate_grouped_plot.jpg", plot = p_climate, width = 10, height = 6, dpi = 300)
+```
+
+```{r, label="climate_data_plot", echo=F, message=FALSE, warning=FALSE}
+library(ggtree)
+library(ggplot2)
+library(dplyr)
+# Step 1: Fortify + merge metadata
+tree_data <- ggtree::fortify(tree_pruned) %>%
+  dplyr::left_join(df_pruned, by = c("label" = "species"))
+
+# Step 2: Plot with climate colors and species labels
+p <- ggtree(tree_pruned) %<+% tree_data +
+  geom_tippoint(aes(color = climate_group), size = 2) +
+  ggtree::geom_tiplab(size = 2.5, fontface = "italic", hjust = -0.1) +
+  scale_color_manual(
+    values = c(
+      "Tropical" = "#1f78b4",
+      "Arid" = "#e31a1c",
+      "Temperate" = "#33a02c",
+      "Continental" = "#ff7f00",
+      "Polar" = "#6a3d9a",
+      "No data" = "grey60"
+    ),
+    na.value = "grey80"
+  ) +
+  theme_tree2() +
+  labs(color = "Climate Group") +
+  ggtitle("Amanita Phylogeny with Climate Group and Taxa Labels") +
+  xlim(0, max(tree_data$x, na.rm = TRUE) + 0.05)  # extra space for labels
+
+# Step 3: Save plot
+ggsave("phylo_climate_tree_with_labels.jpg", plot = p, width = 12, height = 10, dpi = 300)
+
+```
