@@ -1,0 +1,27 @@
+- [ ] Add phylogenetic context to each of my analyses
+    - [ ] Precipitation (historical)
+    - [ ] climate in usa
+    - [ ] Phenology from time of fruiting all controlled gor climate 
+    - [ ] Bing graphs look at her script
+
+MAKE NEW spreadsheet incorperating koppen climate types for each species
+
+
+*** historical precip on the actual tree
+
+*** climate zones on the actual tree 
+
+
+✅ 2. Map PC1 and Precipitation Onto the Tree
+Use Case: Visualize whether species from wetter climates tend to form clades with particular PC1 traits.
+
+Approach:
+
+Use phytools::contMap() or ggtree::geom_fruit() to color branches or tips by precipitation or PC1.
+
+Generate two trees: one colored by PC1, one by precipitation, and compare.
+
+Alternatively, use a dot plot aligned with tree tips using ggtree::facet_plot.
+
+*** Essentially - dotplot with precip and pc1 on same axis next to the phylogenetic tree
+
