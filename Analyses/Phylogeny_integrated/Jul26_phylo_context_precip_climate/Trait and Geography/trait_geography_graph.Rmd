@@ -47,12 +47,19 @@ library(terra)
 library(sf)
 library(ggtree)
 
+library(MuMIn)
+library(visreg)
+
+library(treeio)
+library(tibble)
+
 ```
 
 # load data 
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Import outlines: First list jpeg files to import
 # Load your files
+
 eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
   mutate(species = tolower(species))
 
@@ -62,11 +69,11 @@ pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
 vol <- read_csv("Results/Volume/Volume.csv") %>%
   mutate(species = tolower(species))
 
-loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+loc <- read_csv("Results/Weather/East_Coast_Holotypes.csv") %>%
   mutate(species = tolower(species))
 
-# Merge all
-#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
+clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+  mutate(species = tolower(species))
 
 ```
 # Do Phylogenetic analysis
@@ -191,11 +198,6 @@ p <- ggtree(tree, size = 0.6) %<+% tree_data +
   ) +
   labs(color = "ASTRAL pp1 Support")
 
-# --- Save (no clipping) ---
-ggsave("Amanita_tree_highlighted.png",
-  plot = p, width = 12, height = 12,
-  units = "in", dpi = 600, limitsize = FALSE
-)
 ```
 
 # Prep combination of Morphometic and Phylogenetic data
@@ -215,135 +217,155 @@ tree$tip.label <- tree$tip.label %>%
 
 ```{r}
 # -------------------------------
-# Merge PCA, volume, and ecology data
+# Merge all data
 # -------------------------------
-df <- pca %>%
+df_full <- pca %>%
   left_join(vol, by = "species") %>%
-  left_join(eco, by = "species") %>%
-  left_join(loc, by = "species")
+  #left_join(eco, by = "species") %>%
+  left_join(loc, by = "species") %>%
+  left_join(clim, by = "species")
 
-# -------------------------------
-# Filter out missing values and set rownames
-# -------------------------------
-df_clean <- df %>%
-  filter(!is.na(PC1_mean),
-         !is.na(avg_volume_estimated),
-         !is.na(Ecology)) %>%
+# Set rownames early for convenience
+df_full <- df_full %>%
   column_to_rownames("species")
 
-
 ```
 
 ```{r}
-# -------------------------------
-# Match tree tips and data rows by species
-# -------------------------------
-species_in_both <- intersect(tree$tip.label, rownames(df_clean))
-cat("Species matched between tree and data:", length(species_in_both), "\n")
 
-# Optional: Save unmatched species to file
-unmatched_data <- setdiff(rownames(df_clean), tree$tip.label)
-unmatched_tree <- setdiff(tree$tip.label, rownames(df_clean))
-writeLines(unmatched_data, "unmatched_data_species.txt")
-writeLines(unmatched_tree, "unmatched_tree_species.txt")
+# Create sf object for mapping
+df_map <- df_full %>%
+  rownames_to_column("species") %>%
+  filter(!is.na(Lat_machine_readable) & !is.na(Long_machine_readable)) %>%
+  st_as_sf(coords = c("Long_machine_readable", "Lat_machine_readable"), crs = 4326)
 
-# -------------------------------
-# Prune tree and filter dataframe
-# -------------------------------
-tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
-
-# Fix zero-length branches (avoids singularity errors)
-tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
-node_backup <- tree_pruned$node.label
-tree_pruned$node.label <- NULL
-
-# Prune df_clean to match pruned tree
-df_pruned <- df_clean[species_in_both, ]
-df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
-
-# Double check order consistency
-stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
-
-# Add species column for PGLS if needed later
-df_pruned$species <- rownames(df_pruned)
-
+# Abbreviate species names
+df_map <- df_map %>%
+  mutate(short_label = paste0("A. ", gsub("amanita_", "", species)))
 
 ```
 
 ```{r}
 
-# -------------------------------
-# Match tree tips and data
-# -------------------------------
-species_in_both <- intersect(tree$tip.label, rownames(df_clean))
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(ggrepel)
+library(viridis)
 
-
-tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
-# Add a small branch length to avoid singularity
-tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
-node_backup <- tree_pruned$node.label
-tree_pruned$node.label <- NULL
-
-df_pruned <- df_clean[species_in_both, ]
-
-# Ensure order matches
-df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
-stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
-
-df_pruned$species <- rownames(df_pruned)
-
-# -------------------------------
-
-```
-
-# Run phyloANOVA for historical precipitation and PC1
-
-```{r}
-
-# ============================
-# Phylogenetic ANOVA: Ecology vs. PC1
-# ============================
-
-df_pruned$Ecology <- as.factor(df_pruned$Ecology)  # Ensure factor
-table(df_pruned$Ecology)  # Optional sanity check
-
-# Perform phylogenetic ANOVA
+# Increase jitter range (±0.4°)
 set.seed(123)
-phylanova_result <- phylANOVA(tree_pruned,
-                               x = df_pruned$Ecology,
-                               y = df_pruned$PC1_mean,
-                               nsim = 1000)
+jittered_coords <- st_coordinates(df_map) +
+  matrix(runif(nrow(df_map) * 2, -0.4, 0.4), ncol = 2)
 
-cat("Phylogenetic ANOVA result (Ecology ~ PC1):\n")
-print(phylanova_result)
+# Replace geometry with jittered points
+df_map <- st_set_geometry(df_map, st_sfc(lapply(1:nrow(jittered_coords), function(i) {
+  st_point(jittered_coords[i, ])
+}), crs = 4326))
 
-# Optional: save to file
-sink("Results/phylANOVA_Ecology_PC1.txt")
-print(phylanova_result)
-sink()
+# Load USA map
+usa <- ne_states(country = "United States of America", returnclass = "sf")
+
+```
+
+```{r, label="basemap_plot", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+library(ggmap)
+
+# Register API key
+# Load Google Maps API key from file
+google_api_key <- readLines("google_maps_api.txt")[1]
+register_google(key = google_api_key)
+# Download the map
+east_map <- get_map(location = c(lon = -80, lat = 38), zoom = 5, maptype = "satellite")
+
+# Convert sf to data.frame for ggmap (uses lon/lat not sf)
+df_map_df <- df_map %>%
+  mutate(lon = st_coordinates(.)[, 1],
+         lat = st_coordinates(.)[, 2]) %>%
+  st_drop_geometry()  # Drop sf geometry so ggmap can handle it
+
+```
+
+```{r, label="plot_map", echo=F, message=FALSE, warning=FALSE}
+
+# Plot
+ggmap(east_map) +
+  coord_cartesian(xlim = c(-90, -70), ylim = c(30, 45.5)) +  # ← manually zooms/crops
+  geom_point(data = df_map_df, 
+             aes(x = lon, y = lat, color = PC1_mean, size = avg_volume_estimated),
+             alpha = 0.95) +
+  geom_text_repel(data = df_map_df,
+                  aes(x = lon, y = lat, label = short_label),
+                  size = 4.5, fontface = "italic", max.overlaps = Inf) +
+  scale_color_viridis(option = "plasma", name = "PC1 (Spore Shape)") +
+  scale_size_continuous(name = "Spore Volume", range = c(4, 10)) +
+  labs(
+    title = "Amanita Holotypes on US East Coast",
+    subtitle = "Colored by PC1, Sized by Volume"
+  ) +
+  theme_minimal(base_size = 14)
+
+```
+
+```{r}
+ggsave("East_Coast_Map_PC1.jpg", width = 10, height = 8, dpi = 300)
 
 
 ```
 
+# Make Corresponding phylogenetic tree
 
 ```{r}
-# Make sure ecology is a factor
-df_pruned$Ecology <- as.factor(df_pruned$Ecology)
 
-# OPTIONAL: Check climate variable name
-# head(df_pruned)
+# Step 1: Get species from the map
+species_on_map <- df_map_df$species %>% unique()
 
-# Prepare comparative data object
-comp_data <- comparative.data(phy = tree_pruned,
-                              data = df_pruned,
-                              names.col = "species",
-                              vcv = TRUE)
+# Step 2: Prune the tree to only include species from the map
+tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_on_map))
 
-# Run PGLS model with both ecology and climate
-pgls_model <- pgls(PC1_mean ~ Ecology + Precipitation_monthly, data = comp_data, lambda = "ML")
+# Step 3: Make abbreviated labels for the pruned tree
+short_labels <- data.frame(
+  species = species_on_map,
+  short_label = paste0("A. ", gsub("amanita_", "", species_on_map))
+)
 
-# Summarize results
-summary(pgls_model)
+# Step 4: Merge PC1 values and short labels
+df_tree_traits <- df_map_df %>%
+  dplyr::select(species, PC1_mean) %>%
+  distinct() %>%
+  left_join(short_labels, by = "species")
 
+```
+
+```{r, label="plot_tree", echo=F, message=FALSE, warning=FALSE}
+# Step 5: Plot tree colored by PC1
+p_tree <- ggtree(tree_pruned, size = 0.8) %<+% df_tree_traits +
+  geom_tree() +
+  geom_tiplab(
+    aes(label = short_label, color = PC1_mean),
+    size = 4, fontface = "italic", align = TRUE, linesize = 0.3, offset = 0.01
+  ) +
+  scale_color_viridis(option = "plasma", name = "PC1 (Spore Shape)") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "East Coast Amanita Phylogeny",
+    subtitle = "Tips colored by PC1, matching map"
+  ) +
+  theme(
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white")
+  )
+
+p_tree <- p_tree + expand_limits(x = 0.45)
+
+# Optional: print the plot inline
+p_tree
+
+
+```
+
+```{r, label="save_tree_plot", echo=F, message=FALSE, warning=FALSE}
+# Step 6: Save the tree
+ggsave("East_Coast_Amanita_Tree_PC1.jpg", plot = p_tree, width = 10, height = 10, dpi = 300)
 
 ```

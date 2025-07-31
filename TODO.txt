@@ -4,8 +4,9 @@
     - [ ] Phenology from time of fruiting all controlled gor climate 
     - [ ] Bing graphs look at her script
 
-MAKE NEW spreadsheet incorperating koppen climate types for each species
 
+
+MAKE NEW spreadsheet incorperating koppen climate types for each species
 
 *** historical precip on the actual tree
 
@@ -25,3 +26,47 @@ Alternatively, use a dot plot aligned with tree tips using ggtree::facet_plot.
 
 *** Essentially - dotplot with precip and pc1 on same axis next to the phylogenetic tree
 
+-----
+
+
+4. Geospatial Mapping and Range Context
+(from Script 3: Mapping GBIF Occurrences and Groups)
+
+Use if you want to:
+
+Show geographic spread of your Amanita species (based on holotype or GBIF coordinates)
+
+Overlay Köppen zones, precipitation bins, or elevation
+
+Visualize richness or group-by-clade polygons
+
+How to adapt:
+
+Use your spatial dataset with spore trait means + coordinates
+
+Plot each species’ point with a color by PC1 or by ecology
+
+Use sf, ggplot2, and rnaturalearth for mapping
+
+Bonus ideas:
+
+Show precipitation bins as color fills under tree tips
+
+Plot PC1 or spore volume geographically with geom_point() scaled by value
+
+✅ 5. Phylo-to-Map Integration
+(from Script 3: phylo.to.map())
+
+Use if you want to:
+
+Show both the phylogeny and a map of trait or ecological data side-by-side
+
+Visually reinforce that clades are tied to geography and environments
+
+How to adapt:
+
+Use species centroids for your map
+
+Color tips and map points by PC1 or ecological group
+
+Make sure your tree and location data have the same tip labels

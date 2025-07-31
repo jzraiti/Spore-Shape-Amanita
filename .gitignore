@@ -50,3 +50,6 @@ rsconnect/
 
 #Misc 
 .DS_Store
+
+# Google Maps API key file
+google_maps_api.txt

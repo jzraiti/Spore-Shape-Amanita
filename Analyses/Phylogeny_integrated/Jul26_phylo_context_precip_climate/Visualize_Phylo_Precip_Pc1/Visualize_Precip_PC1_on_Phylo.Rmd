@@ -47,10 +47,11 @@ library(terra)
 library(sf)
 library(ggtree)
 
-library(ape)
-library(caper)
 library(MuMIn)
 library(visreg)
+
+library(treeio)
+library(tibble)
 
 ```
 
@@ -58,8 +59,10 @@ library(visreg)
 ```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
 # Import outlines: First list jpeg files to import
 # Load your files
-eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
-  mutate(species = tolower(species))
+
+#REMOVING ECOLOGY FOR NOW BC IT IS A PROXY FOR CLADE ID MAY BE SCREWING WITH THE ANALYSIS
+#eco <- read_csv("Results/Ecology/Ecology_maximum_inferred.csv") %>%
+#  mutate(species = tolower(species))
 
 pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
   mutate(species = tolower(species))
@@ -67,11 +70,11 @@ pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
 vol <- read_csv("Results/Volume/Volume.csv") %>%
   mutate(species = tolower(species))
 
-loc <- read_csv("Results/Weather/Location_Date.csv") %>%
+loc <- read_csv("Results/Weather/Location_Date_Outliers_Removed.csv") %>%
   mutate(species = tolower(species))
 
-# Merge all
-#df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>% left_join(loc, by = "species") 
+clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+  mutate(species = tolower(species))
 
 ```
 # Do Phylogenetic analysis
@@ -196,11 +199,6 @@ p <- ggtree(tree, size = 0.6) %<+% tree_data +
   ) +
   labs(color = "ASTRAL pp1 Support")
 
-# --- Save (no clipping) ---
-ggsave("Amanita_tree_highlighted.png",
-  plot = p, width = 12, height = 12,
-  units = "in", dpi = 600, limitsize = FALSE
-)
 ```
 
 # Prep combination of Morphometic and Phylogenetic data
@@ -220,173 +218,128 @@ tree$tip.label <- tree$tip.label %>%
 
 ```{r}
 # -------------------------------
-# Merge PCA, volume, and ecology data
+# Merge all data
 # -------------------------------
-df <- pca %>%
+df_full <- pca %>%
   left_join(vol, by = "species") %>%
-  left_join(eco, by = "species") %>%
-  left_join(loc, by = "species")
+  #left_join(eco, by = "species") %>%
+  left_join(loc, by = "species") %>%
+  left_join(clim, by = "species")
 
-# -------------------------------
-# Filter out missing values and set rownames
-# -------------------------------
-df_clean <- df %>%
-  filter(!is.na(PC1_mean),
-         !is.na(avg_volume_estimated),
-         !is.na(Ecology)) %>%
+# Set rownames early for convenience
+df_full <- df_full %>%
   column_to_rownames("species")
 
-
 ```
 
+# visualize PCA and precip on phylogeny
 ```{r}
-# -------------------------------
-# Match tree tips and data rows by species
-# -------------------------------
-species_in_both <- intersect(tree$tip.label, rownames(df_clean))
-cat("Species matched between tree and data:", length(species_in_both), "\n")
+# -----------------------------------------
+# Prep data and tree
+# -----------------------------------------
 
-# Optional: Save unmatched species to file
-unmatched_data <- setdiff(rownames(df_clean), tree$tip.label)
-unmatched_tree <- setdiff(tree$tip.label, rownames(df_clean))
-writeLines(unmatched_data, "unmatched_data_species.txt")
-writeLines(unmatched_tree, "unmatched_tree_species.txt")
-
-# -------------------------------
-# Prune tree and filter dataframe
-# -------------------------------
-tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
-
-# Fix zero-length branches (avoids singularity errors)
+# Prune tree to match available data
+tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, rownames(df_full)))
 tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
-node_backup <- tree_pruned$node.label
-tree_pruned$node.label <- NULL
 
-# Prune df_clean to match pruned tree
-df_pruned <- df_clean[species_in_both, ]
-df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
+# Make sure labels match and reorder
+df_pruned <- df_full %>%
+  filter(rownames(.) %in% tree_pruned$tip.label) %>%
+  rownames_to_column("label") %>%
+  dplyr::select(label, PC1_mean, Precipitation_monthly)
 
-# Double check order consistency
-stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
+# Ensure ordering matches tip labels
+df_pruned <- df_pruned[match(tree_pruned$tip.label, df_pruned$label), ]
+stopifnot(all(tree_pruned$tip.label %in% df_pruned$label))
 
-# Add species column for PGLS if needed later
-df_pruned$species <- rownames(df_pruned)
 
 
 ```
 
 ```{r}
+# -----------------------------------------
+# Plot tree with both PC1 and Precipitation
+# -----------------------------------------
+library(ggtreeExtra)
 
-# -------------------------------
-# Match tree tips and data
-# -------------------------------
-species_in_both <- intersect(tree$tip.label, rownames(df_clean))
-
-
-tree_pruned <- drop.tip(tree, setdiff(tree$tip.label, species_in_both))
-# Add a small branch length to avoid singularity
-tree_pruned$edge.length[tree_pruned$edge.length == 0] <- 1e-8
-node_backup <- tree_pruned$node.label
-tree_pruned$node.label <- NULL
-
-df_pruned <- df_clean[species_in_both, ]
-
-# Ensure order matches
-df_pruned <- df_pruned[match(tree_pruned$tip.label, rownames(df_pruned)), ]
-stopifnot(rownames(df_pruned) == tree_pruned$tip.label)
-
-df_pruned$species <- rownames(df_pruned)
-
-# -------------------------------
-
-```
-
-# Run PGLS for all models
-
-```{r}
-# Create comparative data object for PGLS
-comp_data <- comparative.data(
-  phy = tree_pruned,
-  data = df_pruned,
-  names.col = "species",
-  vcv = TRUE,
-  na.omit = FALSE  # or TRUE depending on data completeness
+# Set color scales
+# Rescale PC1 manually to focus on observed range
+pc1_fill <- scale_fill_gradient2(
+  low = "lightpink", mid = "white", high = "darkred",
+  midpoint = 0,  # Use zero-centered PC1 if meaningful
+  limits = c(min(df_pruned$PC1_mean, na.rm = TRUE),
+             max(df_pruned$PC1_mean, na.rm = TRUE)),
+  name = "PC1"
 )
-```
 
-```{r}
-
-```
-
-```{r}
-# ---------------------------------------------
-# STEP 2: Build Hypothesis-Driven Models
-# (Avoid overfitting by limiting model set)
-# ---------------------------------------------
-
-# Model 1: Precipitation + Ecology
-mod1 <- pgls(PC1_mean ~ Precipitation_mm + Ecology, data = comp_data, lambda = "ML")
-
-# Model 2: Climate + Ecology (use your actual climate var name, e.g. Climate_Type)
-mod2 <- pgls(PC1_mean ~ Climate_Type + Ecology, data = comp_data, lambda = "ML")
-
-# Model 3: Precipitation + Volume + Ecology
-mod3 <- pgls(PC1_mean ~ Precipitation_mm + Volume + Ecology, data = comp_data, lambda = "ML")
-
-# Model 4: Precipitation only
-mod4 <- pgls(PC1_mean ~ Precipitation_mm, data = comp_data, lambda = "ML")
-
-# Model 5: Ecology only
-mod5 <- pgls(PC1_mean ~ Ecology, data = comp_data, lambda = "ML")
-
-# Model 6: Volume + Ecology
-mod6 <- pgls(PC1_mean ~ Volume + Ecology, data = comp_data, lambda = "ML")
-
-
+# Rescale Precip manually (e.g., 0 to 20 mm/month)
+precip_fill <- scale_fill_gradient2(
+  low = "gray90", mid = "dodgerblue", high = "navy",
+  midpoint = median(df_pruned$Precipitation_monthly, na.rm = TRUE),
+  limits = c(0, 20),  # Adjust depending on your data
+  name = "Precip. (in/month)"
+)
 
 ```
 
 ```{r}
 
-# ---------------------------------------------
-# STEP 3: Model Selection Using AICc
-# ---------------------------------------------
+# Main tree + facet tiles
+p_traits <- ggtree(tree_pruned) %<+% df_pruned +
+  geom_tiplab(size = 3) +
 
-# Compare models using AICc
-model_set <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6)
-print(model_set)
+  geom_facet(
+    panel = "PC1",
+    data = df_pruned,
+    geom = geom_tile,
+    mapping = aes(x = 1, fill = PC1_mean),
+    width = 0.05
+  ) +
 
-# Get top model(s): delta AICc < 2 are equally supported
-# You can select the best model manually or:
-best_model <- get.models(model_set, subset = delta < 2)[[1]]
+  geom_facet(
+    panel = "Precipitation",
+    data = df_pruned,
+    geom = geom_tile,
+    mapping = aes(x = 1, fill = Precipitation_monthly),
+    width = 0.05,
+    offset = 0.05
+  ) +
 
+  pc1_fill + precip_fill +
+  theme_tree2()
+
+p_traits
 
 ```
 
 ```{r}
 
-# ---------------------------------------------
-# STEP 4: Summarize the Top Model
-# ---------------------------------------------
+library(ggtree)
+library(ggplot2)
 
-summary(best_model)       # View coefficients, p-values, λ
-confint(best_model)       # Get 95% confidence intervals
-best_model$param["lambda", ]  # Extract estimated Pagel's λ
+# Basic tree
+p <- ggtree(tree_pruned) + geom_tiplab(size = 3)
 
+# Create heatmap data frame with rownames matching tip labels
+trait_data <- df_pruned %>%
+  dplyr::select(Precipitation_monthly)
 
-```
+# Plot with gheatmap
+gheatmap(
+  p, trait_data,
+  width = 0.5,
+  colnames_position = "top",
+  colnames_angle = 45,
+  font.size = 3,
+  hjust = 0
+) +
+  scale_fill_gradient2(
+    low = "lightblue",
+    high = "darkblue",
+    midpoint = median(trait_data$Precipitation_monthly, na.rm = TRUE),
+    name = "Precip. (in)"
+  ) +
+  theme_tree2()
 
-```{r}
-# ---------------------------------------------
-# STEP 5: Visualize Predictor Effects
-# ---------------------------------------------
-
-# Plot partial effects of predictors
-visreg(best_model, "Precipitation_mm")  # change to "Volume" or "Ecology" as needed
-
-# ---------------------------------------------
-# Optional: Check model assumptions
-# ---------------------------------------------
-# plot(best_model)  # Residuals vs fitted, QQ plot, etc.
 
 ```

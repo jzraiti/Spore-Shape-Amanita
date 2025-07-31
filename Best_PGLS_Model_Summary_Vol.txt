@@ -1,0 +1,71 @@
+> print(model_set_vol)
+# Record sample sizes per model for reporting
+sample_sizes <- c(
+  mod1 = nrow(comp_vol1$data),
+  mod2 = nrow(comp_vol2$data),
+  mod3 = nrow(comp_vol3$data)
+)
+print(sample_sizes)
+# Get top model(s): delta AICc < 2 are equally supported
+# You can select the best model manually or:
+best_model <- get.models(model_set_vol, subset = delta < 2)[[1]]
+# ---------------------------------------------
+# STEP 4: Summarize the Top Model
+# ---------------------------------------------
+summary(best_model)       # View coefficients, p-values, λ
+best_model$param["lambda" ]  # Extract estimated PModel selection table 
+         (Int) Prc_mnt clm_grp df   logLik  AICc delta weight
+mod_vol3 275.6  3.2960       +  3 -133.946 275.2  0.00      1
+mod_vol2 332.3               +  2 -165.831 336.2 60.94      0
+mod_vol1 286.0 -0.5566          2 -168.821 342.1 66.90      0
+agel's λ
+Models ranked by AICc(x) 
+> # Record sample sizes per model for reporting
+> sample_sizes <- c(
++   mod1 = nrow(comp_vol1$data),
++   mod2 = nrow(comp_vol2$data),
++   mod3 = nrow(comp_vol3$data)
++ )
+> print(sample_sizes)
+mod1 mod2 mod3 
+  28   27   22 
+> # Get top model(s): delta AICc < 2 are equally supported
+> # You can select the best model manually or:
+> best_model <- get.models(model_set_vol, subset = delta < 2)[[1]]
+> # ---------------------------------------------
+> # STEP 4: Summarize the Top Model
+> # ---------------------------------------------
+> summary(best_model)       # View coefficients, p-values, λ
+
+Call:
+pgls(formula = avg_volume_estimated ~ Precipitation_monthly + 
+    climate_group, data = comp_vol3, lambda = "ML")
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-275.33 -130.48  -98.48  125.39  591.45 
+
+Branch length transformations:
+
+kappa  [Fix]  : 1.000
+lambda [ ML]  : 0.000
+   lower bound : 0.000, p = 1    
+   upper bound : 1.000, p = 0.00079502
+   95.0% CI   : (NA, 0.645)
+delta  [Fix]  : 1.000
+
+Coefficients:
+                       Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)            275.6103    53.9224  5.1112 6.205e-05 ***
+Precipitation_monthly    3.2962    10.9845  0.3001    0.7674    
+climate_groupTemperate  -1.8824    55.3165 -0.0340    0.9732    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 246.7 on 19 degrees of freedom
+Multiple R-squared: 0.004952,   Adjusted R-squared: -0.09979 
+F-statistic: 0.04728 on 2 and 19 DF,  p-value: 0.9539 
+> best_model$param["lambda" ]  # Extract estimated Pagel's λ
+lambda 
+ 1e-06 
+> 

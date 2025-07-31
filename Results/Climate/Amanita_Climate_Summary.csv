@@ -1,0 +1,42 @@
+species,Lat_machine_readable_USA_only,Long_machine_readable_USA_only,koppen_code,koppen_label,climate_group
+amanita_subsolitaria,29.650272,-82.323944,14,"Temperate, no dry season, hot summer",Temperate
+amanita_alliacea,29.652,-82.325,14,"Temperate, no dry season, hot summer",Temperate
+amanita_parva,29.652,-82.325,14,"Temperate, no dry season, hot summer",Temperate
+amanita_westii,29.652,-82.325,14,"Temperate, no dry season, hot summer",Temperate
+amanita_mutabilis,29.652,-82.325,14,"Temperate, no dry season, hot summer",Temperate
+amanita_praegraveolens,29.652,-82.325,14,"Temperate, no dry season, hot summer",Temperate
+amanita_silvifuga,30.621,-96.3255,14,"Temperate, no dry season, hot summer",Temperate
+amanita_salmonea,30.621,-96.3255,14,"Temperate, no dry season, hot summer",Temperate
+amanita_thiersii,30.621,-96.3255,14,"Temperate, no dry season, hot summer",Temperate
+amanita_inodora,33.6954,-78.8802,14,"Temperate, no dry season, hot summer",Temperate
+amanita_rhoadsii,33.6954,-78.8802,14,"Temperate, no dry season, hot summer",Temperate
+amanita_praelongispora,33.824738,-78.684364,14,"Temperate, no dry season, hot summer",Temperate
+amanita_californica,34.4203,-119.6989,8,"Temperate, dry summer, hot summer",Temperate
+amanita_polypyramis,35.882,-84.8091,14,"Temperate, no dry season, hot summer",Temperate
+amanita_roanokensis,35.8897,-75.6615,14,"Temperate, no dry season, hot summer",Temperate
+amanita_nitida,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_cokeri,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_crassifolia,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_pelioma,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_hesleri,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_microlepis,35.9132,-79.0558,14,"Temperate, no dry season, hot summer",Temperate
+amanita_chlorinosma,35.9653,-83.9233,14,"Temperate, no dry season, hot summer",Temperate
+amanita_rhopalopus,35.9653,-83.9233,14,"Temperate, no dry season, hot summer",Temperate
+amanita_tephrea,36.1637,-82.095,15,"Temperate, no dry season, warm summer",Temperate
+amanita_cinereoconia,37.3621,-80.5334,26,"Cold, no dry season, warm summer",Continental
+amanita_augusta,38.0539,-122.8876,9,"Temperate, dry summer, warm summer",Temperate
+amanita_vernicoccora,38.7426,-120.4358,9,"Temperate, dry summer, warm summer",Temperate
+amanita_ravenelii,39.0993,-76.8483,14,"Temperate, no dry season, hot summer",Temperate
+amanita_populiphila,39.2573,-96.5817,25,"Cold, no dry season, hot summer",Continental
+amanita_prairiicola,39.4381,-99.2651,25,"Cold, no dry season, hot summer",Continental
+amanita_daucipes,39.9625,-83.0032,25,"Cold, no dry season, hot summer",Continental
+amanita_longipes,40.9465,-73.0693,14,"Temperate, no dry season, hot summer",Temperate
+amanita_sinicoflava,41.1654,-74.8249,25,"Cold, no dry season, hot summer",Continental
+amanita_abrupta,41.6578,-91.5346,25,"Cold, no dry season, hot summer",Continental
+amanita_cinereopannosa,42.4881,-72.5376,26,"Cold, no dry season, warm summer",Continental
+amanita_atkinsoniana,42.4881,-72.5376,26,"Cold, no dry season, warm summer",Continental
+amanita_onusta,42.4881,-72.5376,26,"Cold, no dry season, warm summer",Continental
+amanita_alpinicola,45.043,-109.407,27,"Cold, no dry season, cold summer",Continental
+amanita_smithiana,45.2271,-121.8358,9,"Temperate, dry summer, warm summer",Temperate
+amanita_novinupta,45.5152,-122.6784,9,"Temperate, dry summer, warm summer",Temperate
+amanita_silvicola,47.9504,-124.3855,15,"Temperate, no dry season, warm summer",Temperate

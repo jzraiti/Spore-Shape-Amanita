@@ -278,3 +278,21 @@ ggsave("Amanita_Climate_Map_with_PC1.jpg", width = 15, height = 15, dpi = 300)
 
 
 ```
+
+```{r, label="save climate map w pc1", echo=F, message=FALSE, warning=FALSE}
+# Select relevant columns for export
+climate_export <- df_usa %>%
+  dplyr::select(
+    species,
+    Lat_machine_readable,
+    Long_machine_readable,
+    koppen_code,
+    koppen_label,
+    climate_group,
+    PC1_mean
+  )
+
+# Save as CSV
+write.csv(climate_export, "Amanita_Climate_Summary.csv", row.names = FALSE)
+
+```
