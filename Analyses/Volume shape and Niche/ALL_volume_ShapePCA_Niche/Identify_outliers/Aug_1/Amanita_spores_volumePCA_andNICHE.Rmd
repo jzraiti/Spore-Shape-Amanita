@@ -1,0 +1,179 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(dplyr)
+library(stringr)
+
+```
+
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+eco <- read_csv("Results/Ecology/Ecology_from_tree.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/East_Coast_Holotypes.csv") %>%
+  mutate(species = tolower(species))
+
+clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+  mutate(species = tolower(species))
+
+
+```
+
+# data merge 
+```{r}
+
+
+# Merge the PCA and volume datasets
+merged_data <- pca %>%
+  left_join(vol, by = "species") %>%
+  left_join(eco, by = "species") %>%
+  left_join(loc, by = "species") %>%
+  left_join(clim, by = "species")
+  #mutate(PC1 = as.numeric(PC1_mean), avg_volume_estimated = as.numeric(avg_volume_estimated))
+
+# View the merged dataset
+head(merged_data)
+
+```
+
+# visualize merged data
+
+```{r}
+
+# Correlation test
+cor_test_result <- cor.test(merged_data$avg_volume_estimated, merged_data$PC1_mean)
+cor_coef <- round(cor_test_result$estimate, 3)   # Correlation coefficient
+p_value <- signif(cor_test_result$p.value, 3)    # p-value
+
+```
+
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(ggrepel)
+
+# Extract top 5 for each extreme of both axes (with ecological niche)
+top_largest_volume <- merged_data %>%
+  arrange(desc(avg_volume_estimated)) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Largest Spore Volume")
+
+top_smallest_volume <- merged_data %>%
+  arrange(avg_volume_estimated) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Smallest Spore Volume")
+
+top_elongate_spores <- merged_data %>%
+  arrange(desc(PC1_mean)) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Most Elongate Spores (High PC1)")
+
+top_globose_spores <- merged_data %>%
+  arrange(PC1_mean) %>%
+  slice_head(n = 5) %>%
+  mutate(category = "Most Globose Spores (Low PC1)")
+
+# Combine all and remove duplicates by species
+top_extremes_combined <- bind_rows(
+  top_largest_volume,
+  top_smallest_volume,
+  top_elongate_spores,
+  top_globose_spores
+) %>%
+  distinct(species, .keep_all = TRUE)  # Remove duplicates
+
+# View the final list of extremes
+top_extremes_combined %>%
+  select(species, avg_volume_estimated, PC1_mean)
+
+```
+
+```{r, label="plot_extremes", echo=F, message=FALSE, warning=FALSE}
+
+# Plot highlighting the extremes with ecological niche colors
+extremes_plot <- ggplot(merged_data, aes(x = PC1_mean, y = avg_volume_estimated)) +
+  geom_point(alpha = 0.4, size = 3, shape = 16) +  # Background points
+  geom_point(data = top_extremes_combined, aes( shape = category), size = 6) +
+  geom_label_repel(
+    data = top_extremes_combined,
+    aes(label = species),
+    size = 5, box.padding = 0.5, point.padding = 0.5, max.overlaps = Inf,
+    segment.color = "grey50", force = 2
+  ) +
+  scale_shape_manual(values = c(15, 16, 17, 18)) +  # Different shapes per category
+  labs(
+    title = "Top 5 Extremes of Spore Shape and Volume",
+    x = "PC1 Score (Shape Variation: Globose to Elongate)",
+    y = "Estimated Spore Volume (µm³)",
+    shape = "Category"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    legend.position = "top",
+    aspect.ratio = 1
+  )
+
+# Display the plot
+print(extremes_plot)
+
+# Save the plot
+ggsave("Top_5_Spore_Extremes_PC1_Volume_Niche.png",
+       plot = extremes_plot, width = 12, height = 12, dpi = 300)
+
+
+
+
+
+```
