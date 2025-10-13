@@ -28,7 +28,7 @@ h1,h2,h3,h4,h5,h6{
  
 ```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
-library(l1ou) # this needs to be downloaded from github
+#library(l1ou) # this needs to be downloaded from github
 library(reshape2)
 library(ggplot2)
 library(geiger)
@@ -38,6 +38,7 @@ library(plyr)
 #library(coin)
 library(Momocs)
 library(ggpubr)
+library(svglite)
 ```
 
 # Main Figures
@@ -62,8 +63,16 @@ panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
 efourier_spores <- Momocs::efourier(out_spores_scaled, nb.h = 10, norm = TRUE)
 pca_spores <- Momocs::PCA(efourier_spores)
 
+
+
 ```
 
+```{r panel-svg, echo=FALSE, fig.width=6, fig.height=4, dev='svg'}
+
+svglite::svglite("Aligned_Amanita_Spores_panel.svg", width = 6, height = 4)
+panel(out_spores_aligned, title = "Aligned Amanita Spores after Resampling")
+dev.off()
+```
 
 ```{r}
 
@@ -102,17 +111,42 @@ variance_df <- data.frame(
 ```{r}
 library(ggplot2)
 
-# Bar chart for the first 10 PCs (or adjust number as needed)
-ggplot(variance_df[1:10, ], aes(x = PC, y = Variance)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
-  geom_text(aes(label = sprintf("%.1f%%", Variance)), vjust = -0.5, size = 3) +
+# Plot variance explained for the first 5 PCs only (larger text + axis lines/ticks)
+variance_df5 <- head(variance_df, 5)
+
+p_variance5 <- ggplot(variance_df5, aes(x = as.numeric(gsub("PC", "", PC)), y = Variance)) +
+  geom_line(color = "steelblue", size = 1) +
+  geom_point(color = "steelblue", size = 3) +
+  geom_text(aes(label = sprintf("%.1f%%", Variance)), vjust = -0.8, size = 4) +
+  scale_x_continuous(breaks = as.numeric(gsub("PC", "", variance_df5$PC)),
+                     labels = variance_df5$PC) +
   labs(
-    title = "Variance Explained by Each Principal Component",
+    title = "Variance Explained by First 5 Principal Components",
     x = "Principal Component",
     y = "Percentage of Variance Explained"
   ) +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme_minimal(base_size = 14) +                        # increases base text size
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 18),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    axis.line = element_line(color = "black", size = 0.6),    # draw axis lines
+    axis.ticks = element_line(color = "black", size = 0.6),   # draw ticks
+    axis.ticks.length = grid::unit(0.25, "cm")
+  )
+
+print(p_variance5)
+
+# save the first-5 PCs line plot (PNG and SVG if desired)
+ggsave("variance_explained_line_plot_first5.png", plot = p_variance5, width = 7, height = 5, dpi = 300)
+if (!requireNamespace("svglite", quietly = TRUE)) install.packages("svglite")
+svglite::svglite("variance_explained_line_plot_first5.svg", width = 7, height = 5)
+print(p_variance5)
+dev.off()
+
 
 ```
 

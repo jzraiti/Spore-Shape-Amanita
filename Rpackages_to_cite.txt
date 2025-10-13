@@ -13,13 +13,10 @@ library(stringr)
 library(ape)
 library(tidyverse)
 library(caper)
-
 library(terra)
 library(sf)
 library(ggtree)
-
 library(MuMIn)
 library(visreg)
-
 library(treeio)
 library(tibble)

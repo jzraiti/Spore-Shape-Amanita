@@ -1,0 +1,86 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ape)
+library(tidyverse)
+library(caper)
+
+library(terra)
+library(sf)
+#library(ggtree)
+
+library(MuMIn)
+library(visreg)
+
+#library(treeio)
+library(tibble)
+```
+
+# load data 
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_from_tree.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species")
+
+
+```
+
+```{r, label="check and merge",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+
+
+```
+
+```{r, label="reorder ecology",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+
+
+```
