@@ -1,0 +1,151 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(l1ou) # this needs to be downloaded from github
+library(reshape2)
+library(ggplot2)
+library(geiger)
+library(dplyr)
+library(phytools)
+library(plyr)
+library(Momocs)
+library(ggpubr)
+library(readr)
+library(stringr)
+library(ggrepel)
+
+# Load necessary libraries
+library(Hmisc)
+library(corrplot)
+
+# Load necessary libraries
+library(dunn.test)  # For post-hoc analysis
+
+library(ggplot2)
+library(ggpubr)
+library(dplyr)
+
+# Assuming 'clean_df' already has:
+# - PC1_mean
+# - avg_volume_estimated
+# - Precipitation_monthly
+# - Ecology (optional)
+
+
+```
+
+# Morphometic analysis
+```{r, label="import spores",results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Import outlines: First list jpeg files to import
+# Load your files
+eco <- read_csv("Results/Ecology/Ecology_from_tree.csv") %>%
+  mutate(species = tolower(species))
+
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/Location_Date_Precipitation_monthly_cm.csv") %>%
+  mutate(species = tolower(species))
+
+clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+df <- pca %>% left_join(vol, by = "species") %>% left_join(eco, by = "species") %>%
+  left_join(loc, by = "species") %>%
+  left_join(clim, by = "species")
+
+df <- df %>%
+  mutate(
+    log_precip = log10(Precipitation_monthly_cm + 1e-6),  # small constant to avoid log(0)
+    log_volume = log10(avg_volume_estimated)
+  )
+
+```
+
+
+```{r}
+
+# ============================================================
+# Compare combined models for precipitation
+# ============================================================
+
+# ---- Step 1: Fit three models ----
+model_pc1   <- lm(log_precip ~ PC1_mean, data = df)
+model_vol   <- lm(log_precip ~ log_volume, data = df)
+model_comb  <- lm(log_precip ~ PC1_mean + log_volume, data = df)
+
+# ---- Step 2: Summarize key metrics ----
+summaries <- tibble(
+  Model = c("PC1 only", "Volume only", "Combined"),
+  Formula = c("log_precip ~ PC1_mean", 
+              "log_precip ~ log_volume", 
+              "log_precip ~ PC1_mean + log_volume"),
+  R2 = c(summary(model_pc1)$r.squared,
+         summary(model_vol)$r.squared,
+         summary(model_comb)$r.squared),
+  Adjusted_R2 = c(summary(model_pc1)$adj.r.squared,
+                  summary(model_vol)$adj.r.squared,
+                  summary(model_comb)$adj.r.squared),
+  AIC = c(AIC(model_pc1),
+          AIC(model_vol),
+          AIC(model_comb))
+)
+
+# Compute delta AIC (difference from best model)
+summaries <- summaries %>%
+  mutate(Delta_AIC = round(AIC - min(AIC), 2))
+
+# ---- Step 3: Output clean summary ----
+cat("### Model Comparison: PC1, Volume, and Combined\n\n")
+cat("**Dependent variable:** log(Precipitation)**\n\n")
+knitr::kable(summaries, digits = 3, align = "c")
+
+# ---- Step 4: Save to CSV ----
+if(!dir.exists("Results/Stats")) dir.create("Results/Stats", recursive = TRUE)
+write_csv(summaries, "Results/Stats/Model_Comparison_PC1_Volume_vs_Precip.csv")
+
+cat("\n✅ Model comparison table saved to:\n")
+cat("- Results/Stats/Model_Comparison_PC1_Volume_vs_Precip.csv\n\n")
+
+# ---- Step 5: Optional visualization ----
+# library(ggplot2)
+# ggplot(summaries, aes(x = Model, y = R2, fill = Model)) +
+#   geom_col(width = 0.6, color = "black") +
+#   theme_classic(base_size = 14) +
+#   labs(title = "Model R² Comparison", y = "R²", x = "") +
+#   theme(legend.position = "none")
+
+
+```

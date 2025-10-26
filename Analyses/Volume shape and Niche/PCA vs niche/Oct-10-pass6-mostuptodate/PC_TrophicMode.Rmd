@@ -241,7 +241,7 @@ df_Ecology_Restricted <- df %>%
 ```
 
 ```{r}
-# Plot PC1 by trophic mode 
+# Plot PC1 by trophic mode with combined lepidella + inopinata group
 
 # Define colors for the ecological niches
 niche_colors <- c("ectomycorrhizal" = "green", 
@@ -286,6 +286,70 @@ ggsave("PC1_niche_box_whisker_species.svg",
 
 # ANOVA test
 anova_result <- aov(PC1_mean ~ Ecology, data = df_Ecology_Restricted)
+summary(anova_result)
+
+```
+
+
+
+
+```{r}
+# Aggregate Trophic Mode
+
+# Normalize ecology text, map inopinata -> lepidella, then keep only the two groups
+keep <- c("ectomycorrhizal", "lepidella", "inopinata")
+
+df_Ecology_inop <- df %>%
+  mutate(Ecology = stringr::str_trim(stringr::str_to_lower(Ecology))) %>%   # normalize
+  filter(!is.na(Ecology)) %>%
+  filter(Ecology %in% keep) %>%
+  mutate(Ecology = factor(Ecology, levels = keep))
+# Plot PC1 by trophic mode WITHOUT combined lepidella + inopinata group
+
+# Define colors for the ecological niches
+niche_colors <- c("ectomycorrhizal" = "green", 
+                  "lepidella" = "orange",
+                  "inopinata" = "purple")
+
+# Boxplot for PC1
+ggplot(df_Ecology_inop, aes(x = Ecology, y = PC1_mean, fill = Ecology)) +
+  geom_boxplot(alpha = 0.7, outlier.color = "red", outlier.shape = 8) +
+  geom_jitter(aes(color = Ecology), width = 0.2, size = 3, alpha = 0.8) +  # Add points for each species
+  scale_fill_manual(values = niche_colors) +
+  scale_color_manual(values = niche_colors) +
+  labs(
+    title = "Boxplot of PC1 Scores by Trophic Niche",
+    x = "Trophic Niche",
+    y = "PC1 Mean Score"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text = element_text(size = 16),
+    legend.position = "none",
+    aspect.ratio = 1
+  )
+ggsave("PC1_niche_box_whisker_inop_included.png", width = 8, height = 8, dpi = 300)
+
+
+
+```
+
+```{r}
+
+library(svglite)
+ggsave("PC1_niche_box_whisker_inop_included.svg",
+       plot = last_plot(),
+       width = 8, height = 8, units = "in",
+       device = svglite::svglite)
+
+```
+
+```{r}
+
+# ANOVA test
+anova_result <- aov(PC1_mean ~ Ecology, data = df_Ecology_inop)
 summary(anova_result)
 
 ```
