@@ -72,7 +72,7 @@ vol <- read_csv("Results/Volume/Volume.csv") %>%
 loc <- read_csv("Results/Weather/East_Coast_Holotypes.csv") %>%
   mutate(species = tolower(species))
 
-clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+clim <- read_csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
   mutate(species = tolower(species))
 
 # Merge all

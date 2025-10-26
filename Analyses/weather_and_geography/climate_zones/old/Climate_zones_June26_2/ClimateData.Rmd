@@ -1,0 +1,122 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(terra)
+library(ggplot2)
+library(maps)
+
+```
+
+```{r, label="import data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Load Data ===
+location_df <- read.csv("Results/Weather/Location_Date.csv")
+
+```
+
+````{r, label="clean data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Standardize species names for join ===
+location_df$species <- tolower(location_df$species)
+
+# === Join datasets ===
+df_merged <- location_df
+
+
+
+# === Remove rows without coordinates ===
+df_clean <- df_merged %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+
+
+```
+
+```{r, label="load koppen raster", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Load Köppen Raster ===
+koppen_raster <- rast("Analyses/weather_and_geography/Climate_zones_June26_2/koppen_geiger_tif/1991_2020/koppen_geiger_0p00833333.tif")  # Replace with actual path
+
+# === Extract Climate Code ===
+points_vect <- vect(df_clean, geom = c("Long_machine_readable", "Lat_machine_readable"), crs = "EPSG:4326")
+koppen_values <- extract(koppen_raster, points_vect)
+
+```
+
+```{r, label="add koppen codes", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# Add extracted codes to dataframe
+df_clean$koppen_code <- koppen_values[[2]]  # second column is the value
+
+# === Lookup table ===
+koppen_lookup <- tibble::tibble(
+  koppen_code = 1:30,
+  koppen_label = c("Af", "Am", "Aw", "BWh", "BWk", "BSh", "BSk", "Csa", "Csb", "Csc", "Cwa", "Cwb", "Cwc",
+                   "Cfa", "Cfb", "Cfc", "Dsa", "Dsb", "Dsc", "Dsd", "Dwa", "Dwb", "Dwc", "Dwd",
+                   "Dfa", "Dfb", "Dfc", "Dfd", "ET", "EF"),
+  climate_group = c(rep("Tropical", 3), rep("Arid", 4), rep("Temperate", 9), rep("Continental", 12), rep("Polar", 2))
+)
+
+
+```
+
+```{r, label="merge koppen data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# Merge to get climate group and label
+df_clean <- df_clean %>%
+  left_join(koppen_lookup, by = "koppen_code")
+
+# === Save cleaned dataset with coordinates and climate ===
+write.csv(df_clean, "Cleaned_Koppen_Locations.csv", row.names = FALSE)
+
+
+```
+
+```{r, label="plot koppen data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Plot on a world map ===
+world <- map_data("world")
+
+
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group),
+               fill = "gray95", color = "gray80") +
+  geom_point(data = df_clean,
+             aes(x = Long_machine_readable, y = Lat_machine_readable, color = climate_group),
+             size = 2.5, alpha = 0.8) +
+  scale_color_manual(values = c(
+    "Tropical" = "#1b9e77", "Arid" = "#d95f02", "Temperate" = "#7570b3",
+    "Continental" = "#e7298a", "Polar" = "#66a61e")) +
+  coord_quickmap() +
+  theme_minimal() +
+  labs(
+    title = "Amanita Sample Locations by Climate Group",
+    x = "Longitude", y = "Latitude", color = "Climate Group"
+  )
+
+```

@@ -1,0 +1,226 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(terra)
+library(maps)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r, label="import data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Load Data ===
+vol <- read_csv("Results/Volume/Volume.csv") %>%
+  mutate(species = tolower(species))
+
+loc <- read_csv("Results/Weather/Location_Date_Precipitation_monthly_cm.csv") %>%
+  mutate(species = tolower(species))
+
+# Merge all
+df <- loc %>%
+  left_join(vol, by = "species")
+
+location_df <- df
+```
+
+````{r, label="clean data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Standardize species names for join ===
+location_df$species <- tolower(location_df$species)
+
+# === Join datasets ===
+df_merged <- location_df
+
+# === Remove rows without coordinates ===
+df_clean <- df_merged %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+
+# Filter to USA region (approx bounding box)
+df_usa <- df_clean %>%
+  filter(
+    Long_machine_readable > -130, Long_machine_readable < -60,
+    Lat_machine_readable > 20, Lat_machine_readable < 55
+  )
+```
+
+```{r, label="load koppen raster", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Load Köppen Raster ===
+koppen_raster <- rast("Analyses/weather_and_geography/climate_zones/Climate_zones_oct26mostuptodate/koppen_geiger_tif/1991_2020/koppen_geiger_0p00833333.tif") # Replace with actual path
+
+# === Extract Climate Code ===
+points_vect <- vect(df_usa, geom = c("Long_machine_readable", "Lat_machine_readable"), crs = "EPSG:4326")
+koppen_values <- extract(koppen_raster, points_vect)
+```
+
+```{r, label="add koppen codes", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Add extracted climate codes to the data
+df_usa$koppen_code <- koppen_values[[2]]
+
+# === Create Full Köppen Label Lookup Table ===
+koppen_lookup <- tibble::tibble(
+  koppen_code = 1:30,
+  koppen_label = c(
+    "Tropical, rainforest", "Tropical, monsoon", "Tropical, savannah",
+    "Arid, desert, hot", "Arid, desert, cold", "Arid, steppe, hot", "Arid, steppe, cold",
+    "Temperate, dry summer, hot summer", "Temperate, dry summer, warm summer", "Temperate, dry summer, cold summer",
+    "Temperate, dry winter, hot summer", "Temperate, dry winter, warm summer", "Temperate, dry winter, cold summer",
+    "Temperate, no dry season, hot summer", "Temperate, no dry season, warm summer", "Temperate, no dry season, cold summer",
+    "Cold, dry summer, hot summer", "Cold, dry summer, warm summer", "Cold, dry summer, cold summer", "Cold, dry summer, very cold winter",
+    "Cold, dry winter, hot summer", "Cold, dry winter, warm summer", "Cold, dry winter, cold summer", "Cold, dry winter, very cold winter",
+    "Cold, no dry season, hot summer", "Cold, no dry season, warm summer", "Cold, no dry season, cold summer", "Cold, no dry season, very cold winter",
+    "Polar, tundra", "Polar, frost"
+  )
+)
+```
+
+```{r, label="merge koppen data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Merge Full Climate Labels into USA Dataset ===
+df_usa <- df_usa %>%
+  left_join(koppen_lookup, by = "koppen_code")
+
+```
+
+```{r, label="usa map", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Bin climate zones by first letter of Köppen code ===
+df_usa <- df_usa %>%
+  mutate(climate_group = case_when(
+    koppen_code %in% 1:3 ~ "Tropical",
+    koppen_code %in% 4:7 ~ "Arid",
+    koppen_code %in% 8:16 ~ "Temperate",
+    koppen_code %in% 17:28 ~ "Continental",
+    koppen_code %in% 29:30 ~ "Polar",
+    TRUE ~ NA_character_
+  ))
+
+```
+
+```{r, label="add pc1 plot", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Join PC1 Data ===
+pca_df <- read.csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+df_usa <- df_usa %>%
+  left_join(pca_df %>% dplyr::select(species, PC1_mean), by = "species")
+```
+
+```{r, label="boxplot climate group", echo=F, message=FALSE, warning=FALSE}
+# Load libraries (if not already)
+library(ggplot2)
+library(dplyr)
+
+# Perform t-test
+t_result <- t.test(PC1_mean ~ climate_group, data = df_usa)
+p_val <- signif(t_result$p.value, 5)
+p_label <- paste0("t-test p = ", p_val)
+
+# Make the boxplot
+climate_pc1_box <- ggplot(df_usa, aes(x = climate_group, y = PC1_mean, fill = climate_group)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA, size = 1.2) +  # thicker lines
+  geom_jitter(width = 0.2, alpha = 0.5, size = 4, color = "black") +  # bigger points
+  annotate("text", x = 1.5, y = max(df_usa$PC1_mean, na.rm = TRUE) + 0.05, 
+           label = p_label, size = 8, fontface = "bold") +  # add p-value
+  theme_minimal(base_size = 18) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    legend.position = "none",
+    plot.title = element_text(size = 22, face = "bold"),
+    axis.title = element_text(size = 20)
+  ) +
+  labs(
+    title = "PC1 (Spore Shape) by Binned Climate Group",
+    x = "Binned Köppen Climate Group",
+    y = "PC1 Mean (Spore Shape)"
+  )
+
+
+```
+
+```{r, label="save boxplot", echo=F, message=FALSE, warning=FALSE}
+
+
+
+ggsave("PC1_by_Climate_Group_Box_Whisker.png", plot = climate_pc1_box, width = 10, height = 8, dpi = 300)
+
+
+library(svglite)
+ggsave("PC1_by_Climate_Group_Box_Whisker.svg",
+       plot = climate_pc1_box,
+       width = 8, height = 8, units = "in",
+       device = svglite::svglite)
+
+
+```
+
+
+```{r, label="boxplot volume climate group", echo=F, message=FALSE, warning=FALSE}
+# Load libraries (if not already)
+library(ggplot2)
+library(dplyr)
+
+# Perform t-test
+t_result <- t.test(avg_volume_estimated ~ climate_group, data = df_usa)
+p_val <- signif(t_result$p.value, 5)
+p_label <- paste0("t-test p = ", p_val)
+
+# Make the boxplot
+climate_pc1_box <- ggplot(df_usa, aes(x = climate_group, y = avg_volume_estimated, fill = climate_group)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA, size = 1.2) +  # thicker lines
+  geom_jitter(width = 0.2, alpha = 0.5, size = 4, color = "black") +  # bigger points
+  annotate("text", x = 1.5, y = max(df_usa$avg_volume_estimated, na.rm = TRUE) + 0.05, 
+           label = p_label, size = 8, fontface = "bold") +  # add p-value
+  theme_minimal(base_size = 18) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    legend.position = "none",
+    plot.title = element_text(size = 22, face = "bold"),
+    axis.title = element_text(size = 20)
+  ) +
+  labs(
+    title = "Volume by Binned Climate Group",
+    x = "Binned Köppen Climate Group",
+    y = "Volume"
+  )
+
+
+```
+
+```{r, label="save boxplot", echo=F, message=FALSE, warning=FALSE}
+
+ggsave("Volume_by_Climate_Group_Box_Whisker.png", plot = climate_pc1_box, width = 10, height = 8, dpi = 300)
+
+library(svglite)
+ggsave("Volume_by_Climate_Group_Box_Whisker.svg",
+       plot = climate_pc1_box,
+       width = 8, height = 8, units = "in",
+       device = svglite::svglite)
+
+
+```
+
+
+

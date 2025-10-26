@@ -1,0 +1,280 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(terra)
+library(maps)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r, label="import data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Load Data ===
+location_df <- read.csv("Results/Weather/Location_Date.csv")
+```
+
+````{r, label="clean data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Standardize species names for join ===
+location_df$species <- tolower(location_df$species)
+
+# === Join datasets ===
+df_merged <- location_df
+
+# === Remove rows without coordinates ===
+df_clean <- df_merged %>%
+  filter(!is.na(Lat_machine_readable), !is.na(Long_machine_readable))
+
+# Filter to USA region (approx bounding box)
+df_usa <- df_clean %>%
+  filter(
+    Long_machine_readable > -130, Long_machine_readable < -60,
+    Lat_machine_readable > 20, Lat_machine_readable < 55
+  )
+```
+
+```{r, label="load koppen raster", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Load Köppen Raster ===
+koppen_raster <- rast("Analyses/weather_and_geography/Climate_zones_June26_2/koppen_geiger_tif/1991_2020/koppen_geiger_0p00833333.tif") # Replace with actual path
+
+# === Extract Climate Code ===
+points_vect <- vect(df_usa, geom = c("Long_machine_readable", "Lat_machine_readable"), crs = "EPSG:4326")
+koppen_values <- extract(koppen_raster, points_vect)
+```
+
+```{r, label="add koppen codes", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# Add extracted climate codes to the data
+df_usa$koppen_code <- koppen_values[[2]]
+
+# === Create Full Köppen Label Lookup Table ===
+koppen_lookup <- tibble::tibble(
+  koppen_code = 1:30,
+  koppen_label = c(
+    "Tropical, rainforest", "Tropical, monsoon", "Tropical, savannah",
+    "Arid, desert, hot", "Arid, desert, cold", "Arid, steppe, hot", "Arid, steppe, cold",
+    "Temperate, dry summer, hot summer", "Temperate, dry summer, warm summer", "Temperate, dry summer, cold summer",
+    "Temperate, dry winter, hot summer", "Temperate, dry winter, warm summer", "Temperate, dry winter, cold summer",
+    "Temperate, no dry season, hot summer", "Temperate, no dry season, warm summer", "Temperate, no dry season, cold summer",
+    "Cold, dry summer, hot summer", "Cold, dry summer, warm summer", "Cold, dry summer, cold summer", "Cold, dry summer, very cold winter",
+    "Cold, dry winter, hot summer", "Cold, dry winter, warm summer", "Cold, dry winter, cold summer", "Cold, dry winter, very cold winter",
+    "Cold, no dry season, hot summer", "Cold, no dry season, warm summer", "Cold, no dry season, cold summer", "Cold, no dry season, very cold winter",
+    "Polar, tundra", "Polar, frost"
+  )
+)
+```
+
+```{r, label="merge koppen data", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Merge Full Climate Labels into USA Dataset ===
+df_usa <- df_usa %>%
+  left_join(koppen_lookup, by = "koppen_code")
+
+```
+
+```{r, label="usa map", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Bin climate zones by first letter of Köppen code ===
+df_usa <- df_usa %>%
+  mutate(climate_group = case_when(
+    koppen_code %in% 1:3 ~ "Tropical",
+    koppen_code %in% 4:7 ~ "Arid",
+    koppen_code %in% 8:16 ~ "Temperate",
+    koppen_code %in% 17:28 ~ "Continental",
+    koppen_code %in% 29:30 ~ "Polar",
+    TRUE ~ NA_character_
+  ))
+
+```
+
+```{r, label="add pc1 plot", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+# === Join PC1 Data ===
+pca_df <- read.csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+  mutate(species = tolower(species))
+
+df_usa <- df_usa %>%
+  left_join(pca_df %>% dplyr::select(species, PC1_mean), by = "species")
+```
+
+```{r, label="usa map", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+
+# === Plot USA Map Colored by Full Köppen Label ===
+usa_map <- map_data("state")
+```
+```{r, label="plot map", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+usa_map <- map_data("state")
+
+ggplot() +
+  geom_polygon(
+    data = usa_map, aes(x = long, y = lat, group = group),
+    fill = "gray10", color = "white", size = 0.3
+  ) +
+  geom_jitter(
+    data = df_usa,
+    aes(x = Long_machine_readable, y = Lat_machine_readable,
+        fill = PC1_mean, size = PC1_mean),
+    shape = 21, color = "black", stroke = 0.5,
+    width = 1.5, height = 1.5, alpha = 0.95
+  ) +
+  geom_text_repel(
+    data = df_usa,
+    aes(x = Long_machine_readable, y = Lat_machine_readable, label = species),
+    size = 3, max.overlaps = 50, color = "white"
+  ) +
+  # Dramatic color scale
+  scale_fill_viridis_c(option = "A", direction = -1, name = "PC1 (Spore Shape)") +
+  # Or try this for even more drama:
+  # scale_fill_distiller(palette = "Spectral", direction = 1, name = "PC1 (Spore Shape)") +
+  # Or a custom gradient:
+  # scale_fill_gradientn(colors = c("blue", "cyan", "yellow", "red"), name = "PC1 (Spore Shape)") +
+  scale_size_continuous(name = "PC1 (Spore Shape)", range = c(3, 8)) +
+  coord_quickmap(xlim = c(-130, -60), ylim = c(20, 55)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.background = element_rect(fill = "black", color = NA),
+    panel.background = element_rect(fill = "black", color = NA),
+    legend.background = element_rect(fill = "black"),
+    legend.text = element_text(color = "white"),
+    legend.title = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    axis.title = element_text(color = "white"),
+    plot.title = element_text(color = "white", face = "bold"),
+    plot.subtitle = element_text(color = "white")
+  ) +
+  labs(
+    title = "Amanita Sample Locations in the USA",
+    subtitle = "Dot Size = PC1_mean, Colored by PC1",
+    x = "Longitude", y = "Latitude"
+  )
+```
+
+```{r, label="save map", results="hide", echo=F, cache=T, message=FALSE, warning=FALSE}
+ggsave("usa_amanita_pc1_map.png", width = 20, height = 12, dpi = 300)
+```
+
+```{r, label="boxplot climate group", echo=F, message=FALSE, warning=FALSE}
+# Load libraries (if not already)
+library(ggplot2)
+library(dplyr)
+
+# Perform t-test
+t_result <- t.test(PC1_mean ~ climate_group, data = df_usa)
+p_val <- signif(t_result$p.value, 3)
+p_label <- paste0("t-test p = ", p_val)
+
+# Make the boxplot
+ggplot(df_usa, aes(x = climate_group, y = PC1_mean, fill = climate_group)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA, size = 1.2) +  # thicker lines
+  geom_jitter(width = 0.2, alpha = 0.5, size = 4, color = "black") +  # bigger points
+  annotate("text", x = 1.5, y = max(df_usa$PC1_mean, na.rm = TRUE) + 0.05, 
+           label = p_label, size = 8, fontface = "bold") +  # add p-value
+  theme_minimal(base_size = 18) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    legend.position = "none",
+    plot.title = element_text(size = 22, face = "bold"),
+    axis.title = element_text(size = 20)
+  ) +
+  labs(
+    title = "PC1 (Spore Shape) by Binned Climate Group",
+    x = "Binned Köppen Climate Group",
+    y = "PC1 Mean (Spore Shape)"
+  )
+
+
+```
+
+```{r, label="save boxplot", echo=F, message=FALSE, warning=FALSE}
+ggsave("PC1_by_Climate_Group_Box_Whisker.jpg", width = 12, height = 7, dpi = 300)
+```
+
+
+```{r, label="climate map w pc1", echo=F, message=FALSE, warning=FALSE}
+
+usa_map <- map_data("state")
+
+ggplot() +
+  # USA map base layer
+  geom_polygon(
+    data = usa_map, 
+    aes(x = long, y = lat, group = group),
+    fill = "gray95", color = "gray70"
+  ) +
+  
+  # Jittered Amanita locations
+  geom_jitter(
+    data = df_usa,
+    aes(
+      x = Long_machine_readable,
+      y = Lat_machine_readable,
+      fill = climate_group,
+      size = PC1_mean  # Use PC1_mean for size
+    ),
+    shape = 21,
+    color = "black",
+    stroke = 0.8,
+    width = 1.6, height = 1.6,   # Strong jitter to spread overlapping points
+    alpha = 0.5
+  ) +
+  
+  scale_fill_manual(
+    name = "Climate Group",
+    values = c(
+      "Temperate" = "#66c2a5",
+      "Continental" = "#fc8d62",
+      "Arid" = "#e78ac3",
+      "Tropical" = "#a6d854",
+      "Polar" = "#ffd92f"
+    )
+  ) +
+  scale_size_continuous(
+    name = "PC1 (Spore Shape Axis)",
+    range = c(2, 10)
+  ) +
+  
+  coord_quickmap(xlim = c(-130, -60), ylim = c(20, 55)) +
+  
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 20, face = "bold")
+  ) +
+  
+  labs(
+    title = "Amanita Sample Locations in the USA",
+    subtitle = "Dot Size = PC1_mean (Spore Shape), Color = Climate Group",
+    x = "Longitude",
+    y = "Latitude"
+  )
+```
+
+
+```{r, label="save climate map w pc1", echo=F, message=FALSE, warning=FALSE}
+ggsave("Amanita_Climate_Map_with_PC1.jpg", width = 15, height = 15, dpi = 300)
+
+
+```
