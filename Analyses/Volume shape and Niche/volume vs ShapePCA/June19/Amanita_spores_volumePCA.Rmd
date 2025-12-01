@@ -145,7 +145,7 @@ p <- ggplot(plot_df, aes(x = PC1_mean, y = avg_volume_estimated)) +
   geom_smooth(method = "lm", se = TRUE, color = "black", linetype = "dashed") +
   stat_cor(method = "pearson", aes(label = paste(..r.label.., ..p.label.., sep = "~`,`~")),
            label.x = min(plot_df$PC1_mean, na.rm = TRUE), 
-           label.y = max(plot_df$avg_volume_estimated, na.rm = TRUE) * 0.95,
+           label.y = max(plot_df$avg_volume_estimated, na.rm = TRUE) * 0.98,
            size = 5) +
   labs(
     x = "PC1 (Spore Shape Axis)",
