@@ -1,0 +1,47 @@
+Model selection table 
+                               (Int) Prc_mnt clm_grp df   logLik  AICc delta
+mod_vol3_Volume_Precip_Climate 252.2  0.5574       +  3 -132.094 271.5  0.00
+mod_vol2_Volume_Climate        298.2               +  2 -163.920 332.3 60.82
+mod_vol1_Volume_Precipitation  255.0 -2.6990          2 -166.635 337.8 66.23
+                               weight
+mod_vol3_Volume_Precip_Climate      1
+mod_vol2_Volume_Climate             0
+mod_vol1_Volume_Precipitation       0
+Models ranked by AICc(x) 
+mod1 mod2 mod3 
+  28   27   22 
+=== Best Volume Model ===
+Best model name:    mod_vol3_Volume_Precip_Climate 
+
+Call:
+pgls(formula = avg_volume_estimated ~ Precipitation_monthly + 
+    climate_group, data = comp_vol3, lambda = "ML")
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-258.50 -122.02  -88.66  130.27  590.34 
+
+Branch length transformations:
+
+kappa  [Fix]  : 1.000
+lambda [ ML]  : 0.000
+   lower bound : 0.000, p = 1    
+   upper bound : 1.000, p = 0.0020227
+   95.0% CI   : (NA, 0.753)
+delta  [Fix]  : 1.000
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            252.1813    49.5682  5.0876 6.54e-05 ***
+Precipitation_monthly    0.5574    10.0976  0.0552   0.9566    
+climate_groupTemperate -11.0707    50.8497 -0.2177   0.8300    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 226.8 on 19 degrees of freedom
+Multiple R-squared: 0.002503,	Adjusted R-squared: -0.1025 
+F-statistic: 0.02384 on 2 and 19 DF,  p-value: 0.9765 
+
+Pagel's λ estimate (volume model):
+lambda 
+ 1e-06 

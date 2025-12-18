@@ -1,0 +1,46 @@
+Model selection table 
+                                  (Int)  Prc_mnt clm_grp df logLik  AICc delta
+mod_shape1_PC1_Precipitation  0.0370100 -0.02130          2 26.213 -47.9  0.00
+mod_shape2_PC1_Climate        0.0008738                +  2 26.023 -47.5  0.40
+mod_shape3_PC1_Precip_Climate 0.0785800 -0.01747       +  3 21.686 -36.0 11.91
+                              weight
+mod_shape1_PC1_Precipitation   0.549
+mod_shape2_PC1_Climate         0.450
+mod_shape3_PC1_Precip_Climate  0.001
+Models ranked by AICc(x) 
+mod1 mod2 mod3 
+  28   27   22 
+=== Best Model ===
+Best model name:    mod_shape1_PC1_Precipitation 
+
+Call:
+pgls(formula = PC1_mean ~ Precipitation_monthly, data = comp_shape1, 
+    lambda = "ML")
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.39425 -0.12016 -0.02505  0.14063  0.46865 
+
+Branch length transformations:
+
+kappa  [Fix]  : 1.000
+lambda [ ML]  : 0.000
+   lower bound : 0.000, p = 1    
+   upper bound : 1.000, p = 3.0192e-05
+   95.0% CI   : (NA, 0.890)
+delta  [Fix]  : 1.000
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)  
+(Intercept)            0.0370055  0.0380058  0.9737  0.33919  
+Precipitation_monthly -0.0213003  0.0078743 -2.7050  0.01189 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2125 on 26 degrees of freedom
+Multiple R-squared: 0.2196,	Adjusted R-squared: 0.1896 
+F-statistic: 7.317 on 1 and 26 DF,  p-value: 0.01189 
+
+Pagel's λ estimate:
+lambda 
+ 1e-06 
