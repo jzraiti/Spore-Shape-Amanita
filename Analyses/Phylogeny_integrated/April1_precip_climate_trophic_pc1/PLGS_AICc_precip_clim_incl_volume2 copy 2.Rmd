@@ -1,0 +1,522 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+required_packages <- c(
+  "dplyr", "readr", "stringr", "tibble", "ape", "phytools",
+  "caper", "MuMIn", "purrr"
+)
+
+missing_packages <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_packages) > 0) {
+  stop(
+    "Please install the missing packages before running this script: ",
+    paste(missing_packages, collapse = ", ")
+  )
+}
+
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(readr)
+  library(stringr)
+  library(tibble)
+  library(ape)
+  library(phytools)
+  library(caper)
+  library(MuMIn)
+  library(purrr)
+})
+
+
+```
+
+# load data 
+```{r}
+options(stringsAsFactors = FALSE)
+
+# -------------------------
+# 1. User settings
+# -------------------------
+outgroup_name <- "zhuliangomyces_illinitus"
+run_trait_signal <- TRUE
+run_trait_trait_model <- TRUE
+
+# Set the reference level you want for climate_group coefficients.
+# Example: "Continental" or "Temperate". Set to NULL to leave as-is.
+climate_reference_level <- "Continental"
+
+
+```
+
+```{r}
+
+# -------------------------
+# 2. Helper functions
+# -------------------------
+clean_species_names <- function(x) {
+  x %>%
+    stringr::str_trim() %>%
+    gsub('"', '', .) %>%
+    gsub("'", "", .) %>%
+    gsub(" ", "_", .) %>%
+    stringr::str_to_lower()
+}
+
+read_clean_tree <- function(file_path, outgroup = NULL) {
+  # Try nexus first, then plain Newick
+  tr <- tryCatch(
+    read.nexus(file_path),
+    error = function(e) read.tree(file_path)
+  )
+
+  if (inherits(tr, "multiPhylo")) {
+    tr <- tr[[1]]
+  }
+
+  if (!inherits(tr, "phylo")) {
+    stop("Tree could not be read as a phylo object.")
+  }
+
+  tr$tip.label <- clean_species_names(tr$tip.label)
+
+  if (!is.null(outgroup) && outgroup %in% tr$tip.label) {
+    tr <- root(tr, outgroup = outgroup, resolve.root = TRUE)
+  }
+
+  if (!is.null(tr$edge.length)) {
+    tr$edge.length[tr$edge.length <= 0] <- 1e-8
+  }
+
+  # Clear node labels because they are not needed for comparative analyses
+  tr$node.label <- NULL
+  tr
+}
+
+prepare_shared_dataset <- function(df, tree, response, predictors) {
+  vars_needed <- c(response, predictors)
+
+  df_model <- df %>%
+    dplyr::select(species, dplyr::all_of(vars_needed)) %>%
+    tidyr::drop_na() %>%
+    dplyr::filter(species %in% tree$tip.label)
+
+  if (nrow(df_model) < 3) {
+    stop(paste("Too few species remain after filtering for", response))
+  }
+
+  if (anyDuplicated(df_model$species)) {
+    dupes <- unique(df_model$species[duplicated(df_model$species)])
+    stop(
+      paste(
+        "Duplicate species names found after filtering:",
+        paste(dupes, collapse = ", ")
+      )
+    )
+  }
+
+  spp <- df_model$species
+  tree_model <- ape::drop.tip(tree, setdiff(tree$tip.label, spp))
+  tree_model$edge.length[tree_model$edge.length <= 0] <- 1e-8
+  tree_model$node.label <- NULL
+
+  idx <- match(tree_model$tip.label, df_model$species)
+
+  if (any(is.na(idx))) {
+    stop("Some tree tips could not be matched back to df_model after pruning.")
+  }
+
+  df_model <- df_model[idx, , drop = FALSE]
+
+  if (!all(df_model$species == tree_model$tip.label)) {
+    stop("Data species do not match tree tip labels after pruning/reordering.")
+  }
+
+  df_model <- as.data.frame(df_model)
+  rownames(df_model) <- NULL
+
+  list(
+    data = df_model,
+    tree = tree_model
+  )
+}
+
+```
+
+```{r}
+make_comparative_data <- function(df_model, tree_model) {
+  df_model <- as.data.frame(df_model)
+  rownames(df_model) <- df_model$species
+
+  if (anyDuplicated(rownames(df_model))) {
+    stop("Duplicate row names remain in df_model.")
+  }
+
+  if (nrow(df_model) != length(tree_model$tip.label)) {
+    stop("Row count of df_model does not equal number of tree tips.")
+  }
+
+  if (!all(rownames(df_model) == tree_model$tip.label)) {
+    stop("Row names of df_model do not exactly match tree tip labels.")
+  }
+
+  caper::comparative.data(
+    phy = tree_model,
+    data = df_model,
+    names.col = "species",
+    vcv = TRUE,
+    warn.dropped = TRUE
+  )
+}
+
+fit_pgls_model <- function(formula, comp_data) {
+  caper::pgls(
+    formula = formula,
+    data = comp_data,
+    lambda = "ML"
+  )
+}
+
+extract_pgls_coefficients <- function(model, response_name, model_name) {
+  coef_tab <- as.data.frame(summary(model)$coefficients)
+  coef_tab$term <- rownames(coef_tab)
+  rownames(coef_tab) <- NULL
+
+  data.frame(
+    response = response_name,
+    model_name = model_name,
+    term = coef_tab$term,
+    estimate = coef_tab[["Estimate"]],
+    std_error = coef_tab[["Std. Error"]],
+    t_value = coef_tab[["t value"]],
+    p_value = coef_tab[["Pr(>|t|)"]],
+    stringsAsFactors = FALSE
+  )
+}
+
+extract_pgls_model_summary <- function(model, response_name, model_name, predictors_string) {
+  s <- summary(model)
+
+  data.frame(
+    response = response_name,
+    model_name = model_name,
+    predictors = predictors_string,
+    N = nobs(model),
+    k = attr(logLik(model), "df"),
+    logLik = as.numeric(logLik(model)),
+    AIC = AIC(model),
+    AICc = MuMIn::AICc(model),
+    intercept = unname(coef(model)[1]),
+    pagel_lambda = unname(model$param["lambda"]),
+    residual_se = s$sigma,
+    R2 = s$r.squared,
+    adj_R2 = as.numeric(s$adj.r.squared),
+    F = unname(s$fstatistic[1]),
+    F_df1 = unname(s$fstatistic[2]),
+    F_df2 = unname(s$fstatistic[3]),
+    model_p = stats::pf(
+      q = unname(s$fstatistic[1]),
+      df1 = unname(s$fstatistic[2]),
+      df2 = unname(s$fstatistic[3]),
+      lower.tail = FALSE
+    ),
+    stringsAsFactors = FALSE
+  )
+}
+
+run_pgls_model_set <- function(df, tree, response, predictors, formulas_named, predictor_labels = NULL) {
+  prep <- prepare_shared_dataset(
+    df = df,
+    tree = tree,
+    response = response,
+    predictors = predictors
+  )
+
+  comp_data <- make_comparative_data(prep$data, prep$tree)
+
+  fitted_models <- purrr::map(formulas_named, fit_pgls_model, comp_data = comp_data)
+
+  coefficient_table <- purrr::imap_dfr(
+    fitted_models,
+    ~extract_pgls_coefficients(.x, response_name = response, model_name = .y)
+  )
+
+  if (is.null(predictor_labels)) {
+    predictor_labels <- stats::setNames(names(formulas_named), names(formulas_named))
+  }
+
+  model_summary_table <- purrr::imap_dfr(
+    fitted_models,
+    ~extract_pgls_model_summary(
+      .x,
+      response_name = response,
+      model_name = .y,
+      predictors_string = predictor_labels[[.y]]
+    )
+  )
+
+  model_summary_table <- model_summary_table %>%
+    dplyr::arrange(AICc) %>%
+    dplyr::mutate(
+      deltaAICc = AICc - min(AICc, na.rm = TRUE),
+      akaike_weight = exp(-0.5 * deltaAICc) / sum(exp(-0.5 * deltaAICc), na.rm = TRUE),
+      is_best_model = deltaAICc == min(deltaAICc, na.rm = TRUE)
+    )
+
+  list(
+    comparative_data = comp_data,
+    tree = prep$tree,
+    data = prep$data,
+    fitted_models = fitted_models,
+    coefficients = coefficient_table,
+    model_summary = model_summary_table
+  )
+}
+
+estimate_trait_signal <- function(tree, df, trait_col) {
+  d <- df %>%
+    dplyr::select(species, all_of(trait_col)) %>%
+    tidyr::drop_na() %>%
+    dplyr::filter(species %in% tree$tip.label)
+
+  tree_trait <- drop.tip(tree, setdiff(tree$tip.label, d$species))
+  if (!is.null(tree_trait$edge.length)) {
+    tree_trait$edge.length[tree_trait$edge.length <= 0] <- 1e-8
+  }
+
+  d <- d %>%
+    dplyr::slice(match(tree_trait$tip.label, species))
+
+  x <- d[[trait_col]]
+  names(x) <- d$species
+
+  lambda_fit <- phytools::phylosig(tree_trait, x, method = "lambda", test = TRUE)
+  k_fit <- phytools::phylosig(tree_trait, x, method = "K", test = TRUE)
+
+  tibble::tibble(
+    trait = trait_col,
+    N = length(x),
+    pagel_lambda_trait = lambda_fit$lambda,
+    pagel_lambda_logL = lambda_fit$logL,
+    pagel_lambda_P = lambda_fit$P,
+    blomberg_K = k_fit$K,
+    blomberg_K_P = k_fit$P
+  )
+}
+
+reconcile_species_names <- function(x) {
+  x <- clean_species_names(x)
+
+  recode_map <- c(
+    "amanita_muscariaflavivolvata" = "amanita_muscaria_flavivolvata",
+    "limacella_illinita" = "zhuliangomyces_illinitus",
+    "amanita_phalloides" = "amanita_phalloides_sensu_auct._amer."
+  )
+
+  dplyr::recode(x, !!!recode_map, .default = x)
+}
+
+```
+
+```{r}
+
+# -------------------------
+# 3. Input files
+# -------------------------
+pca_file  <- "Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv"
+vol_file  <- "Results/Volume/Volume.csv"
+loc_file  <- "Results/Weather/Location_Date_Outliers_Removed.csv"
+clim_file <- "Results/Climate/Amanita_Climate_Summary.csv"
+tree_file <- "Results/Phylogeny/species_tree_output.tree"
+
+input_files <- c(pca_file, vol_file, loc_file, clim_file, tree_file)
+missing_files <- input_files[!file.exists(input_files)]
+if (length(missing_files) > 0) {
+  stop("These required input files were not found:\n", paste(missing_files, collapse = "\n"))
+}
+
+# -------------------------
+# 4. Load and merge data
+# -------------------------
+pca <- readr::read_csv(pca_file, show_col_types = FALSE) %>%
+  dplyr::mutate(species = clean_species_names(species))
+
+vol <- readr::read_csv(vol_file, show_col_types = FALSE) %>%
+  dplyr::mutate(species = clean_species_names(species))
+
+loc <- readr::read_csv(loc_file, show_col_types = FALSE) %>%
+  dplyr::mutate(species = clean_species_names(species))
+
+clim <- readr::read_csv(clim_file, show_col_types = FALSE) %>%
+  dplyr::mutate(species = clean_species_names(species))
+
+df_full <- pca %>%
+  dplyr::left_join(vol,  by = "species") %>%
+  dplyr::left_join(loc,  by = "species") %>%
+  dplyr::left_join(clim, by = "species")
+
+df_full <- df_full %>%
+  dplyr::mutate(species = reconcile_species_names(species))
+
+required_columns <- c(
+  "species", "PC1_mean", "avg_volume_estimated",
+  "Precipitation_monthly", "climate_group"
+)
+missing_columns <- required_columns[!required_columns %in% colnames(df_full)]
+if (length(missing_columns) > 0) {
+  stop(
+    "These required columns are missing after merging: ",
+    paste(missing_columns, collapse = ", ")
+  )
+}
+
+df_full <- df_full %>%
+  dplyr::mutate(
+    climate_group = as.factor(climate_group)
+  )
+
+if (!is.null(climate_reference_level) && climate_reference_level %in% levels(df_full$climate_group)) {
+  df_full$climate_group <- stats::relevel(df_full$climate_group, ref = climate_reference_level)
+}
+
+
+```
+
+```{r}
+# -------------------------
+# 5. Read and clean tree
+# -------------------------
+tree <- read_clean_tree(tree_file, outgroup = outgroup_name)
+tree$tip.label <- clean_species_names(tree$tip.label)
+tree$tip.label <- reconcile_species_names(tree$tip.label)
+# -------------------------
+# 6. Optional: phylogenetic signal of raw traits
+# -------------------------
+trait_signal_results <- TRUE
+if (isTRUE(run_trait_signal)) {
+  trait_signal_results <- dplyr::bind_rows(
+    estimate_trait_signal(tree, df_full, "PC1_mean"),
+    estimate_trait_signal(tree, df_full, "avg_volume_estimated")
+  )
+}
+
+
+```
+
+```{r}
+
+pc1_formulas <- list(
+  mod_shape1_PC1_Precipitation = PC1_mean ~ Precipitation_monthly,
+  mod_shape2_PC1_Climate = PC1_mean ~ climate_group,
+  mod_shape3_PC1_Precip_Climate = PC1_mean ~ Precipitation_monthly + climate_group
+)
+
+pc1_labels <- c(
+  mod_shape1_PC1_Precipitation = "Precipitation_monthly",
+  mod_shape2_PC1_Climate = "climate_group",
+  mod_shape3_PC1_Precip_Climate = "Precipitation_monthly + climate_group"
+)
+
+pc1_results <- run_pgls_model_set(
+  df = df_full,
+  tree = tree,
+  response = "PC1_mean",
+  predictors = c("Precipitation_monthly", "climate_group"),
+  formulas_named = pc1_formulas,
+  predictor_labels = pc1_labels
+)
+
+```
+
+```{r}
+
+volume_formulas <- list(
+  mod_vol1_Volume_Precipitation = avg_volume_estimated ~ Precipitation_monthly,
+  mod_vol2_Volume_Climate = avg_volume_estimated ~ climate_group,
+  mod_vol3_Volume_Precip_Climate = avg_volume_estimated ~ Precipitation_monthly + climate_group
+)
+
+volume_labels <- c(
+  mod_vol1_Volume_Precipitation = "Precipitation_monthly",
+  mod_vol2_Volume_Climate = "climate_group",
+  mod_vol3_Volume_Precip_Climate = "Precipitation_monthly + climate_group"
+)
+
+volume_results <- run_pgls_model_set(
+  df = df_full,
+  tree = tree,
+  response = "avg_volume_estimated",
+  predictors = c("Precipitation_monthly", "climate_group"),
+  formulas_named = volume_formulas,
+  predictor_labels = volume_labels
+)
+```
+
+```{r}
+
+all_coefficients <- dplyr::bind_rows(
+  pc1_results$coefficients,
+  volume_results$coefficients
+)
+
+all_model_summaries <- dplyr::bind_rows(
+  pc1_results$model_summary,
+  volume_results$model_summary
+)
+
+best_models <- all_model_summaries %>%
+  dplyr::group_by(response) %>%
+  dplyr::filter(deltaAICc == min(deltaAICc, na.rm = TRUE)) %>%
+  dplyr::ungroup()
+
+best_model_coefs <- all_coefficients %>%
+  dplyr::inner_join(
+    best_models %>% dplyr::select(response, model_name),
+    by = c("response", "model_name")
+  )
+
+dir.create("Results/stats/PGLS", recursive = TRUE, showWarnings = FALSE)
+
+readr::write_csv(all_coefficients, "Results/stats/PGLS/pgls_coefficients_all.csv")
+readr::write_csv(all_model_summaries, "Results/stats/PGLS/pgls_model_summaries_all.csv")
+readr::write_csv(best_models, "Results/stats/PGLS/pgls_best_models.csv")
+readr::write_csv(best_model_coefs, "Results/stats/PGLS/pgls_best_model_coefficients.csv")
+
+```
+
+```{r}
+
+library(car)
+  
+lm_model <- lm(PC1_mean ~ df_full$Precipitation_monthly + df_full$climate_group, data=df_full)
+vif(lm_model)
+```
+
+```{r}
+
+
+```

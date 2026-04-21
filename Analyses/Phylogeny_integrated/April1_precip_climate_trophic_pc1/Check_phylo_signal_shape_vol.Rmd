@@ -1,0 +1,200 @@
+
+---
+title: "Evolution of spore shape in Amanita "
+graphics: yes
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
+---
+ 
+<style type="text/css">
+
+body, td {font-size: 14px;}
+code.r{font-size: 12px;}
+pre {font-size: 12px}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-size: 14pt;
+  
+</style>
+
+\clearpage
+ 
+ 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(readr)
+library(stringr)
+library(tidyr)
+library(ape)
+library(phytools)
+library(tibble)
+
+```
+
+# load data 
+```{r}
+# -------------------------
+# 1. Helper functions
+# -------------------------
+clean_species_names <- function(x) {
+  x %>%
+    str_trim() %>%
+    gsub('"', '', .) %>%
+    gsub("'", "", .) %>%
+    gsub(" ", "_", .) %>%
+    str_to_lower()
+}
+
+reconcile_species_names <- function(x) {
+  x <- clean_species_names(x)
+
+  recode_map <- c(
+    "amanita_muscariaflavivolvata" = "amanita_muscaria_flavivolvata",
+    "limacella_illinita" = "zhuliangomyces_illinitus",
+    "amanita_phalloides" = "amanita_phalloides_sensu_auct._amer."
+  )
+
+  dplyr::recode(x, !!!recode_map, .default = x)
+}
+
+read_clean_tree <- function(file_path, outgroup = NULL) {
+  tr <- tryCatch(
+    read.nexus(file_path),
+    error = function(e) read.tree(file_path)
+  )
+
+  if (inherits(tr, "multiPhylo")) {
+    tr <- tr[[1]]
+  }
+
+  tr$tip.label <- clean_species_names(tr$tip.label)
+  tr$tip.label <- reconcile_species_names(tr$tip.label)
+
+  if (!is.null(outgroup) && outgroup %in% tr$tip.label) {
+    tr <- root(tr, outgroup = outgroup, resolve.root = TRUE)
+  }
+
+  if (!is.null(tr$edge.length)) {
+    tr$edge.length[tr$edge.length <= 0] <- 1e-8
+  }
+
+  tr$node.label <- NULL
+  tr
+}
+
+estimate_trait_signal <- function(tree, df, trait_col) {
+  d <- df %>%
+    select(species, all_of(trait_col)) %>%
+    drop_na() %>%
+    filter(species %in% tree$tip.label)
+
+  tree_trait <- drop.tip(tree, setdiff(tree$tip.label, d$species))
+
+  if (!is.null(tree_trait$edge.length)) {
+    tree_trait$edge.length[tree_trait$edge.length <= 0] <- 1e-8
+  }
+
+  d <- d %>%
+    slice(match(tree_trait$tip.label, species))
+
+  x <- d[[trait_col]]
+  names(x) <- d$species
+
+  lambda_fit <- phytools::phylosig(tree_trait, x, method = "lambda", test = TRUE)
+  k_fit      <- phytools::phylosig(tree_trait, x, method = "K", test = TRUE)
+
+  tibble(
+    trait = trait_col,
+    N = length(x),
+    pagel_lambda = lambda_fit$lambda,
+    pagel_lambda_logL = lambda_fit$logL,
+    pagel_lambda_P = lambda_fit$P,
+    blomberg_K = k_fit$K,
+    blomberg_K_P = k_fit$P
+  )
+}
+```
+
+```{r}
+# -------------------------
+# 2. Input files
+# -------------------------
+outgroup_name <- "zhuliangomyces_illinitus"
+
+pca_file  <- "Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv"
+vol_file  <- "Results/Volume/Volume.csv"
+tree_file <- "Results/Phylogeny/species_tree_output.tree"
+
+```
+
+```{r}
+
+# -------------------------
+# 3. Load data
+# -------------------------
+pca <- read_csv(pca_file, show_col_types = FALSE) %>%
+  mutate(species = reconcile_species_names(species))
+
+vol <- read_csv(vol_file, show_col_types = FALSE) %>%
+  mutate(species = reconcile_species_names(species))
+
+df <- pca %>%
+  select(species, PC1_mean) %>%
+  left_join(
+    vol %>% select(species, avg_volume_estimated),
+    by = "species"
+  )
+
+# -------------------------
+# 4. Read tree
+# -------------------------
+tree <- read_clean_tree(tree_file, outgroup = outgroup_name)
+
+```
+
+```{r}
+# -------------------------
+# 5. Estimate phylogenetic signal
+# -------------------------
+trait_signal_results <- bind_rows(
+  estimate_trait_signal(tree, df, "PC1_mean"),
+  estimate_trait_signal(tree, df, "avg_volume_estimated")
+)
+
+trait_signal_results
+
+```
+
+```{r}
+# -------------------------
+# 6. Save results
+# -------------------------
+dir.create("Results/stats/phylogenetic_signal", recursive = TRUE, showWarnings = FALSE)
+
+write_csv(
+  trait_signal_results,
+  "Results/stats/phylogenetic_signal/phylogenetic_signal_PC1_volume.csv"
+)
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
