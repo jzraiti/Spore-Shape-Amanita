@@ -1,0 +1,333 @@
+IQ-TREE multicore version 2.3.6 for Linux ARM 64-bit built Dec  1 2024
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
+Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
+
+Host:    fa4f67bc55c6 (SSE4.2, 3 GB RAM)
+Command: iqtree2 -s cleaned_mantrim_al_TEF1.fasta -m MFP -B 1000 --alrt 1000
+Seed:    199096 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri May 30 02:34:14 2025
+Kernel:  SSE2 - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file cleaned_mantrim_al_TEF1.fasta ... Fasta format detected
+Reading fasta file: done in 0.00149429 secs using 78.03% CPU
+Alignment most likely contains DNA/RNA sequences
+Alignment has 77 sequences with 485 columns, 277 distinct patterns
+232 parsimony-informative, 34 singleton sites, 219 constant sites
+                                                                                                                                 Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 2.4666e-05 secs using 101.4% CPU
+   1  PP592574.1_Amanita_cf._afrospinosa_voucher_08.334_translation_elongation_factor_1-alpha_gene__partial_cds                         10.10%    passed     99.36%
+   2  MH508669.1_Amanita_altipes_voucher_HKAS91125_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                  7.42%    passed     55.73%
+   3  MH508678.1_Amanita_augusta_voucher_HKAS101419_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                 8.66%    passed     98.60%
+   4  ON007300.1_Amanita_aureofloccosa_voucher_SDBR-STO-2020-PS39_translation_elongation_factor_1-alpha__tef1__gene__partial_cds        10.52%    passed     72.06%
+   5  OR498115.1_Amanita_brunneolocularis_voucher_ART-2019-72_translation_elongation_factor_1-alpha__tef1__gene__partial_cds             8.45%    passed     93.21%
+   6  AY881021.1_Amanita_brunnescens_isolate_AFTOL-ID_673_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                 8.87%    passed     83.36%
+   7  MH508706.1_Amanita_caesareoides_voucher_HKAS71021_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds            11.13%    passed     94.95%
+   8  MN909834.1_Amanita_carneiphylla_voucher_AD282179_translation_elongation_factor_1-alpha__ef1-a__gene__partial_cds                  10.52%    passed     65.88%
+   9  PP273683.1_Amanita_ceciliae_voucher_DB-2018-07-08-5_translation_elongation_factor_1-alpha__TEF1__gene__partial_cds                 8.66%    passed     88.16%
+  10  PP592628.1_Amanita_chatamagotake_voucher_EFHAAU1669_translation_elongation_factor_1-alpha_gene__partial_cds                        9.28%    passed     98.62%
+  11  MH508728.1_Amanita_cinereopannosa_voucher_RET_477-10_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds          9.90%    passed     86.31%
+  12  KP259290.1_Amanita_cinereovelata_voucher_HKAS_81407_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                 9.48%    passed     95.86%
+  13  MH508731.1_Amanita_cingulata_voucher_HKAS100640_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds               6.60%    passed     75.29%
+  14  MH508732.1_Amanita_citrina_voucher_HKAS101397_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                 9.90%    passed     56.70%
+  15  KR824827.1_Amanita_concentrica_voucher_HKAS_87061_translation_elongation_factor_1-alpha__ef1-alpha__gene__partial_cds              8.66%    passed     59.09%
+  16  PP552673.1_Amanita_sp.__crassiconus__voucher_JEIC0641_translation_elongation_factor_1-alpha_gene__partial_cds                      9.48%    passed     87.90%
+  17  ON540341.1_Amanita_crebresulcata_voucher_INPA_265581_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds         10.72%    passed     41.12%
+  18  MF000750.1_Amanita_djarilmari_voucher_PERTH08776067_translation_elongation_factor_1-alpha_gene__partial_cds                        8.87%    passed     69.77%
+  19  MT977111.1_Amanita_aff._drummondii_isolate_JAC13423_translation_elongation_factor_1_alpha__tef1__gene__partial_cds                 7.84%    passed     86.58%
+  20  KF877119.1_Amanita_egregia_voucher_RET_136-7_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                       10.31%    passed     92.89%
+  21  PP592573.1_Amanita_aff._eriophora_voucher_HKAS79577_translation_elongation_factor_1-alpha_gene__partial_cds                       10.72%    passed     97.62%
+  22  MF000751.1_Amanita_eucalypti_voucher_PERTH8809828_translation_elongation_factor_1-alpha_gene__partial_cds                          8.66%    passed     94.97%
+  23  MN928572.1_Amanita_fibrillopes_voucher_PERTH08793573_translation_elongation_factor_1-alpha__ef1-a__gene__partial_cds               9.69%    passed     51.94%
+  24  MH508790.1_Amanita_flavoconia_voucher_RET_485-6_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds               8.87%    passed     79.62%
+  25  MH508826.1_Amanita_fulva_voucher_HKAS96168_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                    8.87%    passed     32.12%
+  26  MF000752.1_Amanita_gardneri_voucher_PERTH08776121_translation_elongation_factor_1-alpha_gene__partial_cds                          8.66%    passed     61.05%
+  27  MH508830.1_Amanita_griseofarinosa_voucher_HKAS80926_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds           9.07%    passed     81.12%
+  28  OR046334.1_Amanita_griseofolia_voucher_EFHAAU555_translation_elongation_factor_1-alpha__tef1alpha__gene__partial_cds               7.42%    passed     92.56%
+  29  PP273650.1_Amanita_griseofulva_f._albida_voucher_DB-2021-07-31-2_translation_elongation_factor_1-alpha__TEF1__gene__partial_cds    7.01%    passed     52.49%
+  30  MH508850.1_Amanita_griseoverrucosa_voucher_HKAS57357_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds          9.90%    passed     82.87%
+  31  MH508851.1_Amanita_gymnopus_voucher_HKAS71618_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                 9.48%    passed     67.59%
+  32  MH508854.1_Amanita_heishidingensis_voucher_HKAS81484_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds          9.90%    passed     75.50%
+  33  MW874591.1_Amanita_ibotengutake_isolate_jqjeg1_translation_elongation_factor_1-alpha__EF-1alpha__gene__partial_cds                 9.48%    passed     97.64%
+  34  PP934265.1_Amanita_imazekii_voucher_SFC20180915-10_translation_elongation_factor_1-alpha_gene__partial_cds                         8.04%    passed     70.88%
+  35  MT977100.1_Amanita_inopinata_isolate_JAC11447_translation_elongation_factor_1_alpha__tef1__gene__partial_cds                       9.69%    passed     88.78%
+  36  KP724569.1_Amanita_jacksonii_voucher_DEWV-4715_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                     10.10%    passed     83.00%
+  37  OQ715360.1_Amanita_kitamagotake_voucher_B22052919_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds             9.48%    passed     87.34%
+  38  MH508886.1_Amanita_liquii_voucher_HKAS93915_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                   7.84%    passed     89.92%
+  39  ON325617.1_Amanita_macrocarpa_voucher_B21051513_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds              10.10%    passed     87.33%
+  40  ON894332.1_Amanita_madagascariensis_voucher_JEIC0588_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds          9.07%    passed     97.51%
+  41  KF877148.1_Amanita_mafingensis_voucher_RET_348-8_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                   10.31%    passed     99.34%
+  42  ON007303.1_Amanita_manicata_voucher_SDBR-STO-2020-36_translation_elongation_factor_1-alpha__tef1__gene__partial_cds               10.10%    passed      9.88%
+  43  MT977115.1_Amanita_marmorata_isolate_JAC14571_translation_elongation_factor_1_alpha__tef1__gene__partial_cds                       9.69%    passed     91.14%
+  44  KF877156.1_Amanita_aff._masasiensis_Sharp_607-97_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                    9.48%    passed     99.57%
+  45  MF000759.1_Amanita_millsii_voucher_HO581533_translation_elongation_factor_1-alpha_gene__partial_cds                                8.66%    passed     85.54%
+  46  MH508947.1_Amanita_orientifulva_voucher_HKAS97971_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds             8.66%    passed     49.19%
+  47  MH508979.1_Amanita_parvipantherina_voucher_HKAS67828_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds          8.25%    passed     69.22%
+  48  MH508992.1_Amanita_princeps_voucher_HKAS59793_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                10.72%    passed     84.89%
+  49  OP272681.1_Amanita_quenda_voucher_PERTH08587116_translation_elongation_factor_1-alpha_gene__partial_cds                           10.10%    passed     92.75%
+  50  MH509022.1_Amanita_ravenelii_voucher_RET_459-10_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds               9.48%    passed     76.46%
+  51  JX998005.1_Amanita_rimosa_voucher_HKAS_75777_translation_elongation_factor_1-alpha_gene__partial_cds                               9.48%    passed     78.69%
+  52  MH509037.1_Amanita_rubescens_voucher_HKAS100631_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds               7.22%    passed     86.06%
+  53  MH509059.1_Amanita_rubromarginata_voucher_HKAS89018_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds           9.90%    passed     91.15%
+  54  MW324505.1_Amanita_sepiacea_voucher_HKAS107306B_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                     9.48%    passed     77.83%
+  55  KU714533.1_Amanita_similis_voucher_TFM-M-P934_elongation_factor_1-alpha__ef1__gene__partial_cds                                   10.10%    passed     97.64%
+  56  MH509093.1_Amanita_sinensis_voucher_HKAS74388_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                 8.04%    passed     77.42%
+  57  ON492154.1_Amanita_aff._sinicoflava_voucher_TRTC156851_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds        7.84%    passed     85.18%
+  58  MH509115.1_Amanita_spissa_voucher_HKAS92089_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                   9.28%    passed     94.05%
+  59  PP592567.1_Amanita_austrostraminea_voucher_09.354_translation_elongation_factor_1-alpha_gene__partial_cds                         10.10%    passed     76.62%
+  60  PP552671.1_Amanita_strobilaceovolvata_voucher_JEIC0484_translation_elongation_factor_1-alpha_gene__partial_cds                     9.07%    passed     65.72%
+  61  MH509117.1_Amanita_strobiliformis_voucher_MB-001177_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds           8.04%    passed     80.60%
+  62  OR051551.1_Amanita_subglobosa_voucher_HMAS_253798_translation_elongation_factor_1-alpha__Tef1-alpha__gene__partial_cds             9.48%    passed     68.18%
+  63  KP691672.1_Amanita_subpallidorosea_voucher_LHJ140926-11_translation_elongation_factor_1-alpha__ef1-a__gene__partial_cds            8.66%    passed     89.68%
+  64  MH509147.1_Amanita_timida_voucher_HKAS83228_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                  10.31%    passed     72.69%
+  65  ON520573.1_Amanita_cf._vaginata_voucher_TRTC157297_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds            8.66%    passed     64.06%
+  66  KP724683.1_Amanita_vernicoccora_voucher_RET_281-9_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                   9.28%    passed     71.90%
+  67  KJ481995.1_Amanita_vestita_voucher_HKAS79687_translation_elongation_factor_1-alpha_gene__partial_cds                               9.90%    passed     97.31%
+  68  JX998007.1_Amanita_virosa_voucher_HKAS_56694_translation_elongation_factor_1-alpha_gene__partial_cds                               8.45%    passed     91.92%
+  69  MH509169.1_Amanita_vittadinii_voucher_HKAS101430_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds              9.48%    passed     78.63%
+  70  MN928569.1_Amanita_wadjukiorum_voucher_PERTH08793522_translation_elongation_factor_1-alpha__ef1-a__gene__partial_cds               9.28%    passed     80.76%
+  71  MN928567.1_Amanita_wadulawitu_voucher_PERTH09144382_translation_elongation_factor_1-alpha__ef1-a__gene__partial_cds                8.25%    passed     95.22%
+  72  MH508723.1_Amanita_cf._xanthogala_voucher_HKAS84707_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds           9.48%    passed     72.31%
+  73  MH509174.1_Amanita_yuaniana_voucher_HKAS58807_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                 9.07%    passed     97.03%
+  74  KF877191.1_Amanita_zambiana_voucher_De_Kesel_4378_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                   9.07%    passed     94.89%
+  75  MH509178.1_Amanita_zangii_voucher_HKAS99663_translation_elongation_factor_1-alpha__tef1-alpha__gene__partial_cds                   8.66%    passed     96.22%
+  76  OR828340.1_Pluteus_cervinus_voucher_AMB_18870_translation_elongation_factor_1-alpha__TEF1__gene__partial_cds                      11.34%    passed     95.29%
+  77  KJ460260.1_Pluteus_petasatus_voucher_UC1998685_translation_elongation_factor_1-alpha__tef1__gene__partial_cds                      8.04%    passed     96.30%
+****  TOTAL                                                                                                                              9.21%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.004 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -10884.481
+Optimal log-likelihood: -10884.241
+Rate parameters:  A-C: 1.52417  A-G: 4.99503  A-T: 1.77740  C-G: 1.24545  C-T: 8.45034  G-T: 1.00000
+Base frequencies:  A: 0.254  C: 0.240  G: 0.248  T: 0.257
+Proportion of invariable sites: 0.422
+Gamma shape alpha: 1.346
+Parameters optimization took 1 rounds (0.371 sec)
+Time for fast ML tree search: 3.142 seconds
+
+NOTE: ModelFinder requires 8 MB RAM!
+ModelFinder will test up to 484 DNA models (sample size: 485 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         12449.423    159 25216.846    25373.400    25882.126
+  2  GTR+F+I       11184.579    160 22689.158    22848.171    23358.622
+  3  GTR+F+G4      10971.503    160 22263.006    22422.018    22932.469
+  4  GTR+F+I+G4    10884.220    161 22090.441    22251.939    22764.089
+  5  GTR+F+R2      11048.772    161 22419.545    22581.043    23093.193
+  6  GTR+F+R3      10917.572    163 22161.144    22327.699    22843.161
+  7  GTR+F+R4      10875.796    165 22081.591    22253.316    22771.976
+  8  GTR+F+R5      10866.168    167 22066.337    22243.346    22765.089
+  9  GTR+F+R6      10865.663    169 22069.326    22251.738    22776.447
+ 14  GTR+F+I+R2    10931.582    162 22187.165    22351.177    22864.997
+ 15  GTR+F+I+R3    10880.031    164 22088.063    22257.188    22774.263
+ 16  GTR+F+I+R4    10871.252    166 22074.504    22248.857    22769.073
+ 17  GTR+F+I+R5    10871.061    168 22078.122    22257.818    22781.059
+ 26  SYM+I+G4      10889.220    158 22094.440    22248.563    22755.536
+ 29  SYM+R4        10870.920    162 22065.841    22229.853    22743.673
+ 30  SYM+R5        10870.611    164 22069.222    22238.347    22755.423
+ 38  SYM+I+R4      10875.317    163 22076.634    22243.188    22758.650
+ 48  TVM+F+I+G4    10907.405    160 22134.810    22293.822    22804.273
+ 51  TVM+F+R4      10889.097    164 22106.194    22275.319    22792.394
+ 52  TVM+F+R5      10888.966    166 22109.932    22284.284    22804.501
+ 60  TVM+F+I+R4    10890.288    165 22110.576    22282.300    22800.961
+ 70  TVMe+I+G4     10910.855    157 22135.710    22287.429    22792.621
+ 73  TVMe+R4       10891.678    161 22105.357    22266.855    22779.005
+ 74  TVMe+R5       10891.663    163 22109.327    22275.881    22791.343
+ 82  TVMe+I+R4     10892.828    162 22109.657    22273.669    22787.489
+ 92  TIM3+F+I+G4   10894.637    159 22107.273    22263.827    22772.553
+ 95  TIM3+F+R4     10876.759    163 22079.519    22246.074    22761.535
+ 96  TIM3+F+R5     10876.801    165 22083.603    22255.327    22773.987
+104  TIM3+F+I+R4   10881.923    164 22091.846    22260.971    22778.047
+114  TIM3e+I+G4    10900.916    156 22113.832    22263.173    22766.559
+117  TIM3e+R4      10882.708    160 22085.417    22244.429    22754.880
++R5 reinitialized from +R4 with factor 0.500
++R5 reinitialized from +R4 with factor 0.250
++R5 reinitialized from +R4 with factor 0.125
+118  TIM3e+R5      10882.695    162 22089.389    22253.402    22767.221
+126  TIM3e+I+R4    10887.556    161 22097.112    22258.611    22770.760
+136  TIM2+F+I+G4   10885.585    159 22089.170    22245.724    22754.449
+139  TIM2+F+R4     10866.135    163 22058.270    22224.824    22740.286
+140  TIM2+F+R5     10866.184    165 22062.367    22234.091    22752.752
+148  TIM2+F+I+R4   10871.710    164 22071.419    22240.544    22757.620
+158  TIM2e+I+G4    10890.709    156 22093.418    22242.759    22746.145
+161  TIM2e+R4      10870.826    160 22061.651    22220.663    22731.115
+162  TIM2e+R5      10870.919    162 22065.839    22229.851    22743.671
+170  TIM2e+I+R4    10876.130    161 22074.260    22235.759    22747.908
+180  TIM+F+I+G4    10893.345    159 22104.690    22261.244    22769.969
+183  TIM+F+R4      10875.043    163 22076.085    22242.640    22758.101
++R5 reinitialized from +R4 with factor 0.500
++R5 reinitialized from +R4 with factor 0.250
++R5 reinitialized from +R4 with factor 0.125
+184  TIM+F+R5      10875.053    165 22080.107    22251.831    22770.491
+192  TIM+F+I+R4    10880.143    164 22088.286    22257.411    22774.487
+202  TIMe+I+G4     10899.763    156 22111.525    22260.866    22764.252
+205  TIMe+R4       10881.198    160 22082.396    22241.408    22751.860
+206  TIMe+R5       10881.250    162 22086.499    22250.512    22764.331
+214  TIMe+I+R4     10886.048    161 22094.096    22255.594    22767.744
+224  TPM3u+F+I+G4  10916.547    158 22149.094    22303.217    22810.190
+227  TPM3u+F+R4    10898.027    162 22120.054    22284.067    22797.886
+228  TPM3u+F+R5    10898.027    164 22124.053    22293.178    22810.253
+236  TPM3u+F+I+R4  10899.887    163 22125.774    22292.328    22807.790
+246  TPM3+I+G4     10921.339    155 22152.678    22299.669    22801.221
+249  TPM3+R4       10902.212    159 22122.423    22278.977    22787.703
+250  TPM3+R5       10902.246    161 22126.493    22287.991    22800.141
+258  TPM3+I+R4     10904.065    160 22128.131    22287.143    22797.594
+268  TPM2u+F+I+G4  10908.651    158 22133.301    22287.424    22794.397
+271  TPM2u+F+R4    10888.830    162 22101.660    22265.673    22779.492
+272  TPM2u+F+R5    10888.890    164 22105.779    22274.904    22791.980
+280  TPM2u+F+I+R4  10891.024    163 22108.048    22274.603    22790.064
+290  TPM2+I+G4     10912.356    155 22134.711    22281.702    22783.254
+293  TPM2+R4       10891.880    159 22101.760    22258.313    22767.039
+294  TPM2+R5       10891.962    161 22105.925    22267.423    22779.573
+302  TPM2+I+R4     10894.034    160 22108.068    22267.080    22777.532
+312  K3Pu+F+I+G4   10915.460    158 22146.920    22301.043    22808.016
+315  K3Pu+F+R4     10896.571    162 22117.142    22281.155    22794.974
++R5 reinitialized from +R4 with factor 0.500
+316  K3Pu+F+R5     10896.555    164 22121.110    22290.235    22807.311
+324  K3Pu+F+I+R4   10898.655    163 22123.310    22289.864    22805.326
+334  K3P+I+G4      10920.457    155 22150.913    22297.904    22799.456
+337  K3P+R4        10901.061    159 22120.123    22276.677    22785.402
+338  K3P+R5        10901.031    161 22124.061    22285.560    22797.709
+346  K3P+I+R4      10903.147    160 22126.295    22285.307    22795.759
+356  TN+F+I+G4     10894.633    158 22105.267    22259.390    22766.362
+359  TN+F+R4       10875.845    162 22075.689    22239.702    22753.521
++R5 reinitialized from +R4 with factor 0.500
++R5 reinitialized from +R4 with factor 0.250
++R5 reinitialized from +R4 with factor 0.125
+360  TN+F+R5       10875.875    164 22079.750    22248.875    22765.951
+368  TN+F+I+R4     10880.896    163 22087.792    22254.346    22769.808
+378  TNe+I+G4      10901.015    155 22112.029    22259.020    22760.572
+381  TNe+R4        10881.987    159 22081.974    22238.528    22747.254
+382  TNe+R5        10882.041    161 22086.083    22247.581    22759.731
+390  TNe+I+R4      10886.794    160 22093.588    22252.601    22763.052
+400  HKY+F+I+G4    10916.577    157 22147.155    22298.873    22804.066
+403  HKY+F+R4      10897.517    161 22117.033    22278.532    22790.681
+404  HKY+F+R5      10897.452    163 22120.905    22287.459    22802.921
+412  HKY+F+I+R4    10899.680    162 22123.359    22287.372    22801.191
+422  K2P+I+G4      10921.570    154 22151.140    22295.807    22795.499
+425  K2P+R4        10902.006    158 22120.011    22274.134    22781.107
+426  K2P+R5        10901.973    160 22123.945    22282.958    22793.409
+434  K2P+I+R4      10904.185    159 22126.371    22282.924    22791.650
+444  F81+F+I+G4    11549.353    156 23410.705    23560.047    24063.432
+447  F81+F+R4      11524.335    160 23368.669    23527.682    24038.133
+448  F81+F+R5      11524.248    162 23372.496    23536.508    24050.328
+456  F81+F+I+R4    11526.656    161 23375.312    23536.810    24048.960
+466  JC+I+G4       11549.441    153 23404.882    23547.250    24045.056
+469  JC+R4         11523.935    157 23361.869    23513.588    24018.781
+470  JC+R5         11523.856    159 23365.713    23522.267    24030.992
+478  JC+I+R4       11526.200    158 23368.400    23522.523    24029.495
+Akaike Information Criterion:           TIM2+F+R4
+Corrected Akaike Information Criterion: TIM2e+R4
+Bayesian Information Criterion:         TIM2e+R4
+Best-fit model: TIM2e+R4 chosen according to BIC
+
+All model information printed to cleaned_mantrim_al_TEF1.fasta.model.gz
+CPU time for ModelFinder: 123.099 seconds (0h:2m:3s)
+Wall-clock time for ModelFinder: 123.414 seconds (0h:2m:3s)
+Generating 1000 samples for ultrafast bootstrap (seed: 199096)...
+
+NOTE: 3 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -11523.937
+2. Current log-likelihood: -10879.413
+3. Current log-likelihood: -10870.303
+4. Current log-likelihood: -10870.145
+Optimal log-likelihood: -10870.099
+Rate parameters:  A-C: 1.54921  A-G: 4.56300  A-T: 1.54921  C-G: 1.00000  C-T: 7.56570  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Site proportion and rates:  (0.480,0.013) (0.155,0.747) (0.229,1.723) (0.135,3.579)
+Parameters optimization took 4 rounds (1.859 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0266333 secs using 95.87% CPU
+Computing ML distances took 0.026845 sec (of wall-clock time) 0.025565 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000234542 secs using 99.77% CPU
+Computing RapidNJ tree took 0.001146 sec (of wall-clock time) 0.000773 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -10935.613
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.335 second
+Computing log-likelihood of 98 initial trees ... 2.648 seconds
+Current best score: -10870.099
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -10869.971
+Iteration 10 / LogL: -10870.739 / Time: 0h:2m:13s
+Iteration 20 / LogL: -10870.084 / Time: 0h:2m:18s
+Finish initializing candidate tree set (5)
+Current best tree score: -10869.971 / CPU time: 12.558
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 21: -10869.544
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 22: -10865.443
+Iteration 30 / LogL: -10868.258 / Time: 0h:2m:25s (0h:1m:10s left)
+Iteration 40 / LogL: -10870.281 / Time: 0h:2m:32s (0h:1m:0s left)
+Iteration 50 / LogL: -10898.312 / Time: 0h:2m:38s (0h:0m:51s left)
+Log-likelihood cutoff on original alignment: -10905.246
+Iteration 60 / LogL: -10865.565 / Time: 0h:2m:44s (0h:0m:43s left)
+Iteration 70 / LogL: -10865.560 / Time: 0h:2m:50s (0h:0m:35s left)
+Iteration 80 / LogL: -10874.198 / Time: 0h:2m:57s (0h:0m:28s left)
+Iteration 90 / LogL: -10865.558 / Time: 0h:3m:2s (0h:0m:21s left)
+Iteration 100 / LogL: -10870.456 / Time: 0h:3m:9s (0h:0m:14s left)
+Log-likelihood cutoff on original alignment: -10905.171
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.994
+Iteration 110 / LogL: -10865.645 / Time: 0h:3m:15s (0h:0m:59s left)
+Iteration 120 / LogL: -10871.030 / Time: 0h:3m:21s (0h:0m:52s left)
+TREE SEARCH COMPLETED AFTER 123 ITERATIONS / Time: 0h:3m:23s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -10865.443
+2. Current log-likelihood: -10865.430
+Optimal log-likelihood: -10865.427
+Rate parameters:  A-C: 1.56305  A-G: 4.57230  A-T: 1.56305  C-G: 1.00000  C-T: 7.62662  G-T: 1.00000
+Base frequencies:  A: 0.250  C: 0.250  G: 0.250  T: 0.250
+Site proportion and rates:  (0.480,0.013) (0.157,0.744) (0.232,1.747) (0.130,3.620)
+Parameters optimization took 2 rounds (0.596 sec)
+BEST SCORE FOUND : -10865.427
+
+Testing tree branches by SH-like aLRT with 1000 replicates...
+0.441 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file cleaned_mantrim_al_TEF1.fasta.splits.nex
+Total tree length: 8.470
+
+Total number of iterations: 123
+CPU time used for tree search: 77.285 sec (0h:1m:17s)
+Wall-clock time used for tree search: 77.804 sec (0h:1m:17s)
+Total CPU time used: 203.594 sec (0h:3m:23s)
+Total wall-clock time used: 204.482 sec (0h:3m:24s)
+
+Computing bootstrap consensus tree...
+Reading input file cleaned_mantrim_al_TEF1.fasta.splits.nex...
+77 taxa and 441 splits.
+Consensus tree written to cleaned_mantrim_al_TEF1.fasta.contree
+Reading input trees file cleaned_mantrim_al_TEF1.fasta.contree
+Log-likelihood of consensus tree: -10865.604
+
+Analysis results written to: 
+  IQ-TREE report:                cleaned_mantrim_al_TEF1.fasta.iqtree
+  Maximum-likelihood tree:       cleaned_mantrim_al_TEF1.fasta.treefile
+  Likelihood distances:          cleaned_mantrim_al_TEF1.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          cleaned_mantrim_al_TEF1.fasta.splits.nex
+  Consensus tree:                cleaned_mantrim_al_TEF1.fasta.contree
+  Screen log file:               cleaned_mantrim_al_TEF1.fasta.log
+
+Date and Time: Fri May 30 02:37:38 2025
