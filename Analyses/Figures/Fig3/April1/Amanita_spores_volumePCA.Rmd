@@ -41,26 +41,26 @@ library(ggrepel)
 ```{r}
 
 
-eco <- read_csv("Results/Ecology/Ecology_from_tree.csv") %>%
+eco <- read_csv("Results/Ecology/Ecology_from_tree.csv") |>
   mutate(species = str_to_lower(str_trim(species)))
 
-pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") %>%
+pca <- read_csv("Results/PCA/PCA_Spore_Scores_Aggregated_with_Count.csv") |>
   mutate(species = str_to_lower(str_trim(species)))
 
-vol <- read_csv("Results/Volume/Volume.csv") %>%
+vol <- read_csv("Results/Volume/Volume_error_checked.csv") |>
   mutate(species = str_to_lower(str_trim(species)))
 
-loc <- read_csv("Results/Weather/East_Coast_Holotypes.csv") %>%
+loc <- read_csv("Results/Weather/East_Coast_Holotypes.csv") |>
   mutate(species = str_to_lower(str_trim(species)))
 
-clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") %>%
+clim <- read.csv("Results/Climate/Amanita_Climate_Summary.csv") |>
   mutate(species = str_to_lower(str_trim(species)))
 
 # Merge datasets
-df <- pca %>%
-  left_join(vol, by = "species") %>%
-  left_join(eco, by = "species") %>%
-  left_join(loc, by = "species") %>%
+df <- pca |>
+  left_join(vol, by = "species") |>
+  left_join(eco, by = "species") |>
+  left_join(loc, by = "species") |>
   left_join(clim, by = "species")
 
 glimpse(df)

@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 841.89 595.28">
-  <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 755.95 464.26">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
   <defs>
     <style>
-      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7 {
-        fill: #231f20;
-      }
-
-      .st0, .st3, .st8 {
-        font-size: 6px;
-      }
-
-      .st0, .st4, .st9, .st10, .st11 {
-        font-style: italic;
-      }
-
-      .st0, .st4, .st9, .st11 {
-        font-family: Arial-BoldItalicMT, Arial;
-        font-weight: 700;
-      }
-
-      .st12 {
-        fill: #fff;
-      }
-
-      .st12, .st13 {
-        stroke: #231f20;
-        stroke-miterlimit: 10;
-      }
-
-      .st14, .st2, .st6 {
-        font-family: ArialMT, Arial;
-      }
-
-      .st2 {
-        font-size: 16.65px;
-      }
-
-      .st5 {
-        font-family: MyriadPro-Regular, 'Myriad Pro';
-        font-size: 36px;
-      }
-
-      .st7 {
-        font-size: 12px;
-      }
-
-      .st15 {
+      .st0 {
         stroke: #010101;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 1.17px;
       }
 
-      .st15, .st13 {
+      .st0, .st1 {
         fill: none;
       }
 
-      .st10 {
+      .st2 {
+        fill: #fff;
+      }
+
+      .st2, .st1 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .st3, .st4, .st5, .st6, .st7, .st8, .st9 {
+        fill: #231f20;
+      }
+
+      .st3, .st4, .st10, .st6, .st7, .st8, .st11, .st9 {
+        isolation: isolate;
+      }
+
+      .st3, .st6, .st7, .st9 {
+        font-family: ArialMT, Arial;
+      }
+
+      .st3, .st8, .st11 {
+        font-size: 6px;
+      }
+
+      .st4 {
         font-family: Arial-ItalicMT, Arial;
+      }
+
+      .st4, .st8, .st11 {
+        font-style: italic;
+      }
+
+      .st4, .st9 {
+        font-size: 12px;
+      }
+
+      .st6 {
+        font-size: 16.65px;
+      }
+
+      .st7 {
+        font-size: 36px;
+      }
+
+      .st8, .st11 {
+        font-family: Arial-BoldItalicMT, Arial;
+        font-weight: 700;
       }
 
       .st11 {
@@ -67,66 +70,215 @@
     </style>
   </defs>
   <g>
-    <line class="st13" x1="565.78" y1="232.55" x2="766.3" y2="232.55"/>
-    <path class="st1" d="M566.38,232.55c1.57-1.57,2.31-4.67,2.38-6.82-2.15,2.89-4.94,5.41-8.32,6.82,3.38,1.35,6.05,4.02,8.32,6.82-.18-2.3-.75-5.1-2.38-6.82Z"/>
-    <path class="st1" d="M765.7,232.55c-1.57-1.57-2.31-4.67-2.38-6.82,2.15,2.89,4.94,5.41,8.32,6.82-3.38,1.35-6.05,4.02-8.32,6.82.18-2.3.75-5.1,2.38-6.82Z"/>
+    <line class="st1" x1="517.42" y1="204.44" x2="717.94" y2="204.44"/>
+    <path class="st5" d="M518.02,204.44c1.57-1.57,2.31-4.67,2.38-6.82-2.15,2.89-4.94,5.41-8.32,6.82,3.38,1.35,6.05,4.02,8.32,6.82-.18-2.3-.75-5.1-2.38-6.82Z"/>
+    <path class="st5" d="M717.34,204.44c-1.57-1.57-2.31-4.67-2.38-6.82,2.15,2.89,4.94,5.41,8.32,6.82-3.38,1.35-6.05,4.02-8.32,6.82.18-2.3.75-5.1,2.38-6.82Z"/>
   </g>
   <g>
-    <line class="st13" x1="666.04" y1="331.87" x2="666.04" y2="133.24"/>
-    <path class="st1" d="M666.04,331.27c-1.57-1.57-4.67-2.31-6.82-2.38,2.89,2.15,5.41,4.94,6.82,8.32,1.35-3.38,4.02-6.05,6.82-8.32-2.3.18-5.1.75-6.82,2.38Z"/>
-    <path class="st1" d="M666.04,133.84c-1.57,1.57-4.67,2.31-6.82,2.38,2.89-2.15,5.41-4.94,6.82-8.32,1.35,3.38,4.02,6.05,6.82,8.32-2.3-.18-5.1-.75-6.82-2.38Z"/>
+    <line class="st1" x1="617.68" y1="303.76" x2="617.68" y2="105.13"/>
+    <path class="st5" d="M617.68,303.16c-1.57-1.57-4.67-2.31-6.82-2.38,2.89,2.15,5.41,4.94,6.82,8.32,1.35-3.38,4.02-6.05,6.82-8.32-2.3.18-5.1.75-6.82,2.38Z"/>
+    <path class="st5" d="M617.68,105.73c-1.57,1.57-4.67,2.31-6.82,2.38,2.89-2.15,5.41-4.94,6.82-8.32,1.35,3.38,4.02,6.05,6.82,8.32-2.3-.18-5.1-.75-6.82-2.38Z"/>
   </g>
-  <path class="st15" d="M792.39,222.63c-.58.11-1.17.13-1.76.23-1.26.22-2.42.7-3.54,1.28-1.57.82-2.91,1.94-4.17,3.17-.91.89-1.87,1.72-2.76,2.61-.83.83-1.39,1.82-1.44,3.05-.02.45.04.9.18,1.3.61,1.63,1.34,3.21,2.11,4.76.59,1.2,1.27,2.36,2.16,3.38,1.34,1.52,2.88,2.74,4.81,3.47,1.46.55,2.95.81,4.49.75,1.36-.06,2.67-.38,3.92-.93,1.65-.73,3.11-1.74,4.28-3.13,1.4-1.66,2.36-3.55,2.78-5.69.44-2.22.37-4.41-.34-6.55-.84-2.55-2.35-4.61-4.64-6.07-1.07-.68-2.24-1.15-3.47-1.41-.84-.18-1.7-.24-2.57-.22"/>
-  <path class="st15" d="M545.3,226.03c-.1.02-.2.05-.3.05-1.87-.05-3.72.24-5.57.45-2.1.24-4.2.47-6.31.65-1.56.13-3.12.26-4.68.33-1.02.04-2.01-.14-3.01-.37-.62-.14-1.29-.24-1.83.32-.13.13-.38.16-.38.4-.01.38-.21.75-.05,1.13.48,1.15.68,2.36.84,3.59.37,2.81,1.94,4.65,4.57,5.66,1.49.57,3.02.77,4.59.83,2.24.08,4.47-.04,6.7-.21,2.42-.18,4.83-.4,7.19-.98,1.37-.34,2.69-.78,3.85-1.65,1.48-1.11,2.33-2.56,2.44-4.39.07-1.19-.33-2.28-1.12-3.19-1.3-1.5-3-2.2-4.92-2.47-.66-.09-1.32-.02-1.97-.13"/>
-  <path class="st15" d="M640.38,100.03c.32,2.85.97,5.62,1.93,8.32,1.43,4.04,3.77,7.4,7.24,10.01,4.01,3.01,8.55,4.36,13.45,4.82,5.03.47,9.88-.25,14.61-1.93,4.31-1.53,8.16-3.81,10.91-7.51,2.94-3.97,3.99-8.45,2.52-13.29-.97-3.22-2.99-5.73-5.66-7.75-2.98-2.25-6.41-3.39-10.02-3.97-2.98-.48-6-.44-9.01-.11-3.22.36-6.36,1.1-9.43,2.1-2.72.89-5.32,2.07-7.93,3.24-1.52.68-3.09,1.17-4.68,1.66-2.03.62-3.54,1.79-3.85,4.07-.01.09-.05.17-.08.25"/>
-  <path class="st15" d="M657.17,345.82c.11.99.34,1.95.67,2.88.49,1.4,1.3,2.56,2.51,3.46,1.39,1.04,2.96,1.51,4.65,1.67,1.74.16,3.42-.09,5.05-.67,1.49-.53,2.82-1.32,3.77-2.6,1.02-1.37,1.38-2.92.87-4.6-.34-1.11-1.03-1.98-1.96-2.68-1.03-.78-2.22-1.17-3.47-1.37-1.03-.17-2.08-.15-3.12-.04-1.11.12-2.2.38-3.26.73-.94.31-1.84.72-2.74,1.12-.53.24-1.07.41-1.62.57-.7.22-1.23.62-1.33,1.41,0,.03-.02.06-.03.09"/>
-  <text class="st2" transform="translate(649.85 372.77)"><tspan x="0" y="0">Size</tspan></text>
-  <text class="st2" transform="translate(513.09 256.62) rotate(-90)"><tspan x="0" y="0">Shape</tspan></text>
-  <rect class="st12" x="630.31" y="302.26" width="71.46" height="14.76" rx="5" ry="5"/>
-  <text class="st0" transform="translate(631.8 311.79)"><tspan x="0" y="0">Unconstrained in shape</tspan></text>
-  <rect class="st12" x="704.13" y="203.61" width="56.58" height="56.02" rx="5" ry="5"/>
-  <rect class="st12" x="571.7" y="206.51" width="58.61" height="53.38" rx="5" ry="5"/>
-  <text class="st3" transform="translate(572.67 216.7)"><tspan class="st9" x="0" y="0">Constrained in size.</tspan><tspan class="st14" x="56.68" y="0"> </tspan><tspan class="st14" x="1" y="7.2">Correlated with </tspan><tspan class="st9" x="43.02" y="7.2">high </tspan><tspan class="st9"><tspan x="15.67" y="14.4">localized </tspan></tspan><tspan class="st9" x="9.5" y="21.6">precipitation.</tspan><tspan class="st14" x="47.17" y="21.6"> </tspan><tspan class="st14"><tspan x="12.5" y="28.8">Prevalent in </tspan></tspan><tspan class="st9"><tspan x=".32" y="36">temperate climates.</tspan></tspan></text>
-  <text class="st3" transform="translate(707.79 213.61)"><tspan class="st9"><tspan x="0" y="0">Unconstrained in </tspan></tspan><tspan class="st9" x="3.16" y="7.2">size.</tspan><tspan class="st14" x="16.17" y="7.2" xml:space="preserve"> Correlated </tspan><tspan class="st14" x="-.17" y="14.4">with </tspan><tspan class="st9" x="12.17" y="14.4">low localized </tspan><tspan class="st9" x="5.67" y="21.6">precipitation.</tspan><tspan class="st14" x="43.34" y="21.6"> </tspan><tspan class="st14"><tspan x="8.66" y="28.8">Prevalent in </tspan></tspan><tspan class="st9"><tspan x="8.5" y="36">continental </tspan></tspan><tspan class="st9"><tspan x="11.66" y="43.2">climates.</tspan></tspan></text>
-  <rect class="st12" x="635.25" y="212.56" width="62.04" height="39.52" rx="5" ry="5"/>
-  <text class="st3" transform="translate(637.25 220.58)"><tspan class="st14"><tspan x="0" y="0">Spore size and shape </tspan></tspan><tspan class="st14" x=".18" y="7.2">are </tspan><tspan class="st9" x="10.52" y="7.2">not explained by </tspan><tspan class="st9"><tspan x="10.52" y="14.4">phylogenetic </tspan></tspan><tspan class="st9"><tspan x=".68" y="21.6">history or Brownian </tspan></tspan><tspan class="st9"><tspan x="18.19" y="28.8">motion.</tspan></tspan></text>
-  <rect class="st12" x="549.58" y="276.12" width="54.28" height="62.88" rx="5" ry="5"/>
-  <text class="st3" transform="translate(563.38 283.43)"><tspan class="st14"><tspan x="0" y="0">Extremely </tspan></tspan><tspan class="st14"><tspan x="-8.01" y="7.2">elongate spores </tspan></tspan><tspan class="st14" x="-8.84" y="14.4">are </tspan><tspan class="st9" x="1.5" y="14.4">constrained </tspan><tspan class="st9" x="-5.34" y="21.6">to small size</tspan><tspan class="st14" x="30.34" y="21.6">. </tspan><tspan class="st14"><tspan x="-6.51" y="28.8">Small elongate </tspan></tspan><tspan class="st14"><tspan x="-9.18" y="36">spores are found </tspan></tspan><tspan class="st14" x="-11.84" y="43.2">in </tspan><tspan class="st9" x="-5.5" y="43.2">coastal regions </tspan><tspan class="st9"><tspan x="-1.33" y="50.4">in the U.S.</tspan></tspan></text>
-  <rect class="st12" x="632.44" y="147.11" width="67.19" height="10.68" rx="5" ry="5"/>
-  <text class="st0" transform="translate(635.53 154.16)"><tspan x="0" y="0">Constrained in shape</tspan></text>
-  <text class="st7" transform="translate(48.36 430.87)"><tspan class="st14" x="0" y="0">Figure 1. Compared hypotheses from current literature to the findings of our study. </tspan><tspan class="st10" x="440.22" y="0">Amanita </tspan><tspan class="st14" x="487.58" y="0">spore shapes, in </tspan><tspan class="st10" x="578.96" y="0">Amanita</tspan><tspan class="st14" x="622.99" y="0" xml:space="preserve"> are simple, but what </tspan><tspan class="st14" x="0" y="14.4">shapes spore shape is complex.</tspan><tspan class="st10" x="171.43" y="14.4" xml:space="preserve"> (</tspan><tspan class="st14" x="178.76" y="14.4">A)</tspan><tspan class="st10" x="190.76" y="14.4"> </tspan><tspan class="st14" x="194.09" y="14.4">Current literature, identifies disparate ecological factors as dominant influences on spore shape and </tspan><tspan class="st14"><tspan x="0" y="28.8">size. Some hypotheses are contradictary. Ectomycorrhizal = EM; Saprotrophic = SAP. 1) Bassler et al. 2015; 2) Bassler et al. 2016; 3) </tspan></tspan><tspan class="st14"><tspan x="0" y="43.2">Calhim et al. 2018; 4) Halbwachs et al. 2015; 5) Halbwachs et al. 2018; 6) Kauserud et al. 2008; 7) Kauserud et al. 2011; 8) Pehim Limbu </tspan></tspan><tspan class="st14" x="0" y="57.6">et al. 2025. (B) We identify multiple drivers of variation in </tspan><tspan class="st10" x="303.46" y="57.6">Amanita </tspan><tspan class="st14" x="350.82" y="57.6">spore shape and size. </tspan></text>
-  <text class="st5" transform="translate(87.38 59)"><tspan x="0" y="0">A</tspan></text>
-  <text class="st5" transform="translate(498.53 59)"><tspan x="0" y="0">B</tspan></text>
-  <rect class="st12" x="329.14" y="131.62" width="51.13" height="51.13" rx="5" ry="5"/>
+  <path class="st0" d="M744.03,194.52c-.58.11-1.17.13-1.76.23-1.26.22-2.42.7-3.54,1.28-1.57.82-2.91,1.94-4.17,3.17-.91.89-1.87,1.72-2.76,2.61-.83.83-1.39,1.82-1.44,3.05-.02.45.04.9.18,1.3.61,1.63,1.34,3.21,2.11,4.76.59,1.2,1.27,2.36,2.16,3.38,1.34,1.52,2.88,2.74,4.81,3.47,1.46.55,2.95.81,4.49.75,1.36-.06,2.67-.38,3.92-.93,1.65-.73,3.11-1.74,4.28-3.13,1.4-1.66,2.36-3.55,2.78-5.69.44-2.22.37-4.41-.34-6.55-.84-2.55-2.35-4.61-4.64-6.07-1.07-.68-2.24-1.15-3.47-1.41-.84-.18-1.7-.24-2.57-.22"/>
+  <path class="st0" d="M496.94,197.92c-.1.02-.2.05-.3.05-1.87-.05-3.72.24-5.57.45-2.1.24-4.2.47-6.31.65-1.56.13-3.12.26-4.68.33-1.02.04-2.01-.14-3.01-.37-.62-.14-1.29-.24-1.83.32-.13.13-.38.16-.38.4-.01.38-.21.75-.05,1.13.48,1.15.68,2.36.84,3.59.37,2.81,1.94,4.65,4.57,5.66,1.49.57,3.02.77,4.59.83,2.24.08,4.47-.04,6.7-.21,2.42-.18,4.83-.4,7.19-.98,1.37-.34,2.69-.78,3.85-1.65,1.48-1.11,2.33-2.56,2.44-4.39.07-1.19-.33-2.28-1.12-3.19-1.3-1.5-3-2.2-4.92-2.47-.66-.09-1.32-.02-1.97-.13"/>
+  <path class="st0" d="M592.02,71.92c.32,2.85.97,5.62,1.93,8.32,1.43,4.04,3.77,7.4,7.24,10.01,4.01,3.01,8.55,4.36,13.45,4.82,5.03.47,9.88-.25,14.61-1.93,4.31-1.53,8.16-3.81,10.91-7.51,2.94-3.97,3.99-8.45,2.52-13.29-.97-3.22-2.99-5.73-5.66-7.75-2.98-2.25-6.41-3.39-10.02-3.97-2.98-.48-6-.44-9.01-.11-3.22.36-6.36,1.1-9.43,2.1-2.72.89-5.32,2.07-7.93,3.24-1.52.68-3.09,1.17-4.68,1.66-2.03.62-3.54,1.79-3.85,4.07-.01.09-.05.17-.08.25"/>
+  <path class="st0" d="M608.81,317.71c.11.99.34,1.95.67,2.88.49,1.4,1.3,2.56,2.51,3.46,1.39,1.04,2.96,1.51,4.65,1.67,1.74.16,3.42-.09,5.05-.67,1.49-.53,2.82-1.32,3.77-2.6,1.02-1.37,1.38-2.92.87-4.6-.34-1.11-1.03-1.98-1.96-2.68-1.03-.78-2.22-1.17-3.47-1.37-1.03-.17-2.08-.15-3.12-.04-1.11.12-2.2.38-3.26.73-.94.31-1.84.72-2.74,1.12-.53.24-1.07.41-1.62.57-.7.22-1.23.62-1.33,1.41,0,.03-.02.06-.03.09"/>
+  <g class="st10">
+    <text class="st6" transform="translate(601.49 344.66)"><tspan x="0" y="0">Size</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st6" transform="translate(464.73 228.51) rotate(-90)"><tspan x="0" y="0">Shape</tspan></text>
+  </g>
+  <rect class="st2" x="581.95" y="274.15" width="71.46" height="14.76" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st8" transform="translate(583.44 283.68)"><tspan x="0" y="0">Unconstrained in shape</tspan></text>
+  </g>
+  <rect class="st2" x="655.77" y="175.5" width="56.58" height="56.02" rx="5" ry="5"/>
+  <rect class="st2" x="523.34" y="178.4" width="58.61" height="53.38" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st8" transform="translate(524.31 188.59)"><tspan x="0" y="0">Constrained in size.</tspan></text>
+    <text class="st3" transform="translate(580.99 188.59)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(525.31 195.79)"><tspan x="0" y="0">Correlated with </tspan></text>
+    <text class="st8" transform="translate(567.33 195.79)"><tspan x="0" y="0">high </tspan></text>
+    <text class="st8" transform="translate(539.98 202.99)"><tspan x="0" y="0">localized </tspan></text>
+    <text class="st8" transform="translate(533.81 210.19)"><tspan x="0" y="0">precipitation.</tspan></text>
+    <text class="st3" transform="translate(571.48 210.19)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(536.81 217.39)"><tspan x="0" y="0">Prevalent in </tspan></text>
+    <text class="st8" transform="translate(524.63 224.59)"><tspan x="0" y="0">temperate climates.</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st8" transform="translate(659.43 185.5)"><tspan x="0" y="0">Unconstrained in </tspan></text>
+    <text class="st8" transform="translate(662.59 192.7)"><tspan x="0" y="0">size.</tspan></text>
+    <text class="st3" transform="translate(675.6 192.7)"><tspan x="0" y="0" xml:space="preserve"> Correlated </tspan></text>
+    <text class="st3" transform="translate(659.26 199.9)"><tspan x="0" y="0">with </tspan></text>
+    <text class="st8" transform="translate(671.6 199.9)"><tspan x="0" y="0">low localized </tspan></text>
+    <text class="st8" transform="translate(665.1 207.1)"><tspan x="0" y="0">precipitation.</tspan></text>
+    <text class="st3" transform="translate(702.77 207.1)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(668.09 214.3)"><tspan x="0" y="0">Prevalent in </tspan></text>
+    <text class="st8" transform="translate(667.93 221.5)"><tspan x="0" y="0">continental </tspan></text>
+    <text class="st8" transform="translate(671.09 228.7)"><tspan x="0" y="0">climates.</tspan></text>
+  </g>
+  <rect class="st2" x="586.89" y="184.45" width="62.04" height="39.52" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(588.89 192.47)"><tspan x="0" y="0">Spore size and shape </tspan></text>
+    <text class="st3" transform="translate(589.07 199.67)"><tspan x="0" y="0">are </tspan></text>
+    <text class="st8" transform="translate(599.41 199.67)"><tspan x="0" y="0">not explained by </tspan></text>
+    <text class="st8" transform="translate(599.41 206.87)"><tspan x="0" y="0">phylogenetic </tspan></text>
+    <text class="st8" transform="translate(589.57 214.07)"><tspan x="0" y="0">history or Brownian </tspan></text>
+    <text class="st8" transform="translate(607.08 221.27)"><tspan x="0" y="0">motion.</tspan></text>
+  </g>
+  <rect class="st2" x="501.22" y="248.01" width="54.28" height="62.88" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(515.02 255.32)"><tspan x="0" y="0">Extremely </tspan></text>
+    <text class="st3" transform="translate(507.01 262.52)"><tspan x="0" y="0">elongate spores </tspan></text>
+    <text class="st3" transform="translate(506.18 269.72)"><tspan x="0" y="0">are </tspan></text>
+    <text class="st8" transform="translate(516.52 269.72)"><tspan x="0" y="0">constrained </tspan></text>
+    <text class="st8" transform="translate(509.68 276.92)"><tspan x="0" y="0">to small size</tspan></text>
+    <text class="st3" transform="translate(545.36 276.92)"><tspan x="0" y="0">. </tspan></text>
+    <text class="st3" transform="translate(508.51 284.12)"><tspan x="0" y="0">Small elongate </tspan></text>
+    <text class="st3" transform="translate(505.84 291.32)"><tspan x="0" y="0">spores are found </tspan></text>
+    <text class="st3" transform="translate(503.18 298.52)"><tspan x="0" y="0">in </tspan></text>
+    <text class="st8" transform="translate(509.52 298.52)"><tspan x="0" y="0">coastal regions </tspan></text>
+    <text class="st8" transform="translate(513.69 305.72)"><tspan x="0" y="0">in the U.S.</tspan></text>
+  </g>
+  <rect class="st2" x="584.08" y="119" width="67.19" height="10.68" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st8" transform="translate(587.17 126.05)"><tspan x="0" y="0">Constrained in shape</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st9" transform="translate(0 402.76)"><tspan x="0" y="0">Figure 1. Compared hypotheses from current literature to the findings of our study. </tspan></text>
+    <text class="st4" transform="translate(440.22 402.76)"><tspan x="0" y="0">Amanita </tspan></text>
+    <text class="st9" transform="translate(487.58 402.76)"><tspan x="0" y="0">spore shapes, in </tspan></text>
+    <text class="st4" transform="translate(578.96 402.76)"><tspan x="0" y="0">Amanita</tspan></text>
+    <text class="st9" transform="translate(622.99 402.76)"><tspan x="0" y="0" xml:space="preserve"> are simple, but what </tspan></text>
+    <text class="st9" transform="translate(0 417.16)"><tspan x="0" y="0">shapes spore shape is complex.</tspan></text>
+    <text class="st4" transform="translate(171.43 417.16)"><tspan x="0" y="0" xml:space="preserve"> (</tspan></text>
+    <text class="st9" transform="translate(178.76 417.16)"><tspan x="0" y="0">A)</tspan></text>
+    <text class="st4" transform="translate(190.76 417.16)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st9" transform="translate(194.09 417.16)"><tspan x="0" y="0">Current literature, identifies disparate ecological factors as dominant influences on spore shape and </tspan></text>
+    <text class="st9" transform="translate(0 431.56)"><tspan x="0" y="0">size. Some hypotheses are contradictary. Ectomycorrhizal = EM; Saprotrophic = SAP. 1) Bassler et al. 2015; 2) Bassler et al. 2016; 3) </tspan></text>
+    <text class="st9" transform="translate(0 445.96)"><tspan x="0" y="0">Calhim et al. 2018; 4) Halbwachs et al. 2015; 5) Halbwachs et al. 2018; 6) Kauserud et al. 2008; 7) Kauserud et al. 2011; 8) Pehim Limbu </tspan></text>
+    <text class="st9" transform="translate(0 460.36)"><tspan x="0" y="0">et al. 2025. (B) We identify multiple drivers of variation in </tspan></text>
+    <text class="st4" transform="translate(303.46 460.36)"><tspan x="0" y="0">Amanita </tspan></text>
+    <text class="st9" transform="translate(350.82 460.36)"><tspan x="0" y="0">spore shape and size.</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st7" transform="translate(39.02 30.89)"><tspan x="0" y="0">A</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st7" transform="translate(450.17 30.89)"><tspan x="0" y="0">B</tspan></text>
+  </g>
+  <rect class="st2" x="280.78" y="103.51" width="51.13" height="51.13" rx="5" ry="5"/>
   <g>
-    <line class="st13" x1="157.66" y1="232.32" x2="358.19" y2="232.32"/>
-    <path class="st1" d="M158.26,232.32c1.57-1.57,2.31-4.67,2.38-6.82-2.15,2.89-4.94,5.41-8.32,6.82,3.38,1.35,6.05,4.02,8.32,6.82-.18-2.3-.75-5.1-2.38-6.82Z"/>
-    <path class="st1" d="M357.58,232.32c-1.57-1.57-2.31-4.67-2.38-6.82,2.15,2.89,4.94,5.41,8.32,6.82-3.38,1.35-6.05,4.02-8.32,6.82.18-2.3.75-5.1,2.38-6.82Z"/>
+    <line class="st1" x1="109.3" y1="204.21" x2="309.83" y2="204.21"/>
+    <path class="st5" d="M109.9,204.21c1.57-1.57,2.31-4.67,2.38-6.82-2.15,2.89-4.94,5.41-8.32,6.82,3.38,1.35,6.05,4.02,8.32,6.82-.18-2.3-.75-5.1-2.38-6.82h0Z"/>
+    <path class="st5" d="M309.22,204.21c-1.57-1.57-2.31-4.67-2.38-6.82,2.15,2.89,4.94,5.41,8.32,6.82-3.38,1.35-6.05,4.02-8.32,6.82.18-2.3.75-5.1,2.38-6.82Z"/>
   </g>
   <g>
-    <line class="st13" x1="257.92" y1="331.64" x2="257.92" y2="133.01"/>
-    <path class="st1" d="M257.92,331.03c-1.57-1.57-4.67-2.31-6.82-2.38,2.89,2.15,5.41,4.94,6.82,8.32,1.35-3.38,4.02-6.05,6.82-8.32-2.3.18-5.1.75-6.82,2.38Z"/>
-    <path class="st1" d="M257.92,133.61c-1.57,1.57-4.67,2.31-6.82,2.38,2.89-2.15,5.41-4.94,6.82-8.32,1.35,3.38,4.02,6.05,6.82,8.32-2.3-.18-5.1-.75-6.82-2.38Z"/>
+    <line class="st1" x1="209.56" y1="303.53" x2="209.56" y2="104.9"/>
+    <path class="st5" d="M209.56,302.92c-1.57-1.57-4.67-2.31-6.82-2.38,2.89,2.15,5.41,4.94,6.82,8.32,1.35-3.38,4.02-6.05,6.82-8.32-2.3.18-5.1.75-6.82,2.38Z"/>
+    <path class="st5" d="M209.56,105.5c-1.57,1.57-4.67,2.31-6.82,2.38,2.89-2.15,5.41-4.94,6.82-8.32,1.35,3.38,4.02,6.05,6.82,8.32-2.3-.18-5.1-.75-6.82-2.38Z"/>
   </g>
-  <path class="st15" d="M384.27,222.4c-.58.11-1.17.13-1.76.23-1.26.22-2.42.7-3.54,1.28-1.57.82-2.91,1.94-4.17,3.17-.91.89-1.87,1.72-2.76,2.61-.83.83-1.39,1.82-1.44,3.05-.02.45.04.9.18,1.3.61,1.63,1.34,3.21,2.11,4.76.59,1.2,1.27,2.36,2.16,3.38,1.34,1.52,2.88,2.74,4.81,3.47,1.46.55,2.95.81,4.49.75,1.36-.06,2.67-.38,3.92-.93,1.65-.73,3.11-1.74,4.28-3.13,1.4-1.66,2.36-3.55,2.78-5.69.44-2.22.37-4.41-.34-6.55-.84-2.55-2.35-4.61-4.64-6.07-1.07-.68-2.24-1.15-3.47-1.41-.84-.18-1.7-.24-2.57-.22"/>
-  <path class="st15" d="M137.18,225.8c-.1.02-.2.05-.3.05-1.87-.05-3.72.24-5.57.45-2.1.24-4.2.47-6.31.65-1.56.13-3.12.26-4.68.33-1.02.04-2.01-.14-3.01-.37-.62-.14-1.29-.24-1.83.32-.13.13-.38.16-.38.4-.01.38-.21.75-.05,1.13.48,1.15.68,2.36.84,3.59.37,2.81,1.94,4.65,4.57,5.66,1.49.57,3.02.77,4.59.83,2.24.08,4.47-.04,6.7-.21,2.42-.18,4.83-.4,7.19-.98,1.37-.34,2.69-.78,3.85-1.65,1.48-1.11,2.33-2.56,2.44-4.39.07-1.19-.33-2.28-1.12-3.19-1.3-1.5-3-2.2-4.92-2.47-.66-.09-1.32-.02-1.97-.13"/>
-  <path class="st15" d="M232.26,99.8c.32,2.85.97,5.62,1.93,8.32,1.43,4.04,3.77,7.4,7.24,10.01,4.01,3.01,8.55,4.36,13.45,4.82,5.03.47,9.88-.25,14.61-1.93,4.31-1.53,8.16-3.81,10.91-7.51,2.94-3.97,3.99-8.45,2.52-13.29-.97-3.22-2.99-5.73-5.66-7.75-2.98-2.25-6.41-3.39-10.02-3.97-2.98-.48-6-.44-9.01-.11-3.22.36-6.36,1.1-9.43,2.1-2.72.89-5.32,2.07-7.93,3.24-1.52.68-3.09,1.17-4.68,1.66-2.03.62-3.54,1.79-3.85,4.07-.01.09-.05.17-.08.25"/>
-  <path class="st15" d="M249.05,345.59c.11.99.34,1.95.67,2.88.49,1.4,1.3,2.56,2.51,3.46,1.39,1.04,2.96,1.51,4.65,1.67,1.74.16,3.42-.09,5.05-.67,1.49-.53,2.82-1.32,3.77-2.6,1.02-1.37,1.38-2.92.87-4.6-.34-1.11-1.03-1.98-1.96-2.68-1.03-.78-2.22-1.17-3.47-1.37-1.03-.17-2.08-.15-3.12-.04-1.11.12-2.2.38-3.26.73-.94.31-1.84.72-2.74,1.12-.53.24-1.07.41-1.62.57-.7.22-1.23.62-1.33,1.41,0,.03-.02.06-.03.09"/>
-  <text class="st2" transform="translate(242.39 372.77)"><tspan x="0" y="0">Size</tspan></text>
-  <text class="st2" transform="translate(104.97 256.39) rotate(-90)"><tspan x="0" y="0">Shape</tspan></text>
-  <rect class="st12" x="210.87" y="264.52" width="93.24" height="60.24" rx="5" ry="5"/>
-  <text class="st3" transform="translate(220.98 273.45)"><tspan class="st14" x="0" y="0">More prevalent in </tspan><tspan class="st9" x="48.02" y="0">cold, dry </tspan><tspan class="st9" x="-3.5" y="7.2">climates</tspan><tspan class="st14" x="20.51" y="7.2"> </tspan><tspan class="st14" x="22.18" y="7.2">(8). More likely to be </tspan><tspan class="st9" x="13.51" y="14.4">SAP </tspan><tspan class="st14" x="27.51" y="14.4">(2). Species </tspan><tspan class="st9"><tspan x="4.18" y="21.6">reproducing </tspan><tspan x="40.85" y="21.6">late in the </tspan></tspan><tspan class="st9" x="4" y="28.8">season</tspan><tspan class="st14" x="24.68" y="28.8" xml:space="preserve"> (7). Dominate in </tspan><tspan class="st9" x="-3.33" y="36">coastal regions</tspan><tspan class="st14" x="40.68" y="36" xml:space="preserve"> ( 7). </tspan><tspan class="st9" x="54.68" y="36">Smaller </tspan><tspan class="st9" x="2.51" y="43.2">reproductive bodies</tspan><tspan class="st14" x="59.85" y="43.2" xml:space="preserve"> (5).</tspan></text>
-  <rect class="st12" x="305.31" y="223.3" width="45.32" height="19.34" rx="5" ry="5"/>
-  <rect class="st12" x="165.39" y="223.32" width="45.48" height="18" rx="5" ry="5"/>
-  <text class="st8" transform="translate(169.89 230.9)"><tspan class="st6"><tspan x="0" y="0">More likely to </tspan></tspan><tspan class="st6" x="2.83" y="7.2">be </tspan><tspan class="st4" x="11.17" y="7.2">SAP</tspan><tspan class="st11" x="23.51" y="7.2"> </tspan><tspan class="st6" x="25.18" y="7.2">(4)</tspan></text>
-  <text class="st3" transform="translate(310.3 231.35)"><tspan class="st14"><tspan x="0" y="0">More likely to </tspan></tspan><tspan class="st14" x="4.5" y="7.2">be </tspan><tspan class="st9" x="12.84" y="7.2">EM </tspan><tspan class="st14" x="23.51" y="7.2">(4)</tspan></text>
-  <rect class="st12" x="223.81" y="207.26" width="67.73" height="50.13" rx="5" ry="5"/>
-  <text class="st3" transform="translate(233.75 216.23)"><tspan class="st14" x="0" y="0">EM + SAP </tspan><tspan class="st9" x="29.51" y="0">do not </tspan><tspan class="st9" x="-1.26" y="7.2">differ</tspan><tspan class="st14" x="13.74" y="7.2" xml:space="preserve"> in spore size </tspan><tspan class="st14"><tspan x="-3.77" y="14.4">and spore shape</tspan><tspan x="40.93" y="14.4" xml:space="preserve"> (1). </tspan></tspan><tspan class="st14"><tspan x=".74" y="21.6">Spore traits show </tspan></tspan><tspan class="st9"><tspan x="-4.75" y="28.8">strong phylogenetic </tspan></tspan><tspan class="st9" x="9.92" y="36">signal </tspan><tspan class="st14" x="28.92" y="36">(4).</tspan></text>
-  <rect class="st12" x="150.65" y="288.39" width="41.83" height="41.83" rx="5" ry="5"/>
-  <text class="st8" transform="translate(157.19 301.43)"><tspan class="st4" x="0" y="0">SAP</tspan><tspan class="st11" x="12.34" y="0"> </tspan><tspan class="st4" x="14" y="0">fungi</tspan><tspan class="st6" x="28.66" y="0"> </tspan><tspan class="st6"><tspan x="-3.68" y="7.2">are small and </tspan></tspan><tspan class="st6"><tspan x="-4.85" y="14.4">elongate (3, 4, </tspan></tspan><tspan class="st6"><tspan x="7.5" y="21.6">5, 6).</tspan></tspan></text>
-  <text class="st3" transform="translate(336.87 144.93)"><tspan class="st9" x="0" y="0">EM </tspan><tspan class="st9" x="10.67" y="0">fungi </tspan><tspan class="st14" x="26.99" y="0">are </tspan><tspan class="st14"><tspan x="5.32" y="7.2">large and </tspan></tspan><tspan class="st14"><tspan x="-6.18" y="14.4">spherical (3, 4, 5). </tspan></tspan><tspan class="st9"><tspan x="-6.35" y="21.6">Large spores are </tspan></tspan><tspan class="st9" x="-.67" y="28.8">spherical</tspan><tspan class="st14" x="25.67" y="28.8" xml:space="preserve"> (6).</tspan></text>
-  <rect class="st12" x="214.72" y="138.15" width="85.9" height="59.65" rx="5" ry="5"/>
-  <text class="st3" transform="translate(218.6 148.96)"><tspan class="st14" x="0" y="0">More prevalent in </tspan><tspan class="st9" x="48.02" y="0">warm, wet </tspan><tspan class="st9" x="-1.5" y="7.2">climates </tspan><tspan class="st14" x="24.18" y="7.2">(8). More likely to be </tspan><tspan class="st9" x="-1.16" y="14.4">EM </tspan><tspan class="st14" x="9.51" y="14.4">(2). Species </tspan><tspan class="st9" x="43.19" y="14.4">reproducing </tspan><tspan class="st9" x="6.17" y="21.6">early in the season</tspan><tspan class="st14" x="60.19" y="21.6" xml:space="preserve"> (7).  </tspan><tspan class="st14" x="1.18" y="28.8">Typical of more </tspan><tspan class="st9" x="43.86" y="28.8">continental </tspan><tspan class="st9" x="12.18" y="36">regions</tspan><tspan class="st14" x="33.85" y="36" xml:space="preserve"> (7). </tspan><tspan class="st9" x="46.18" y="36">Larger </tspan><tspan class="st9" x="4.51" y="43.2">reproductive bodies </tspan><tspan class="st14" x="63.52" y="43.2">(5).</tspan><tspan class="st14" x="72.52" y="43.2"> </tspan></text>
-  <text class="st2" transform="translate(103.94 393.92)"><tspan x="0" y="0">Hypothesized Influences on Spore Shape</tspan></text>
-  <text class="st2" transform="translate(618.16 393.92)"><tspan x="0" y="0">Our Findings</tspan></text>
+  <path class="st0" d="M335.91,194.29c-.58.11-1.17.13-1.76.23-1.26.22-2.42.7-3.54,1.28-1.57.82-2.91,1.94-4.17,3.17-.91.89-1.87,1.72-2.76,2.61-.83.83-1.39,1.82-1.44,3.05-.02.45.04.9.18,1.3.61,1.63,1.34,3.21,2.11,4.76.59,1.2,1.27,2.36,2.16,3.38,1.34,1.52,2.88,2.74,4.81,3.47,1.46.55,2.95.81,4.49.75,1.36-.06,2.67-.38,3.92-.93,1.65-.73,3.11-1.74,4.28-3.13,1.4-1.66,2.36-3.55,2.78-5.69.44-2.22.37-4.41-.34-6.55-.84-2.55-2.35-4.61-4.64-6.07-1.07-.68-2.24-1.15-3.47-1.41-.84-.18-1.7-.24-2.57-.22"/>
+  <path class="st0" d="M88.82,197.69c-.1.02-.2.05-.3.05-1.87-.05-3.72.24-5.57.45-2.1.24-4.2.47-6.31.65-1.56.13-3.12.26-4.68.33-1.02.04-2.01-.14-3.01-.37-.62-.14-1.29-.24-1.83.32-.13.13-.38.16-.38.4-.01.38-.21.75-.05,1.13.48,1.15.68,2.36.84,3.59.37,2.81,1.94,4.65,4.57,5.66,1.49.57,3.02.77,4.59.83,2.24.08,4.47-.04,6.7-.21,2.42-.18,4.83-.4,7.19-.98,1.37-.34,2.69-.78,3.85-1.65,1.48-1.11,2.33-2.56,2.44-4.39.07-1.19-.33-2.28-1.12-3.19-1.3-1.5-3-2.2-4.92-2.47-.66-.09-1.32-.02-1.97-.13"/>
+  <path class="st0" d="M183.9,71.69c.32,2.85.97,5.62,1.93,8.32,1.43,4.04,3.77,7.4,7.24,10.01,4.01,3.01,8.55,4.36,13.45,4.82,5.03.47,9.88-.25,14.61-1.93,4.31-1.53,8.16-3.81,10.91-7.51,2.94-3.97,3.99-8.45,2.52-13.29-.97-3.22-2.99-5.73-5.66-7.75-2.98-2.25-6.41-3.39-10.02-3.97-2.98-.48-6-.44-9.01-.11-3.22.36-6.36,1.1-9.43,2.1-2.72.89-5.32,2.07-7.93,3.24-1.52.68-3.09,1.17-4.68,1.66-2.03.62-3.54,1.79-3.85,4.07,0,.09-.05.17-.08.25"/>
+  <path class="st0" d="M200.69,317.48c.11.99.34,1.95.67,2.88.49,1.4,1.3,2.56,2.51,3.46,1.39,1.04,2.96,1.51,4.65,1.67,1.74.16,3.42-.09,5.05-.67,1.49-.53,2.82-1.32,3.77-2.6,1.02-1.37,1.38-2.92.87-4.6-.34-1.11-1.03-1.98-1.96-2.68-1.03-.78-2.22-1.17-3.47-1.37-1.03-.17-2.08-.15-3.12-.04-1.11.12-2.2.38-3.26.73-.94.31-1.84.72-2.74,1.12-.53.24-1.07.41-1.62.57-.7.22-1.23.62-1.33,1.41,0,.03-.02.06-.03.09"/>
+  <g class="st10">
+    <text class="st6" transform="translate(194.03 344.66)"><tspan x="0" y="0">Size</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st6" transform="translate(56.61 228.28) rotate(-90)"><tspan x="0" y="0">Shape</tspan></text>
+  </g>
+  <rect class="st2" x="162.51" y="236.41" width="93.24" height="60.24" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(172.62 245.34)"><tspan x="0" y="0">More prevalent in </tspan></text>
+    <text class="st8" transform="translate(220.64 245.34)"><tspan x="0" y="0">cold, dry </tspan></text>
+    <text class="st8" transform="translate(169.12 252.54)"><tspan x="0" y="0">climates</tspan></text>
+    <text class="st3" transform="translate(193.13 252.54)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(194.8 252.54)"><tspan x="0" y="0">(8). More likely to be </tspan></text>
+    <text class="st8" transform="translate(186.13 259.74)"><tspan x="0" y="0">SAP </tspan></text>
+    <text class="st3" transform="translate(200.13 259.74)"><tspan x="0" y="0">(2). Species </tspan></text>
+    <text class="st8" transform="translate(176.8 266.94)"><tspan x="0" y="0">reproducing </tspan></text>
+    <text class="st8" transform="translate(213.47 266.94)"><tspan x="0" y="0">late in the </tspan></text>
+    <text class="st8" transform="translate(176.62 274.14)"><tspan x="0" y="0">season</tspan></text>
+    <text class="st3" transform="translate(197.3 274.14)"><tspan x="0" y="0" xml:space="preserve"> (7). Dominate in </tspan></text>
+    <text class="st8" transform="translate(169.29 281.34)"><tspan x="0" y="0">coastal regions</tspan></text>
+    <text class="st3" transform="translate(213.3 281.34)"><tspan x="0" y="0" xml:space="preserve"> ( 7). </tspan></text>
+    <text class="st8" transform="translate(227.3 281.34)"><tspan x="0" y="0">Smaller </tspan></text>
+    <text class="st8" transform="translate(175.13 288.54)"><tspan x="0" y="0">reproductive bodies</tspan></text>
+    <text class="st3" transform="translate(232.47 288.54)"><tspan x="0" y="0" xml:space="preserve"> (5).</tspan></text>
+  </g>
+  <rect class="st2" x="256.95" y="195.19" width="45.32" height="19.34" rx="5" ry="5"/>
+  <rect class="st2" x="117.03" y="195.21" width="45.48" height="18" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(121.53 202.79)"><tspan x="0" y="0">More likely to </tspan></text>
+    <text class="st3" transform="translate(124.36 209.99)"><tspan x="0" y="0">be </tspan></text>
+    <text class="st8" transform="translate(132.7 209.99)"><tspan x="0" y="0">SAP</tspan></text>
+    <text class="st11" transform="translate(145.04 209.99)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(146.71 209.99)"><tspan x="0" y="0">(4)</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st3" transform="translate(261.94 203.24)"><tspan x="0" y="0">More likely to </tspan></text>
+    <text class="st3" transform="translate(266.44 210.44)"><tspan x="0" y="0">be </tspan></text>
+    <text class="st8" transform="translate(274.78 210.44)"><tspan x="0" y="0">EM </tspan></text>
+    <text class="st3" transform="translate(285.45 210.44)"><tspan x="0" y="0">(4)</tspan></text>
+  </g>
+  <rect class="st2" x="175.45" y="179.15" width="67.73" height="50.13" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(185.39 188.12)"><tspan x="0" y="0">EM + SAP </tspan></text>
+    <text class="st8" transform="translate(214.9 188.12)"><tspan x="0" y="0">do not </tspan></text>
+    <text class="st8" transform="translate(184.13 195.32)"><tspan x="0" y="0">differ</tspan></text>
+    <text class="st3" transform="translate(199.13 195.32)"><tspan x="0" y="0" xml:space="preserve"> in spore size </tspan></text>
+    <text class="st3" transform="translate(181.62 202.52)"><tspan x="0" y="0">and spore shape</tspan></text>
+    <text class="st3" transform="translate(226.32 202.52)"><tspan x="0" y="0" xml:space="preserve"> (1). </tspan></text>
+    <text class="st3" transform="translate(186.13 209.72)"><tspan x="0" y="0">Spore traits show </tspan></text>
+    <text class="st8" transform="translate(180.64 216.92)"><tspan x="0" y="0">strong phylogenetic </tspan></text>
+    <text class="st8" transform="translate(195.31 224.12)"><tspan x="0" y="0">signal </tspan></text>
+    <text class="st3" transform="translate(214.31 224.12)"><tspan x="0" y="0">(4).</tspan></text>
+  </g>
+  <rect class="st2" x="102.29" y="260.28" width="41.83" height="41.83" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st8" transform="translate(108.83 273.32)"><tspan x="0" y="0">SAP</tspan></text>
+    <text class="st11" transform="translate(121.17 273.32)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st8" transform="translate(122.83 273.32)"><tspan x="0" y="0">fungi</tspan></text>
+    <text class="st3" transform="translate(137.49 273.32)"><tspan x="0" y="0"> </tspan></text>
+    <text class="st3" transform="translate(105.15 280.52)"><tspan x="0" y="0">are small and </tspan></text>
+    <text class="st3" transform="translate(103.98 287.72)"><tspan x="0" y="0">elongate (3, 4, </tspan></text>
+    <text class="st3" transform="translate(116.33 294.92)"><tspan x="0" y="0">5, 6).</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st8" transform="translate(288.51 116.82)"><tspan x="0" y="0">EM </tspan></text>
+    <text class="st8" transform="translate(299.18 116.82)"><tspan x="0" y="0">fungi </tspan></text>
+    <text class="st3" transform="translate(315.5 116.82)"><tspan x="0" y="0">are </tspan></text>
+    <text class="st3" transform="translate(293.83 124.02)"><tspan x="0" y="0">large and </tspan></text>
+    <text class="st3" transform="translate(282.33 131.22)"><tspan x="0" y="0">spherical (3, 4, 5). </tspan></text>
+    <text class="st8" transform="translate(282.16 138.42)"><tspan x="0" y="0">Large spores are </tspan></text>
+    <text class="st8" transform="translate(287.84 145.62)"><tspan x="0" y="0">spherical</tspan></text>
+    <text class="st3" transform="translate(314.18 145.62)"><tspan x="0" y="0" xml:space="preserve"> (6).</tspan></text>
+  </g>
+  <rect class="st2" x="166.36" y="110.04" width="85.9" height="59.65" rx="5" ry="5"/>
+  <g class="st10">
+    <text class="st3" transform="translate(170.24 120.85)"><tspan x="0" y="0">More prevalent in </tspan></text>
+    <text class="st8" transform="translate(218.26 120.85)"><tspan x="0" y="0">warm, wet </tspan></text>
+    <text class="st8" transform="translate(168.74 128.05)"><tspan x="0" y="0">climates </tspan></text>
+    <text class="st3" transform="translate(194.42 128.05)"><tspan x="0" y="0">(8). More likely to be </tspan></text>
+    <text class="st8" transform="translate(169.08 135.25)"><tspan x="0" y="0">EM </tspan></text>
+    <text class="st3" transform="translate(179.75 135.25)"><tspan x="0" y="0">(2). Species </tspan></text>
+    <text class="st8" transform="translate(213.43 135.25)"><tspan x="0" y="0">reproducing </tspan></text>
+    <text class="st8" transform="translate(176.41 142.45)"><tspan x="0" y="0">early in the season</tspan></text>
+    <text class="st3" transform="translate(230.43 142.45)"><tspan x="0" y="0" xml:space="preserve"> (7).  </tspan></text>
+    <text class="st3" transform="translate(171.42 149.65)"><tspan x="0" y="0">Typical of more </tspan></text>
+    <text class="st8" transform="translate(214.1 149.65)"><tspan x="0" y="0">continental </tspan></text>
+    <text class="st8" transform="translate(182.42 156.85)"><tspan x="0" y="0">regions</tspan></text>
+    <text class="st3" transform="translate(204.09 156.85)"><tspan x="0" y="0" xml:space="preserve"> (7). </tspan></text>
+    <text class="st8" transform="translate(216.42 156.85)"><tspan x="0" y="0">Larger </tspan></text>
+    <text class="st8" transform="translate(174.75 164.05)"><tspan x="0" y="0">reproductive bodies </tspan></text>
+    <text class="st3" transform="translate(233.76 164.05)"><tspan x="0" y="0">(5).</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st6" transform="translate(55.58 365.81)"><tspan x="0" y="0">Hypothesized Influences on Spore Shape</tspan></text>
+  </g>
+  <g class="st10">
+    <text class="st6" transform="translate(569.8 365.81)"><tspan x="0" y="0">Our Findings</tspan></text>
+  </g>
 </svg>
