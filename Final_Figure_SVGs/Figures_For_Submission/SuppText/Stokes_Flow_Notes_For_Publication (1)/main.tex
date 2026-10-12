@@ -1,0 +1,228 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+%\documentclass[11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[numbers]{natbib}
+\usepackage{multicol}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage{braket}
+\usepackage{appendix}
+\usepackage{setspace}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{physics,color,bm}
+\usepackage[normalem]{ulem}
+\setstretch{1.1}
+\usepackage[font={small,it}]{caption}
+\newtheorem{theorem}{Theorem}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}
+
+\def\tcb{\textcolor{blue}}
+
+% Variables
+\def\vare{\varepsilon}
+
+
+% Operators 
+\def\Im{\operatorname{Im}}
+\def\Re{\operatorname{Re}}
+
+
+% Vectors
+\def\nhat{\hat{\mathbf{n}}}
+\def\n{\mathbf{n}}
+\def\nuVec{\bm{\nu}}
+\def\u{\mathbf{u}}
+\def\U{\mathbf{U}}
+\def\F{\mathbf{F}}
+\def\v{\mathbf{v}}
+\def\s{\mathbf{s}}
+\def\x{\mathbf{x}}
+\def\y{\mathbf{y}}
+\def\w{\mathbf{w}}
+\def\D{\mathbf{D}}
+\def\a{\mathbf{a}}
+\def\d{\partial}
+
+% Tensors
+\def\gradu{\nabla \u}
+\def\graduT{\nabla \u^\top}
+\def\sig{\bm{\sigma}}
+\def\E{\mathrm{E}}
+\def\G{\mathbf{G}}
+\def\T{\mathbf{T}}
+\def\I{\mathbf{I}}
+\def\P{\mathbf{P}}
+\def\scriptG{\mathcal{G}}
+
+\title{Stokes Flow Basis of the Spore Settling}
+\author{Carsen Grote \& Jason Raiti}
+
+\begin{document}
+
+\maketitle
+\section{Introduction to Stokes flow and Spores}
+At the scale of a fungal spore, “falling through a fluid” is governed less by momentum and more by viscosity: spores are so small (microns to tens of microns) and move so slowly that the Reynolds number 
+R is typically close to zero, placing them in the Stokes flow regime (creeping) where inertia is negligible and motion is effectively overdamped. In this limit, drag is proportional to velocity and the fluid equations are linear, so terminal velocity is reached almost immediately and is set by a balance of gravity (minus buoyancy) against viscous resistance. 
+
+For a nonspherical particle, this
+resistance depends on its orientation relative to the direction of motion.
+An elongate spore consequently experiences different drag when moving
+parallel to its long axis than when moving broadside. If its long axis is
+oblique to gravity, its settling velocity may also include a lateral
+component. Thus, the shape of the spore has the potential to influence both the settling
+rate and the near-field trajectory before broader atmospheric transport becomes
+dominant.
+
+These principles provide the physical basis for the simplified settling model
+used in our study of \textit{Amanita} basidiospores. We approximated each
+spore as a smooth prolate spheroid whose dimensions were determined from its
+measured length and width, and we used resistance relations from Stokes flow
+to calculate a comparative index of terminal velocity. This formulation
+connects the principal axis of morphological variation identified in our
+dataset (the transition from elongate to globose spores along principal
+component 1 (PC1)) to a specific aerodynamic consequence: changes in shape
+alter viscous resistance, including when particle volume is held constant.
+
+The following derivations are the basis for this comparative index, show how settling depends on particle orientation, and explain why the
+modeled values should be interpreted as relative differences in gravitational
+settling potential rather than exact predictions of spore trajectories under
+natural atmospheric conditions. The following derivations reference standard treatments of particle motion in
+Stokes flow presented by Kim and Karilla \cite{k&k} and "Microhydrodynamics, Brownian Motion, and Complex Fluids" by Graham \cite{Graham}. 
+
+\section{Terminal Velocities}
+Stokes Flow is characterized by a Reynolds number of approximately zero \cite{k&k}. When investigating spores with length scales on the order of hundreds of microns or less, we can safely assume a Stokes Flow regime. As a back of the envelope calculation, a 500 micrometer body length moving in air at an approximate speed of one body length per second produces a Reynolds number of about 0.01. At a Reynolds number of zero, Stokes' law provides the drag force on a sphere of radius $R$ translating with velocity $\U$ as
+\begin{equation}
+    \F_d = -6\pi\mu R\U,
+\end{equation}
+where $\mu$ is the dynamic viscosity of the fluid \cite{k&k}. To derive the terminal velocity
+of a sphere in Stokes flow, we need to balance this force with the gravitational force imparted on the sphere. 
+The gravitational force imparted on the sphere is 
+\begin{equation}
+    \F_g = (\rho_s - \rho_f)g\frac{4}{3}\pi R^3,
+\end{equation}
+where $g$ is the gravitational constant, $\rho_s$ and $\rho_f$ are the densities
+of the sphere and surrounding fluid, respectively. Assuming that the sphere is moving directly downwards, these two
+forces point in opposite directions, thus we can balance them to find the terminal velocity as 
+\begin{equation}
+    \F_d + \F_g = 0 \implies U_{\text{terminal}} = \frac{2(\rho_s - \rho_f)gR^2}{9\mu}.
+\end{equation}
+
+Now consider a spheroid defined by the equation
+\begin{equation}
+    \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1.
+\end{equation}
+For a prolate spheroid we have $a > b = c$. Following the derivation by Kim and Karilla \cite{k&k}, and 
+assuming that the prolate spheroid is sedimenting in the direction parallel to its elongated axis, we have the drag
+on the spheroid as 
+\begin{equation}
+    \F_d = -6\pi\mu a X^A U,
+\end{equation}
+where again $U$ is the sedimenting velocity and $X^A$ is defined as 
+\begin{equation}
+    X^A = \frac{8}{3}e^3\left[-2e + (1+e^2)L\right]^{-1},
+\end{equation}
+with $e = (a^2 - c^2)^{1/2}/a$ (spheroid eccentricity) and $L = \ln\left[(1+e)/(1-e)\right]$. For a prolate spheroid
+with aspect ratio of three $(a/c = a/b = 3)$ we have $e = 0.94$. Again, the terminal velocity of a prolate spheroid 
+traversing parallel to it's elongated axis is found by balancing this drag force with gravity. Alternatively, writing the
+gravitational force using the volume $V$ of the spheroid, 
+\begin{equation}
+    \F_g = (\rho_s - \rho_f)gV.
+\end{equation}
+Therefore the terminal velocity is 
+\begin{equation}
+    \F_g + \F_d = 0 \implies U_{\text{terminal}} = \frac{(\rho_s - \rho_f)gV}{6\pi\mu a X^A}.
+\end{equation}
+If the spheroid is instead traveling perpendicular to its elongated axis, then the drag reduces 
+to 
+\begin{equation}
+    \F_d = -6\pi\mu a Y^A U,
+\end{equation}
+where 
+\begin{equation}
+    Y^A = \frac{16}{3}e^3\left[2e + (3e^2-1)L\right]^{-1},
+\end{equation}
+and the resulting terminal velocity is 
+\begin{equation}
+    U_{\text{terminal}} =  \frac{(\rho_s - \rho_f)gV}{6\pi\mu a Y^A}.
+\end{equation}
+So, for a prolate spheroid with an aspect ratio of $3:1$, i.e. $a = 3, b  = c = 1$, we can calculate the drag ratio
+\begin{equation}
+    \frac{X^A}{Y^A} \approx 0.81.
+\end{equation}
+We see that such a prolate spheroid only sediments about 1.2 times 
+faster when translating parallel to its elongated axis than when translating perpendicular to its 
+elongated axis. In the case of a needle-like filament $(a \gg c)$, this ratio only goes down to 0.5 \cite{Graham}.
+This surprising result is due to the fact that in Stokes Flow, a sedimenting body has to drag along with it a blob of fluid with characteristic size $a$. For more discussion 
+of this see chapter three in Graham's book \cite{Graham}.
+
+Given a sphere of radius 1, a 3:1 prolate spheroid of equivalent volume has $a = 2.08$ and $b = c = (1/3)^{1/3}$.
+For such a prolate spheroid, $X^A = 0.468$ and $Y^A= 0.576$. Therefore the resulting drag on the sphere, prolate spheroid
+aligned with the flow, and prolate spheroid aligned perpendicular to the flow are 
+\begin{equation}
+\begin{split}
+    \F_{d} &= - 6\pi\mu \U, \\
+    \F_{d} &= - 6\pi\mu (2.08)(0.468)\U \approx (0.973)(- 6\pi\mu \U), \\
+    \F_{d} &= - 6\pi\mu (2.08)(0.576)\U \approx (1.19)(- 6\pi\mu \U).\\
+\end{split}
+\end{equation}
+Here it becomes apparent that a prolate spheroid aligned perpendicular to the sedimentation direction will only descend at a factor of 1.2 times 
+slower than an equivalent sphere. We also see that if the prolate spheroid descends along its elongated axis, it falls 
+at roughly the same speed as the corresponding sphere. 
+
+
+\section{The Lack of Tumbling}
+When considering the sedimentation of a prolate spheroid the question of tumbling dynamics 
+arises. Does the spheroid tend to rotate or align itself along a the elongated
+axis as it descends? When the spheroid is sufficiently far way from other objects and the 
+background flow is constant, the answer is no \cite{Graham}. One would think that a 
+descending spheroid
+that is not aligned with its elongated axis would re-align itself due to uneven drag forces,
+but that is our high Reynolds number intuition talking. At zero Reynolds number in a 
+constant and spatially-independent background flow, the resulting force balance is such that
+the prolate spheroid will remain in whatever initial orientation it started its descent
+with. However, upon introducing a non-constant background flow, other nearby bodies or walls, 
+this result changes and is no longer trivial \cite{Spagnolie}.
+
+The unintuitive lack of tumbling for a particle in Stokes' flow is a product of the
+time reversibility and symmetry properties of the \textit{linear} Stokes equations
+\cite {Graham}. Further, by only considering the relationship between velocity and
+force we can describe the trajectory of a particle with an axis of symmetry given by
+the unit vector $\u$. The symmetry requires that the results remain unchanged if we
+replace $\u$ with $-\u$, and that a force in the direction of $\u$ or $\u^\perp$ 
+direction will result in the particle moving in the same direction \cite{k&k}. Following 
+the analysis of Graham \cite{Graham}, the Stokes' drag for the particle in a quiescent
+background flow can be written as 
+\begin{equation}
+    \mathbf{F}_{\text{drag}} = - \mathbf{\zeta} \cdot \U
+\end{equation}
+where $\U$ is the particle's velocity and 
+\begin{equation}
+    \mathbf{\zeta} = \zeta^\parallel \u\u + \zeta^\perp(\mathbf{\delta - \u \u}).
+\end{equation}
+The operators $\u\u$ and $\mathbf{\delta} - \u\u$ are the parallel and perpendicular
+projection operators for $\u$. Therefore $\zeta^\parallel$ and $\zeta^\perp$ are the 
+friction coefficients for motion parallel and perpendicular to $\u$, respectively.
+Inverting the operator $\mathbf{\zeta}$ and balancing the drag and gravitational 
+forces for a sedimenting particle provides the particle's velocity as 
+\begin{equation}
+    \U = \left(\frac{1}{\zeta^\parallel}\u\u + \frac{1}{\zeta^\perp}
+    (\mathbf{\delta - \u \u})\right) \cdot \mathbf{g}.
+\end{equation}
+We clearly see that when $\u$ is neither parallel nor perpendicular to the 
+gravitational force vector $\mathbf{g}$, the resulting velocity $\U$ will be a linear 
+combination of $\u$ and $\u^\perp$ and the particle will move at an angle to 
+$\mathbf{g}$ \cite{Graham}. Consequently, a prolate spheroidal spore settling in Stokes flow will, for most orientations, not fall vertically but instead exhibit significant lateral drift.
+
+
+\newpage
+\bibliographystyle{IEEEtranN}
+\bibliography{bib}
+
+\end{document}
